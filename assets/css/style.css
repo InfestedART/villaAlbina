@@ -1,0 +1,32 @@
+.error {
+	color:red
+}
+
+.alert {
+	border-color: red;
+}
+
+
+.portada {	
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-size: cover;
+   	background-repeat: no-repeat;
+   	background-position: center center; 
+}
+
+.logo {
+	margin-top: 30px;
+	width: 100%;
+	text-align: center;
+	z-index: 5;
+}
+
+.logo img {
+	z-index: 5;
+	height: 80px;
+}
