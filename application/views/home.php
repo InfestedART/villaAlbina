@@ -20,13 +20,19 @@ $dir = base_url().'assets/';
 <body>
 	<div class="portada" style="background-image: url(<?php  echo $dir.'img/portada1.jpg'; ?>)" />		
 
-	<div class='container'>
+	<div class='macro'>
 		<div class="logo d-none d-md-block">
 			<img src=<?php echo $dir.'img/logo2.png'; ?> />
 		</div>
 
 		<div class="logo d-xs-block d-md-none">
 			<img src=<?php echo $dir.'img/logo_mobile.png'; ?> />
+		</div>
+
+		<div class="puerta">
+			<a href=# id="abrir-puerta">
+				<img src=<?php echo $dir.'img/abrir_puerta.png'; ?> />
+			</a>
 		</div>
 
 		<div class="nav">
