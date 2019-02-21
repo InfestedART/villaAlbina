@@ -1,8 +1,8 @@
-.error {
+.alert {
 	color:red
 }
 
-.alert {
+.input-error {
 	border-color: red;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .puerta img {
-	height: 100px;
+	height: 80px;
 }
 
 .nav {
@@ -58,6 +58,6 @@
 
 @media only screen and (max-width: 600px) {
 	.puerta img {
-		height: 90px;
+		height: 60px;
 	}
 }
