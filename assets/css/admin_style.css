@@ -1,0 +1,42 @@
+.admin-header {
+	background-color: orange;
+	color: white;
+	position:fixed;
+	padding: 10px 20px;
+	top:0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	max-height: 80px;
+}
+
+.admin-sidebar {
+	background-color: #454545;
+	color: white;
+	height: 100%;
+	width: 200px;
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	padding-top: 80px;
+}
+
+.admin-sidebar a {
+	display: block;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: inherit;
+	margin: 0;
+	padding: 10px;
+	width: 100%;
+}
+
+.admin-sidebar a:hover {
+	color: orange;
+}
+
+.admin-container {
+	margin-top: 80px;
+	margin-left: 200px;
+}

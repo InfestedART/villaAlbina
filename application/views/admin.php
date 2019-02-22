@@ -29,7 +29,9 @@
             		echo site_url('admin/login');
             	?>"
             >
-               <span class='alert' id='login_alert'></span>
+               <span class='alert px-0' id='login_alert'>
+               	 <?php echo $this->session->flashdata('error');?>
+               </span>
                <div class='form-group'>
                   <label>Nombre de Usuario</label>
                   <input class="form-control" type='text' name="usuario" id="login_username"/>               
