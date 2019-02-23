@@ -7,4 +7,9 @@ class Cpanel extends MY_Controller {
 		$this->load->view('cpanel');
 	}
 
+		public function nuevo_usuario()
+	{
+		$this->load->view('nuevo_usuario');
+	}
+
 }
