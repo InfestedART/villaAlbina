@@ -29,7 +29,7 @@
             		echo site_url('admin/login');
             	?>"
             >
-               <span class='alert px-0' id='login_alert'>
+               <span class='form-alert' id='login_alert'>
                	 <?php echo $this->session->flashdata('error');?>
                </span>
                <div class='form-group'>

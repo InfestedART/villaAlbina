@@ -20,24 +20,20 @@
 <body>
 
 <div id="container">
+   <?php
+      $this->load->view('templates/admin_header'); 
+      $this->load->view('templates/admin_sidebar');
+   ?>
 
-   <div class='admin-header'>
-      <div>CPANEL</div>
-      <div>Welcome <?php echo $this->session->userdata('usuario') ?></div>
-   </div>
-
-   <div class='admin-sidebar'>
-       <a href='<?php echo $admin_dir."nuevo_usuario" ?>'> Usuarios </a>
-   </div>
-   
    <div class='container admin-container'>
       <div  class='row justify-content-md-center'>
+         <span>
+            <?php echo $this->session->flashdata('msg');?>
+         </span>
          <h1>CPANEL</h1>
-          
-         </p>
       </div>
    </div>
-
+    
 </div>
 
 </body>

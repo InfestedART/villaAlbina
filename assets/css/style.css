@@ -1,5 +1,6 @@
-.alert {
+.form-alert {
 	color:red
+	padding: 0 1.25rem;
 }
 
 .input-error {

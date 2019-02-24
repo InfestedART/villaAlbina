@@ -13,10 +13,9 @@ class Admin extends CI_Controller {
 		$usuario = $this->input->post('usuario',TRUE);
 		$password = $this->input->post('password',TRUE);
 		$hashed_password = md5($password);
-		//$validate=$this->login_model->get_usuarios($usuario, $hashed_password); 
-		$validate=$this->login_model->get_usuarios($usuario, $password); 
-
-		echo $usuario.", ".$password.", ".$hashed_password."<br / >";
+		$validate=$this->login_model->get_usuario($usuario, $hashed_password); 
+		//$validate=$this->login_model->get_usuario($usuario, $password); 
+		
 		 if($validate->num_rows() > 0){
 		 	$sesdata = array(
            		'usuario'  => $usuario,
@@ -25,7 +24,10 @@ class Admin extends CI_Controller {
         	$this->session->set_userdata($sesdata);
 		 	redirect('cpanel');
 		 } else {
-		 	echo $this->session->set_flashdata('error','El nombre de usuario o la contraseña son incorrectos');
+		 	$this->session->set_flashdata(
+		 		'error',
+		 		'El nombre de usuario o la contraseña son incorrectos'
+		 	);
 		 	redirect('admin/');
 		 }		
 	}
