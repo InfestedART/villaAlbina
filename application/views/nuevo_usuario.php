@@ -82,7 +82,6 @@
    </div>
 
    <script src=<?php  echo $assets_dir."js/nuevo_usuario_app.js"; ?> ></script>
-</div>
-
-</body>
-</html>
+   <?php
+      $this->load->view('templates/admin_footer'); 
+   ?>

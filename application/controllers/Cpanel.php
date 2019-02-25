@@ -5,6 +5,7 @@ class Cpanel extends MY_Controller {
 	public function index() {
 		$data['header'] = $this->load->view('templates/admin_header', NULL, true);
 		$data['sidebar'] = $this->load->view('templates/admin_sidebar', NULL, true);
+		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
 		$this->load->view('cpanel', $data);
 	}
 
@@ -38,6 +39,11 @@ class Cpanel extends MY_Controller {
 		 	);
 			redirect('cpanel');
 		}		
+	}
+
+	public function close_session() {
+		$this->session->sess_destroy();
+		redirect('/');
 	}
 
 }

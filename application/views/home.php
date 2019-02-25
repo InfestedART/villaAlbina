@@ -36,6 +36,17 @@ $dir = base_url().'assets/';
 		</div>
 
 		<div class="nav">
+			<?php
+			 	$paginas_array = $paginas->result_array();
+			 	foreach ($paginas_array as $pagina) {
+			 		printf(
+			 			"<a href='#' class='nav__item'>
+			 				<p class='nav__label'>%s</p>
+			 			</a>",
+			 			$pagina['titulo']
+			 		);
+			 	}
+			 ?>
 		</div>
 	<div />
 </body>

@@ -13,6 +13,7 @@
 
 	<link rel="stylesheet" href=<?php  echo $dir."css/bootstrap.css"; ?> />
 	<link rel="stylesheet" href=<?php  echo $dir."css/style.css"; ?> />
+   <link rel="stylesheet" href=<?php  echo $dir."css/admin_style.css"; ?> />
 </head>
 <body>
 
@@ -20,7 +21,7 @@
 
 	<div class='row justify-content-center no-gutters'>
       <div class='col-12 col-md-5'>
-         <div class='card p-4 mt-5'>
+         <div class='login-form card p-4 mt-5'>
             <h3>INGRESAR</h3>
             <form
             	id="login_form"

@@ -13,8 +13,8 @@
 	<title>Espacio Simon I Patiño - Cpanel</title>
 
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/bootstrap.css"; ?> />
-	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/style.css"; ?> />
+   <link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
 </head>
 
 <body>
@@ -36,5 +36,6 @@
     
 </div>
 
-</body>
-</html>
+   <?php
+      $this->load->view('templates/admin_footer'); 
+   ?>
