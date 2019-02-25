@@ -1,0 +1,87 @@
+.form-alert {
+	color: red;
+}
+
+.input-error {
+	border-color: red;
+}
+
+.portada {	
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-size: cover;
+   	background-repeat: no-repeat;
+   	background-position: center center; 
+}
+
+.macro {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.logo {
+	margin-top: 30px;
+	width: 100%;
+	text-align: center;
+	z-index: 5;
+}
+
+.logo img {
+	z-index: 5;
+	height: 80px;
+}
+
+.puerta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: calc(90% - 220px);
+}
+
+.puerta img {
+	height: 80px;
+}
+
+.nav {
+	background-color: rgba(0, 0, 0, 0.4);
+	width: 100%;
+	height: 80px;
+	margin-top: 30px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav__item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: white;
+	padding: 0;
+	text-align: center;
+	height: 100%;
+}
+
+.nav__item:hover {
+	color: orange;
+	text-decoration: none
+}
+
+.nav__label {
+	padding: 15px;
+	margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+	.puerta img {
+		height: 60px;
+	}
+}
