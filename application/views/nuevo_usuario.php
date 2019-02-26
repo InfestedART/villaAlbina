@@ -16,19 +16,21 @@
 	<title>Espacio Simon I Patiño - Nuevo Usuario</title>
 
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/bootstrap.css"; ?> />
+   <link rel="stylesheet" href=<?php  echo $assets_dir."css/fa_all.min.css"; ?> />
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/style.css"; ?> />
 </head>
 
 <body>
 
-<div id="container">
+<div>
   	<?php
    	$this->load->view('templates/admin_header'); 
     	$this->load->view('templates/admin_sidebar');
    ?>
 
-   <div class='container admin-container'>
+   <div class='admin-container'>
+      <div class="container">
       <div  class='row justify-content-md-center'>
          <div class='card col-md-6 p-4 mt-5'>
             <h3>NUEVO USUARIO</h3>
@@ -76,9 +78,8 @@
                </div>
             </form>
          </div>
-      </div>
-      <div id='test'>
-      </div>
+      </div>      
+   </div>
    </div>
 
    <script src=<?php  echo $assets_dir."js/nuevo_usuario_app.js"; ?> ></script>

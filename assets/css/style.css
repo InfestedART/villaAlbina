@@ -1,3 +1,12 @@
+@font-face {
+  font-family: AvantGarde;
+  src: url(../font/AvantGarBoo);
+}
+
+*, html {
+	// font-family: AvantGarde;
+}
+
 .form-alert {
 	color: red;
 }

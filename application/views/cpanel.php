@@ -13,24 +13,27 @@
 	<title>Espacio Simon I Patiño - Cpanel</title>
 
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/bootstrap.css"; ?> />
+   <link rel="stylesheet" href=<?php  echo $assets_dir."css/fa_all.min.css"; ?> />
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/style.css"; ?> />
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
 </head>
 
 <body>
 
-<div id="container">
+<div>
    <?php
       $this->load->view('templates/admin_header'); 
       $this->load->view('templates/admin_sidebar');
    ?>
 
-   <div class='container admin-container'>
-      <div  class='row justify-content-md-center'>
-         <span>
-            <?php echo $this->session->flashdata('msg');?>
-         </span>
-         <h1>CPANEL</h1>
+   <div class='admin-container'>
+      <div class="container">
+         <div  class='row justify-content-md-center'>
+            <span>
+               <?php echo $this->session->flashdata('msg');?>
+            </span>
+            <h1>CPANEL</h1>
+         </div>
       </div>
    </div>
     
