@@ -5,7 +5,9 @@
  <div class='admin-header'>
 
 	<div class='admin-logo'>
- 		<h3>CPANEL</h3>
+    <a href='<?php echo $admin_dir; ?>'>
+ 		 <h3>LOGO</h3>
+    </a>
  	</div>
  	
    <div class='admin-rigth'>

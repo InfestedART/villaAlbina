@@ -23,6 +23,15 @@
 	display: inline-block;
 }
 
+.admin-logo a {
+	color: white;
+}
+
+.admin-logo a:hover {
+	color: white;
+	text-decoration: none;
+}
+
 .admin-rigth {
 	display: inline-block;
 	float: right;
@@ -125,6 +134,9 @@
 	.admin-sidebar {
 		width: 200px;
 		font-size: 14px;
+	}
+
+	.admin-sidebar a {
 		text-align: left;
 	}
 

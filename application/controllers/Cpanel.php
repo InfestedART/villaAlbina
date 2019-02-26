@@ -13,6 +13,10 @@ class Cpanel extends MY_Controller {
 		$this->load->view('nuevo_usuario');
 	}
 
+	public function noticia() {
+		$this->load->view('noticia');
+	}
+
 	public function insert_usuario() {
 		$this->load->model("usuarios_model");
 		
@@ -41,9 +45,12 @@ class Cpanel extends MY_Controller {
 		}		
 	}
 
+	public function insertar_usuario() {
+		echo "insertando noticia...";
+	}
+
 	public function close_session() {
 		$this->session->sess_destroy();
 		redirect('/');
 	}
-
 }
