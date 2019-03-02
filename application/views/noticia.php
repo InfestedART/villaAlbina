@@ -34,7 +34,7 @@
       <div class="container">
       <div  class='row justify-content-md-center'>
 
-         <div class='card col-md-6 p-4 mt-5'>
+         <div class='card col-12 col-md-8 p-4 mt-0 mt-md-5'>
             <h3>INSERTAR NOTICIA</h3>
             <form
             	id='form_noticia'            	
@@ -120,7 +120,7 @@
    </div>
    </div>
 
-   <script src=<?php  echo $assets_dir."js/nuevo_usuario_app.js"; ?> ></script>
+   <script src=<?php  echo $assets_dir."js/admin_noticia_app.js"; ?> ></script>
    <?php
       $this->load->view('templates/admin_footer'); 
    ?>
