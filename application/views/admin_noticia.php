@@ -20,6 +20,10 @@
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/fa_all.min.css"; ?> />
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/style.css"; ?> />
+
+   <link rel="stylesheet" href=<?php  echo $assets_dir."css/hotel-datepicker.css"; ?> />
+   <script src=<?php  echo $assets_dir."js/fecha.js"; ?> ></script>
+   <script src=<?php  echo $assets_dir."js/hotel-datepicker.min.js"; ?> ></script>
 </head>
 
 <body>
