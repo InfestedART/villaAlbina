@@ -10,8 +10,8 @@
       	<span>Usuarios</span>
   	</a>
 
-    <a  href='<?php echo $admin_dir."noticia" ?>'
-        class="<?php if ($this->uri->segment(2) == 'noticia')
+    <a  href='<?php echo $admin_dir."admin_noticia" ?>'
+        class="<?php if ($this->uri->segment(2) == 'admin_noticia')
           { echo 'active'; } ?>" >
       <i class="fa fa-user"></i>
         <span>Noticias</span>

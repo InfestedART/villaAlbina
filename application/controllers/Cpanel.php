@@ -13,8 +13,8 @@ class Cpanel extends MY_Controller {
 		$this->load->view('nuevo_usuario');
 	}
 
-	public function noticia() {
-		$this->load->view('noticia');
+	public function admin_noticia() {
+		$this->load->view('admin_noticia');
 	}
 
 	public function insert_usuario() {
