@@ -12,7 +12,7 @@ class Usuarios_model extends CI_Model {
   }
 
   function insert_usuario($data) {
-	$this->db->insert('usuarios', $data);
+	  $this->db->insert('usuarios', $data);
   }
 }
 ?>

@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	function main() {		
+function main() {		
 		const noticia_form = document.getElementById('form_noticia');	
 		const noticia_titulo = document.getElementById('titulo');
 		const noticia_fecha = document.getElementById('fecha');
@@ -11,6 +11,7 @@
 		const noticia_imagen = document.getElementById('imagen');
 		const noticia_alert = document.getElementById('noticia_alert');
 		const noticia_btn = document.getElementById('noticia_btn');
+		const hide_img_btn = document.getElementById('hide_img_btn');
 
     	var picker = new Pikaday({
         	field: noticia_fecha,
@@ -31,7 +32,6 @@
         	}
 		});
 
-
 		function form_validation() {
 			const regex = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
 			let error = '';
@@ -40,15 +40,15 @@
 				&& noticia_fecha.value.trim() !== ''
 				&& noticia_fecha.value.match(regex)
 				&& noticia_fuente.value.trim() !== '';
-				
+
 			if (form_is_validated) {
 				console.log('adding new noticia');	
 				noticia_form.submit();
-			} else {	
+			} else {
 				if (!noticia_fecha.value.match(regex)) {
 					error = 'Ingrese un formato de fecha valido (YYYY-MM-DD)';
 					noticia_fecha.classList.add('input-error');	
-				}							
+				}
 				if ( noticia_fuente.value.trim() === '') {
 					error = 'Campo fuente es obligatorio';
 					noticia_fuente.classList.add('input-error');	
@@ -65,9 +65,34 @@
 			}
 		}
 
+		const preview_img = document.getElementById('preview_img');
+		const hide_preview_btn = document.getElementById('hide_preview_btn');
+		const edit_img = document.getElementById('edit_img');
+		const show_preview_btn = document.getElementById('show_preview_btn');
+
+		function hide_preview() {
+			preview_img.classList.add('hidden');
+			hide_preview_btn.classList.add('hidden');
+			console.log('toggling off img');
+		}
+
+		function show_preview() {
+			edit_img.classList.add('hidden');
+			show_preview_btn.classList.add('hidden');
+			console.log('toggling on img');
+		}
+
 		noticia_btn.addEventListener('click', function(ev){
 			form_validation();
-		})
+		});
+
+		hide_preview_btn.addEventListener('click', function(ev){
+			hide_preview();
+		});
+
+		show_preview_btn.addEventListener('click', function(ev){
+			show_preview();
+		});
 	}
 
 	window.addEventListener('load' , main);

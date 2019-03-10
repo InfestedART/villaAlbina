@@ -1,10 +1,10 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
+   $this->load->library('calendar');
 	$assets_dir = base_url().'assets/';
 	$admin_dir = base_url().'cpanel/';
 
-
-   $error = '';
+   $error = $msg = '';
    $titulo_alert = $fecha_alert = $fuente_alert = $resumen_alert = false;
 ?>
 
@@ -21,9 +21,7 @@
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/style.css"; ?> />
 
-   <link rel="stylesheet" href=<?php  echo $assets_dir."css/hotel-datepicker.css"; ?> />
-   <script src=<?php  echo $assets_dir."js/fecha.js"; ?> ></script>
-   <script src=<?php  echo $assets_dir."js/hotel-datepicker.min.js"; ?> ></script>
+   <link rel="stylesheet" href=<?php  echo $assets_dir."css/pickaday.css"; ?> />
 </head>
 
 <body>
@@ -36,95 +34,65 @@
 
    <div class='admin-container'>
       <div class="container">
-      <div  class='row justify-content-md-center'>
+      <div class='row justify-content-md-center'>
 
-         <div class='card col-12 col-md-8 p-4 mt-0 mt-md-5'>
-            <h3>INSERTAR NOTICIA</h3>
-            <form
-            	id='form_noticia'            	
-            	method="post"
-	         	action="<?php
-            		echo site_url('cpanel/insertar_noticia');
-            	?>"
-            >
-               <span  id='noticia_error' class='form-alert'>
-               	<?php echo $this->session->flashdata('error');?>
-               </span>
+         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
+            <div>
+            <a class='nav-btn' href='<?php echo base_url()."cpanel/noticia_nueva"; ?>'>
+               + Noticia Nueva
+            </a>
+            </div>
+         </div>         
 
-               <div class='form-group'>
-                  <label>Titulo</label>
-                  <input
-                     id='titulo'
-                     name='titulo'
-                     class="form-control <?php echo $titulo_alert ? 'alert' : ''; ?>"
-                     type='text'
-                  /> 
-               </div>
-
-               <div class='form-group'>
-                  <label>Fecha</label>
-                  <input
-                     id='fecha'
-                     name='titulo'
-                     class="form-control <?php echo $fecha_alert ? 'alert' : ''; ?>"
-                     type='text'
-                  /> 
-               </div>
-
-                <div class='form-group'>
-                  <label>Fuente</label>
-                  <input
-                     id='fecha'
-                     name='titulo'
-                     class="form-control <?php echo $fuente_alert ? 'alert' : ''; ?>"
-                     type='text'
-                  /> 
-               </div>
-
-               <div class='form-group'>
-                  <label>Enlace</label>
-                  <input
-                     id='fecha'
-                     name='titulo'
-                     class="form-control"
-                     type='text'
-                  /> 
-               </div>
-
-               <div class='form-group'>
-                  <label>Resumen</label>
-                  <input
-                     id='fecha'
-                     name='titulo'
-                     class="form-control <?php echo $resumen_alert ? 'alert' : ''; ?>"
-                     type='text'
-                  /> 
-               </div>
-
-               <div class='form-group'>
-                  <label>Imagen Destacada</label>
-                  <input
-                     id='fecha'
-                     name='titulo'
-                     class="form-control"
-                     type='text'
-                  /> 
-               </div>
-
-               <div class="form-group">
-                  <button type="button" id='newUser_btn' class="btn btn-primary">
-                     AGREGAR NOTICIA
-                  </button>
-               </div>
-
-            </form>
+         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
+         <?php
+            $noticias_array = $noticias->result_array();
+            if (sizeof($noticias_array) > 0) {  ?>
+               <h4>Noticias</h3>
+               <table class='admin-table'>
+                  <thead>
+                     <tr>
+                        <th>Titulo</th>
+                        <th>Fecha</th>
+                        <th>Fuente</th>
+                        <th colspan="3">Imagen Destacada</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  <? foreach ($noticias_array as $noticia) {
+                        printf("
+                           <tr>
+                              <td>%s</td>
+                              <td>%s</td>
+                              <td>%s</td>
+                              <td>%s</td>
+                              <td><a href='%s/editar_noticia/%s'>
+                                 <i class='fa fa-edit'></i>
+                              </a></td>
+                              <td><a href='%s/delete_noticia/%s'>
+                                 <i class='fa fa-trash-alt'></i>
+                              </a></td>
+                           </tr>",
+                           $noticia['titulo'],
+                           $noticia['fecha'],
+                           $noticia['fuente'],
+                           $noticia['imagen_destacada'],
+                           $admin_dir, $noticia['id_post'],
+                           $admin_dir, $noticia['id_post']
+                        );
+                     }  
+                  ?> 
+                  </tbody>
+               </table>
+            <?
+            }
+            ?>               
          </div>
 
       </div>      
    </div>
    </div>
 
-   <script src=<?php  echo $assets_dir."js/admin_noticia_app.js"; ?> ></script>
    <?php
       $this->load->view('templates/admin_footer'); 
    ?>
