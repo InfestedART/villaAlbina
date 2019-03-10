@@ -14,7 +14,7 @@ class Noticias_model extends CI_Model {
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
 	$this->db->order_by('noticia.id_post', 'desc');
-	$this->db->limit(3);
+	$this->db->limit(6);
 	$query = $this->db->get(); 
 	return $query;
   }
@@ -36,6 +36,11 @@ class Noticias_model extends CI_Model {
   function delete_noticia($id) {
   	$this->db->delete('publicacion', array('id_post' => $id)); 
    	$this->db->delete('noticia', array('id_post' => $id));
+  }
+
+  function update_noticia($id, $data) {
+    $this->db->where('id_post', $id);
+    $this->db->update('noticia', $data);
   }
 }
 ?>

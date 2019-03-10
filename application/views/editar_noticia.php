@@ -6,6 +6,7 @@
 
    $error = $msg = '';
    $titulo_alert = $fecha_alert = $fuente_alert = $resumen_alert = false;
+   $id = $this->uri->segment(3);
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +50,7 @@
             <?php
                $news = $noticia->result_array()[0];               
                echo form_open_multipart(
-                  'cpanel/update_noticia',
+                  'cpanel/update_noticia/'.$id,
                   array('id' => 'form_noticia')
                );
             ?>
@@ -110,33 +111,29 @@
 
                <div class='form-group'>
                   <label class='form-label'>Imagen Destacada</label>
-                  <?php if(trim($news['resumen'])!=='') { ?>
+                  <?php
+                  $hayImagen = trim($news['imagen_destacada'])!=='';
+                  if($hayImagen) {     ?>
                      <img
                         id='preview_img'
                         class='form-show-img'
                         src="<?php echo $assets_dir.$news['imagen_destacada']; ?>"
                      />
                      <span class='form-change-img' id='hide_preview_btn'>
-                        Cambiar Imagen
+                        Quitar Imagen
                      </span>
-                     <input
-                        id='edit_img'
-                        name='edit_img'
-                        class="form-control form-input hidden"
-                        type='file'
-                     /> 
-                     <span class='form-change-img' id='show_preview_btn'>
-                        Cancelar
-                     </span>
-
-                  <?php } else { ?>
+                  <?php } ?>
                      <input
                         id='imagen'
                         name='imagen'
-                        class="form-control form-input"
+                        class="form-control form-input 
+                           <?php if ($hayImagen) { echo 'hidden'; } ?>"
+                        style="<?php if ($hayImagen) { echo 'width:calc(74% - 100px)'; } ?>"
                         type='file'
                      /> 
-                  <?php } ?>
+                     <span class='form-change-img hidden' id='show_preview_btn'>
+                        Cancelar
+                     </span>
                </div>
 
                <div class="form-group">

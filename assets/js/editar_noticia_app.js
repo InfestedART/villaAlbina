@@ -67,17 +67,21 @@ function main() {
 
 		const preview_img = document.getElementById('preview_img');
 		const hide_preview_btn = document.getElementById('hide_preview_btn');
-		const edit_img = document.getElementById('edit_img');
+		const imagen = document.getElementById('imagen');
 		const show_preview_btn = document.getElementById('show_preview_btn');
 
 		function hide_preview() {
 			preview_img.classList.add('hidden');
 			hide_preview_btn.classList.add('hidden');
+			imagen.classList.remove('hidden');
+			show_preview_btn.classList.remove('hidden');
 			console.log('toggling off img');
 		}
 
 		function show_preview() {
-			edit_img.classList.add('hidden');
+			preview_img.classList.remove('hidden');
+			hide_preview_btn.classList.remove('hidden');
+			imagen.classList.add('hidden');
 			show_preview_btn.classList.add('hidden');
 			console.log('toggling on img');
 		}

@@ -3,18 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2019 at 01:26 PM
+-- Generation Time: Mar 10, 2019 at 07:33 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `espaciopatino`
@@ -33,6 +27,11 @@ CREATE TABLE `area` (
   `activa` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `area`
+--
+
+TRUNCATE TABLE `area`;
 -- --------------------------------------------------------
 
 --
@@ -45,6 +44,11 @@ CREATE TABLE `categoria_equipo` (
   `categoria` varchar(80) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `categoria_equipo`
+--
+
+TRUNCATE TABLE `categoria_equipo`;
 -- --------------------------------------------------------
 
 --
@@ -57,6 +61,11 @@ CREATE TABLE `categoria_libro` (
   `categoria` varchar(60) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `categoria_libro`
+--
+
+TRUNCATE TABLE `categoria_libro`;
 -- --------------------------------------------------------
 
 --
@@ -69,6 +78,11 @@ CREATE TABLE `contenido` (
   `contenido` text COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `contenido`
+--
+
+TRUNCATE TABLE `contenido`;
 -- --------------------------------------------------------
 
 --
@@ -88,6 +102,11 @@ CREATE TABLE `evento` (
   `info` text COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `evento`
+--
+
+TRUNCATE TABLE `evento`;
 -- --------------------------------------------------------
 
 --
@@ -106,6 +125,11 @@ CREATE TABLE `libro` (
   `paginas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `libro`
+--
+
+TRUNCATE TABLE `libro`;
 -- --------------------------------------------------------
 
 --
@@ -122,6 +146,11 @@ CREATE TABLE `miembro_equipo` (
   `id_categoriaEquipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `miembro_equipo`
+--
+
+TRUNCATE TABLE `miembro_equipo`;
 -- --------------------------------------------------------
 
 --
@@ -135,6 +164,23 @@ CREATE TABLE `noticia` (
   `url` varchar(120) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `noticia`
+--
+
+TRUNCATE TABLE `noticia`;
+--
+-- Dumping data for table `noticia`
+--
+
+INSERT INTO `noticia` (`id_post`, `fuente`, `url`) VALUES
+(1, 'Página Siete / Gabriela Alanoca C.  / La Paz', 'noticia/noticia1'),
+(9, 'Jackeline Rojas Heredia  / Cambio', 'noticia/INAUGURAN EXPOSICIÓN DE FOTOS EN LA ESCENA TEATRAL'),
+(14, 'El Diario / Cultural', 'noticia/Nuevo espacio cultural de Fundación Simón I. Patiño'),
+(21, 'PÁGINA SIETE / Gabriela Alanoca C.', 'noticia/Cassany: Divertirse con la lectura es una manera de incentivarla'),
+(22, 'La Razón (Edición Impresa) / Miguel Vargas', 'noticia/Juan Rimsa, de maestro maestros'),
+(24, 'Página Siete / Milen Saavedra  / La Paz', 'noticia/noticia sin imagen');
+
 -- --------------------------------------------------------
 
 --
@@ -147,6 +193,11 @@ CREATE TABLE `pagina` (
   `titulo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `pagina`
+--
+
+TRUNCATE TABLE `pagina`;
 --
 -- Dumping data for table `pagina`
 --
@@ -170,8 +221,29 @@ CREATE TABLE `publicacion` (
   `titulo` varchar(120) COLLATE utf8_spanish2_ci NOT NULL,
   `fecha` date DEFAULT NULL,
   `resumen` text COLLATE utf8_spanish2_ci,
-  `imagen_destacada` varchar(80) COLLATE utf8_spanish2_ci DEFAULT NULL
+  `imagen_destacada` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `tipo` varchar(80) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Truncate table before insert `publicacion`
+--
+
+TRUNCATE TABLE `publicacion`;
+--
+-- Dumping data for table `publicacion`
+--
+
+INSERT INTO `publicacion` (`id_post`, `titulo`, `fecha`, `resumen`, `imagen_destacada`, `tipo`) VALUES
+(1, 'Espacio Simón I. Patiño abrirá en 2019 el teatro Doña Albina', '2018-12-20', 'El próximo año el espacio albergará en sus dos salas de exposición 10 muestras, la primera se realizará en abril, mientras se pretende estrenar el teatro en el primer semestre.', 'img/noticias/noticia1.jpg', 'noticia'),
+(9, 'INAUGURAN EXPOSICIÓN DE FOTOS EN LA ESCENA TEATRAL', '2018-05-03', ' En la galería del Espacio Simón I. Patiño se inauguró ayer la exposición Simbiosis: La imagen fotográfica en la escena teatral, de la artista costarricense Ana Muñoz, en el marco del XI Festival Internacional de Teatro de La Paz (Fitaz)\r\n                  ', 'uploads/img_inauguran-exposicion-de-fotos-en-la-escena-teatral_1756.jpg', 'noticia'),
+(14, 'Nuevo espacio cultural de Fundación Simón I. Patiño', '2018-05-03', ' asdasd\r\n                  ', 'uploads/Rosa_de_los_Vientos2.png', 'noticia'),
+(18, 'Nuevo espacio cultural de Fundación Simón I. Patiño', '2018-05-03', ' asdasd\r\n                  ', 'uploads/', 'noticia'),
+(19, 'Nuevo espacio cultural de Fundación Simón I. Patiño', '2018-05-03', ' asdasd\r\n                  ', 'uploads/', 'noticia'),
+(20, 'Nuevo espacio cultural de Fundación Simón I. Patiño', '2018-05-03', ' asdasd\r\n                  ', 'uploads/', 'noticia'),
+(21, 'Cassany: Divertirse con la lectura es una manera de incentivarla', '2018-08-14', 'El doctor Daniel Cassany llegó a La Paz para las V Jornadas Pedagógicas Internacionales. Entregó sus cuatro consejos para generar el hábito de la lectura.', 'uploads/img_cassany-divertirse-con-la-lectura-es-una-manera-de-incentivarla_190.jpg', 'noticia'),
+(22, 'Juan Rimsa, de maestro maestros', '2018-12-18', 'El Espacio Patiño abrió su sala de exposiciones con una gran retrospectiva.', 'uploads/img_juan-rimsa-de-maestro-maestros_195.jpg', 'noticia'),
+(24, 'noticia sin imagen', '2019-03-02', ' \r\n                  ', '', 'noticia');
 
 -- --------------------------------------------------------
 
@@ -185,6 +257,11 @@ CREATE TABLE `usuarios` (
   `password` varchar(255) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Truncate table before insert `usuarios`
+--
+
+TRUNCATE TABLE `usuarios`;
 --
 -- Dumping data for table `usuarios`
 --
@@ -296,7 +373,4 @@ ALTER TABLE `pagina`
 -- AUTO_INCREMENT for table `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;

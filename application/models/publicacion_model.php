@@ -11,5 +11,10 @@ class Publicacion_model extends CI_Model {
  	function insert_publicacion($data) {
   		$this->db->insert('publicacion', $data);
   	}
+
+  	function update_publicacion($id, $data) {
+    $this->db->where('id_post', $id);
+    $this->db->update('publicacion', $data);
+  	}
 }
 ?>
