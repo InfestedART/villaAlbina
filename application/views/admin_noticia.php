@@ -26,7 +26,7 @@
 
 <body>
 
-<div>
+<div style="position: absolute">
   	<?php
    	$this->load->view('templates/admin_header'); 
     	$this->load->view('templates/admin_sidebar');
@@ -39,7 +39,7 @@
          <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
             <div>
             <a class='nav-btn' href='<?php echo base_url()."cpanel/noticia_nueva"; ?>'>
-               + Noticia Nueva
+               <i class="fa fa-plus mr-1"></i> Noticia Nueva
             </a>
             </div>
          </div>         
@@ -55,6 +55,7 @@
                         <th>Titulo</th>
                         <th>Fecha</th>
                         <th>Fuente</th>
+                        <th>Resumen</th>
                         <th colspan="3">Imagen Destacada</th>
                      </tr>
                   </thead>
@@ -65,7 +66,21 @@
                               <td>%s</td>
                               <td>%s</td>
                               <td>%s</td>
-                              <td>%s</td>
+                              <td>%s</td>",
+                              $noticia['titulo'],
+                              $noticia['fecha'],
+                              $noticia['fuente'],
+                              $noticia['resumen']
+                        );
+                        if($noticia['imagen_destacada'] !== '') {
+                           printf("
+                              <td><img src='%s' class='img-small'></td>",
+                              $assets_dir.$noticia['imagen_destacada']
+                           );
+                        } else {
+                           echo "<td></td>";
+                        }
+                        printf("
                               <td><a href='%s/editar_noticia/%s'>
                                  <i class='fa fa-edit'></i>
                               </a></td>
@@ -73,10 +88,6 @@
                                  <i class='fa fa-trash-alt'></i>
                               </a></td>
                            </tr>",
-                           $noticia['titulo'],
-                           $noticia['fecha'],
-                           $noticia['fuente'],
-                           $noticia['imagen_destacada'],
                            $admin_dir, $noticia['id_post'],
                            $admin_dir, $noticia['id_post']
                         );

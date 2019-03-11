@@ -4,7 +4,7 @@ class Noticias_model extends CI_Model {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
-	$this->db->order_by('noticia.id_post', 'desc');
+	$this->db->order_by('publicacion.fecha', 'desc');
 	$query = $this->db->get(); 
 	return $query;
   }
@@ -13,7 +13,7 @@ class Noticias_model extends CI_Model {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
-	$this->db->order_by('noticia.id_post', 'desc');
+	$this->db->order_by('publicacion.fecha', 'desc');
 	$this->db->limit(6);
 	$query = $this->db->get(); 
 	return $query;
@@ -24,7 +24,6 @@ class Noticias_model extends CI_Model {
 	$this->db->from('noticia');
 	$this->db->where('noticia.id_post', $id);
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
-	$this->db->order_by('noticia.id_post', 'desc');
 	$query = $this->db->get(); 
 	return $query;
   }
