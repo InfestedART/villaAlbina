@@ -2,22 +2,22 @@
 -- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 10, 2019 at 07:33 PM
--- Server version: 5.7.17-log
--- PHP Version: 7.1.1
+-- Servidor: localhost
+-- Tiempo de generación: 12-03-2019 a las 04:33:07
+-- Versión del servidor: 5.7.17-log
+-- Versión de PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `espaciopatino`
+-- Base de datos: `espaciopatino`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `area`
+-- Estructura de tabla para la tabla `area`
 --
 
 DROP TABLE IF EXISTS `area`;
@@ -27,15 +27,10 @@ CREATE TABLE `area` (
   `activa` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Truncate table before insert `area`
---
-
-TRUNCATE TABLE `area`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoria_equipo`
+-- Estructura de tabla para la tabla `categoria_equipo`
 --
 
 DROP TABLE IF EXISTS `categoria_equipo`;
@@ -44,15 +39,10 @@ CREATE TABLE `categoria_equipo` (
   `categoria` varchar(80) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Truncate table before insert `categoria_equipo`
---
-
-TRUNCATE TABLE `categoria_equipo`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoria_libro`
+-- Estructura de tabla para la tabla `categoria_libro`
 --
 
 DROP TABLE IF EXISTS `categoria_libro`;
@@ -61,15 +51,10 @@ CREATE TABLE `categoria_libro` (
   `categoria` varchar(60) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Truncate table before insert `categoria_libro`
---
-
-TRUNCATE TABLE `categoria_libro`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contenido`
+-- Estructura de tabla para la tabla `contenido`
 --
 
 DROP TABLE IF EXISTS `contenido`;
@@ -79,14 +64,17 @@ CREATE TABLE `contenido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Truncate table before insert `contenido`
+-- Volcado de datos para la tabla `contenido`
 --
 
-TRUNCATE TABLE `contenido`;
+INSERT INTO `contenido` (`id_post`, `contenido`) VALUES
+(1, '“Nos estamos cargando de nueva energía, que queremos irradiar desde el nuevo Espacio Simón I. Patiño, que tiene ambientes más cómodos y mejores condiciones para acoger a nuestro público”, indicó la directora de la institución en La Paz, Michela Pentimalli.\r\n\r\nCon mayor impacto y un nuevo aire, el espacio busca encarar nuevos retos el próximo año. Entre ellos, poner en funcionamiento el teatro Doña    Albina -nombre en honor a la esposa de Simón Patiño-, que albergará obras teatrales, conciertos de música, danza y conferencias, entre otros.\r\n\r\nCon una capacidad para 180 personas, el teatro está casi listo para su inauguración, programada para los primeros meses del próximo año. Por ahora restan algunos detalles de su equipamiento, como la  iluminación.\r\n\r\n“En 2019 será el año en el que aprenderemos cómo gestionar un teatro y veremos la respuesta del público y los artistas. Este es nuestro gran proyecto y experiencia nueva”,  manifestó la directora.  Por ahora, el equipo trabaja en elaborar el protocolo del recinto.\r\n\r\nLo único establecido es que los lunes, martes y miércoles el espacio será reservado para actividades institucionales, el resto de los días estará disponible para los artistas de diferentes ramas. La administración del lugar estará a cargo de Noreen Guzmán, anunció la directora.\r\n\r\nEl espacio también dará marcha a un nuevo proyecto denominado “Huerto urbano”, dirigido a los niños, que estará articulado con el aula de animación a la lectura.  Responderá a las exigencias de la Ley 070 Avelino Siñani y Elizardo Pérez.\r\n\r\n“El ambiente para niños será un aula dedicada sólo a actividades infantiles de animación,  a la lectura o lúdicas  que organiza el Centro de Acción Pedagógica. En la terraza se instalará el huerto educativo, que servirá como una experiencia para los menores de edad, padres y maestros”, sostuvo Pentimalli.\r\n\r\nLa finalidad del proyecto es que esta experiencia se pueda replicar en las casas y colegios.  El curso comenzará en febrero y será anunciado mediante su página web y redes sociales. Por ahora se elabora el programa.\r\n\r\nLa nueva infraestructura del espacio (avenida Ecuador esquina calle Rosendo Gutiérrez) fue inaugurada el 29 de noviembre con dos muestras,  una de ellas ubicada en el hall, sobre la obra de los esposos Patiño.\r\n\r\nPor primera vez la fundación, inaugurada en 1931 , refleja la vida de uno de los barones del estaño. “Un lado importante de conocer”, según la directora.\r\n\r\nSe tiene previsto que el espacio esté abierto para unas 10 exposiciones en los próximos meses, la primera será del artista Alejandro Archondo, en abril.\r\n'),
+(22, 'Las comunidades aymaras, sus rituales y cotidianidad, así como el paisaje y el retrato caracterizan a la obra del pintor boliviano-lituano Juan Rimsa, maestro y amigo de grandes artistas nacionales entre 1937 y 1950, años entre los que residió en el país. El Espacio Patiño abrió sus salas de exposición con una retrospectiva sin precedentes, con más de 70 obras de colecciones públicas y privadas del país, además de material documental complementario.\n\nLa curadora de esta exposición es María Isabel Álvarez Plata, investigadora especialista en patrimonio, además de ser una profunda conocedora de la obra y de la trayectoria artística de Rimsa. Álvarez Plata ofreció visitas guiadas para adentrarse más en la vida y trabajos de este artista.\n\nJuan Rimsa (Kaunas, Lituania, 1903-Santa Mónica, California, 1978) fue  maestro de maestros. Con él se formaron en el Curso Superior de Bellas Artes, en Sucre, Gil Imaná, José Ostria y Josefina Reynolds; en su taller en La Paz, con Graciela Rodo Boulanger, María Esther Ballivián y Raúl Mariaca. Recorrió diferentes países de América, quedando prendado del paisaje boliviano y su gente.\n\nCecilio Guzmán de Rojas y Gregorio Reynolds fueron grandes amigos suyos, mientras que con la poeta Yolanda Bedregal tuvo una intensa historia de amor que se transformó en una amistad mantenida por correspondencia. Los retratos que hizo de la artista son célebres.\n\nRimsa se naturalizó boliviano y recibió el Cóndor de los Andes por sus méritos artísticos y por haber hecho conocer a Bolivia, a través de sus obras, en el exterior. Residió también en Argentina, Brasil y Tahití. Pasó sus últimos días en California, EEUU.\n\nEs por todo esto que la Fundación Simón I. Patiño escogió inaugurar las salas de exposición del nuevo edificio del Espacio Patiño —Ecuador, esquina Rosendo Gutiérrez— con un más que merecido homenaje.\n');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evento`
+-- Estructura de tabla para la tabla `evento`
 --
 
 DROP TABLE IF EXISTS `evento`;
@@ -102,15 +90,10 @@ CREATE TABLE `evento` (
   `info` text COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Truncate table before insert `evento`
---
-
-TRUNCATE TABLE `evento`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `libro`
+-- Estructura de tabla para la tabla `libro`
 --
 
 DROP TABLE IF EXISTS `libro`;
@@ -125,15 +108,10 @@ CREATE TABLE `libro` (
   `paginas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Truncate table before insert `libro`
---
-
-TRUNCATE TABLE `libro`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `miembro_equipo`
+-- Estructura de tabla para la tabla `miembro_equipo`
 --
 
 DROP TABLE IF EXISTS `miembro_equipo`;
@@ -146,15 +124,10 @@ CREATE TABLE `miembro_equipo` (
   `id_categoriaEquipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Truncate table before insert `miembro_equipo`
---
-
-TRUNCATE TABLE `miembro_equipo`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noticia`
+-- Estructura de tabla para la tabla `noticia`
 --
 
 DROP TABLE IF EXISTS `noticia`;
@@ -165,18 +138,12 @@ CREATE TABLE `noticia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Truncate table before insert `noticia`
---
-
-TRUNCATE TABLE `noticia`;
---
--- Dumping data for table `noticia`
+-- Volcado de datos para la tabla `noticia`
 --
 
 INSERT INTO `noticia` (`id_post`, `fuente`, `url`) VALUES
 (1, 'Página Siete / Gabriela Alanoca C.  / La Paz', 'noticia/noticia1'),
 (9, 'Jackeline Rojas Heredia  / Cambio', 'noticia/INAUGURAN EXPOSICIÓN DE FOTOS EN LA ESCENA TEATRAL'),
-(14, 'El Diario / Cultural', 'noticia/Nuevo espacio cultural de Fundación Simón I. Patiño'),
 (21, 'PÁGINA SIETE / Gabriela Alanoca C.', 'noticia/Cassany: Divertirse con la lectura es una manera de incentivarla'),
 (22, 'La Razón (Edición Impresa) / Miguel Vargas', 'noticia/Juan Rimsa, de maestro maestros'),
 (24, 'Página Siete / Milen Saavedra  / La Paz', 'noticia/noticia sin imagen');
@@ -184,7 +151,7 @@ INSERT INTO `noticia` (`id_post`, `fuente`, `url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pagina`
+-- Estructura de tabla para la tabla `pagina`
 --
 
 DROP TABLE IF EXISTS `pagina`;
@@ -194,12 +161,7 @@ CREATE TABLE `pagina` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Truncate table before insert `pagina`
---
-
-TRUNCATE TABLE `pagina`;
---
--- Dumping data for table `pagina`
+-- Volcado de datos para la tabla `pagina`
 --
 
 INSERT INTO `pagina` (`id_pagina`, `titulo`) VALUES
@@ -212,7 +174,7 @@ INSERT INTO `pagina` (`id_pagina`, `titulo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publicacion`
+-- Estructura de tabla para la tabla `publicacion`
 --
 
 DROP TABLE IF EXISTS `publicacion`;
@@ -222,33 +184,25 @@ CREATE TABLE `publicacion` (
   `fecha` date DEFAULT NULL,
   `resumen` text COLLATE utf8_spanish2_ci,
   `imagen_destacada` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `tipo` varchar(80) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Truncate table before insert `publicacion`
+-- Volcado de datos para la tabla `publicacion`
 --
 
-TRUNCATE TABLE `publicacion`;
---
--- Dumping data for table `publicacion`
---
-
-INSERT INTO `publicacion` (`id_post`, `titulo`, `fecha`, `resumen`, `imagen_destacada`, `tipo`) VALUES
-(1, 'Espacio Simón I. Patiño abrirá en 2019 el teatro Doña Albina', '2018-12-20', 'El próximo año el espacio albergará en sus dos salas de exposición 10 muestras, la primera se realizará en abril, mientras se pretende estrenar el teatro en el primer semestre.', 'img/noticias/noticia1.jpg', 'noticia'),
-(9, 'INAUGURAN EXPOSICIÓN DE FOTOS EN LA ESCENA TEATRAL', '2018-05-03', ' En la galería del Espacio Simón I. Patiño se inauguró ayer la exposición Simbiosis: La imagen fotográfica en la escena teatral, de la artista costarricense Ana Muñoz, en el marco del XI Festival Internacional de Teatro de La Paz (Fitaz)\r\n                  ', 'uploads/img_inauguran-exposicion-de-fotos-en-la-escena-teatral_1756.jpg', 'noticia'),
-(14, 'Nuevo espacio cultural de Fundación Simón I. Patiño', '2018-05-03', ' asdasd\r\n                  ', 'uploads/Rosa_de_los_Vientos2.png', 'noticia'),
-(18, 'Nuevo espacio cultural de Fundación Simón I. Patiño', '2018-05-03', ' asdasd\r\n                  ', 'uploads/', 'noticia'),
-(19, 'Nuevo espacio cultural de Fundación Simón I. Patiño', '2018-05-03', ' asdasd\r\n                  ', 'uploads/', 'noticia'),
-(20, 'Nuevo espacio cultural de Fundación Simón I. Patiño', '2018-05-03', ' asdasd\r\n                  ', 'uploads/', 'noticia'),
-(21, 'Cassany: Divertirse con la lectura es una manera de incentivarla', '2018-08-14', 'El doctor Daniel Cassany llegó a La Paz para las V Jornadas Pedagógicas Internacionales. Entregó sus cuatro consejos para generar el hábito de la lectura.', 'uploads/img_cassany-divertirse-con-la-lectura-es-una-manera-de-incentivarla_190.jpg', 'noticia'),
-(22, 'Juan Rimsa, de maestro maestros', '2018-12-18', 'El Espacio Patiño abrió su sala de exposiciones con una gran retrospectiva.', 'uploads/img_juan-rimsa-de-maestro-maestros_195.jpg', 'noticia'),
-(24, 'noticia sin imagen', '2019-03-02', ' \r\n                  ', '', 'noticia');
+INSERT INTO `publicacion` (`id_post`, `titulo`, `fecha`, `resumen`, `imagen_destacada`, `status`, `tipo`) VALUES
+(1, 'Espacio Simón I. Patiño abrirá en 2019 el teatro Doña Albina', '2018-12-20', 'El próximo año el espacio albergará en sus dos salas de exposición 10 muestras, la primera se realizará en abril, mientras se pretende estrenar el teatro en el primer semestre.', 'img/noticias/noticia1.jpg', 1, 'noticia'),
+(9, 'INAUGURAN EXPOSICIÓN DE FOTOS EN LA ESCENA TEATRAL', '2018-05-03', ' En la galería del Espacio Simón I. Patiño se inauguró ayer la exposición Simbiosis: La imagen fotográfica en la escena teatral, de la artista costarricense Ana Muñoz, en el marco del XI Festival Internacional de Teatro de La Paz (Fitaz)\r\n                  ', 'uploads/img_inauguran-exposicion-de-fotos-en-la-escena-teatral_1756.jpg', 1, 'noticia'),
+(21, 'Cassany: Divertirse con la lectura es una manera de incentivarla', '2018-08-14', 'El doctor Daniel Cassany llegó a La Paz para las V Jornadas Pedagógicas Internacionales. Entregó sus cuatro consejos para generar el hábito de la lectura.', 'uploads/img_cassany-divertirse-con-la-lectura-es-una-manera-de-incentivarla_190.jpg', 1, 'noticia'),
+(22, 'Juan Rimsa, de maestro maestros', '2018-12-18', 'El Espacio Patiño abrió su sala de exposiciones con una gran retrospectiva.', 'uploads/img_juan-rimsa-de-maestro-maestros_195.jpg', 1, 'noticia'),
+(24, 'noticia sin imagen', '2019-03-02', 'resumen', '', 1, 'noticia');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -258,12 +212,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Truncate table before insert `usuarios`
---
-
-TRUNCATE TABLE `usuarios`;
---
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`username`, `password`) VALUES
@@ -271,106 +220,106 @@ INSERT INTO `usuarios` (`username`, `password`) VALUES
 ('test', 'cc03e747a6afbbcbf8be7668acfebee5');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `area`
+-- Indices de la tabla `area`
 --
 ALTER TABLE `area`
   ADD PRIMARY KEY (`id_area`);
 
 --
--- Indexes for table `categoria_equipo`
+-- Indices de la tabla `categoria_equipo`
 --
 ALTER TABLE `categoria_equipo`
   ADD PRIMARY KEY (`id_categoria_equipo`);
 
 --
--- Indexes for table `categoria_libro`
+-- Indices de la tabla `categoria_libro`
 --
 ALTER TABLE `categoria_libro`
   ADD PRIMARY KEY (`id_categoraLibro`);
 
 --
--- Indexes for table `contenido`
+-- Indices de la tabla `contenido`
 --
 ALTER TABLE `contenido`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indexes for table `evento`
+-- Indices de la tabla `evento`
 --
 ALTER TABLE `evento`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indexes for table `libro`
+-- Indices de la tabla `libro`
 --
 ALTER TABLE `libro`
   ADD PRIMARY KEY (`id_libro`);
 
 --
--- Indexes for table `miembro_equipo`
+-- Indices de la tabla `miembro_equipo`
 --
 ALTER TABLE `miembro_equipo`
   ADD PRIMARY KEY (`id_persona`);
 
 --
--- Indexes for table `noticia`
+-- Indices de la tabla `noticia`
 --
 ALTER TABLE `noticia`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indexes for table `pagina`
+-- Indices de la tabla `pagina`
 --
 ALTER TABLE `pagina`
   ADD PRIMARY KEY (`id_pagina`);
 
 --
--- Indexes for table `publicacion`
+-- Indices de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `area`
+-- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
   MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `categoria_equipo`
+-- AUTO_INCREMENT de la tabla `categoria_equipo`
 --
 ALTER TABLE `categoria_equipo`
   MODIFY `id_categoria_equipo` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `libro`
+-- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
   MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `miembro_equipo`
+-- AUTO_INCREMENT de la tabla `miembro_equipo`
 --
 ALTER TABLE `miembro_equipo`
   MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `pagina`
+-- AUTO_INCREMENT de la tabla `pagina`
 --
 ALTER TABLE `pagina`
   MODIFY `id_pagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `publicacion`
+-- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
   MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;

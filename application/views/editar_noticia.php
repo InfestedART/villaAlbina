@@ -27,7 +27,7 @@
 
 <body>
 
-<div>
+<div class="admin-body">
   	<?php
    	$this->load->view('templates/admin_header'); 
     	$this->load->view('templates/admin_sidebar');
@@ -39,8 +39,9 @@
 
         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
          <div>
-            <a class='nav-btn' href='<?php echo base_url()."cpanel/admin_noticia"; ?>'> 
-               <- Volver
+            <a class='nav-btn' href='<?php echo base_url()."admin_noticia"; ?>'>
+               <i class="fa fa-arrow-left mr-1"></i>
+               Volver
             </a>
          </div>
          </div>

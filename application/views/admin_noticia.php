@@ -2,7 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
    $this->load->library('calendar');
 	$assets_dir = base_url().'assets/';
-	$admin_dir = base_url().'cpanel/';
+	$admin_dir = base_url().'admin_noticia/';
 
    $error = $msg = '';
    $titulo_alert = $fecha_alert = $fuente_alert = $resumen_alert = false;
@@ -26,7 +26,7 @@
 
 <body>
 
-<div style="position: absolute">
+<div class="admin-body">
   	<?php
    	$this->load->view('templates/admin_header'); 
     	$this->load->view('templates/admin_sidebar');
@@ -38,8 +38,9 @@
 
          <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
             <div>
-            <a class='nav-btn' href='<?php echo base_url()."cpanel/noticia_nueva"; ?>'>
-               <i class="fa fa-plus mr-1"></i> Noticia Nueva
+            <a class='nav-btn' href='<?php echo $admin_dir."noticia_nueva"; ?>'>
+               <i class="fa fa-plus mr-1"></i>
+               Noticia Nueva
             </a>
             </div>
          </div>         
@@ -56,7 +57,9 @@
                         <th>Fecha</th>
                         <th>Fuente</th>
                         <th>Resumen</th>
-                        <th colspan="3">Imagen Destacada</th>
+                        <th>Imagen Destacada</th>
+                        <th>Status</th>
+                        <th colspan="2">Opciones</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -64,7 +67,7 @@
                         printf("
                            <tr>
                               <td>%s</td>
-                              <td>%s</td>
+                              <td class='text-center'>%s</td>
                               <td>%s</td>
                               <td>%s</td>",
                               $noticia['titulo'],
@@ -74,17 +77,26 @@
                         );
                         if($noticia['imagen_destacada'] !== '') {
                            printf("
-                              <td><img src='%s' class='img-small'></td>",
+                              <td class='text-center'><img src='%s' class='img-small'></td>",
                               $assets_dir.$noticia['imagen_destacada']
                            );
-                        } else {
-                           echo "<td></td>";
+                        } else { echo "
+                              <td></td>";
                         }
+                        if($noticia['status']) {
+                           printf("
+                              <td class='text-center'>SI</td>"
+                           );
+                        } else {                           
+                            printf("
+                              <td class='text-center'>NO</td>"
+                           );
+                        }                      
                         printf("
-                              <td><a href='%s/editar_noticia/%s'>
+                              <td class='text-center'><a href='%seditar_noticia/%s'>
                                  <i class='fa fa-edit'></i>
                               </a></td>
-                              <td><a href='%s/delete_noticia/%s'>
+                              <td class='text-center'><a href='%sdelete_noticia/%s'>
                                  <i class='fa fa-trash-alt'></i>
                               </a></td>
                            </tr>",

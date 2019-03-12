@@ -26,7 +26,7 @@
 
 <body>
 
-<div>
+<div class="admin-body">
   	<?php
    	$this->load->view('templates/admin_header'); 
     	$this->load->view('templates/admin_sidebar');
@@ -38,8 +38,9 @@
 
         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
          <div>
-            <a class='nav-btn' href='<?php echo base_url()."cpanel/admin_noticia"; ?>'> 
-               <- Volver
+            <a class='nav-btn' href='<?php echo base_url()."admin_noticia"; ?>'>
+               <i class="fa fa-arrow-left mr-1"></i>
+               Volver
             </a>
          </div>
          </div>
@@ -62,61 +63,55 @@
                </span>
 
                <div class='form-group'>
-                  <label>Titulo</label>
+                  <label class='form-label'>Titulo</label>
                   <input
                      id='titulo'
                      name='titulo'
-                     class="form-control <?php echo $titulo_alert ? 'alert' : ''; ?>"
+                     class="form-control form-input
+                     <?php echo $titulo_alert ? 'alert' : ''; ?>"
                      type='text'
                   /> 
                </div>
 
                <div class='form-group'>
-                  <label>Fecha</label>
+                  <label class='form-label'>Fecha</label>
                   <input
                      id='fecha'
                      name='fecha'
-                     class="form-control <?php echo $fecha_alert ? 'alert' : ''; ?>"
+                     class="form-control form-input
+                     <?php echo $fecha_alert ? 'alert' : ''; ?>"
                      type='text'
                   /> 
                </div>
 
                 <div class='form-group'>
-                  <label>Fuente</label>
+                  <label class='form-label'>Fuente</label>
                   <input
                      id='fuente'
                      name='fuente'
-                     class="form-control <?php echo $fuente_alert ? 'alert' : ''; ?>"
+                     class="form-control form-input
+                     <?php echo $fuente_alert ? 'alert' : ''; ?>"
                      type='text'
                   /> 
                </div>
 
-               <!-- div class='form-group'>
-                  <label>Enlace</label>
-                  <input
-                     id='enlace'
-                     name='enlace'
-                     class="form-control"
-                     type='text'
-                  /> 
-               </div -->
-
                <div class='form-group'>
-                  <label>Resumen</label>
+                  <label class='form-label'>Resumen</label>
                   <textarea
                      id='resumen'
                      name='resumen'
-                     class="form-control <?php echo $resumen_alert ? 'alert' : ''; ?>"
+                     class="form-control form-input
+                     <?php echo $resumen_alert ? 'alert' : ''; ?>"
                   /> 
                   </textarea>
                </div>
 
                <div class='form-group'>
-                  <label>Imagen Destacada</label>
+                  <label class='form-label'>Imagen Destacada</label>
                   <input
                      id='imagen'
                      name='imagen'
-                     class="form-control"
+                     class="form-control form-input"
                      type='file'
                   /> 
                </div>

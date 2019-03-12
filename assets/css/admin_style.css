@@ -1,3 +1,5 @@
+.admin-body {
+}
 
 .login-form {
 	max-width: 550px;
@@ -12,7 +14,7 @@
 	left: 0;
 	z-index: 10;
 	height: 80px;
-	width: 100vw;
+	width: 100%;
 }
 
 .admin-header__cerrar-sesion {
@@ -87,6 +89,7 @@
 	opacity: 0;
 	font-size: 14px;
 	text-align: left;
+	position: fixed;
 }
 
 .admin-sidebar__title {
@@ -120,12 +123,14 @@
 
 .admin-sidebar__option i {
 	margin-right: 6px;
+	margin-bottom: 0;
 }
 
 .collapse-btn {
 	color: white;
-	float: right;
-	margin-top: -15px;
+	text-align: center;
+	display: none;
+	margin-right: 5px;
 }
 
 .collapse-btn:hover {
@@ -165,6 +170,34 @@
 	.admin-container {
 		margin-left: 90px;
 	}
+
+	.admin-container.container-expanded{
+		margin-left: 45px !important;
+	}
+
+	.admin-sidebar__title span {
+		display: none;
+	}
+
+	.admin-sidebar .collapse-btn {
+		display: block;
+		padding: 0;
+	}
+
+	.admin-sidebar__option i {
+		margin-right: 0;
+		margin-bottom: 4px
+	}
+
+
+	.admin-sidebar.collapsed {
+		width: 45px;
+	}
+
+	.collapsed .admin-sidebar__title span,
+	.collapsed .admin-sidebar__option span {
+		display: none;
+	}
 }
 
 @media only screen and (min-width: 1170px) {
@@ -179,6 +212,28 @@
 
 	.admin-container {
 		margin-left: 180px;
+	}
+
+	.admin-sidebar__title span {
+		display: inline-block;
+	}
+
+	.collapse-btn {
+		float: right;		
+	}
+
+	.admin-sidebar__option i {
+		margin-right: 6px;
+		margin-bottom: 0;
+	}
+
+	.collapsed .admin-sidebar__title {
+		height: 46px
+	}
+
+	.collapsed .admin-sidebar__title span,
+	.collapsed .admin-sidebar__option span {
+		display: none;
 	}
 }
 

@@ -20,7 +20,7 @@
 
 <body>
 
-<div>
+<div class="admin-body">
    <?php
       $this->load->view('templates/admin_header'); 
       $this->load->view('templates/admin_sidebar');

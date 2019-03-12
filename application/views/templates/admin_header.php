@@ -14,7 +14,7 @@
       <div class='d-none d-md-block'>
          <div>Welcome <?php echo $this->session->userdata('usuario') ?></div>
          <a
-            href='close_session'
+            href='<?php echo $admin_dir ?>close_session'
             class='admin-header__cerrar-sesion'
          >  Cerrar Sesion
          </a>

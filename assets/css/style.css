@@ -55,7 +55,7 @@
 }
 
 .main__icono img {
-	height: 70px;
+	height: 60px;
 }
 
 .main__flecha {
@@ -68,7 +68,7 @@
 }
 
 .main__flecha img {
-	height: 60px;
+	height: 50px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -77,8 +77,14 @@
 	}
 
 	.main__flecha img {
-		height: 50px;
+		height: 45px;
 	}
+
+	.logo img {
+	z-index: 2;
+	height: 100px;
+	margin: 0.9rem 0;
+}
 }
 
 .nav {
@@ -169,4 +175,45 @@
 .hidden {
 	border: 1px solid red;
 	display: none !important;
+}
+
+.top-nav {
+	display: block;
+	width: 100%;
+	background-color: rgba(75, 50, 25, 0.5);
+	text-align: center;
+}
+
+.top-nav img {
+	height: 50px;
+}
+
+.titulo-pagina {
+	color: #888;
+	font-weight: 500;
+	font-size: 42px;
+	margin: 30px auto;
+}
+
+.publicacion__imagen {
+	width: 100%;
+}
+
+.publicacion__titulo {
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 28px;
+	text-align: justify;
+	margin-bottom: 20px;
+}
+
+.publicacion__resumen {
+	font-size: 14px;
+	text-align: justify;
+}
+
+.publicacion__fuente {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: right;
 }

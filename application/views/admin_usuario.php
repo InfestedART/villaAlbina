@@ -23,7 +23,7 @@
 
 <body>
 
-<div>
+<div class="admin-body">
   	<?php
    	$this->load->view('templates/admin_header'); 
     	$this->load->view('templates/admin_sidebar');
@@ -38,7 +38,7 @@
             	id='newUser_form'            	
             	method="post"
 	         	action="<?php
-            		echo site_url('cpanel/insert_usuario');
+            		echo site_url('admin_usuario/insert_usuario');
             	?>"
             >
                <span  id='newUser_alert' class='form-alert'>
