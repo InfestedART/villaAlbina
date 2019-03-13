@@ -29,10 +29,6 @@ $noticia = $news[0];
 
 	<div class="container">
 
-		<!-- div class="bread-crumb">
-			Espacio Patiño > Noticia > <?php echo $noticia->titulo ?>
-		</div -->
-
 		<div class='row'>
 			<h3 class='titulo-pagina'> NOTICIA </h3>
 		</div>
