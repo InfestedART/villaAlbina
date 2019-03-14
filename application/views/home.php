@@ -21,7 +21,7 @@ $dir = base_url().'assets/';
 	<div
 		class="portada"
 		style="background-image: url(<?php  echo $dir.'img/portada1.jpg'; ?>)"
-	/>		
+	></div>
 
 	<div class='main'>
 
@@ -39,29 +39,33 @@ $dir = base_url().'assets/';
 			</a>
 		</div>
 
-		<div class="nav">
+		<div class="navbar main__navbar">
 			<?php
 			 	$paginas_array = $paginas->result_array();
 			 	foreach ($paginas_array as $pagina) {
 			 		printf(
-			 			"<a href='#' class='nav__item'>
+			 			"<a href='#' class='nav__item d-none d-md-block'>
 			 				<p class='nav__label'>%s</p>
 			 			</a>",
 			 			$pagina['titulo']
 			 		);
-			 	}
+			 	}			
 			 ?>
+			 <a class='menu__container d-block d-md-none' id='navbar_btn'>
+	         	<span class='menu mr-4'></span>
+	      	</a>
 		</div>
 
 		<div class='main__flecha'>
-			<a href=# id="flecha-abajo">
+			<a href='#seccion_noticias' id="flecha-abajo">
 				<img src=<?php echo $dir.'img/flecha_abajo.png'; ?> />
 			</a>
 		</div>
 
 	</div>
+</div>
 
-	<div class='seccion seccion__noticias'>
+	<div class='seccion seccion__noticias' id='seccion_noticias'>
 		<div class="container">
 			<h3 class='seccion__titulo'>NOTICIAS</h3>			
 
@@ -95,6 +99,11 @@ $dir = base_url().'assets/';
 			</div>
 		</div>
 	</div>
+
+<?php
+	$data['prueba'] = 'entra';
+	$this->load->view('templates/footer');
+?>
 
 </body>
 

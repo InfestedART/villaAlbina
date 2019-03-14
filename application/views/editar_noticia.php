@@ -37,7 +37,7 @@
       <div class="container">
       <div  class='row justify-content-md-center'>
 
-        <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
+        <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
          <div>
             <a class='nav-btn' href='<?php echo base_url()."admin_noticia"; ?>'>
                <i class="fa fa-arrow-left mr-1"></i>
@@ -46,12 +46,12 @@
          </div>
          </div>
 
-         <div class='card col-12 col-md-11 p-4 mt-0 mt-md-5'>
+         <div class='card col-12 col-md-11 p-4 mt-0 mt-md-3'>
             <h3>EDITAR NOTICIA</h3>
             <?php
                $news = $noticia->result_array()[0];               
                echo form_open_multipart(
-                  'cpanel/update_noticia/'.$id,
+                  'admin_noticia/update_noticia/'.$id,
                   array('id' => 'form_noticia')
                );
             ?>
@@ -135,6 +135,16 @@
                      <span class='form-change-img hidden' id='show_preview_btn'>
                         Cancelar
                      </span>
+               </div>
+
+                <div class='form-group'>
+                  <label class='form-label d-block'>Contenido</label>
+                  <textarea
+                     id='contenido'
+                     name='contenido'
+                     class="form-control form-input d-block w-100"
+                     rows=12
+                  /><?php echo trim($news['contenido']); ?></textarea>
                </div>
 
                <div class="form-group">

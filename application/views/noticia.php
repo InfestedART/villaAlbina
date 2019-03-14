@@ -21,13 +21,23 @@ $noticia = $news[0];
 
 <body>
 
-	<div class='top-nav'>
-		<a href=# id="flecha-abajo">
-			<img src=<?php echo $dir.'img/flecha_abajo.png'; ?> />
-		</a>
-	</div>
+	<?php
+		$data['paginas'] = $paginas;
+		$this->load->view('templates/navbar', $data);
+	?>
+	<div class="seccion container px-4 p-md-0 pt-0 pt-md-3 mb-4">
 
-	<div class="container">
+		<div class="publicacion__flecha izquierda d-none d-md-block">
+			<a href='#'>
+				<img src="<?php echo $dir.'img/flecha_izquierda_2.png'; ?>" />
+			</a>
+		</div>
+
+		<div class="publicacion__flecha derecha d-none d-md-block">
+			<a href='#'>
+				<img src="<?php echo $dir.'img/flecha_derecha_2.png'; ?>" />
+			</a>
+		</div>
 
 		<div class='row'>
 			<h3 class='titulo-pagina'> NOTICIA </h3>
@@ -44,23 +54,28 @@ $noticia = $news[0];
 				<img
 					src='<?php echo $dir.$noticia->imagen_destacada ?>'
 					class='publicacion__imagen'
-				>	
+				>
+				<p class='publicacion__fuente'> <?php echo $noticia->fecha ?> </p>
 			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<p class='publicacion__resumen'><?php echo $noticia->resumen ?></p>
-			</div>
-			<div class="col-12 col-md-3">
-				3
-			</div>		
-			<div class="col-12 col-md-3">
+
+			<div class="col-12 col-sm-6 col-md-9">
+			<div class='publicacion__column'>
+				<p> <?php echo $noticia->resumen ?> </p>
+				<p> <?php echo $noticia->contenido ?> </p>
 				<p class='publicacion__fuente'>
 					<?php echo $noticia->fuente ?>
 				</p>
 			</div>
 		</div>
+
+		</div>
 	
 	</div>
 	
+<?php
+	$this->load->view('templates/footer'); 
+?>
+
 </body>
 
 </html>

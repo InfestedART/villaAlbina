@@ -1,18 +1,19 @@
 <?php
   $admin_dir = base_url().'cpanel/';
+  $assets_dir = base_url().'assets/';
 ?>
 
  <div class='admin-header'>
 
 	<div class='admin-logo'>
     <a href='<?php echo $admin_dir; ?>'>
- 		 <h3>LOGO</h3>
+ 		 <img src='<? echo $assets_dir."img/logo2.png";?>'/>
     </a>
  	</div>
  	
    <div class='admin-rigth'>
       <div class='d-none d-md-block'>
-         <div>Welcome <?php echo $this->session->userdata('usuario') ?></div>
+         <div><?php echo $this->session->userdata('usuario') ?></div>
          <a
             href='<?php echo $admin_dir ?>close_session'
             class='admin-header__cerrar-sesion'

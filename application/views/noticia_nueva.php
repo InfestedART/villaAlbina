@@ -49,7 +49,7 @@
             <h3>INSERTAR NOTICIA</h3>
             <?php
                echo form_open_multipart(
-                  'cpanel/insertar_noticia',
+                  'admin_noticia/insertar_noticia',
                   array('id' => 'form_noticia')
                );
             ?>
@@ -114,6 +114,16 @@
                      class="form-control form-input"
                      type='file'
                   /> 
+               </div>
+
+               <div class='form-group'>
+                  <label class='form-label d-block'>Contenido</label>
+                  <textarea
+                     id='contenido'
+                     name='contenido'
+                     class="form-control form-input d-block w-100"
+                     rows=12
+                  /></textarea>
                </div>
 
                <div class="form-group">

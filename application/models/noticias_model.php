@@ -24,6 +24,7 @@ class Noticias_model extends CI_Model {
 	$this->db->from('noticia');
 	$this->db->where('noticia.id_post', $id);
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
+	$this->db->join('contenido', 'contenido.id_post = noticia.id_post');
 	$query = $this->db->get(); 
 	return $query;
   }

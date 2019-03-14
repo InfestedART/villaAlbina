@@ -32,6 +32,7 @@ class Admin_noticia extends MY_Controller {
 
       $this->load->model("noticias_model");
       $this->load->model("publicacion_model");
+      $this->load->model("contenido_model");
       $this->load->library('upload', $config);
 
 		if (!$this->upload->do_upload('imagen')) {						
@@ -53,6 +54,7 @@ class Admin_noticia extends MY_Controller {
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = $_FILES['imagen']['name'];
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/'.$imagen;
+		$contenido = $this->input->post('contenido', TRUE);
 
 		$post_data = array(
 			'titulo' => $titulo,
@@ -70,7 +72,13 @@ class Admin_noticia extends MY_Controller {
 			'fuente' => $fuente,
 			'url' => $enlace
 		);
+		$post_contenido = array(
+			'id_post' => $last_id,
+			'contenido' => $contenido,
+		);
+
 		$this->noticias_model->insert_noticia($post_noticia);
+		$this->contenido_model->insert_contenido($post_contenido);
       $data['noticias'] = $this->noticias_model->get_all_noticias();
      	$this->load->view('admin_noticia', $data);
 
@@ -89,6 +97,7 @@ class Admin_noticia extends MY_Controller {
 	public function update_noticia() {
       $this->load->model("noticias_model");
       $this->load->model("publicacion_model");
+      $this->load->model("contenido_model");
 		$id = $this->uri->segment(3);
 
 		$config['upload_path'] = './assets/uploads/';
@@ -111,13 +120,14 @@ class Admin_noticia extends MY_Controller {
         	'msg' => 'noticia agregada exitosamente'
       );
 
-      $titulo = $this->input->post('titulo', TRUE);
+     	$titulo = $this->input->post('titulo', TRUE);
 		$fecha = $this->input->post('fecha', TRUE);
 		$fuente = $this->input->post('fuente', TRUE);
 		$enlace = 'noticia/'.$titulo;
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = $_FILES['imagen']['name'];
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/'.$imagen;
+		$contenido = $this->input->post('contenido', TRUE);
 
 		$post_data = array(
 			'titulo' => $titulo,
@@ -132,9 +142,15 @@ class Admin_noticia extends MY_Controller {
 			'url' => $enlace
 		);
 
+		$post_contenido = array(
+			'contenido' => $contenido
+		);
+
 		$this->publicacion_model->update_publicacion($id, $post_data);
 		$this->noticias_model->update_noticia($id, $post_noticia);
-      $data['noticias'] = $this->noticias_model->get_all_noticias();
+		$this->contenido_model->update_contenido($id, $post_contenido);
+
+     	$data['noticias'] = $this->noticias_model->get_all_noticias();
      	$this->load->view('admin_noticia', $data);		
 
 		var_dump($post_data);

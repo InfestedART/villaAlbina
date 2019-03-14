@@ -25,8 +25,8 @@
 	display: inline-block;
 }
 
-.admin-logo a {
-	color: white;
+.admin-logo img {
+	height: 60px;
 }
 
 .admin-logo a:hover {
@@ -238,7 +238,7 @@
 }
 
 .admin-table {
-	font-size: 14px;
+	font-size: 12px;
 	border-collapse: collapse;
 }
 
