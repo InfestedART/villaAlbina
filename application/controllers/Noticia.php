@@ -13,3 +13,4 @@ class Noticia extends CI_Controller {
 		$this->load->view('noticia', $data);
 	}
 }
+?>

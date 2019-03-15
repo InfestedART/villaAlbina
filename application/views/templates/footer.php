@@ -13,12 +13,14 @@ $dir = base_url().'assets/';
 				/>
 			</div>
 			<div class="d-inline-block">
-				<p  class='footer__titulo'>ESPACIO SIMON I PATIÑO</p>
-				<p>
+				<p  class='footer__direccion footer__titulo'>
+					ESPACIO SIMON I PATIÑO
+				</p>
+				<p class='footer__direccion'>
 					Sopocachi, av. Ecuador entre c. Rosendo Gutiérrez y Quito
 				</p>
-				<p>Tel. +591 2 2111717 • Cel. 76737008</p>
-				<p>aspacio@fundacionpatino.org</p>
+				<p class='footer__direccion'>Tel. +591 2 2111717 • Cel. 76737008</p>
+				<p class='footer__direccion'>aspacio@fundacionpatino.org</p>
 			</div>
 
 		</div>
@@ -31,11 +33,13 @@ $dir = base_url().'assets/';
 				/>
 			</div>
 			<div class="d-inline-block">
-				<p class='footer__titulo'>ANEXO DEL ESPACIO PATIÑO</p>
-				<p>
+				<p class='footer__direccion footer__titulo'>ANEXO DEL ESPACIO PATIÑO</p>
+				<p class='footer__direccion'>
 					Av.Ecuador 2475 esq Belisario Salinas
 				</p>
-				<p>Casilla 3289 • Tel. (+591 2) 241 09329 int. 235</p>
+				<p class='footer__direccion'>
+					Casilla 3289 • Tel. (+591 2) 241 09329 int. 235
+				</p>
 			</div>
 		</div>
 

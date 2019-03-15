@@ -7,16 +7,10 @@ $noticia = $news[0];
 
 <!DOCTYPE html>
 <head>
-	<meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="">
-   <meta name="author" content="">
-
-   <title>Espacio Simon I Patiño - Noticia</title>
-
-   <link rel="stylesheet" href=<?php  echo $dir."css/bootstrap.css"; ?> />
-   <link rel="stylesheet" href=<?php  echo $dir."css/style.css"; ?> />
+	<?php
+		$data['title'] = $noticia->titulo;
+		$this->load->view('templates/meta', $data);
+	?>
 </head>
 
 <body>
@@ -25,7 +19,7 @@ $noticia = $news[0];
 		$data['paginas'] = $paginas;
 		$this->load->view('templates/navbar', $data);
 	?>
-	<div class="seccion container px-4 p-md-0 pt-0 pt-md-3 mb-4">
+	<div class="seccion seccion__last container px-4 pt-0 pt-md-3">
 
 		<div class="publicacion__flecha izquierda d-none d-md-block">
 			<a href='#'>
@@ -59,15 +53,30 @@ $noticia = $news[0];
 			</div>
 
 			<div class="col-12 col-sm-6 col-md-9">
-			<div class='publicacion__column'>
-				<p> <?php echo $noticia->resumen ?> </p>
-				<p> <?php echo $noticia->contenido ?> </p>
-				<p class='publicacion__fuente'>
-					<?php echo $noticia->fuente ?>
-				</p>
+				<div class='publicacion__column'>
+					<p> <?php echo $noticia->resumen ?> </p>
+					<p> <?php echo $noticia->contenido ?> </p>
+					<p class='publicacion__fuente'>
+						<?php echo $noticia->fuente ?>
+					</p>
+				</div>
 			</div>
 		</div>
 
+		<div class='row'>
+			<div class='timeline'>
+				<a class='timeline__punto'>
+					<span></span>
+				</a>
+				<span class='timeline__linea'></span>
+				<a class='timeline__punto'>
+					<span></span>
+				</a>
+				<span class='timeline__linea'></span>
+				<a class='timeline__punto'>
+					<span></span>
+				</a>
+			</div>
 		</div>
 	
 	</div>
