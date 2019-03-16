@@ -7,13 +7,13 @@ class Admin_usuario extends MY_Controller {
 	}
 
 	public function insert_usuario() {
-		$this->load->model("usuarios_model");
+		$this->load->model("Usuarios_model");
 		
 		$usuario = $this->input->post('usuario', TRUE);
 		$password = $this->input->post('password', TRUE);				
 		$hashed_password = md5($password);
 
-		$usuario_existe = $this->usuarios_model->get_usuario($usuario);
+		$usuario_existe = $this->Usuarios_model->get_usuario($usuario);
 		if ($usuario_existe->num_rows() > 0) {
 			$this->session->set_flashdata(
 		 		'error',
@@ -26,7 +26,7 @@ class Admin_usuario extends MY_Controller {
 				'username' => $usuario,
 				'password' => $hashed_password
 			);
-			$this->usuarios_model->insert_usuario($data);
+			$this->Usuarios_model->insert_usuario($data);
 			$this->session->set_flashdata(
 		 		'msg',
 		 		'Usuario agregado exitosamente'

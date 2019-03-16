@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-03-2019 a las 04:57:20
+-- Tiempo de generación: 16-03-2019 a las 00:07:13
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 7.1.1
 
@@ -13,6 +13,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `espaciopatino`
 --
+CREATE DATABASE IF NOT EXISTS `espaciopatino` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci;
+USE `espaciopatino`;
 
 -- --------------------------------------------------------
 
@@ -161,20 +163,21 @@ INSERT INTO `noticia` (`id_post`, `fuente`, `url`) VALUES
 DROP TABLE IF EXISTS `pagina`;
 CREATE TABLE `pagina` (
   `id_pagina` int(11) NOT NULL,
-  `titulo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL
+  `titulo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `pagina`
 --
 
-INSERT INTO `pagina` (`id_pagina`, `titulo`) VALUES
-(1, 'Quiénes Somos'),
-(2, 'Áreas'),
-(3, 'Agenda'),
-(4, 'Catálogo en línea'),
-(6, 'Librería'),
-(7, 'Noticias');
+INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`) VALUES
+(1, 'Quiénes Somos', 'quienes_somos'),
+(2, 'Áreas', 'areas'),
+(3, 'Agenda', 'agenda'),
+(4, 'Catálogo en línea', 'catalogo'),
+(6, 'Librería', 'libreria'),
+(7, 'Noticias', 'noticias');
 
 -- --------------------------------------------------------
 

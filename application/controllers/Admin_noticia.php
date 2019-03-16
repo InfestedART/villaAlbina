@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_noticia extends MY_Controller {
 	public function index() {
-		$this->load->model("noticias_model");
+		$this->load->model("Noticias_model");
 
 		$data['header'] = $this->load->view('templates/admin_header', NULL, true);
 		$data['sidebar'] = $this->load->view('templates/admin_sidebar', NULL, true);
 		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
-		$data['noticias'] = $this->noticias_model->get_all_noticias();
+		$data['noticias'] = $this->Noticias_model->get_all_noticias();
 		$this->load->view('admin_noticia', $data);
 	}
 
@@ -17,9 +17,9 @@ class Admin_noticia extends MY_Controller {
 	}
 
 	public function editar_noticia() {
-		$this->load->model("noticias_model");
+		$this->load->model("Noticias_model");
 		$id = $this->uri->segment(3);
-		$data['noticia'] = $this->noticias_model->get_noticia($id);
+		$data['noticia'] = $this->Noticias_model->get_noticia($id);
 		$this->load->view('editar_noticia', $data);
 	}
 
@@ -30,9 +30,9 @@ class Admin_noticia extends MY_Controller {
       $config['max_width'] = 0;
       $config['max_height'] = 0;
 
-      $this->load->model("noticias_model");
-      $this->load->model("publicacion_model");
-      $this->load->model("contenido_model");
+      $this->load->model("Noticias_model");
+      $this->load->model("Publicacion_model");
+      $this->load->model("Contenido_model");
       $this->load->library('upload', $config);
 
 		if (!$this->upload->do_upload('imagen')) {						
@@ -64,8 +64,8 @@ class Admin_noticia extends MY_Controller {
 			'tipo' => 'noticia'
 		);
 
-		$this->publicacion_model->insert_publicacion($post_data);
-		$last_id = $this->publicacion_model->get_last_post();
+		$this->Publicacion_model->insert_publicacion($post_data);
+		$last_id = $this->Publicacion_model->get_last_post();
 
 		$post_noticia = array(
 			'id_post' => $last_id,
@@ -77,15 +77,15 @@ class Admin_noticia extends MY_Controller {
 			'contenido' => $contenido,
 		);
 
-		$this->noticias_model->insert_noticia($post_noticia);
-		$this->contenido_model->insert_contenido($post_contenido);
-      $data['noticias'] = $this->noticias_model->get_all_noticias();
+		$this->Noticias_model->insert_noticia($post_noticia);
+		$this->Contenido_model->insert_contenido($post_contenido);
+      $data['noticias'] = $this->Noticias_model->get_all_noticias();
      	$this->load->view('admin_noticia', $data);
 
 	}
 
 	public function delete_noticia() {
-		$this->load->model("noticias_model");
+		$this->load->model("Noticias_model");
 
 		$id = $this->uri->segment(3);
 		$this->noticias_model->delete_noticia($id);
@@ -95,9 +95,9 @@ class Admin_noticia extends MY_Controller {
 	}
 
 	public function update_noticia() {
-      $this->load->model("noticias_model");
-      $this->load->model("publicacion_model");
-      $this->load->model("contenido_model");
+      $this->load->model("Noticias_model");
+      $this->load->model("Publicacion_model");
+      $this->load->model("Contenido_model");
 		$id = $this->uri->segment(3);
 
 		$config['upload_path'] = './assets/uploads/';
@@ -111,7 +111,7 @@ class Admin_noticia extends MY_Controller {
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
 				$data = array('error' => $error);
-				$data['noticias'] = $this->noticias_model->get_all_noticias();	
+				$data['noticias'] = $this->Noticias_model->get_all_noticias();	
 				$this->load->view('admin_noticia', $data);
 			}
 		}
@@ -146,11 +146,11 @@ class Admin_noticia extends MY_Controller {
 			'contenido' => $contenido
 		);
 
-		$this->publicacion_model->update_publicacion($id, $post_data);
-		$this->noticias_model->update_noticia($id, $post_noticia);
-		$this->contenido_model->update_contenido($id, $post_contenido);
+		$this->Publicacion_model->update_publicacion($id, $post_data);
+		$this->Noticias_model->update_noticia($id, $post_noticia);
+		$this->Contenido_model->update_contenido($id, $post_contenido);
 
-     	$data['noticias'] = $this->noticias_model->get_all_noticias();
+     	$data['noticias'] = $this->Noticias_model->get_all_noticias();
      	$this->load->view('admin_noticia', $data);		
 
 		var_dump($post_data);
