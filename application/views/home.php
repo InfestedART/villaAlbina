@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $dir = base_url().'assets/';
+echo $_SERVER['SERVER_NAME']." ".base_url();
 ?>
 
 <!DOCTYPE html>

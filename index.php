@@ -53,7 +53,12 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	define(
+		'ENVIRONMENT',
+		$_SERVER['SERVER_NAME'] === 'punto-apparte.com' ? 'production' : (
+			$_SERVER['SERVER_NAME'] === 'localhost' ? 'development' : 'invalid'
+		)
+	);
 
 /*
  *---------------------------------------------------------------
