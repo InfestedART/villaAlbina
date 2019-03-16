@@ -6,7 +6,7 @@
 		const navbarPos = document.getElementById('navbar').offsetTop;
 
 		function fixNavbar(ev) {
-			const pagePos =  ev.pageY;
+			const pagePos = document['documentElement' || 'body'].scrollTop;
 			const distance = navbarPos - pagePos;
 			
 			if (distance < 0) {

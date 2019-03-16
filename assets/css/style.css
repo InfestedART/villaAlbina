@@ -10,6 +10,7 @@
 
 *, html {
 	font-family: Gotham;
+	scroll-behavior: smooth;
 }
 
 a:hover {
@@ -19,8 +20,6 @@ a:hover {
 body {
 	position: relative;
 	min-height: 100vh;
-	scroll-behavior: smooth;
-
 }
 
 .main__wrapper {
