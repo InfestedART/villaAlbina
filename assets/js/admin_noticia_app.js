@@ -42,7 +42,6 @@
 				&& noticia_fuente.value.trim() !== '';
 				
 			if (form_is_validated) {
-				console.log('adding new noticia');	
 				noticia_form.submit();
 			} else {	
 				if (!noticia_fecha.value.match(regex)) {

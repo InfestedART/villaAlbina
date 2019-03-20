@@ -8,7 +8,10 @@ class Admin_noticia extends MY_Controller {
 		$data['header'] = $this->load->view('templates/admin_header', NULL, true);
 		$data['sidebar'] = $this->load->view('templates/admin_sidebar', NULL, true);
 		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
-		$data['noticias'] = $this->Noticias_model->get_all_noticias();
+
+		$orderby = $this->input->get('orderby', TRUE);
+		$direction = $this->input->get('direction', TRUE);
+		$data['noticias'] = $this->Noticias_model->get_all_noticias($orderby, $direction);
 		$this->load->view('admin_noticia', $data);
 	}
 
@@ -24,7 +27,7 @@ class Admin_noticia extends MY_Controller {
 	}
 
 	public function insertar_noticia() {
-		$config['upload_path'] = './assets/uploads/';
+		$config['upload_path'] = './assets/uploads/noticias/';
       $config['allowed_types'] = 'gif|jpg|png|jpeg';
       $config['max_size'] = 0;
       $config['max_width'] = 0;
@@ -53,7 +56,7 @@ class Admin_noticia extends MY_Controller {
 		$enlace = 'noticia/'.$titulo;
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = $_FILES['imagen']['name'];
-		$imagen_destacada = $imagen == '' ? '' : 'uploads/'.$imagen;
+		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias'.$imagen;
 		$contenido = $this->input->post('contenido', TRUE);
 
 		$post_data = array(
@@ -90,7 +93,7 @@ class Admin_noticia extends MY_Controller {
 		$id = $this->uri->segment(3);
 		$this->noticias_model->delete_noticia($id);
 		echo "deleting noticia ".$id;
-		$data['noticias'] = $this->noticias_model->get_all_noticias();
+		$data['noticias'] = $this->Noticias_model->get_all_noticias();
      	$this->load->view('admin_noticia', $data);
 	}
 
@@ -100,7 +103,7 @@ class Admin_noticia extends MY_Controller {
       $this->load->model("Contenido_model");
 		$id = $this->uri->segment(3);
 
-		$config['upload_path'] = './assets/uploads/';
+		$config['upload_path'] = './assets/uploads/noticias/';
       $config['allowed_types'] = 'gif|jpg|png|jpeg';
       $config['max_size'] = 0;
       $config['max_width'] = 0;
@@ -126,7 +129,7 @@ class Admin_noticia extends MY_Controller {
 		$enlace = 'noticia/'.$titulo;
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = $_FILES['imagen']['name'];
-		$imagen_destacada = $imagen == '' ? '' : 'uploads/'.$imagen;
+		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias/'.$imagen;
 		$contenido = $this->input->post('contenido', TRUE);
 
 		$post_data = array(
@@ -156,4 +159,17 @@ class Admin_noticia extends MY_Controller {
 		var_dump($post_data);
 	}
 
+	public function toggle_noticia() {
+      $this->load->model("Noticias_model");
+      $this->load->model("Publicacion_model");
+		$id = $this->uri->segment(3);
+		$toggle = $this->input->get('toggle', TRUE);
+		$post_data = array(
+			'status' => $toggle
+		);
+		$this->Publicacion_model->update_publicacion($id, $post_data);
+		
+     	$data['noticias'] = $this->Noticias_model->get_all_noticias();
+     	$this->load->view('admin_noticia', $data);	
+	}
 }

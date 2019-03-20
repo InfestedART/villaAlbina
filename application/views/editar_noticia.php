@@ -123,7 +123,7 @@
                         name='imagen'
                         class="form-control form-input 
                            <?php if ($hayImagen) { echo 'hidden'; } ?>"
-                        style="<?php if ($hayImagen) { echo 'width:calc(74% - 100px)'; } ?>"
+                        style="<?php if ($hayImagen) { echo 'width:calc(70% - 100px)'; } ?>"
                         type='file'
                      /> 
                      <span class='form-change-img hidden' id='show_preview_btn'>

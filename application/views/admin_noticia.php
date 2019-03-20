@@ -6,6 +6,8 @@
 
    $error = $msg = '';
    $titulo_alert = $fecha_alert = $fuente_alert = $resumen_alert = false;
+   $orderby = $this->input->get('orderby', TRUE);
+   $direction = $this->input->get('direction', TRUE);
 ?>
 
 <!DOCTYPE html>
@@ -40,67 +42,111 @@
          </div>         
 
          <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
+            <div>
+               <input class='buscador__input' type="text" name='buscar_noticia'/>
+               <button class='buscador__button' type='submit'>
+                  <i class="fa fa-search"></i>
+               </button>
+            </div>
+         </div>
+
+         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
          <?php
             $noticias_array = $noticias->result_array();
             if (sizeof($noticias_array) > 0) {  ?>
-               <h4>Noticias</h3>
-               <table class='admin-table'>
-                  <thead>
-                     <tr>
-                        <th>Titulo</th>
-                        <th>Fecha</th>
-                        <th>Fuente</th>
-                        <th>Resumen</th>
-                        <th>Imagen Destacada</th>
-                        <th>Status</th>
-                        <th colspan="2">Opciones</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                  <? foreach ($noticias_array as $noticia) {
+            <h3>Noticias</h3>
+            <table class='admin-table'>
+               <thead>
+               <tr>
+                  <th>
+                  <a href='<?php
+                  $order_direction = (
+                     !$direction || $direction == 'desc' || $orderby !== 'titulo'
+                  ) ? 'asc'
+                    : 'desc';
+                  echo $admin_dir."?orderby=titulo&direction=".$order_direction;
+                  ?>'
+                  class='admin-table__title'>
+                     Titulo
+                  </a>
+                  </th>
+                  <th>
+                  <a href='<?php
+                  $order_direction = (
+                     !$direction || $direction == 'desc' || $orderby !== 'fecha'
+                  ) ? 'asc'
+                    : 'desc';
+                  echo $admin_dir."?orderby=fecha&direction=".$order_direction;
+                  ?>'
+                  class='admin-table__title'>
+                     Fecha
+                  </a>
+                  </th>
+                  <th>
+                  <a href='<?php
+                  $order_direction = (
+                     !$direction || $direction == 'desc' || $orderby !== 'fuente'
+                  ) ? 'asc'
+                    : 'desc';
+                  echo $admin_dir."?orderby=fuente&direction=".$order_direction;
+                  ?>'
+                  class='admin-table__title'>
+                     Fuente
+                  </a>
+                  </th>
+                  <th>Resumen</th>
+                  <th>Imagen Destacada</th>
+                  <th>Status</th>
+                  <th colspan="2">Opciones</th>
+               </tr>
+               </thead>
+               <tbody>
+               <? foreach ($noticias_array as $noticia) {
+                     printf("
+                        <tr>
+                           <td>%s</td>
+                           <td class='text-center'>%s</td>
+                           <td>%s</td>
+                           <td>%s</td>",
+                           $noticia['titulo'],
+                           $noticia['fecha'],
+                           $noticia['fuente'],
+                           $noticia['resumen']
+                     );
+                     if($noticia['imagen_destacada'] !== '') {
                         printf("
-                           <tr>
-                              <td>%s</td>
-                              <td class='text-center'>%s</td>
-                              <td>%s</td>
-                              <td>%s</td>",
-                              $noticia['titulo'],
-                              $noticia['fecha'],
-                              $noticia['fuente'],
-                              $noticia['resumen']
+                           <td class='text-center'><img src='%s' class='img-small'></td>",
+                           $assets_dir.$noticia['imagen_destacada']
                         );
-                        if($noticia['imagen_destacada'] !== '') {
-                           printf("
-                              <td class='text-center'><img src='%s' class='img-small'></td>",
-                              $assets_dir.$noticia['imagen_destacada']
-                           );
-                        } else { echo "
-                              <td></td>";
-                        }
-                        if($noticia['status']) {
-                           printf("
-                              <td class='text-center'>SI</td>"
-                           );
-                        } else {                           
-                            printf("
-                              <td class='text-center'>NO</td>"
-                           );
-                        }                      
-                        printf("
-                              <td class='text-center'><a href='%seditar_noticia/%s'>
-                                 <i class='fa fa-edit'></i>
-                              </a></td>
-                              <td class='text-center'><a href='%sdelete_noticia/%s'>
-                                 <i class='fa fa-trash-alt'></i>
-                              </a></td>
-                           </tr>",
-                           $admin_dir, $noticia['id_post'],
-                           $admin_dir, $noticia['id_post']
-                        );
-                     }  
-                  ?> 
-                  </tbody>
-               </table>
+                     } else { echo "
+                           <td></td>";
+                     }
+                     $toggle = $noticia['status'] ? '0' : '1';
+                     printf("
+                        <td class='text-center'>
+                           <a href='%s' class='status %s'>
+                              <span class='slider %s'/>
+                           </a>
+                        </td>",
+                        $admin_dir.'/toggle_noticia/'.$noticia['id_post'].'?toggle='.$toggle,
+                        $noticia['status'] ? 'status__on' : 'status__off',
+                        $noticia['status'] ? 'slider__on' : 'slider__off'
+                     );                       
+                     printf("
+                           <td class='text-center'><a href='%seditar_noticia/%s'>
+                              <i class='fa fa-edit'></i>
+                           </a></td>
+                           <td class='text-center'><a href='%sdelete_noticia/%s'>
+                              <i class='fa fa-trash-alt'></i>
+                           </a></td>
+                        </tr>",
+                        $admin_dir, $noticia['id_post'],
+                        $admin_dir, $noticia['id_post']
+                     );
+                  }  
+               ?> 
+               </tbody>
+            </table>
             <?
             }
             ?>               

@@ -42,7 +42,6 @@ function main() {
 				&& noticia_fuente.value.trim() !== '';
 
 			if (form_is_validated) {
-				console.log('adding new noticia');	
 				noticia_form.submit();
 			} else {
 				if (!noticia_fecha.value.match(regex)) {
@@ -75,7 +74,6 @@ function main() {
 			hide_preview_btn.classList.add('hidden');
 			imagen.classList.remove('hidden');
 			show_preview_btn.classList.remove('hidden');
-			console.log('toggling off img');
 		}
 
 		function show_preview() {
@@ -83,7 +81,6 @@ function main() {
 			hide_preview_btn.classList.remove('hidden');
 			imagen.classList.add('hidden');
 			show_preview_btn.classList.add('hidden');
-			console.log('toggling on img');
 		}
 
 		noticia_btn.addEventListener('click', function(ev){

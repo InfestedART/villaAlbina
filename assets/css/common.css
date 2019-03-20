@@ -1,0 +1,11 @@
+
+.buscador {
+	margin: 20px auto 30px;
+}
+
+.buscador__button {
+	background-color: orange;
+	border: 1px solid orange;
+	padding: 2px 10px;
+	font-weight: 400;
+}

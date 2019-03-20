@@ -1,10 +1,13 @@
 <?php
 class Noticias_model extends CI_Model {
-  function get_all_noticias() {
+  function get_all_noticias($orderby = false, $direction = 'desc') {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
-	$this->db->order_by('publicacion.fecha', 'desc');
+	$this->db->order_by(
+		$orderby ? $orderby : 'publicacion.fecha',
+		$direction
+	);
 	$query = $this->db->get(); 
 	return $query;
   }
