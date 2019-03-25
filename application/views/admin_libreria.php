@@ -48,11 +48,24 @@
          </div>         
 
          <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
-            <div>
-               <input class='buscador__input' type="text" name='buscar_noticia'/>
-               <button class='buscador__button' type='submit'>
+            <div class="buscador"><?php
+               echo form_open(
+                  'admin_libreria',
+                  array('id' => 'form_buscar_libreria')
+               ); ?>
+               <input
+                  class='buscador__input'
+                  name='buscar_libreria'
+                  id='buscar_libreria'
+                  value='<?php echo $search; ?>'
+               />
+               <button class='buscador__button' type='submit' id='buscar_libreria_btn'>
                   <i class="fa fa-search"></i>
                </button>
+               <span class="<?php if(!$search) { echo 'd-none'; } ?>">
+                  <a href=''>Limpiar Busqueda</a>
+               </span>
+               <?php echo form_close(); ?>
             </div>
          </div>
 
@@ -113,30 +126,7 @@
                         Precio
                      </a>
                   </th>
-                  <th class='text-center'>
-                  <a href='<?php
-                     $order_direction = (
-                        !$direction || $direction == 'desc' || $orderby !== 'paginas'
-                     ) ? 'asc'
-                       : 'desc';
-                     echo $admin_dir."?orderby=paginas&direction=".$order_direction;
-                     ?>'
-                     class='admin-table__title'>
-                        Paginas
-                     </a>
-                  </th>
-                  <th>
-                  <a href='<?php
-                     $order_direction = (
-                        !$direction || $direction == 'desc' || $orderby !== 'lugar'
-                     ) ? 'asc'
-                       : 'desc';
-                     echo $admin_dir."?orderby=lugar&direction=".$order_direction;
-                     ?>'
-                     class='admin-table__title'>
-                        Lugar
-                     </a>
-                  </th>
+                  <th>Descripción</th>
                   <th>Portada</th>
                   <th>Status</th>
                   <th colspan="2">Opciones</th>
@@ -154,14 +144,12 @@
                         <td>%s</td>
                         <td>%s</td>
                         <td class='text-center'>%s</td>
-                        <td class='text-center'>%s</td>
                         <td>%s</td>",
                         $libro['titulo'],
                         $cat_array[$cat_index]['categoria'],
                         $libro['autor'],
                         $libro['precio'],
-                        $libro['paginas'],
-                        $libro['lugar']
+                        $libro['descripcion']                        
                   );
                   if($libro['portada'] !== '') {
                      printf("

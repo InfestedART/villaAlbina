@@ -11,8 +11,12 @@ class Admin_libreria extends MY_Controller {
 		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
 
 		$orderby = $this->input->get('orderby', TRUE);
-		$direction = $this->input->get('direction', TRUE);
-		$data['libros'] = $this->Libro_model->get_all_libros($orderby, $direction);
+		$direction = $this->input->get('direction', TRUE); 
+		$search = $this->input->post('buscar_libreria', TRUE);
+		$data['search'] = $search;
+		$data['libros'] = $this->Libro_model->get_all_libros(
+			$search, $orderby, $direction
+		);
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
 
 		$this->load->view('admin_libreria', $data);
@@ -66,9 +70,15 @@ class Admin_libreria extends MY_Controller {
 		$this->load->model("Libro_model");
 		$this->load->model("Cat_libro_model");
 		$id = $this->uri->segment(3);
+		$deleted_libro = $this->Libro_model->get_libro($id)->result_object()[0];
+		$deleted_portada = realpath('assets/'.$deleted_libro->portada);
+		if ($deleted_portada) {
+			unlink($deleted_portada);	
+		}		
 		$this->Libro_model->delete_libro($id);
 		$data['libros'] = $this->Libro_model->get_all_libros();
-		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();		
+		$data['search'] = '';
      	$this->load->view('admin_libreria', $data);
 	}
 
@@ -98,10 +108,8 @@ class Admin_libreria extends MY_Controller {
 		$categoria = $this->input->post('categoria', TRUE);
 		$autor = $this->input->post('autor', TRUE);
 		$precio = $this->input->post('precio', TRUE);
-		$paginas = $this->input->post('paginas', TRUE);
-		$lugar = $this->input->post('lugar', TRUE);
-		$year = $this->input->post('year', TRUE);
-		$imagen = $_FILES['portada']['name'];
+		$descripcion = $this->input->post('descripcion', TRUE);
+		$imagen = str_replace(" ", "_", $_FILES['portada']['name']);
 		$portada = $imagen == '' ? '' : 'uploads/libros/'.$imagen;
 
 		$libro_data = array(
@@ -109,15 +117,13 @@ class Admin_libreria extends MY_Controller {
 			'id_categoriaLibro' => $categoria,
 			'autor' => $autor,
 			'precio' => $precio,
-			'paginas' => $paginas,
-			'lugar' => $lugar,
-			'year' => $year,
+			'descripcion' => $descripcion,
 			'portada' => $portada,
 		);
 
 		$this->Libro_model->insert_libro($libro_data);
-      	$data['libros'] = $this->Libro_model->get_all_libros();
-      	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+      $data['libros'] = $this->Libro_model->get_all_libros();
+      $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
      	$this->load->view('admin_libreria', $data);
 	}
 
@@ -147,9 +153,7 @@ class Admin_libreria extends MY_Controller {
 		$categoria = $this->input->post('categoria', TRUE);
 		$autor = $this->input->post('autor', TRUE);
 		$precio = $this->input->post('precio', TRUE);
-		$paginas = $this->input->post('paginas', TRUE);
-		$lugar = $this->input->post('lugar', TRUE);
-		$year = $this->input->post('year', TRUE);
+		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['portada']['name']);
 		$portada = $imagen == '' ? '' : 'uploads/libros/'.$imagen;
 
@@ -158,11 +162,12 @@ class Admin_libreria extends MY_Controller {
 			'id_categoriaLibro' => $categoria,
 			'autor' => $autor,
 			'precio' => $precio,
-			'paginas' => $paginas,
-			'lugar' => $lugar,
-			'year' => $year,
-			'portada' => $portada,
+			'descripcion' => $descripcion,
 		);
+		if ($portada) {
+			$libro_data['portada'] = $portada;
+		}
+
 		$this->Libro_model->update_libro($id, $libro_data);
       	$data['libros'] = $this->Libro_model->get_all_libros();
       	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();

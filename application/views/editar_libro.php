@@ -106,7 +106,7 @@
                </div>
 
                 <div class='form-group'>
-                  <label class='form-label'>Autor(es) / Editorial</label>
+                  <label class='form-label'>Autor</label>
                   <input
                      id='autor'
                      name='autor'
@@ -130,36 +130,14 @@
                </div>
 
                <div class='form-group'>
-                  <label class='form-label'>Paginas</label>
-                  <input
-                     id='paginas'
-                     name='paginas'
+                  <label class='form-label'>Descripción</label>
+                  <textarea
+                     id='descripcion'
+                     name='descripcion'
                      class="form-control form-input"
-                     type='number'
-                     value=<?php echo $edit_libro['paginas']; ?>
-                  /> 
-               </div>
-
-                <div class='form-group'>
-                  <label class='form-label'>Lugar</label>
-                  <input
-                     id='lugar'
-                     name='lugar'
-                     class="form-control form-input"
-                     type='text'
-                     value="<?php echo $edit_libro['lugar']; ?>"
-                  /> 
-               </div>
-
-               <div class='form-group'>
-                  <label class='form-label'>Año</label>
-                  <input
-                     id='year'
-                     name='year'
-                     class="form-control form-input"
-                     type='number' 
-                     value=<?php echo $edit_libro['year']; ?>                   
-                  /> 
+                     ><?php
+                        echo $edit_libro['descripcion']; 
+                     ?></textarea>
                </div>
 
                <div class='form-group'>

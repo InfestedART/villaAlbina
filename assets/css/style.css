@@ -4,12 +4,17 @@
 }
 
 @font-face {
+  font-family: GothamBold;
+  src: url(../font/GothamBold.otf);
+}
+
+@font-face {
   font-family: Chevin;
   src: url(../font/Chevin-Light.otf);
 }
 
 *, html {
-	font-family: Gotham;
+	font-family: Chevin;
 	scroll-behavior: smooth;
 }
 
@@ -305,7 +310,12 @@ body {
 	color: #888;
 	font-weight: 500;
 	font-size: 42px;
-	margin: 30px auto;
+	margin-top: 0;
+	margin-bottom: 30px;
+	vertical-align: top;
+	color: purple;
+	font-family: Gotham;
+	text-align: left;
 }
 
 .publicacion__imagen {
@@ -413,6 +423,69 @@ body {
 	margin-right: -6px;
 	margin-left: -6px;
 }
+
+.eternal-carrousel__slide {
+	display: inline-block;
+	width: 50%;
+	white-space: nowrap;
+	margin-bottom: 21px;
+	// padding: 5px;
+}
+
+.eternal-carrousel__slide > div {
+	display: inline-block;
+	padding: 0;
+	vertical-align: top;
+	height: 100%;
+}
+
+.eternal-carrousel__slide img {
+	width: 100%;
+}
+
+.portada-libro {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.container-libro {
+	white-space: normal; 
+	text-align: left;
+	padding: 0 16px 0 8px !important;
+}
+
+.container-libro h4 {
+	text-transform: uppercase;
+	font-weight: 900;
+	color: orange;
+	font-size: 17px;
+	font-family: GothamBold;
+}
+
+.container-libro p {
+	font-size: 13px;
+	white-space: pre-line;
+	margin: 0;
+	padding: 0;
+}	
+
+.container-libro .container-libro__footer {
+	white-space: normal;
+	font-size: 12px;
+	color: #808080;
+}
+
+.container-libro .container-libro__precio {
+	display: inline-block;
+	padding: 5px 15px;
+	background-color: orange;
+	color: white;
+	margin-top: 14px;
+	margin-bottom: 14px;
+	font-size: 17px;
+}
+
 
 .footer {
 	position: absolute;

@@ -11,7 +11,11 @@ class Admin_noticia extends MY_Controller {
 
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
-		$data['noticias'] = $this->Noticias_model->get_all_noticias($orderby, $direction);
+		$search = $this->input->post('buscar_noticia', TRUE);
+		$data['search'] = $search;
+		$data['noticias'] = $this->Noticias_model->get_all_noticias(
+			$search, $orderby, $direction
+		);
 		$this->load->view('admin_noticia', $data);
 	}
 
@@ -28,15 +32,15 @@ class Admin_noticia extends MY_Controller {
 
 	public function insertar_noticia() {
 		$config['upload_path'] = './assets/uploads/noticias/';
-      $config['allowed_types'] = 'gif|jpg|png|jpeg';
-      $config['max_size'] = 0;
-      $config['max_width'] = 0;
-      $config['max_height'] = 0;
+      	$config['allowed_types'] = 'gif|jpg|png|jpeg';
+      	$config['max_size'] = 0;
+      	$config['max_width'] = 0;
+      	$config['max_height'] = 0;
 
-      $this->load->model("Noticias_model");
-      $this->load->model("Publicacion_model");
-      $this->load->model("Contenido_model");
-      $this->load->library('upload', $config);
+      	$this->load->model("Noticias_model");
+      	$this->load->model("Publicacion_model");
+      	$this->load->model("Contenido_model");
+      	$this->load->library('upload', $config);
 
 		if (!$this->upload->do_upload('imagen')) {						
 			if ($_FILES['imagen']['error'] != 4) {				
@@ -91,9 +95,14 @@ class Admin_noticia extends MY_Controller {
 		$this->load->model("Noticias_model");
 
 		$id = $this->uri->segment(3);
-		$this->noticias_model->delete_noticia($id);
-		echo "deleting noticia ".$id;
+		$deleted_noticia = $this->Noticias_model->get_noticia($id)->result_object()[0];
+		$deleted_imagen = realpath('assets/'.$deleted_noticia->imagen_destacada);
+		if ($deleted_imagen) {
+			unlink($deleted_imagen);	
+		}		
+		$this->Noticias_model->delete_noticia($id);
 		$data['noticias'] = $this->Noticias_model->get_all_noticias();
+		$data['search'] = '';
      	$this->load->view('admin_noticia', $data);
 	}
 
@@ -136,9 +145,12 @@ class Admin_noticia extends MY_Controller {
 			'titulo' => $titulo,
 			'fecha' => $fecha,
 			'resumen' => $resumen,
-			'imagen_destacada' => $imagen_destacada,
 			'tipo' => 'noticia'
 		);
+
+		if ($imagen_destacada) {
+			$post_data['imagen_destacada'] = $imagen_destacada;
+		}
 
 		$post_noticia = array(
 			'fuente' => $fuente,

@@ -42,11 +42,24 @@
          </div>         
 
          <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
-            <div>
-               <input class='buscador__input' type="text" name='buscar_noticia'/>
-               <button class='buscador__button' type='submit'>
+            <div class="buscador"><?php
+               echo form_open(
+                  'admin_noticia',
+                  array('id' => 'form_buscar_noticia')
+               ); ?>
+               <input
+                  class='buscador__input'
+                  name='buscar_noticia'
+                  id='buscar_noticia'
+                  value='<?php echo $search; ?>'
+               />
+               <button class='buscador__button' type='submit' id='buscar_noticia_btn'>
                   <i class="fa fa-search"></i>
                </button>
+               <span class="<?php if(!$search) { echo 'd-none'; } ?>">
+                  <a href=''>Limpiar Busqueda</a>
+               </span>
+               <?php echo form_close(); ?>
             </div>
          </div>
 

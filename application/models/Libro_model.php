@@ -1,12 +1,41 @@
 <?php
 class Libro_model extends CI_Model {
 
-  function get_all_libros($orderby = false, $direction = 'asc')  {
-    if ($orderby) {
-      $this->db->order_by($orderby, $direction);  
+  function get_all_libros($search = false, $orderby = false, $direction = 'asc')  {
+    $this->db->select('*');
+    $this->db->from('libro');
+    $this->db->join(
+      'categoria_libro',
+      'libro.id_categoriaLibro = categoria_libro.id_categoriaLibro'
+    );
+    if ($search) {
+      $this->db->like('libro.titulo', $search);
+      $this->db->or_like('libro.descripcion', $search);
+      $this->db->or_like('libro.autor', $search);
     }
-    $result = $this->db->get('libro');
+    if ($orderby) {
+      $this->db->order_by('libro.'.$orderby, $direction);  
+    }
+    $result = $this->db->get();
     return $result;    
+  }
+
+  function get_valid_libros($search = false)  {
+    $this->db->select('*');
+    $this->db->from('libro');
+    $this->db->where('libro.status', 1);
+    if ($search) {
+      $this->db->like('libro.titulo', $search);
+      $this->db->or_like('libro.descripcion', $search);
+      $this->db->or_like('libro.autor', $search);
+    }
+    $this->db->join(
+      'categoria_libro',
+      'libro.id_categoriaLibro = categoria_libro.id_categoriaLibro'
+    );
+    $this->db->order_by('libro.id_libro', 'desc');
+    $query = $this->db->get(); 
+    return $query;    
   }
 
   function get_libro($id) {

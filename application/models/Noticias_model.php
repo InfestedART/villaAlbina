@@ -1,15 +1,39 @@
 <?php
 class Noticias_model extends CI_Model {
-  function get_all_noticias($orderby = false, $direction = 'desc') {
+  function get_all_noticias($search = false, $orderby = false, $direction = 'desc') {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
+	$this->db->join('contenido', 'contenido.id_post = noticia.id_post');
+	if ($search) {
+    	$this->db->like('publicacion.titulo', $search);
+      $this->db->or_like('publicacion.resumen', $search);
+      $this->db->or_like('noticia.fuente', $search);
+      $this->db->or_like('contenido.contenido', $search);
+    }	
 	$this->db->order_by(
 		$orderby ? $orderby : 'publicacion.fecha',
 		$direction
 	);
 	$query = $this->db->get(); 
 	return $query;
+  }
+
+  function get_valid_noticias($search = false) {
+	$this->db->select('*');
+	$this->db->from('noticia');
+	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
+	$this->db->join('contenido', 'contenido.id_post = noticia.id_post');
+	$this->db->where('publicacion.status', 1);
+	if ($search) {
+    	$this->db->like('publicacion.titulo', $search);
+      $this->db->or_like('publicacion.resumen', $search);
+      $this->db->or_like('noticia.fuente', $search);
+      $this->db->or_like('contenido.contenido', $search);
+    }
+	$this->db->order_by('publicacion.fecha', 'desc');
+	$query = $this->db->get(); 
+	return $query;  	
   }
 
   function get_ultimas_noticias() {

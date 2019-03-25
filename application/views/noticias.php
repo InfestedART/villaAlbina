@@ -22,11 +22,31 @@ $dir = base_url().'assets/';
 
 		<h3 class='titulo-pagina'> NOTICIAS </h3>	
 
-		<div class='buscador'>
-			<input class='buscador__input' type="text" name='buscar_noticia'/>
-			<button class='buscador__button' type='submit'>
-				<i class="fa fa-search"></i>
-			</button>
+		<div class='row pt-2 pb-4'>
+			<div class="buscador col-md-6"><?php
+				echo form_open(
+               'noticias',
+               array('id' => 'form_buscar_noticia')
+            ); ?>
+				<input
+					class='buscador__input'
+					name='buscar_noticia'
+					id='buscar_noticia'
+					value='<?php echo $search; ?>'
+				/>
+				<button class='buscador__button' type='submit' id='buscar_noticia_btn'>
+					<i class="fa fa-search"></i>
+				</button><?php
+				echo form_close(); ?>
+			</div>
+		</div>
+
+		<?php $show_no_results = sizeof($noticias) < 1 ? '' : 'd-none'; ?>
+		<div class='no-results <?php echo $show_no_results; ?>'>
+			<p>No se encontraron resultados con esos parametros de busqueda</p>
+			<a class='no-result__volver' href=''>
+				Ver todas las Noticias
+			</a>
 		</div>
 
 		<div class='row'>

@@ -9,11 +9,13 @@
 	      <div class='nav__item-container'>
 			<?php
 			 	foreach ($paginas as $pagina) {
+			 		$link = $pagina['external'] ? $pagina['enlace'] : base_url().$pagina['enlace'];
 			 		printf(
-			 			"<a href='%s' class='nav__item d-none d-md-inline-block'>
+			 			"<a href='%s' class='nav__item d-none d-md-inline-block' %s >
 			 				<p class='nav__label'>%s</p>
 			 			</a>",
-			 			base_url().$pagina['enlace'],
+			 			$link,
+			 			$pagina['external'] ? "target='_blank'" : "",
 			 			$pagina['titulo']
 			 		);
 			 	}

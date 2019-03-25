@@ -94,7 +94,7 @@
                </div>
 
                 <div class='form-group'>
-                  <label class='form-label'>Autor(es) / Editorial</label>
+                  <label class='form-label'>Autor(es)</label>
                   <input
                      id='autor'
                      name='autor'
@@ -116,33 +116,16 @@
                </div>
 
                <div class='form-group'>
-                  <label class='form-label'>Paginas</label>
-                  <input
-                     id='paginas'
-                     name='paginas'
+                  <label class='form-label'>
+                     Descripción <br>
+                     (Lugar, Año, Páginas, etc.)
+                  </label>
+                  <textarea
+                     id='descripcion'
+                     name='descripcion'
                      class="form-control form-input"
-                     type='number'                     
-                  /> 
-               </div>
-
-                <div class='form-group'>
-                  <label class='form-label'>Lugar</label>
-                  <input
-                     id='lugar'
-                     name='lugar'
-                     class="form-control form-input"
-                     type='text'
-                  /> 
-               </div>
-
-               <div class='form-group'>
-                  <label class='form-label'>Año</label>
-                  <input
-                     id='year'
-                     name='year'
-                     class="form-control form-input"
-                     type='number'                     
-                  /> 
+                     >
+                  </textarea>
                </div>
 
                <div class='form-group'>

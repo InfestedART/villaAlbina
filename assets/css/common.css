@@ -1,6 +1,10 @@
 
 .buscador {
-	margin: 20px auto 30px;
+	text-align: left;
+}
+
+.buscador__input {
+	width: 200px;
 }
 
 .buscador__button {

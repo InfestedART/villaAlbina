@@ -5,9 +5,10 @@ class Noticias extends CI_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
 		$this->load->model("Noticias_model");	
-
+		$search = $this->input->post('buscar_noticia', TRUE);
+		$data['search'] = $search;
 		$data['paginas'] = $this->Paginas_model->get_all_paginas()->result_array();
-		$data['noticias'] = $this->Noticias_model->get_all_noticias()->result_array();;
+		$data['noticias'] = $this->Noticias_model->get_valid_noticias($search)->result_array();
 		$this->load->view('noticias', $data);
 	}
 }
