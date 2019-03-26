@@ -106,9 +106,15 @@
 
                <div class='form-group'>
                   <label class='form-label'>Imagen Destacada</label>
-                  <?php
-                  $hayImagen = trim($news['imagen_destacada'])!=='';
-                  if($hayImagen) {     ?>
+                  <?php $hayImagen = trim($news['imagen_destacada'])!==''; ?>
+                  <input
+                     id='delete_noticia'
+                     name='delete_noticia'
+                     value='<?php echo $hayImagen ? '0' : '1'; ?>'
+                     readonly
+                  />
+                  <?php                  
+                  if($hayImagen) {     ?>                     
                      <img
                         id='preview_img'
                         class='form-show-img'

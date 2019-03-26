@@ -86,6 +86,7 @@ class Admin_noticia extends MY_Controller {
 
 		$this->Noticias_model->insert_noticia($post_noticia);
 		$this->Contenido_model->insert_contenido($post_contenido);
+		$data['search'] = '';
       $data['noticias'] = $this->Noticias_model->get_all_noticias();
      	$this->load->view('admin_noticia', $data);
 
@@ -132,12 +133,16 @@ class Admin_noticia extends MY_Controller {
         	'msg' => 'noticia agregada exitosamente'
       );
 
+		$updated_noticia = $this->Noticias_model->get_noticia($id)->result_object()[0];
+		$updated_imagen = realpath('assets/'.$updated_noticia->imagen_destacada);
+		$delete_noticia = boolval($this->input->post('delete_noticia', TRUE));
+
      	$titulo = $this->input->post('titulo', TRUE);
 		$fecha = $this->input->post('fecha', TRUE);
 		$fuente = $this->input->post('fuente', TRUE);
 		$enlace = 'noticia/'.$titulo;
 		$resumen = $this->input->post('resumen', TRUE);
-		$imagen = $_FILES['imagen']['name'];
+		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias/'.$imagen;
 		$contenido = $this->input->post('contenido', TRUE);
 
@@ -147,9 +152,10 @@ class Admin_noticia extends MY_Controller {
 			'resumen' => $resumen,
 			'tipo' => 'noticia'
 		);
-
 		if ($imagen_destacada) {
 			$post_data['imagen_destacada'] = $imagen_destacada;
+		} elseif ($updated_noticia->imagen_destacada && $delete_noticia) {
+			$post_data['imagen_destacada'] = '';
 		}
 
 		$post_noticia = array(
@@ -160,15 +166,16 @@ class Admin_noticia extends MY_Controller {
 		$post_contenido = array(
 			'contenido' => $contenido
 		);
+     	if ($updated_noticia->imagen_destacada && $delete_noticia) {
+     		unlink($updated_imagen);
+     	}
 
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Noticias_model->update_noticia($id, $post_noticia);
 		$this->Contenido_model->update_contenido($id, $post_contenido);
-
      	$data['noticias'] = $this->Noticias_model->get_all_noticias();
-     	$this->load->view('admin_noticia', $data);		
-
-		var_dump($post_data);
+     	$data['search'] = '';
+     	$this->load->view('admin_noticia', $data);
 	}
 
 	public function toggle_noticia() {
@@ -180,7 +187,7 @@ class Admin_noticia extends MY_Controller {
 			'status' => $toggle
 		);
 		$this->Publicacion_model->update_publicacion($id, $post_data);
-		
+	   $data['search'] = '';	
      	$data['noticias'] = $this->Noticias_model->get_all_noticias();
      	$this->load->view('admin_noticia', $data);	
 	}

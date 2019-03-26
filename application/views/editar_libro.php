@@ -142,8 +142,13 @@
 
                <div class='form-group'>
                   <label class='form-label'>Portada</label>
-                  <?php
-                  $hayImagen = trim($edit_libro['portada'])!=='';
+                  <?php $hayImagen = trim($edit_libro['portada'])!==''; ?>                  
+                  <input
+                     id='delete_imagen_libro'
+                     name='delete_imagen_libro'
+                     value='<?php echo $hayImagen ? '0' : '1'; ?>'
+                     readonly
+                  /><?php                  
                   if($hayImagen) {     ?>
                      <img
                         id='preview_img'

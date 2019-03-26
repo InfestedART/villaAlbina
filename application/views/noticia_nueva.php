@@ -102,8 +102,7 @@
                      name='resumen'
                      class="form-control form-input
                      <?php echo $resumen_alert ? 'alert' : ''; ?>"
-                  /> 
-                  </textarea>
+                  /></textarea>
                </div>
 
                <div class='form-group'>
