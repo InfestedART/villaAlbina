@@ -1,10 +1,12 @@
+.admin-body {
+}
 
 .login-form {
 	max-width: 550px;
 }
 
 .admin-header {
-	background-color: orange;
+	background-color: rgb(239, 125, 0);
 	color: white;
 	position:fixed;
 	padding: 10px 20px;
@@ -12,7 +14,7 @@
 	left: 0;
 	z-index: 10;
 	height: 80px;
-	width: 100vw;
+	width: 100%;
 }
 
 .admin-header__cerrar-sesion {
@@ -21,6 +23,15 @@
 
 .admin-logo {
 	display: inline-block;
+}
+
+.admin-logo img {
+	height: 60px;
+}
+
+.admin-logo a:hover {
+	color: white;
+	text-decoration: none;
 }
 
 .admin-rigth {
@@ -64,6 +75,52 @@
 	opacity: 1 !important;
 }
 
+.sidemenu, .submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidemenu a {
+  display: block;
+  text-decoration: none;
+  padding: 0.75rem 0.75rem 0.75rem 1.25rem;
+  color: white;
+  text-transform: uppercase;
+}
+
+.sidemenu i {
+	margin-right: 5px;
+}
+
+.sidemenu a:hover {  
+  color: orange;
+  background-color: #3A4146;
+}
+
+.sidemenu li:hover .submenu {
+  display: block;
+  max-height: 200px;
+}
+
+.submenu {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: all 0.5s ease-out;
+}
+
+.submenu a {
+  background-color: #0A1116;
+}
+
+.sidemenu--active {
+  background-color: #1A2126;
+}
+
+.submenu a:hover {
+  background-color: #131A1E;
+}
+
 .admin-sidebar {
 	background-color: #2c3136;
 	color: white;
@@ -76,60 +133,245 @@
 	padding-top: 80px;
 	visibility: hidden;
 	opacity: 0;
-	font-size: 14px;
+	font-size: 13px;
 	text-align: left;
+	position: fixed;
 }
 
-.admin-sidebar a {
+.admin-sidebar__title {
 	display: block;
-	text-decoration: none;
 	text-transform: uppercase;
-	color: inherit;
 	margin: 0;
 	padding: 0.75rem 0.75rem 0.75rem 1.25rem;
 	width: 100%;
+	border-bottom: 1px solid #666666;
 }
 
-.admin-sidebar a:hover {
+
+.collapse-btn {
+	color: white;
+	text-align: center;
+	display: none;
+	margin-right: 5px;
+}
+
+.collapse-btn:hover {
 	color: orange;
-	background-color: #3A4146;
-}
-
-.admin-sidebar a.active {
-	background-color: #1A2126;
 }
 
 .admin-container {
 	margin-top: 80px;
 }
 
+.nav-btn {
+	padding: 7px 14px;
+	background-color: gray;	
+	color: white;
+	font-weight: 500;
+	font-size: 13px;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.nav-btn:hover {
+	color: white;
+	text-decoration: none;
+}
+
 @media only screen and (min-width: 768px) {
 	.admin-sidebar {
-		width: 100px;
+		width: 90px;
 		visibility: visible;
 		opacity: 1;
-		font-size: 13px;
+		font-size: 12px;
 	}
 
 	.admin-sidebar a {
-		padding: 1rem;
+		padding: 1rem 0.75rem;
 		text-align: center;
 	}
 
 	.admin-container {
-		margin-left: 100px;
+		margin-left: 90px;
+	}
+
+	.admin-container.container-expanded{
+		margin-left: 45px !important;
+	}
+
+	.admin-sidebar__title span {
+		display: none;
+	}
+
+	.admin-sidebar .collapse-btn {
+		display: block;
+		padding: 0;
+	}
+
+	.admin-sidebar__option i {
+		margin-right: 0;
+		margin-bottom: 4px
+	}
+
+
+	.admin-sidebar.collapsed {
+		width: 45px;
+	}
+
+	.collapsed .admin-sidebar__title span,
+	.collapsed .sidemenu span {
+		display: none;
 	}
 }
 
 @media only screen and (min-width: 1170px) {
 	.admin-sidebar {
-		width: 200px;
+		width: 180px;
 		font-size: 14px;
+	}
+
+	.admin-sidebar a {
 		text-align: left;
 	}
 
 	.admin-container {
-		margin-left: 200px;
+		margin-left: 180px;
+	}
+
+	.admin-sidebar__title span {
+		display: inline-block;
+	}
+
+	.collapse-btn {
+		float: right;		
+	}
+
+	.admin-sidebar__option i {
+		margin-right: 6px;
+		margin-bottom: 0;
+	}
+
+	.collapsed .admin-sidebar__title {
+		height: 46px
+	}
+
+	.collapsed .admin-sidebar__title span,
+	.collapsed .admin-sidebar__option span {
+		display: none;
 	}
 }
 
+.admin-table {
+	font-size: 12px;
+	border-collapse: collapse;
+}
+
+.admin-table td, .admin-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.admin-table tr:nth-child(even){
+	background-color: #f8f8f8;
+}
+
+.admin-table a {
+	color: black;
+}
+
+.admin-table a:hover {
+	color: orange;
+}
+
+.form-label {
+	display: inline-block;
+	width: 25%;
+}
+
+.form-input {
+	display: inline-block;
+	width: 74%;
+}
+
+.form-input-inline {
+	display: inline-block;
+	width: 40%;	
+}
+
+.form-label-inline {
+	margin-right: 15px;
+	font-size: 14px;
+}
+
+.form-show-img {
+	height: 90px;
+}
+
+.form-change-img {
+	padding: 6px 14px;
+	background-color: orange;
+	color: white;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.status {
+	position: relative;
+  	display: inline-block;
+  	width: 35px;
+  	height: 20px;
+  	border-radius: 5px;
+}
+
+.status__on {
+	background-color: orange;
+}
+
+.status__off {
+	background-color: #868686;
+}
+
+.slider {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  bottom: 3px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.slider__off {
+  	left: 3px;
+}
+
+.slider__on {
+	left: 18px;
+}
+
+.btn {
+	background-color: rgb(230, 125, 0);
+	font-size: 14px;
+	border-color: rgb(230, 125, 0);
+}
+
+.btn:hover {
+	background-color: rgb(200, 100, 25);
+	border-color: rgb(200, 100, 25);
+}
+
+.btn-inline {
+	vertical-align: top;
+	float: right;
+}
+
+@media only screen and (max-width: 768px) {
+	.form-label, .form-input {
+		width: 100%;
+		display: block;
+	}
+}
+
+.img-small {
+	height: 60px;
+}

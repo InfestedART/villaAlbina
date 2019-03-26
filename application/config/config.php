@@ -23,7 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/espacioPatino';
+$config['base_url'] = ENVIRONMENT === 'production'
+	? 'http://punto-apparte.com/espacioPatino'
+	: 'http://localhost/espacioPatino';
 
 /*
 |--------------------------------------------------------------------------

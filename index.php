@@ -53,7 +53,12 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	define(
+		'ENVIRONMENT',
+		$_SERVER['SERVER_NAME'] === 'punto-apparte.com' ? 'production' : (
+			$_SERVER['SERVER_NAME'] === 'localhost' ? 'development' : 'invalid'
+		)
+	);
 
 /*
  *---------------------------------------------------------------
@@ -178,7 +183,9 @@ switch (ENVIRONMENT)
  */
 	// $assign_to_config['name_of_config_item'] = 'value of config item';
 
-
+if (!ini_get('date.timezone')) {
+	date_default_timezone_set('UTC');	// America/La_Paz
+}
 
 // --------------------------------------------------------------------
 // END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
