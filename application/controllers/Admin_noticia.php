@@ -59,7 +59,7 @@ class Admin_noticia extends MY_Controller {
 		$fuente = $this->input->post('fuente', TRUE);
 		$enlace = 'noticia/'.$titulo;
 		$resumen = $this->input->post('resumen', TRUE);
-		$imagen = $_FILES['imagen']['name'];
+		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias'.$imagen;
 		$contenido = $this->input->post('contenido', TRUE);
 

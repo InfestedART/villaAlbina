@@ -28,20 +28,31 @@
    ?>
 
    <div class='admin-container'>
-      <div class="container">
-      <div  class='row justify-content-md-center'>
+   <div class="admin-wrapper">
 
-        <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
-         <div>
+      <div class='admin-title'>
+         <div class='row no-gutters'>
+            <div class="col-12">         
+            <h3>Editar Noticia</h3>
+            </div>
+         </div>
+      </div>
+
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12"> 
             <a class='nav-btn' href='<?php echo base_url()."admin_noticia"; ?>'>
                <i class="fa fa-arrow-left mr-1"></i>
                Volver
             </a>
+            </div>
          </div>
-         </div>
+      </div>
 
-         <div class='card col-12 col-md-11 p-4 mt-0 mt-md-3'>
-            <h3>EDITAR NOTICIA</h3>
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">
+            <h5 class='form-title'>Editar Noticia</h5>
             <?php
                $news = $noticia->result_array()[0];               
                echo form_open_multipart(
@@ -58,59 +69,69 @@
                   <?php echo $msg;?>
                </span>
 
-               <div class='form-group'>
-                  <label class='form-label'>Titulo</label>
-                  <input
-                     id='titulo'
-                     name='titulo'
-                     class="form-control form-input
-                        <?php echo $titulo_alert ? 'alert' : ''; ?>"
-                     type='text'
-                     value="<?php echo $news['titulo']; ?>"
-                  /> 
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Titulo</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='titulo'
+                        name='titulo'
+                        class="form-control
+                           <?php echo $titulo_alert ? 'alert' : ''; ?>"
+                        type='text'
+                        value="<?php echo $news['titulo']; ?>"
+                     /> 
+                  </div>
                </div>
 
-               <div class='form-group'>
-                  <label class='form-label'>Fecha</label>
-                  <input
-                     id='fecha'
-                     name='fecha'
-                     class="form-control form-input
-                        <?php echo $fecha_alert ? 'alert' : ''; ?>"
-                     type='text'
-                     value="<?php echo $news['fecha']; ?>"
-                  /> 
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Fecha</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='fecha'
+                        name='fecha'
+                        class="form-control
+                           <?php echo $fecha_alert ? 'alert' : ''; ?>"
+                        type='text'
+                        value="<?php echo $news['fecha']; ?>"
+                     /> 
+                  </div>
                </div>
 
-                <div class='form-group'>
-                  <label class='form-label'>Fuente</label>
-                  <input
-                     id='fuente'
-                     name='fuente'
-                     class="form-control form-input
-                        <?php echo $fuente_alert ? 'alert' : ''; ?>"
-                     type='text'
-                     value="<?php echo $news['fuente']; ?>"
-                  /> 
+                <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Fuente</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='fuente'
+                        name='fuente'
+                        class="form-control
+                           <?php echo $fuente_alert ? 'alert' : ''; ?>"
+                        type='text'
+                        value="<?php echo $news['fuente']; ?>"
+                     /> 
+                  </div>
                </div>
 
-               <div class='form-group'>
-                  <label class='form-label'>Resumen</label>
-                  <textarea
-                     id='resumen'
-                     name='resumen'
-                     class="form-control form-input
-                        <?php echo $resumen_alert ? 'alert' : ''; ?>"
-                  /><?php echo trim($news['resumen']); ?></textarea>
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Resumen</label>
+                  <div class='col-sm-9'>
+                     <textarea
+                        id='resumen'
+                        name='resumen'
+                        class="form-control
+                           <?php echo $resumen_alert ? 'alert' : ''; ?>"
+                     /><?php echo trim($news['resumen']); ?></textarea>
+                  </div>
                </div>
 
-               <div class='form-group'>
-                  <label class='form-label'>Imagen Destacada</label>
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Imagen Destacada</label>
+                  <div class='col-sm-9'>
                   <?php $hayImagen = trim($news['imagen_destacada'])!==''; ?>
                   <input
                      id='delete_noticia'
                      name='delete_noticia'
                      value='<?php echo $hayImagen ? '0' : '1'; ?>'
+                     type='hidden'
                      readonly
                   />
                   <?php                  
@@ -127,7 +148,7 @@
                      <input
                         id='imagen'
                         name='imagen'
-                        class="form-control form-input 
+                        class="form-control
                            <?php if ($hayImagen) { echo 'hidden'; } ?>"
                         style="<?php if ($hayImagen) { echo 'width:calc(70% - 100px)'; } ?>"
                         type='file'
@@ -135,28 +156,32 @@
                      <span class='form-change-img hidden' id='show_preview_btn'>
                         Cancelar
                      </span>
+                  </div>
                </div>
 
-                <div class='form-group'>
-                  <label class='form-label d-block'>Contenido</label>
-                  <textarea
-                     id='contenido'
-                     name='contenido'
-                     class="form-control form-input d-block w-100"
-                     rows=12
-                  /><?php echo trim($news['contenido']); ?></textarea>
+                <div class='form-group row'>
+                  <label class='form-label col-12'>Contenido</label>
+                  <div class='col-12'>
+                     <textarea
+                        id='contenido'
+                        name='contenido'
+                        class="form-control"
+                        rows=12
+                     /><?php echo trim($news['contenido']); ?></textarea>
+                  </div>
                </div>
 
-               <div class="form-group">
+               <div class='form-group row'>
                   <button type="button" id='noticia_btn' class="btn btn-primary">
                      GUARDAR CAMBIOS
                   </button>
                </div>
 
             </form>
+            </div>
          </div>
-
-      </div>      
+      </div>
+  
    </div>
    </div>
 

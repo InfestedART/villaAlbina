@@ -22,14 +22,25 @@
    ?>
 
    <div class='admin-container'>
-      <div class="container">
-         <div  class='row justify-content-md-center'>
-            <span>
-               <?php echo $this->session->flashdata('msg');?>
-            </span>
-            <h1>CPANEL</h1>
+   <div class="admin-wrapper">
+
+      <div class='admin-title'>
+         <div class='row no-gutters'>
+            <div class="col-12">         
+            <h2>CPANEL</h2>
+            </div>
          </div>
       </div>
+
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">         
+               <span>content</span>
+            </div>
+         </div>
+      </div>
+
+   </div>
    </div>
     
 </div>
