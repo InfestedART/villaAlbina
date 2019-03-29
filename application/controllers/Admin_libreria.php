@@ -122,9 +122,10 @@ class Admin_libreria extends MY_Controller {
 		);
 
 		$this->Libro_model->insert_libro($libro_data);
-      $data['libros'] = $this->Libro_model->get_all_libros();
-      $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-     	$this->load->view('admin_libreria', $data);
+      	$data['libros'] = $this->Libro_model->get_all_libros();
+      	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+      	$data['search'] = '';
+      	$this->load->view('admin_libreria', $data);
 	}
 
 	public function update_libro() {
@@ -149,6 +150,11 @@ class Admin_libreria extends MY_Controller {
 	     	'upload_data' => $this->upload->data(),
 	       	'msg' => 'noticia agregada exitosamente'
 	    );
+
+		$updated_libro = $this->Libro_model->get_libro($id)->result_object()[0];
+		$updated_portada = realpath('assets/'.$updated_libro->portada);
+		$delete_imagen_libro = boolval($this->input->post('delete_imagen_libro', TRUE));
+
 	    $titulo = $this->input->post('titulo', TRUE);
 		$categoria = $this->input->post('categoria', TRUE);
 		$autor = $this->input->post('autor', TRUE);
@@ -166,11 +172,18 @@ class Admin_libreria extends MY_Controller {
 		);
 		if ($portada) {
 			$libro_data['portada'] = $portada;
+		} elseif ($updated_libro->portada && $delete_imagen_libro) {
+			$libro_data['portada'] = '';
 		}
+
+     	if ($updated_libro->portada && $delete_imagen_libro) {
+     		unlink($updated_portada);
+     	}
 
 		$this->Libro_model->update_libro($id, $libro_data);
       	$data['libros'] = $this->Libro_model->get_all_libros();
       	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+      	$data['search'] = '';
      	$this->load->view('admin_libreria', $data);
 	}
 
@@ -185,6 +198,7 @@ class Admin_libreria extends MY_Controller {
 		$this->Libro_model->update_libro($id, $libro_data);
       	$data['libros'] = $this->Libro_model->get_all_libros();
       	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+      	$data['search'] = '';
      	$this->load->view('admin_libreria', $data);
 	}
 

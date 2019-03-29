@@ -12,12 +12,32 @@ $dir = base_url().'assets/';
 </head>
 
 <body>
-	<div class='main__wrapper' id='wrapper'>
+<div class='main__wrapper' id='wrapper'>
 
-	<div
-		class="portada"
-		style="background-image: url(<?php  echo $dir.'img/portada1.jpg'; ?>)"
-	></div>
+	<div class='portada slider' id='slider'>
+		<div class='slider-wrapper'>
+		<?php
+			$default = 'rgba(30,87,153,1) 0%';
+			$portadas_array = $portadas->result_array();
+			foreach ($portadas_array as $portada) {
+				$color = $portada['color'] ? $portada['color'].' 0%' : 'rgba(30,87,153,1) 0%';
+				printf(
+					"<div class='slide' style='background-image: url(%suploads/%s)'>
+						<div class='gradient' style='
+							  background: -moz-linear-gradient(top, %s, %s);
+							  background: -webkit-linear-gradient(top, %s, %s);
+							  background: linear-gradient(to bottom, %s, %s);'>
+						</div>
+					</div>",
+					$dir, $portada['imagen'],
+					$color, 'transparent 100%',
+					$color, 'transparent 100%',
+					$color, 'transparent 100%'
+				);				
+			}
+		?>
+		</div>
+	</div>
 
 	<div class='main'>
 
@@ -25,17 +45,12 @@ $dir = base_url().'assets/';
 		</div>
 
 		<div class="logo d-none d-md-block">
-			<img src=<?php echo $dir.'img/logo2.png'; ?> />
+			<img src=<?php echo $dir.'img/logo.png'; ?> />
+			<img src=<?php echo $dir.'img/logo_espacioPatino.png'; ?> />
 		</div>
 
-		<div class="logo d-xs-block d-md-none">
+		<div class="logo d-xs-block d-md-none text-center">
 			<img src=<?php echo $dir.'img/logo_mobile.png'; ?> />
-		</div>
-
-		<div class="main__icono">
-			<a href=# id="abrir-puerta">
-				<img src=<?php echo $dir.'img/abrir_puerta.png'; ?> />
-			</a>
 		</div>
 
 		<div class="navbar main__navbar" id='navbar'>

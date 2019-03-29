@@ -25,11 +25,19 @@
    ?>
 
    <div class='admin-container'>
-      <div class="container">
-      <div  class='row justify-content-md-center'>
+   <div class="admin-wrapper">
 
-        <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
-         <div>
+      <div class='admin-title'>
+         <div class='row no-gutters'>
+            <div class="col-12">         
+             <h3>Libro nuevo</h3>
+            </div>
+         </div>
+      </div>
+
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">    
             <a class='nav-btn' href='<?php echo base_url()."admin_libreria"; ?>'>
                <i class="fa fa-arrow-left mr-1"></i>
                Volver
@@ -41,11 +49,14 @@
                <i class="fa fa-tags mr-1"></i>
                Categorias
             </a>
+            </div>
          </div>
-         </div>
+      </div>
 
-         <div class='card col-12 col-md-11 p-4 mt-0 mt-md-5'>
-            <h3>INSERTAR LIBRO</h3>
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">
+            <h5 class='form-title'>Insertar Libro</h5>
             <?php
                $categorias_array = $categorias->result_array();
                echo form_open_multipart(
@@ -62,93 +73,107 @@
                   <?php echo $msg;?>
                </span>
 
-               <div class='form-group'>
-                  <label class='form-label'>Titulo</label>
-                  <input
-                     id='titulo'
-                     name='titulo'
-                     class="form-control form-input
-                     <?php echo $titulo_alert ? 'alert' : ''; ?>"
-                     type='text'
-                  /> 
+              <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Titulo</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='titulo'
+                        name='titulo'
+                        class="form-control
+                        <?php echo $titulo_alert ? 'alert' : ''; ?>"
+                        type='text'
+                     /> 
+                  </div>
                </div>
 
-                <div class='form-group'>
-                  <label class='form-label'>Categoria</label>
-                  <select
-                     id='categoria'
-                     name='categoria'
-                     class="form-control form-input
-                     <?php echo $categoria_alert ? 'alert' : ''; ?>"
-                  > 
-                     <option value=''> Seleccione una opción</option>
-                     <?php
-                        foreach ($categorias_array as $cat) {
-                           printf("<option value='%s'>%s</option>",
-                                 $cat['id_categoriaLibro'],
-                                 $cat['categoria']
-                           );
-                        }
-                     ?>
-                  </select>
+                <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Categoria</label>
+                  <div class='col-sm-9'>
+                     <select
+                        id='categoria'
+                        name='categoria'
+                        class="form-control
+                        <?php echo $categoria_alert ? 'alert' : ''; ?>"
+                     > 
+                        <option value=''> Seleccione una opción</option>
+                        <?php
+                           foreach ($categorias_array as $cat) {
+                              printf("<option value='%s'>%s</option>",
+                                    $cat['id_categoriaLibro'],
+                                    $cat['categoria']
+                              );
+                           }
+                        ?>
+                     </select>
+                  </div>
                </div>
 
-                <div class='form-group'>
-                  <label class='form-label'>Autor(es)</label>
-                  <input
-                     id='autor'
-                     name='autor'
-                     class="form-control form-input
-                     <?php echo $autor_alert ? 'alert' : ''; ?>"
-                     type='text'
-                  /> 
+                <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Autor(es)</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='autor'
+                        name='autor'
+                        class="form-control
+                        <?php echo $autor_alert ? 'alert' : ''; ?>"
+                        type='text'
+                     /> 
+                  </div>
                </div>
 
-               <div class='form-group'>
-                  <label class='form-label'>Precio (Bs.)</label>
-                  <input
-                     id='precio'
-                     name='precio'
-                     class="form-control form-input
-                     <?php echo $precio_alert ? 'alert' : ''; ?>"
-                     type='number'                     
-                  /> 
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Precio (Bs.)</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='precio'
+                        name='precio'
+                        class="form-control
+                        <?php echo $precio_alert ? 'alert' : ''; ?>"
+                        type='number'                     
+                     /> 
+                  </div>
                </div>
 
-               <div class='form-group'>
-                  <label class='form-label'>
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>
                      Descripción <br>
                      (Lugar, Año, Páginas, etc.)
                   </label>
-                  <textarea
-                     id='descripcion'
-                     name='descripcion'
-                     class="form-control form-input"
-                     >
-                  </textarea>
+                  <div class='col-sm-9'>
+                     <textarea
+                        id='descripcion'
+                        name='descripcion'
+                        class="form-control"
+                        ></textarea>
+                  </div>
                </div>
 
-               <div class='form-group'>
-                  <label class='form-label'>Portada</label>
-                  <input
-                     id='portada'
-                     name='portada'
-                     class="form-control form-input"
-                     type='file'
-                  /> 
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Portada</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='portada'
+                        name='portada'
+                        class="form-control"
+                        type='file'
+                     /> 
+                  </div>
                </div>
 
-               <div class="form-group">
+               <div class='form-group row'>
+                  <div class='col-sm-9 offset-3'>
                   <button type="button" id='libro_btn' class="btn btn-primary">
                      AGREGAR LIBRO
                   </button>
+                  </div>
                </div>
 
             <?php echo form_close(); ?>
+            </div>
          </div>
+      </div>
 
-      </div>      
-   </div>
+   </div>      
    </div>
 
    <script src=<?php  echo $assets_dir."js/admin_libreria_app.js"; ?> ></script>

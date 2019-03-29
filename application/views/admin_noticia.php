@@ -29,20 +29,32 @@
    ?>
 
    <div class='admin-container'>
-      <div class="container">
-      <div class='row justify-content-md-center'>
+   <div class="admin-wrapper">
 
-         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
-            <div>
+      <div class='admin-title'>
+         <div class='row no-gutters'>
+            <div class="col-12">         
+            <h2>Noticias</h2>
+            </div>
+         </div>
+      </div>
+
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12"> 
             <a class='nav-btn' href='<?php echo $admin_dir."noticia_nueva"; ?>'>
                <i class="fa fa-plus mr-1"></i>
                Noticia Nueva
             </a>
             </div>
-         </div>         
+         </div>
+      </div>        
 
-         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
-            <div class="buscador"><?php
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">        
+
+            <div class="admin-buscador"><?php
                echo form_open(
                   'admin_noticia',
                   array('id' => 'form_buscar_noticia')
@@ -61,13 +73,10 @@
                </span>
                <?php echo form_close(); ?>
             </div>
-         </div>
 
-         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
          <?php
             $noticias_array = $noticias->result_array();
             if (sizeof($noticias_array) > 0) {  ?>
-            <h3>Noticias</h3>
             <table class='admin-table'>
                <thead>
                <tr>
@@ -163,10 +172,11 @@
             <?
             }
             ?>               
+            </div>
          </div>
+      </div>
 
       </div>      
-   </div>
    </div>
 
    <?php

@@ -26,11 +26,19 @@
    ?>
 
    <div class='admin-container'>
-      <div class="container">
-      <div  class='row justify-content-md-center'>
+   <div class="admin-wrapper">
 
-        <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
-         <div>
+      <div class='admin-title'>
+         <div class='row no-gutters'>
+            <div class="col-12">         
+            <h2>Editar Libro</h2>
+            </div>
+         </div>
+      </div>
+
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">   
             <a class='nav-btn' href='<?php echo base_url()."admin_libreria"; ?>'>
                <i class="fa fa-arrow-left mr-1"></i>
                Volver
@@ -42,11 +50,14 @@
                <i class="fa fa-tags mr-1"></i>
                Categorias
             </a>
+            </div>
          </div>
-         </div>
+      </div>
 
-         <div class='card col-12 col-md-11 p-4 mt-0 mt-md-5'>
-            <h3>EDITAR LIBRO</h3>
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">
+            <h5 class='form-title'>Editar Libro</h5>
             <?php
                $edit_libro = $libro->result_array()[0];
                $categorias_array = $categorias->result_array();
@@ -64,27 +75,29 @@
                   <?php echo $msg;?>
                </span>
 
-               <div class='form-group'>
-                  <label class='form-label'>Titulo</label>
-                  <input
-                     id='titulo'
-                     name='titulo'
-                     class="form-control form-input
-                     <?php echo $titulo_alert ? 'alert' : ''; ?>"
-                     type='text'
-                     value="<?php echo $edit_libro['titulo']; ?>"
-                  /> 
+              <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Titulo</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='titulo'
+                        name='titulo'
+                        class="form-control
+                        <?php echo $titulo_alert ? 'alert' : ''; ?>"
+                        type='text'
+                        value="<?php echo $edit_libro['titulo']; ?>"
+                     /> 
+                  </div>
                </div>
 
-                <div class='form-group'>
-                  <label class='form-label'>
+              <div class='form-group row'>
+                  <label class='form-label col-sm-3'>
                      Categoria
-                     <? echo $edit_libro['id_categoriaLibro']." ".gettype($edit_libro['id_categoriaLibro']) ?>
                   </label>
+                  <div class='col-sm-9'>
                   <select
                      id='categoria'
                      name='categoria'
-                     class="form-control form-input
+                     class="form-control
                      <?php echo $categoria_alert ? 'alert' : ''; ?>"
                   > 
                      <option value=''> Seleccione una opción</option>
@@ -103,47 +116,59 @@
                         }
                      ?>
                   </select>
+                  </div>
                </div>
 
-                <div class='form-group'>
-                  <label class='form-label'>Autor</label>
+              <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Autor</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='autor'
+                        name='autor'
+                        class="form-control
+                        <?php echo $autor_alert ? 'alert' : ''; ?>"
+                        type='text'
+                        value="<?php echo $edit_libro['autor']; ?>"
+                     /> 
+                  </div>
+               </div>
+
+              <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Precio (Bs.)</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='precio'
+                        name='precio'
+                        class="form-control
+                        <?php echo $precio_alert ? 'alert' : ''; ?>"
+                        type='number'
+                        value=<?php echo $edit_libro['precio']; ?>      
+                     /> 
+                  </div>
+               </div>
+
+              <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Descripción</label>
+                  <div class='col-sm-9'>
+                     <textarea
+                        id='descripcion'
+                        name='descripcion'
+                        class="form-control"
+                        ><?php echo $edit_libro['descripcion']; ?></textarea>
+                  </div>
+               </div>
+
+              <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Portada</label>
+                  <div class='col-sm-9'>
+                  <?php $hayImagen = trim($edit_libro['portada'])!==''; ?>                  
                   <input
-                     id='autor'
-                     name='autor'
-                     class="form-control form-input
-                     <?php echo $autor_alert ? 'alert' : ''; ?>"
-                     type='text'
-                     value="<?php echo $edit_libro['autor']; ?>"
-                  /> 
-               </div>
-
-               <div class='form-group'>
-                  <label class='form-label'>Precio (Bs.)</label>
-                  <input
-                     id='precio'
-                     name='precio'
-                     class="form-control form-input
-                     <?php echo $precio_alert ? 'alert' : ''; ?>"
-                     type='number'
-                     value=<?php echo $edit_libro['precio']; ?>      
-                  /> 
-               </div>
-
-               <div class='form-group'>
-                  <label class='form-label'>Descripción</label>
-                  <textarea
-                     id='descripcion'
-                     name='descripcion'
-                     class="form-control form-input"
-                     ><?php
-                        echo $edit_libro['descripcion']; 
-                     ?></textarea>
-               </div>
-
-               <div class='form-group'>
-                  <label class='form-label'>Portada</label>
-                  <?php
-                  $hayImagen = trim($edit_libro['portada'])!=='';
+                     id='delete_imagen_libro'
+                     name='delete_imagen_libro'
+                     value='<?php echo $hayImagen ? '0' : '1'; ?>'
+                     type='hidden'
+                     readonly
+                  /><?php                  
                   if($hayImagen) {     ?>
                      <img
                         id='preview_img'
@@ -157,7 +182,7 @@
                      <input
                         id='portada'
                         name='portada'
-                        class="form-control form-input 
+                        class="form-control
                            <?php if ($hayImagen) { echo 'hidden'; } ?>"
                         style="<?php if ($hayImagen) { echo 'width:calc(70% - 100px)'; } ?>"
                         type='file'
@@ -165,18 +190,22 @@
                      <span class='form-change-img hidden' id='show_preview_btn'>
                         Cancelar
                      </span>
+                  </div>
                </div>
 
-               <div class="form-group">
+              <div class='form-group row'>
+                  <div class='col-sm-9 offset-3'>
                   <button type="button" id='libro_btn' class="btn btn-primary">
                      GUARDAR CAMBIOS
                   </button>
+                  </div>
                </div>
 
             <?php echo form_close(); ?>
+            </div>
          </div>
-
-      </div>      
+      </div>
+     
    </div>
    </div>
 

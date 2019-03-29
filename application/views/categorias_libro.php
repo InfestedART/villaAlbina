@@ -27,26 +27,37 @@
    ?>
 
    <div class='admin-container'>
-      <div class="container">
-      <div class='row justify-content-md-center'>
+   <div class="admin-wrapper">
 
-         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-5'>
-            <div>
+      <div class='admin-title'>
+         <div class='row no-gutters'>
+            <div class="col-12">         
+            <h2>Categorias de Libros</h2>
+            </div>
+         </div>
+      </div>
+
+      <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">   
             <a class='nav-btn' href='<?php echo $admin_dir."nuevo_libro"; ?>'>
                <i class="fa fa-plus mr-1"></i>
                Libro nuevo
             </a>
             </div>
-         </div>         
+         </div>   
+      </div>      
 
-         <div class='card col-12 col-md-11 p-2 mt-0 mt-md-4'>
-            <h4>Categorias</h4>
+    <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">    
+
             <table class='admin-table'>
                <thead>
                   <tr>
                      <th class='w-50'>Categoria</th>
-                     <th>Status</th>
-                     <th>Opciones</th>
+                     <th class='text-center'>Status</th>
+                     <th class='text-center'>Opciones</th>
                   </tr>
                </thead>
                <tbody>
@@ -82,11 +93,14 @@
                   ?> 
                </tbody>
             </table> 
+            </div>
          </div>
+      </div>
 
-         <div class="card col-12 col-md-11 p-2 mt-0 mt-md-4 <?php 
-            if (!$id_categoria) { echo 'd-none'; }
-         ?>">
+      <div class='card admin-content <?php if (!$id_categoria) { echo 'd-none'; } ?>'>
+         <div class='row no-gutters'>
+            <div class="col-12"> 
+
             <h5>Editar Categoria</h5>
             <?php
                if ($selected_categoria) {
@@ -126,9 +140,13 @@
                echo form_close();
                }
             ?>
+            </div>
          </div>
+      </div>
 
-         <div class="card col-12 col-md-11 p-2 mt-0 mt-md-4 ">
+       <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12">   
             <h5>Categoria Nueva</h5>
                <span id='categoria_alert' class='form-alert'>
                   <?php echo $this->session->flashdata('error');?>
@@ -151,11 +169,13 @@
             <button type="button" id='categoria_btn' class="btn btn-primary btn-inline">
                AGREGAR
              </button>
+            </div>
          </div>
+      </div>
+    
+   </div>
+   </div>
 
-      </div>      
-   </div>
-   </div>
    <script src=<?php  echo $assets_dir."js/admin_cat_libro.js"; ?> ></script>
 
    <?php

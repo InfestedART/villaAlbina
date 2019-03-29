@@ -53,17 +53,21 @@ function main() {
 	const show_preview_btn = document.getElementById('show_preview_btn');
 
 	function hide_preview() {
+		const delete_imagen_libro = document.getElementById('delete_imagen_libro');
 		preview_img.classList.add('hidden');
 		hide_preview_btn.classList.add('hidden');
 		imagen.classList.remove('hidden');
 		show_preview_btn.classList.remove('hidden');
+		delete_imagen_libro.value = '1';
 	}
 
 	function show_preview() {
+		const delete_imagen_libro = document.getElementById('delete_imagen_libro');
 		preview_img.classList.remove('hidden');
 		hide_preview_btn.classList.remove('hidden');
 		imagen.classList.add('hidden');
 		show_preview_btn.classList.add('hidden');
+		delete_imagen_libro.value = '0';
 	}
 
 	libro_btn.addEventListener('click', function(ev){
