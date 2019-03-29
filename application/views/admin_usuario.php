@@ -25,10 +25,20 @@
    ?>
 
    <div class='admin-container'>
-      <div class="container">
-      <div  class='row justify-content-md-center'>
-         <div class='card col-md-6 p-4 mt-5'>
-            <h3>NUEVO USUARIO</h3>
+   <div class="admin-wrapper">
+
+      <div class='admin-title'>
+         <div class='row no-gutters'>
+            <div class="col-12">         
+            <h2>Nuevo Usuario</h2>
+            </div>
+         </div>
+      </div>
+
+     <div class='card admin-content'>
+         <div class='row no-gutters'>
+            <div class="col-12"> 
+            <h5 class='form-title'>Insertar Usuario</h5>
             <form
             	id='newUser_form'            	
             	method="post"
@@ -39,41 +49,53 @@
                <span  id='newUser_alert' class='form-alert'>
                	<?php echo $this->session->flashdata('error');?>
                </span>
-               <div class='form-group'>
-                  <label>Nombre de Usuario</label>
-                  <input
-                     id='newUser_username'
-                     name='usuario'
-                     class="form-control <?php echo $user_alert ? 'alert' : '' ?>"
-                     type='text'
-                     name="usuario"
-                  /> 
+               <div class='form-group row'>
+                  <label class='col-sm-3'>Nombre de Usuario</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='newUser_username'
+                        name='usuario'
+                        class="form-control <?php echo $user_alert ? 'alert' : '' ?>"
+                        type='text'
+                        name="usuario"
+                     />
+                  </div>
                </div>
-               <div class='form-group'>
-                  <label>Contraseña</label>
-                  <input 
-                     id='newUser_password'
-                     name="password"
-                     class="form-control <?php echo $pass_alert ? 'alert' : '' ?>"
-                     type="password"
-                  />
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Contraseña</label>
+                  <div class='col-sm-9'>
+                     <input 
+                        id='newUser_password'
+                        name="password"
+                        class="form-control <?php echo $pass_alert ? 'alert' : '' ?>"
+                        type="password"
+                     />
+                  </div>
                </div>
-               <div class='form-group'>
-                  <label>Confirmar Contraseña</label>
-                  <input 
-                     id='newUser_confirmPass'
-                     name='confirmPass'
-                     class="form-control <?php echo $pass_alert ? 'alert' : '' ?>"
-                     type="password" 
-                     name="confirm_password"
-                  />
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Confirmar Contraseña</label>
+                  <div class='col-sm-9'>
+                     <input 
+                        id='newUser_confirmPass'
+                        name='confirmPass'
+                        class="form-control <?php echo $pass_alert ? 'alert' : '' ?>"
+                        type="password" 
+                        name="confirm_password"
+                     />
+                  </div>
                </div>
-               <div class="form-group">
-                  <button type="button" id='newUser_btn' class="btn btn-primary">INGRESAR</button>
+               <div class='form-group row'>
+                  <div class='col-sm-9 offset-3'>
+                     <button type="button" id='newUser_btn' class="btn btn-primary">
+                     INGRESAR
+                     </button>
+                  </div>
                </div>
             </form>
+            </div>
          </div>
-      </div>      
+      </div>
+   
    </div>
    </div>
 

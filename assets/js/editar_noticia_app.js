@@ -70,17 +70,21 @@ function main() {
 		const show_preview_btn = document.getElementById('show_preview_btn');
 
 		function hide_preview() {
+			const delete_noticia = document.getElementById('delete_noticia');
 			preview_img.classList.add('hidden');
 			hide_preview_btn.classList.add('hidden');
 			imagen.classList.remove('hidden');
 			show_preview_btn.classList.remove('hidden');
+			delete_noticia.value = '1';			
 		}
 
 		function show_preview() {
+			const delete_noticia = document.getElementById('delete_noticia');
 			preview_img.classList.remove('hidden');
 			hide_preview_btn.classList.remove('hidden');
 			imagen.classList.add('hidden');
 			show_preview_btn.classList.add('hidden');
+			delete_noticia.value = '0';			
 		}
 
 		noticia_btn.addEventListener('click', function(ev){
