@@ -65,7 +65,7 @@ $dir = base_url().'assets/';
 			 			"<a href='%s' class='nav__item d-none d-md-inline-block'>
 			 				<p class='nav__label'>%s</p>
 			 			</a>",
-			 			base_url().$pagina['enlace'],
+			 			base_url()."#seccion_".$pagina['id_pagina'],
 			 			$pagina['titulo']
 			 		);
 			 	}			
@@ -77,47 +77,79 @@ $dir = base_url().'assets/';
 		</div>
 
 		<div class='main__flecha'>
-			<a href='#seccion_noticias' id="flecha-abajo">
+			<a
+				href="#seccion_<?php echo $paginas_array[0]['id_pagina'] ?>"
+				id="flecha-abajo"
+			>
 				<img src=<?php echo $dir.'img/flecha_abajo.png'; ?> />
 			</a>
 		</div>
 
 	</div>
 
-	<div class='seccion seccion__noticias' id='seccion_noticias'>
-		<div class="container">
-			<h3 class='seccion__titulo'>NOTICIAS</h3>			
+<?php	
+	foreach ($seccion as $index => $row) {
+		$page_seccion = $paginas_array[$index]['seccion'];
+		$page_color = $paginas_array[$index]['color'];
+		$prev_page_id = $index-1 < 0 ? "" : "seccion_".$paginas_array[$index-1]['id_pagina'];
+		$page_id = "seccion_".$paginas_array[$index]['id_pagina'];
+		$next_page_id = $index+1 >= sizeof($paginas_array)
+			? "footer"
+			: "seccion_".$paginas_array[$index+1]['id_pagina'];
+		printf("
+		<div class='seccion__wrapper'>
+			<div 
+				class='seccion seccion__noticias'
+				id='%s'
+			>
+				<div class='container'>
 
-			<div class='row'>
-			<?php			
-			$noticias_array = $noticias->result_array();
-			foreach ($noticias_array as $noticia) {
-				printf(
-					"<div class='noticia col-12 col-sm-6 col-md-4'>
-						<div
-							class='noticia__imagen'
-							style='background-image: url(\"%s%s\")'
+					<div class='flecha izquierda d-none d-md-block'>
+						<a href='#%s'>
+						<img src='%s' />
+						</a>
+					</div>
+					<div class='flecha derecha d-none d-md-block'>
+							<a href='#%s'>
+							<img src='%s' />
+							</a>
+					</div>
+					<h3
+						class='seccion__titulo'
+						style='color: %s'
+					> %s </h3>",
+			$page_id,
+			$prev_page_id,
+			$dir.'img/flecha_izquierda_2.png',
+			$next_page_id,
+			$dir.'img/flecha_derecha_2.png',
+			$page_color,			
+			$paginas_array[$index]['titulo']					
+		);
+		$data['color'] = $paginas_array[$index]['color'];
+		$data['seccion'] = $row;
+		$this->load->view('seccion/'.$page_seccion, $data);
+		$enlace =  base_url().$paginas_array[$index]['enlace'];
+		echo "	<div class='row text-center'>
+						<div class='col-12 my-3'>
+							<a
+								href='$enlace'
+								class='seccion__conoce_mas'
+								style='background-color: $page_color'
 							>
-							<span class='noticia__tipo'>%s</span>
-							<span class='noticia__fecha'>%s</span>
+								conoce más...
+							</a>
 						</div>
-						<h5 class='noticia__titulo'>%s</h5>
-						<p class='noticia__descripcion'>%s</p>
-						<a href='%s' class='noticia__btn'> Leer Mas </a>
-					</div>",
-						$dir,
-						$noticia['imagen_destacada'],
-						$noticia['tipo'],
-						date("d.m.Y", strtotime($noticia['fecha'])),
-						$noticia['titulo'],
-						$noticia['resumen'],
-						base_url().'noticia/?id='.$noticia['id_post']
-					);
-				}
-			?>
+						<div class='col-12 mt-3'>
+							<span class='seccion__linea'></span>
+						</div>
+					</div>
+
+				</div>
 			</div>
-		</div>
-	</div>
+		</div>";
+	}
+?>
 
 	<?php
 		$this->load->view('templates/footer');

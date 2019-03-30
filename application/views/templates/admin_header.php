@@ -7,7 +7,8 @@
 
 	<div class='admin-logo'>
     <a href='<?php echo $admin_dir; ?>'>
- 		 <img src='<? echo $assets_dir."img/logo2.png";?>'/>
+ 		   <img src='<? echo $assets_dir."img/logo.png";?>'/>
+      <img src='<? echo $assets_dir."img/logo_espacioPatino.png";?>'/>
     </a>
  	</div>
  	

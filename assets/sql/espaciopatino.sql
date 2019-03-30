@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-03-2019 a las 03:44:49
+-- Tiempo de generación: 30-03-2019 a las 05:31:34
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 7.1.1
 
@@ -136,6 +136,7 @@ CREATE TABLE `imagen_portada` (
   `id_portada` int(11) NOT NULL,
   `imagen` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `color` varchar(24) COLLATE utf8_spanish2_ci NOT NULL,
+  `orden` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
@@ -143,9 +144,9 @@ CREATE TABLE `imagen_portada` (
 -- Volcado de datos para la tabla `imagen_portada`
 --
 
-INSERT INTO `imagen_portada` (`id_portada`, `imagen`, `color`, `status`) VALUES
-(1, 'portadas/portada1.jpg', '', 1),
-(3, 'portadas/portada2.jpg', 'rgba(30,87,153,1)', 1);
+INSERT INTO `imagen_portada` (`id_portada`, `imagen`, `color`, `orden`, `status`) VALUES
+(1, 'portadas/portada1.jpg', '', 1, 1),
+(3, 'portadas/portada2.jpg', 'rgba(30,87,153,1)', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -196,6 +197,29 @@ CREATE TABLE `miembro_equipo` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `modelo`
+--
+
+DROP TABLE IF EXISTS `modelo`;
+CREATE TABLE `modelo` (
+  `id_modelo` int(11) NOT NULL,
+  `nombre_modelo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `model` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `get_all_valid` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `default_limit` int(11) NOT NULL DEFAULT '6'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `modelo`
+--
+
+INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `model`, `get_all_valid`, `default_limit`) VALUES
+(1, 'libro', 'Libro_model', 'get_valid_libros', 2),
+(2, 'noticia', 'Noticias_model', 'get_valid_noticias', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `noticia`
 --
 
@@ -230,20 +254,24 @@ CREATE TABLE `pagina` (
   `id_pagina` int(11) NOT NULL,
   `titulo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `external` tinyint(1) NOT NULL DEFAULT '0'
+  `seccion` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `color` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `external` tinyint(1) NOT NULL DEFAULT '0',
+  `id_modelo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `pagina`
 --
 
-INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `external`) VALUES
-(1, 'Quiénes Somos', 'quienes_somos', 0),
-(2, 'Áreas', 'areas', 0),
-(3, 'Agenda', 'agenda', 0),
-(4, 'Catálogo en línea', 'http://opacespacio.fundacionpatino.org/', 1),
-(6, 'Librería', 'libreria', 0),
-(7, 'Noticias', 'noticias', 0);
+INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `seccion`, `color`, `status`, `external`, `id_modelo`) VALUES
+(1, 'Quiénes Somos', 'quienes_somos', '', '', 0, 0, 0),
+(2, 'Áreas', 'areas', '', '', 0, 0, 0),
+(3, 'Agenda', 'agenda', 'seccion_evento', '', 0, 0, 0),
+(4, 'Catálogo en línea', 'http://opacespacio.fundacionpatino.org/', '', '', 0, 1, 0),
+(6, 'Librería', 'libreria', 'seccion_libro', '#98005D', 1, 0, 1),
+(7, 'Noticias', 'noticias', 'seccion_noticia', '#BB272D', 1, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -348,6 +376,12 @@ ALTER TABLE `miembro_equipo`
   ADD PRIMARY KEY (`id_persona`);
 
 --
+-- Indices de la tabla `modelo`
+--
+ALTER TABLE `modelo`
+  ADD PRIMARY KEY (`id_modelo`);
+
+--
 -- Indices de la tabla `noticia`
 --
 ALTER TABLE `noticia`
@@ -405,6 +439,11 @@ ALTER TABLE `libro`
 --
 ALTER TABLE `miembro_equipo`
   MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `modelo`
+--
+ALTER TABLE `modelo`
+  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `pagina`
 --
