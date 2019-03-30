@@ -19,7 +19,7 @@ class Noticias_model extends CI_Model {
 	return $query;
   }
 
-  function get_valid_noticias($search = false) {
+  function get_valid_noticias($limit, $search = false) {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
@@ -32,6 +32,7 @@ class Noticias_model extends CI_Model {
       $this->db->or_like('contenido.contenido', $search);
     }
 	$this->db->order_by('publicacion.fecha', 'desc');
+	$this->db->limit($limit);
 	$query = $this->db->get(); 
 	return $query;  	
   }

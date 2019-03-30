@@ -13,4 +13,5 @@
    	<link rel="stylesheet" href=<?php  echo $assets_dir."css/fa_all.min.css"; ?> />
    	<link rel="stylesheet" href=<?php  echo $assets_dir."css/common.css"; ?> />
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
+	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_sidebar.css"; ?> />
    	<link rel="stylesheet" href=<?php  echo $assets_dir."css/style.css"; ?> />

@@ -20,7 +20,7 @@ class Libro_model extends CI_Model {
     return $result;    
   }
 
-  function get_valid_libros($search = false)  {
+  function get_valid_libros($limit, $search = false)  {
     $this->db->select('*');
     $this->db->from('libro');
     $this->db->where('libro.status', 1);
@@ -33,6 +33,7 @@ class Libro_model extends CI_Model {
       'categoria_libro',
       'libro.id_categoriaLibro = categoria_libro.id_categoriaLibro'
     );
+    $this->db->limit($limit);
     $this->db->order_by('libro.id_libro', 'desc');
     $query = $this->db->get(); 
     return $query;    

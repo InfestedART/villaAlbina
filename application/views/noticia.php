@@ -21,13 +21,13 @@ $noticia = $news[0];
 	?>
 	<div class="seccion seccion__last container px-4 pt-0 pt-md-3">
 
-		<div class="publicacion__flecha izquierda d-none d-md-block">
+		<div class="flecha izquierda d-none d-md-block">
 			<a href='#'>
 				<img src="<?php echo $dir.'img/flecha_izquierda_2.png'; ?>" />
 			</a>
 		</div>
 
-		<div class="publicacion__flecha derecha d-none d-md-block">
+		<div class="flecha derecha d-none d-md-block">
 			<a href='#'>
 				<img src="<?php echo $dir.'img/flecha_derecha_2.png'; ?>" />
 			</a>
