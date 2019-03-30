@@ -77,6 +77,19 @@ $dir = base_url().'assets/';
 		?>
 		</div>
 
+		<div class='row'>
+			<div class='col-12 text-center'>
+				<a href='#' class='showing_nav'> << </a>
+				<?php
+					$nav=[1, 2, 3, 4, 5];
+					foreach ($nav as $page) {
+						printf("<a href='#' class='showing_nav'>%s</a>", $page);
+					}
+				?>
+				<a href='#' class='showing_nav'> >> </a>
+			</div>
+		</div>
+
 	</div>
 	
 <?php

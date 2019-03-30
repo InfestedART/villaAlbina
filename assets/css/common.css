@@ -13,3 +13,30 @@
 	padding: 2px 10px;
 	font-weight: 400;
 }
+
+.showing_nav {
+	color: #121212;
+	margin: 0 10px;
+	font-size: 20px;
+}
+
+.showing_nav:hover {
+	color: orange;
+}
+
+.flecha {
+	position: absolute;
+	top: 50%;
+}
+
+.flecha.izquierda {
+	left: 12px;
+}
+
+.flecha.derecha {
+	right: 12px;
+}
+
+.flecha img {
+	height: 55px;
+}
