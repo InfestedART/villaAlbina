@@ -16,7 +16,8 @@ class Home extends CI_Controller {
 				->{$pagina['model']}
 				->{$pagina['get_all_valid']}($pagina['default_limit'])
 				->result_array();
-		}		
+		}
+		
 		$this->load->model("Noticias_model");
 		$test_model = 'Noticias_model';
 		$test_method = 'get_valid_noticias';

@@ -126,6 +126,7 @@ $dir = base_url().'assets/';
 			$page_color,			
 			$paginas_array[$index]['titulo']					
 		);
+		$data['enlace'] = $paginas_array[$index]['enlace'];
 		$data['color'] = $paginas_array[$index]['color'];
 		$data['seccion'] = $row;
 		$this->load->view('seccion/'.$page_seccion, $data);

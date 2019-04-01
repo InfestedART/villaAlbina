@@ -161,7 +161,7 @@
               <div class='form-group row'>
                   <label class='form-label col-sm-3'>Portada</label>
                   <div class='col-sm-9'>
-                  <?php $hayImagen = trim($edit_libro['portada'])!==''; ?>                  
+                  <?php $hayImagen = trim($edit_libro['imagen'])!==''; ?>                  
                   <input
                      id='delete_imagen_libro'
                      name='delete_imagen_libro'
@@ -173,7 +173,7 @@
                      <img
                         id='preview_img'
                         class='form-show-img'
-                        src="<?php echo $assets_dir.$edit_libro['portada']; ?>"
+                        src="<?php echo $assets_dir.$edit_libro['imagen']; ?>"
                      />
                      <span class='form-change-img' id='hide_preview_btn'>
                         Quitar Imagen

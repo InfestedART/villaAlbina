@@ -27,6 +27,7 @@
 .flecha {
 	position: absolute;
 	top: 50%;
+	margin-top: -26px;
 }
 
 .flecha.izquierda {

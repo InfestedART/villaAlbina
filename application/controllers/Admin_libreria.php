@@ -90,6 +90,7 @@ class Admin_libreria extends MY_Controller {
 	    $config['max_height'] = 0;
 
 		$this->load->model('Libro_model');
+		$this->load->model("Publicacion_model");
 		$this->load->model("Cat_libro_model");
 	    $this->load->library('upload', $config);
 
@@ -102,8 +103,9 @@ class Admin_libreria extends MY_Controller {
 		}
 	     $data = array(
 	     	'upload_data' => $this->upload->data(),
-	       	'msg' => 'noticia agregada exitosamente'
+	       	'msg' => 'libro agregado exitosamente'
 	     );
+
 	    $titulo = $this->input->post('titulo', TRUE);
 		$categoria = $this->input->post('categoria', TRUE);
 		$autor = $this->input->post('autor', TRUE);
@@ -112,16 +114,23 @@ class Admin_libreria extends MY_Controller {
 		$imagen = str_replace(" ", "_", $_FILES['portada']['name']);
 		$portada = $imagen == '' ? '' : 'uploads/libros/'.$imagen;
 
-		$libro_data = array(
+		$post_data = array(
 			'titulo' => $titulo,
+			'imagen' => $portada,
+			'tipo' => 'libro'
+		);
+		$this->Publicacion_model->insert_publicacion($post_data);
+		$last_id = $this->Publicacion_model->get_last_post();
+
+		$libro_data = array(
+			'id_post' => $last_id,
 			'id_categoriaLibro' => $categoria,
 			'autor' => $autor,
 			'precio' => $precio,
 			'descripcion' => $descripcion,
-			'portada' => $portada,
 		);
-
 		$this->Libro_model->insert_libro($libro_data);
+
       	$data['libros'] = $this->Libro_model->get_all_libros();
       	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
       	$data['search'] = '';
@@ -130,6 +139,7 @@ class Admin_libreria extends MY_Controller {
 
 	public function update_libro() {
 		$this->load->model('Libro_model');
+		$this->load->model("Publicacion_model");
 		$this->load->model("Cat_libro_model");
 		$id = $this->uri->segment(3);
 
@@ -152,7 +162,7 @@ class Admin_libreria extends MY_Controller {
 	    );
 
 		$updated_libro = $this->Libro_model->get_libro($id)->result_object()[0];
-		$updated_portada = realpath('assets/'.$updated_libro->portada);
+		$updated_portada = realpath('assets/'.$updated_libro->imagen);
 		$delete_imagen_libro = boolval($this->input->post('delete_imagen_libro', TRUE));
 
 	    $titulo = $this->input->post('titulo', TRUE);
@@ -163,23 +173,27 @@ class Admin_libreria extends MY_Controller {
 		$imagen = str_replace(" ", "_", $_FILES['portada']['name']);
 		$portada = $imagen == '' ? '' : 'uploads/libros/'.$imagen;
 
-		$libro_data = array(
+		$post_data = array(
 			'titulo' => $titulo,
+			'tipo' => 'libro'
+		);
+		if ($portada) {
+			$post_data['imagen'] = $portada;
+		} elseif ($updated_libro->imagen && $delete_imagen_libro) {
+			$post_data['imagen'] = '';
+		}
+
+		$libro_data = array(
 			'id_categoriaLibro' => $categoria,
 			'autor' => $autor,
 			'precio' => $precio,
 			'descripcion' => $descripcion,
 		);
-		if ($portada) {
-			$libro_data['portada'] = $portada;
-		} elseif ($updated_libro->portada && $delete_imagen_libro) {
-			$libro_data['portada'] = '';
-		}
 
-     	if ($updated_libro->portada && $delete_imagen_libro) {
+     	if ($updated_libro->imagen && $delete_imagen_libro) {
      		unlink($updated_portada);
      	}
-
+		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Libro_model->update_libro($id, $libro_data);
       	$data['libros'] = $this->Libro_model->get_all_libros();
       	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();

@@ -164,10 +164,10 @@
                         $libro['precio'],
                         $libro['descripcion']                        
                   );
-                  if($libro['portada'] !== '') {
+                  if($libro['imagen'] !== '') {
                      printf("
                         <td class='text-center'><img src='%s' class='img-small'></td>",
-                        $assets_dir.$libro['portada']
+                        $assets_dir.$libro['imagen']
                      );
                   } else { echo "
                         <td></td>";
@@ -179,7 +179,7 @@
                            <span class='slider %s'/>
                         </a>
                      </td>",
-                     $admin_dir.'/toggle_libro/'.$libro['id_libro'].'?toggle='.$toggle,
+                     $admin_dir.'/toggle_libro/'.$libro['id_post'].'?toggle='.$toggle,
                      $libro['status'] ? 'status__on' : 'status__off',
                      $libro['status'] ? 'slider__on' : 'slider__off'
                   );                
@@ -191,8 +191,8 @@
                            <i class='fa fa-trash-alt'></i>
                         </a></td>
                      </tr>",
-                     $admin_dir, $libro['id_libro'],
-                     $admin_dir, $libro['id_libro']
+                     $admin_dir, $libro['id_post'],
+                     $admin_dir, $libro['id_post']
                   );
                }  
                ?> 

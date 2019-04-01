@@ -21,29 +21,25 @@ $dir = base_url().'assets/';
 	<div class="seccion container seccion__last px-4 pt-0 pt-md-3">
 
 		<div class='row mt-4'>
-			<div class='col-md-3'>
-			<h3 class='titulo-pagina'> LIBRERIA </h3>	
-			</div>
-			<div class='col-md-6 text-left'>
-				<p>
-				Bienvenidos al catálogo de publicaciones de la Fundación Simón I. Patiño,  que reúne los títulos de su producción intelectual (impresa y audiovisual), tanto de las Editions Patiño de Ginebra, como de los distintos Centros que desarrollan su actividad en Bolivia. 
-				</p>
-				<p>Adquiere las publicaciones en el CEDOAL. </p>
-			</div>
-		</div>
 
-		<div class='row pt-2 pb-4'>
-			<div class="buscador col-md-6 offset-3"><?php
-				echo form_open(
-               'libreria',
-               array('id' => 'form_buscar_libro')
-            ); ?>
-				<input class='buscador__input' name='search_libro' id='search_libro'/>
-				<button class='buscador__button' type='submit' id='search_libro_btn'>
-					<i class="fa fa-search"></i>
-				</button><?php
-				echo form_close(); ?>
+			<div class='col-md-6'>
+				<h3 class='titulo-pagina'> LIBRERIA </h3>
+				<p class='text-left'>
+				Bienvenidos al catálogo de publicaciones de la Fundación Simón I. Patiño,  que reúne los títulos de su producción intelectual (impresa y audiovisual), tanto de las Editions Patiño de Ginebra, como de los distintos Centros que desarrollan su actividad en Bolivia. Puedes adquirir todas estas publicaciones en el CEDOAL. </p>
 			</div>
+
+			<div class="buscador mt-3 col-md-6 text-right"><?php
+					echo form_open(
+	               'libreria',
+	               array('id' => 'form_buscar_libro')
+	            ); ?>
+					<input class='buscador__input' name='search_libro' id='search_libro'/>
+					<button class='buscador__button' type='submit' id='search_libro_btn'>
+						<i class="fa fa-search"></i>
+					</button><?php
+					echo form_close(); ?>
+			</div>
+
 		</div>
 
 		<?php $show_no_results = sizeof($libros) < 1 ? '' : 'd-none'; ?>
@@ -59,46 +55,47 @@ $dir = base_url().'assets/';
 			<?php
 			foreach ($libros as $libro) {
 				printf("
-					<div class='eternal-carrousel__slide'>
-						<div
-							class='portada-libro col-md-5'
-							style='background-image: url(\"%s%s\")'
-						>						
+					<div class='col-md-6 mb-3'>
+						<div class='portada-libro'>
+							<img src='%s%s'>
 						</div>
-						<div class='container-libro col-md-7'>
-							<h4>%s</h4>
+						<div class='container-libro'>
+							<h4 class='libro__subtitulo'>%s</h4>
 							<p>%s</p>
 							<p>%s</p>
 							<p>%s</p>
-							<p class='container-libro__precio'>Bs. %s</p>",
-					$dir, $libro['portada'],
-					$libro['titulo'],					
+							<p 	class='container-libro__precio'
+								style='background-color: %s'
+							>Bs. %s</p>
+						</div>
+					</div>",
+					$dir, $libro['imagen'],
+					$libro['titulo'],
 					$libro['autor'],
 					$libro['descripcion'],
 					$libro['categoria'],
+					$color,
 					$libro['precio']
 				);
-				$this->load->view('templates/libro_footer', $data);
-				echo "</div>
-					</div>";
+				// $this->load->view('templates/libro_footer', $data);
 			}
 			?>
 			</div>
 		</div>
 
-		<div class='timeline'>
-			<a class='timeline__punto'>
-				<span></span>
-			</a>
-			<span class='timeline__linea'></span>
-			<a class='timeline__punto'>
-				<span></span>
-			</a>
-			<span class='timeline__linea'></span>
-			<a class='timeline__punto'>
-				<span></span>
-			</a>
+		<div class='publicacion__nav row'>
+			<div class='col-12 text-center'>
+				<a href='#' class='showing_nav'> << </a>
+				<?php
+					$nav=[1, 2, 3, 4, 5];
+					foreach ($nav as $page) {
+						printf("<a href='#' class='showing_nav'>%s</a>", $page);
+					}
+				?>
+				<a href='#' class='showing_nav'> >> </a>
+			</div>
 		</div>
+
 	</div>
 	
 <?php

@@ -44,15 +44,15 @@ $noticia = $news[0];
 		</div>
 
 		<div class="row">
-			<div class="col-12 col-sm-6 col-md-3">
+			<div class="col-12 col-sm-6 col-md-4">
 				<img
-					src='<?php echo $dir.$noticia->imagen_destacada ?>'
+					src='<?php echo $dir.$noticia->imagen ?>'
 					class='publicacion__imagen'
 				>
 				<p class='publicacion__fuente'> <?php echo $noticia->fecha ?> </p>
 			</div>
 
-			<div class="col-12 col-sm-6 col-md-9">
+			<div class="col-12 col-sm-6 col-md-8">
 				<div class='publicacion__column'>
 					<p> <?php echo $noticia->resumen ?> </p>
 					<p> <?php echo $noticia->contenido ?> </p>

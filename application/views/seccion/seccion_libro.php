@@ -2,17 +2,15 @@
 	$dir = base_url().'assets/';
 ?>
 
-	<div class='row'>
+	<div class='row no-gutters'>
 	<?php
 	foreach ($seccion as $libro) {
 		printf("
-			<div class='eternal-carrousel__slide'>
-				<div
-					class='portada-libro col-md-5'
-					style='background-image: url(\"%s%s\")'
-				>						
+			<div class='col-md-6 mb-3'>
+				<div class='portada-libro'>
+					<img src='%s%s'>
 				</div>
-				<div class='container-libro col-md-7'>
+				<div class='container-libro'>
 					<h4 class='libro__subtitulo'>%s</h4>
 					<p>%s</p>
 					<p>%s</p>
@@ -22,7 +20,7 @@
 					>Bs. %s</p>
 				</div>
 			</div>",
-			$dir, $libro['portada'],
+			$dir, $libro['imagen'],
 			$libro['titulo'],
 			$libro['autor'],
 			$libro['descripcion'],

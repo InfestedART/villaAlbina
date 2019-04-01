@@ -126,7 +126,7 @@
                <div class='form-group row'>
                   <label class='form-label col-sm-3'>Imagen Destacada</label>
                   <div class='col-sm-9'>
-                  <?php $hayImagen = trim($news['imagen_destacada'])!==''; ?>
+                  <?php $hayImagen = trim($news['imagen'])!==''; ?>
                   <input
                      id='delete_noticia'
                      name='delete_noticia'
@@ -139,7 +139,7 @@
                      <img
                         id='preview_img'
                         class='form-show-img'
-                        src="<?php echo $assets_dir.$news['imagen_destacada']; ?>"
+                        src="<?php echo $assets_dir.$news['imagen']; ?>"
                      />
                      <span class='form-change-img' id='hide_preview_btn'>
                         Quitar Imagen

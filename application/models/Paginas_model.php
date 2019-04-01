@@ -16,5 +16,14 @@ class Paginas_model extends CI_Model {
     	$query = $this->db->get(); 
     	return $query;    
   	}
+
+    function get_page_color($id) {
+      $this->db->select('color');
+      $this->db->from('pagina');
+      $this->db->where('id_pagina', $id);      
+      $this->db->limit(1);
+      $query = $this->db->get(); 
+      return $query->result_array()[0];    
+    }
 }
 ?>

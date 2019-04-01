@@ -49,45 +49,45 @@ class Admin_noticia extends MY_Controller {
 				$this->load->view('admin_noticia', $data);
 			}
 		}
-      $data = array(
-      	'upload_data' => $this->upload->data(),
-        	'msg' => 'noticia agregada exitosamente'
-      );
+	   $data = array(
+	      'upload_data' => $this->upload->data(),
+	      'msg' => 'noticia agregada exitosamente'
+	   );
 
-      $titulo = $this->input->post('titulo', TRUE);
+      	$titulo = $this->input->post('titulo', TRUE);
 		$fecha = $this->input->post('fecha', TRUE);
 		$fuente = $this->input->post('fuente', TRUE);
 		$enlace = 'noticia/'.$titulo;
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
-		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias'.$imagen;
+		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias/'.$imagen;
 		$contenido = $this->input->post('contenido', TRUE);
 
 		$post_data = array(
 			'titulo' => $titulo,
-			'fecha' => $fecha,
-			'resumen' => $resumen,
-			'imagen_destacada' => $imagen_destacada,
+			'imagen' => $imagen_destacada,
 			'tipo' => 'noticia'
 		);
-
 		$this->Publicacion_model->insert_publicacion($post_data);
 		$last_id = $this->Publicacion_model->get_last_post();
 
 		$post_noticia = array(
 			'id_post' => $last_id,
 			'fuente' => $fuente,
+			'fecha' => $fecha,
+			'resumen' => $resumen,
 			'url' => $enlace
 		);
+		$this->Noticias_model->insert_noticia($post_noticia);
+
 		$post_contenido = array(
 			'id_post' => $last_id,
 			'contenido' => $contenido,
 		);
-
-		$this->Noticias_model->insert_noticia($post_noticia);
 		$this->Contenido_model->insert_contenido($post_contenido);
+		
 		$data['search'] = '';
-      $data['noticias'] = $this->Noticias_model->get_all_noticias();
+     	$data['noticias'] = $this->Noticias_model->get_all_noticias();
      	$this->load->view('admin_noticia', $data);
 
 	}
@@ -97,7 +97,7 @@ class Admin_noticia extends MY_Controller {
 
 		$id = $this->uri->segment(3);
 		$deleted_noticia = $this->Noticias_model->get_noticia($id)->result_object()[0];
-		$deleted_imagen = realpath('assets/'.$deleted_noticia->imagen_destacada);
+		$deleted_imagen = realpath('assets/'.$deleted_noticia->imagen);
 		if ($deleted_imagen) {
 			unlink($deleted_imagen);	
 		}		
@@ -134,7 +134,7 @@ class Admin_noticia extends MY_Controller {
       );
 
 		$updated_noticia = $this->Noticias_model->get_noticia($id)->result_object()[0];
-		$updated_imagen = realpath('assets/'.$updated_noticia->imagen_destacada);
+		$updated_imagen = realpath('assets/'.$updated_noticia->imagen);
 		$delete_noticia = boolval($this->input->post('delete_noticia', TRUE));
 
      	$titulo = $this->input->post('titulo', TRUE);
@@ -148,25 +148,25 @@ class Admin_noticia extends MY_Controller {
 
 		$post_data = array(
 			'titulo' => $titulo,
-			'fecha' => $fecha,
-			'resumen' => $resumen,
 			'tipo' => 'noticia'
 		);
 		if ($imagen_destacada) {
-			$post_data['imagen_destacada'] = $imagen_destacada;
-		} elseif ($updated_noticia->imagen_destacada && $delete_noticia) {
-			$post_data['imagen_destacada'] = '';
+			$post_data['imagen'] = $imagen_destacada;
+		} elseif ($updated_noticia->imagen && $delete_noticia) {
+			$post_data['imagen'] = '';
 		}
 
 		$post_noticia = array(
 			'fuente' => $fuente,
+			'fecha' => $fecha,
+			'resumen' => $resumen,
 			'url' => $enlace
 		);
 
 		$post_contenido = array(
 			'contenido' => $contenido
 		);
-     	if ($updated_noticia->imagen_destacada && $delete_noticia) {
+     	if ($updated_noticia->imagen && $delete_noticia) {
      		unlink($updated_imagen);
      	}
 

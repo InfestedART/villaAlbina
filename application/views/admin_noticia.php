@@ -135,10 +135,10 @@
                            $noticia['fuente'],
                            $noticia['resumen']
                      );
-                     if($noticia['imagen_destacada'] !== '') {
+                     if($noticia['imagen'] !== '') {
                         printf("
                            <td class='text-center'><img src='%s' class='img-small'></td>",
-                           $assets_dir.$noticia['imagen_destacada']
+                           $assets_dir.$noticia['imagen']
                         );
                      } else { echo "
                            <td></td>";

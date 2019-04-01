@@ -25,7 +25,7 @@
 				</div>",
 				base_url().'noticia/?id='.$noticia['id_post'],
 				$dir,
-				$noticia['imagen_destacada'],
+				$noticia['imagen'],
 				strftime('%A %d de %B de %Y', strtotime($noticia['fecha'])),
 				base_url().'noticia/?id='.$noticia['id_post'],
 				$noticia['titulo'],

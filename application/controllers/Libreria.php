@@ -9,7 +9,8 @@ class Libreria extends CI_Controller {
 
 		$data['search'] = $search;
 		$data['paginas'] = $this->Paginas_model->get_all_paginas()->result_array();
-		$data['libros'] = $this->Libro_model->get_valid_libros(6, $search)->result_array();;
+		$data['libros'] = $this->Libro_model->get_valid_libros(6, $search)->result_array();
+		$data['color'] = $this->Paginas_model->get_page_color(6)['color'];
 		$this->load->view('libreria', $data);
 	}
 }
