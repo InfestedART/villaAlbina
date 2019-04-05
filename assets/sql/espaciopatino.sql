@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-04-2019 a las 04:47:01
+-- Tiempo de generación: 05-04-2019 a las 13:58:57
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 7.1.1
 
@@ -176,7 +176,9 @@ CREATE TABLE `imagen_portada` (
 
 INSERT INTO `imagen_portada` (`id_portada`, `imagen`, `color`, `orden`, `status`) VALUES
 (1, 'portadas/portada1.jpg', '', 1, 1),
-(3, 'portadas/portada2.jpg', 'rgba(30,87,153,1)', 2, 1);
+(3, 'portadas/portada2.jpg', 'rgba(30,87,153,1)', 2, 1),
+(4, 'portadas/portada3.jpg', '', 3, 1),
+(5, 'portadas/portada4.jpg', 'rgba(187, 39, 45, 1)', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -552,7 +554,7 @@ ALTER TABLE `contenido`
 -- AUTO_INCREMENT de la tabla `imagen_portada`
 --
 ALTER TABLE `imagen_portada`
-  MODIFY `id_portada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_portada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
