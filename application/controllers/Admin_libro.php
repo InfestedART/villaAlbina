@@ -1,13 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_libreria extends MY_Controller {
+class Admin_libro extends MY_Controller {
 	public function index() {
 		$this->load->model("Cat_libro_model");
 		$this->load->model("Libro_model");
+		$this->load->model("Tipo_model");
+		$sidebar_data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 
+		$data['sidebar'] = $this->load->view('templates/admin_sidebar', $sidebar_data, true);
 		$data['header'] = $this->load->view('templates/admin_header', NULL, true);
-		$data['sidebar'] = $this->load->view('templates/admin_sidebar', NULL, true);
 		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
 
 		$orderby = $this->input->get('orderby', TRUE);
@@ -19,11 +22,13 @@ class Admin_libreria extends MY_Controller {
 		);
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
 
-		$this->load->view('admin_libreria', $data);
+		$this->load->view('admin_libro', $data);
 	}	
 
 	public function nuevo_libro() {
 		$this->load->model("Cat_libro_model");
+		$this->load->model("Tipo_model");		
+		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
 		$this->load->view('nuevo_libro', $data);
 	}
@@ -31,7 +36,10 @@ class Admin_libreria extends MY_Controller {
 	public function editar_libro() {
 		$this->load->model("Cat_libro_model");
 		$this->load->model("Libro_model");
+		$this->load->model("Tipo_model");
+
 		$id = $this->uri->segment(3);
+		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['libro'] = $this->Libro_model->get_libro($id);
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
 		$this->load->view('editar_libro', $data);
@@ -40,10 +48,12 @@ class Admin_libreria extends MY_Controller {
 	public function categorias_libro() {
 		$this->load->model("Cat_libro_model");
 		$id_categoria = $this->uri->segment(3);
+		$this->load->model("Tipo_model");
+		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 
-      	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      	$data['selected_categoria'] = $this->Cat_libro_model->get_categoria($id_categoria);
-      	$this->load->view('categorias_libro', $data);
+      $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+      $data['selected_categoria'] = $this->Cat_libro_model->get_categoria($id_categoria);
+      $this->load->view('categorias_libro', $data);
 	}
 
 	public function insertar_categoria() {
@@ -51,8 +61,8 @@ class Admin_libreria extends MY_Controller {
 		$categoria = $this->input->post('categoria', TRUE);
 		$cat_data = array('categoria' => $categoria);
 		$this->Cat_libro_model->insert_categoria($cat_data);
-      	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      	$this->load->view('categorias_libro', $data);
+      $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+      $this->load->view('categorias_libro', $data);
 	}
 
 	public function editar_categoria() {
@@ -61,9 +71,9 @@ class Admin_libreria extends MY_Controller {
 		$id_categoria = $this->input->post('edit_id_categoria', TRUE);		
 		$cat_data = array('categoria' => $categoria);
 		$this->Cat_libro_model->update_categoria($id_categoria, $cat_data);
-      	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      	$data['selected_categoria'] = NULL;
-      	$this->load->view('categorias_libro', $data);
+      $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+      $data['selected_categoria'] = NULL;
+      $this->load->view('categorias_libro', $data);
 	}
 
 	public function delete_libro() {
@@ -76,10 +86,7 @@ class Admin_libreria extends MY_Controller {
 			unlink($deleted_portada);	
 		}		
 		$this->Libro_model->delete_libro($id);
-		$data['libros'] = $this->Libro_model->get_all_libros();
-		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();		
-		$data['search'] = '';
-     	$this->load->view('admin_libreria', $data);
+     	redirect('admin_libro');
 	}
 
 	public function insertar_libro() {
@@ -91,14 +98,13 @@ class Admin_libreria extends MY_Controller {
 
 		$this->load->model('Libro_model');
 		$this->load->model("Publicacion_model");
-		$this->load->model("Cat_libro_model");
 	    $this->load->library('upload', $config);
 
 		if (!$this->upload->do_upload('portada')) {
 			if ($_FILES['portada']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
 				$data = array('error' => $error);	
-				$this->load->view('admin_libreria', $data);
+				$this->load->view('admin_libro', $data);
 			}
 		}
 	     $data = array(
@@ -117,7 +123,7 @@ class Admin_libreria extends MY_Controller {
 		$post_data = array(
 			'titulo' => $titulo,
 			'imagen' => $portada,
-			'tipo' => 'libro'
+			'tipo' => 2
 		);
 		$this->Publicacion_model->insert_publicacion($post_data);
 		$last_id = $this->Publicacion_model->get_last_post();
@@ -130,17 +136,12 @@ class Admin_libreria extends MY_Controller {
 			'descripcion' => $descripcion,
 		);
 		$this->Libro_model->insert_libro($libro_data);
-
-      	$data['libros'] = $this->Libro_model->get_all_libros();
-      	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      	$data['search'] = '';
-      	$this->load->view('admin_libreria', $data);
+     	redirect('admin_libro');
 	}
 
 	public function update_libro() {
 		$this->load->model('Libro_model');
 		$this->load->model("Publicacion_model");
-		$this->load->model("Cat_libro_model");
 		$id = $this->uri->segment(3);
 
 		$config['upload_path'] = './assets/uploads/libros/';
@@ -153,7 +154,7 @@ class Admin_libreria extends MY_Controller {
 			if ($_FILES['portada']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
 				$data = array('error' => $error);	
-				$this->load->view('admin_libreria', $data);
+				$this->load->view('admin_libro', $data);
 			}
 		}		
 	    $data = array(
@@ -175,7 +176,7 @@ class Admin_libreria extends MY_Controller {
 
 		$post_data = array(
 			'titulo' => $titulo,
-			'tipo' => 'libro'
+			'tipo' => 2
 		);
 		if ($portada) {
 			$post_data['imagen'] = $portada;
@@ -195,25 +196,18 @@ class Admin_libreria extends MY_Controller {
      	}
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Libro_model->update_libro($id, $libro_data);
-      	$data['libros'] = $this->Libro_model->get_all_libros();
-      	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      	$data['search'] = '';
-     	$this->load->view('admin_libreria', $data);
+     	redirect('admin_libro');
 	}
 
 	public function toggle_libro() {
-		$this->load->model('Libro_model');
-		$this->load->model("Cat_libro_model");
+		$this->load->model('Publicacion_model');
 		$id = $this->uri->segment(3);
 		$toggle = $this->input->get('toggle', TRUE);
-		$libro_data = array(
+		$post_data = array(
 			'status' => $toggle
 		);
-		$this->Libro_model->update_libro($id, $libro_data);
-      	$data['libros'] = $this->Libro_model->get_all_libros();
-      	$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      	$data['search'] = '';
-     	$this->load->view('admin_libreria', $data);
+		$this->Publicacion_model->update_publicacion($id, $post_data);
+      redirect('admin_libro');
 	}
 
 }

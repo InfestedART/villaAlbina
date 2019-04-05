@@ -2,7 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
    $this->load->library('calendar');
 	$assets_dir = base_url().'assets/';
-	$admin_dir = base_url().'admin_libro/';
+	$admin_dir = base_url().'admin_equipo/';
 
    $error = $msg = '';
    $categoria_alert = $edit_categoria_alert = false;
@@ -13,7 +13,7 @@
 <html lang="en">
 <head>
    <?php
-      $data['title'] = 'Panel de Control - Libreria';
+      $data['title'] = 'Panel de Control - Equipo de Trabajo';
       $this->load->view('templates/meta', $data);
    ?>
 </head>
@@ -32,7 +32,7 @@
       <div class='admin-title'>
          <div class='row no-gutters'>
             <div class="col-12">         
-            <h2>Categorias de Libros</h2>
+            <h2>Categorias de Equipos</h2>
             </div>
          </div>
       </div>
@@ -40,13 +40,13 @@
       <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">   
-            <a class='nav-btn' href='<?php echo $admin_dir."nuevo_libro"; ?>'>
+            <a class='nav-btn' href='<?php echo $admin_dir."nuevo_equipo"; ?>'>
                <i class="fa fa-plus mr-1"></i>
-               Libro nuevo
+               Nuevo miembro
             </a>
             </div>
          </div>   
-      </div>      
+      </div>   
 
     <div class='card admin-content'>
          <div class='row no-gutters'>
@@ -83,11 +83,11 @@
                            );
                         }                      
                         printf("
-                              <td class='text-center'><a href='%scategorias_libro/%s'>
+                              <td class='text-center'><a href='%scategorias_equipo/%s'>
                                  <i class='fa fa-edit'></i>
                               </a></td>
                            </tr>",
-                           $admin_dir, $categoria['id_categoriaLibro']
+                           $admin_dir, $categoria['id_categoria_equipo']
                         );
                      }  
                   ?> 
@@ -112,7 +112,7 @@
                </span>
              <?php
                echo form_open(
-                  'admin_libro/editar_categoria',
+                  'admin_equipo/editar_categoria',
                   array('id' => 'form_edit_categoria')
                );
             ?>
@@ -154,7 +154,7 @@
                </span>
              <?php
                echo form_open(
-                  'admin_libro/insertar_categoria',
+                  'admin_equipo/insertar_categoria',
                   array('id' => 'form_categoria')
                );
             ?>
@@ -172,11 +172,11 @@
             </div>
          </div>
       </div>
-    
+
    </div>
    </div>
 
-   <script src=<?php  echo $assets_dir."js/admin_cat_libro.js"; ?> ></script>
+   <script src=<?php  echo $assets_dir."js/admin_cat_equipo.js"; ?> ></script>
 
    <?php
       $this->load->view('templates/admin_footer'); 

@@ -4,7 +4,7 @@
 ?>
 
   <div class='admin-sidebar' id='sidebar'>
-    
+
     <span class='admin-sidebar__title'>
       <span>Menu</span>
 
@@ -17,43 +17,44 @@
     </span>
 
     <ul class="sidemenu">
+
       <li><a href="#">
         <i class="fa fa-scroll" aria-hidden="true"></i>
         <span>Paginas</span>
       </a></li>
-      <li>
-        <?php
-        $noticia_active = (
-          strpos($this->uri->segment(2), 'noticia') > -1
-            || strpos($this->uri->segment(1), 'noticia') > -1
-          ) ? 'sidemenu--active' : '' 
-         ?>
-        <a
-          href='<?php echo $admin_dir."admin_noticia"; ?>'
-          class='<?php echo $noticia_active; ?>'
-          >
-         <i class="fa fa-newspaper" aria-hidden="true"></i>
-         <span>Noticias</span>
-        </a></li>
-      <li><?php
-        $libreria_active = (
-          strpos($this->uri->segment(2), 'libreria') > -1
-            || strpos($this->uri->segment(1), 'libreria') > -1
-          ) ? 'sidemenu--active' : '' 
-         ?>
-        <a
-          href='<?php echo $admin_dir."admin_libreria" ?>'
-          class='<?php echo $libreria_active; ?>' >
-          <i class="fa fa-book" aria-hidden="true"></i>
-          <span>Libreria</span>
-        </a>
-        <ul class="submenu">
-          <li><a href='<?php echo $admin_dir."admin_libreria/categorias_libro" ?>'>
-            <i class="fa fa-tag" aria-hidden="true"></i>
-            <span>Categorias</span>
-          </a></li>
-        </ul>
-      </li>
+
+      <?php 
+      foreach ($tipo_posts as $post) {
+        $isActive = (
+          strpos($this->uri->segment(2), $post['tipo_post']) > -1
+            || strpos($this->uri->segment(1), $post['tipo_post']) > -1
+          ) ? 'sidemenu--active' : '';
+        printf("
+          <li>
+            <a href='%s' class='%s'>
+              <i class='fa fa-%s' aria-hidden='true'></i>
+              <span>%s</span>
+            </a>",          
+          $admin_dir."admin_".$post['tipo_post'],
+          $isActive,
+          $post['icono'],
+          $post['nombre_sidebar']
+        );
+        if ($post['sub_categoria']) {
+          printf("
+            <ul class='submenu'>
+              <li><a href='%s'>
+                <i class='fa fa-tag' aria-hidden='true'></i>
+                <span>CATEGORIA</span>
+              </a></li>
+            </ul>",
+            $admin_dir."admin_".$post['tipo_post']."/categorias_".$post['tipo_post']
+          );
+        }
+        echo "</li>";
+      }        
+      ?>
+      
       <li><?php
          $usuario_active = (
            strpos($this->uri->segment(1), 'usuario') > -1
@@ -65,6 +66,7 @@
           <i class="fa fa-user" aria-hidden="true"></i>
           <span>Usuarios</span>
       </a></li>
+
     </ul>
 
    <script src='<?php  echo $assets_dir."js/admin_sidebar_app.js"; ?>' ></script>

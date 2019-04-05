@@ -11,11 +11,6 @@ $dir = base_url().'assets/';
 				<i class="fa fa-envelope" aria-hidden="true"></i>
 				<span>CONTACTO</span>
 			</div>
-			<div class='footer__contacto'>
-				<i class="fa fa-envelope" aria-hidden="true"></i>
-				<span>INFORMACION</span>
-			</div>
-
 		</div>
 		</div>
 

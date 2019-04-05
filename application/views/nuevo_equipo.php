@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
    <?php
-      $data['title'] = 'Panel de Control - Nuevo Libro';
+      $data['title'] = 'Panel de Control - Nuevo Miembro de Equipo';
       $this->load->view('templates/meta', $data);
    ?>
 </head>
@@ -30,7 +30,7 @@
       <div class='admin-title'>
          <div class='row no-gutters'>
             <div class="col-12">         
-             <h3>Libro nuevo</h3>
+             <h3>Nuevo miembro del equipo</h3>
             </div>
          </div>
       </div>
@@ -38,13 +38,13 @@
       <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">    
-            <a class='nav-btn' href='<?php echo base_url()."admin_libro"; ?>'>
+            <a class='nav-btn' href='<?php echo base_url()."admin_equipo"; ?>'>
                <i class="fa fa-arrow-left mr-1"></i>
                Volver
             </a>
             <a
                class='nav-btn'
-               href='<?php echo base_url()."admin_libro/categorias_libro"; ?>'
+               href='<?php echo base_url()."admin_equipo/categorias_equipo"; ?>'
             >
                <i class="fa fa-tags mr-1"></i>
                Categorias
@@ -56,29 +56,32 @@
       <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">
-            <h5 class='form-title'>Insertar Libro</h5>
+            <h5 class='form-title'>Insertar Nuevo Miembro</h5>
+
+            <span id='equipo_alert' class='form-alert'>
+               <?php echo $this->session->flashdata('error');?>
+            </span>
+            <span id='equipo_msg' class='form-success'>
+               <?php echo $msg;?>
+            </span>
+            
             <?php
                $categorias_array = $categorias->result_array();
                echo form_open_multipart(
-                  'admin_libreria/insertar_libro',
-                  array('id' => 'form_libro')
+                  'admin_equipo/insertar_equipo',
+                  array(
+                     'id' => 'form_equipo',
+                     'class' => 'admin__form'
+                  )
                );
             ?>
-               <span id='libro_alert' class='form-alert'>
-               	<?php echo $this->session->flashdata('error');?>
-                  <?php echo $error;?>
-               </span>
-
-               <span id='noticia_msg' class='form-success'>
-                  <?php echo $msg;?>
-               </span>
 
               <div class='form-group row'>
-                  <label class='form-label col-sm-3'>Titulo</label>
+                  <label class='form-label col-sm-3'>Nombre</label>
                   <div class='col-sm-9'>
                      <input
-                        id='titulo'
-                        name='titulo'
+                        id='nombre'
+                        name='nombre'
                         class="form-control
                         <?php echo $titulo_alert ? 'alert' : ''; ?>"
                         type='text'
@@ -86,7 +89,7 @@
                   </div>
                </div>
 
-                <div class='form-group row'>
+               <div class='form-group row'>
                   <label class='form-label col-sm-3'>Categoria</label>
                   <div class='col-sm-9'>
                      <select
@@ -99,7 +102,7 @@
                         <?php
                            foreach ($categorias_array as $cat) {
                               printf("<option value='%s'>%s</option>",
-                                    $cat['id_categoriaLibro'],
+                                    $cat['id_categoria_equipo'],
                                     $cat['categoria']
                               );
                            }
@@ -108,36 +111,22 @@
                   </div>
                </div>
 
-                <div class='form-group row'>
-                  <label class='form-label col-sm-3'>Autor(es)</label>
+              <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Cargo</label>
                   <div class='col-sm-9'>
                      <input
-                        id='autor'
-                        name='autor'
+                        id='cargo'
+                        name='cargo'
                         class="form-control
-                        <?php echo $autor_alert ? 'alert' : ''; ?>"
+                        <?php echo $titulo_alert ? 'alert' : ''; ?>"
                         type='text'
                      /> 
                   </div>
                </div>
 
                <div class='form-group row'>
-                  <label class='form-label col-sm-3'>Precio (Bs.)</label>
-                  <div class='col-sm-9'>
-                     <input
-                        id='precio'
-                        name='precio'
-                        class="form-control
-                        <?php echo $precio_alert ? 'alert' : ''; ?>"
-                        type='number'                     
-                     /> 
-                  </div>
-               </div>
-
-               <div class='form-group row'>
                   <label class='form-label col-sm-3'>
-                     Descripción <br>
-                     (Lugar, Año, Páginas, etc.)
+                     Descripción
                   </label>
                   <div class='col-sm-9'>
                      <textarea
@@ -149,11 +138,11 @@
                </div>
 
                <div class='form-group row'>
-                  <label class='form-label col-sm-3'>Portada</label>
+                  <label class='form-label col-sm-3'>Imagen</label>
                   <div class='col-sm-9'>
                      <input
-                        id='portada'
-                        name='portada'
+                        id='imagen'
+                        name='imagen'
                         class="form-control"
                         type='file'
                      /> 
@@ -162,13 +151,14 @@
 
                <div class='form-group row'>
                   <div class='col-sm-9 offset-3'>
-                  <button type="button" id='libro_btn' class="btn btn-primary">
-                     AGREGAR LIBRO
+                  <button type="button" id='equipo_btn' class="btn btn-primary">
+                     AGREGAR MIEMBRO
                   </button>
                   </div>
                </div>
 
             <?php echo form_close(); ?>
+
             </div>
          </div>
       </div>
@@ -176,7 +166,7 @@
    </div>      
    </div>
 
-   <script src=<?php  echo $assets_dir."js/admin_libreria_app.js"; ?> ></script>
+   <script src=<?php  echo $assets_dir."js/admin_equipo_app.js"; ?> ></script>
    <?php
       $this->load->view('templates/admin_footer'); 
    ?>

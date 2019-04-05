@@ -34,12 +34,14 @@ $noticia = $news[0];
 		</div>
 
 		<div class='row'>
-			<h3 class='titulo-pagina'> NOTICIA </h3>
+			<div class='col-md-8'>
+			<h3 class='titulo-pagina titulo__small'><?php echo $noticia->titulo ?> </h3>
+			</div>
 		</div>
 				
 		<div class="row">
-			<div class="col-md-6 offset-md-3">
-				<h3 class='publicacion__titulo'> <?php echo $noticia->titulo ?></h3>
+			<div class="col-md-8 text-left mb-4">
+			<p> <?php echo $noticia->resumen ?></p>
 			</div>
 		</div>
 
@@ -49,36 +51,21 @@ $noticia = $news[0];
 					src='<?php echo $dir.$noticia->imagen ?>'
 					class='publicacion__imagen'
 				>
-				<p class='publicacion__fuente'> <?php echo $noticia->fecha ?> </p>
 			</div>
 
 			<div class="col-12 col-sm-6 col-md-8">
 				<div class='publicacion__column'>
-					<p> <?php echo $noticia->resumen ?> </p>
-					<p> <?php echo $noticia->contenido ?> </p>
-					<p class='publicacion__fuente'>
+					<p class='publicacion__fuente  mb-2'>
 						<?php echo $noticia->fuente ?>
 					</p>
+					<p class='publicacion__fuente'>
+						<?php echo $noticia->fecha ?>
+					</p>
+					<p> <?php echo $noticia->contenido ?> </p>
+
 				</div>
 			</div>
-		</div>
-
-		<div class='row'>
-			<div class='timeline'>
-				<a class='timeline__punto'>
-					<span></span>
-				</a>
-				<span class='timeline__linea'></span>
-				<a class='timeline__punto'>
-					<span></span>
-				</a>
-				<span class='timeline__linea'></span>
-				<a class='timeline__punto'>
-					<span></span>
-				</a>
-			</div>
-		</div>
-	
+		</div>	
 	</div>
 	
 <?php

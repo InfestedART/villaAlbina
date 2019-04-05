@@ -7,7 +7,7 @@ class Noticias extends CI_Controller {
 		$this->load->model("Noticias_model");	
 		$search = $this->input->post('buscar_noticia', TRUE);
 		$data['search'] = $search;
-		$data['paginas'] = $this->Paginas_model->get_all_paginas()->result_array();
+		$data['paginas'] = $this->Paginas_model->get_valid_paginas()->result_array();
 		$data['noticias'] = $this->Noticias_model->get_valid_noticias(
 			6, $search
 		)->result_array();

@@ -56,6 +56,7 @@ class Libro_model extends CI_Model {
   }
 
   function delete_libro($id) {
+    $this->db->delete('publicacion', array('id_post' => $id)); 
   	$this->db->delete('libro', array('id_post' => $id)); 
   }
 

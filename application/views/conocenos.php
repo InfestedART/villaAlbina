@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$dir_assets = base_url().'assets/';
-$dir = $dir_assets.'uploads/';
+$dir = base_url().'assets/';
+// $dir = $dir_assets.'uploads/';
 setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 ?>
 
@@ -46,7 +46,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 				</div>",
 				$active === $subarea['enlace'] ? 'subarea__active' : 'd-none',
 				$color,
-				$subarea['nombre_subarea'],
+				$subarea['subpagina'],
 				$dir.$subarea['imagen'],
 				$subarea['html']
 			);
@@ -69,40 +69,40 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		<div class="publicacion__container <?php
 			echo $active === 'equipo_trabajo' ? 'subarea__active' : 'd-none'
 		 ?>">
-			<div class="flecha izquierda d-none d-md-block">
-			<a href='#'>
-				<img src="<?php echo $dir_assets.'img/flecha_izquierda_2.png'; ?>" />
-			</a>
+			<div class="flecha izquierda">
+				<a href='#' id='izquierda'>
+				<img src="<?php echo $dir.'img/flecha_izquierda_2.png'; ?>" />
+				</a>
 			</div>
-			<div class="flecha derecha d-none d-md-block">
-			<a href='#'>
-				<img src="<?php echo $dir_assets.'img/flecha_derecha_2.png'; ?>" />
-			</a>
+			<div class="flecha derecha">
+				<a href='#' id='derecha'>
+				<img src="<?php echo $dir.'img/flecha_derecha_2.png'; ?>" />
+				</a>
 			</div>
 
 			<div class='container'>
-				<div class='publicacion__slider'>
+				<div class='publicacion__slider' id='slider'>
 				<?php					
 					foreach ($equipo as $miembro) {
 						printf("
 							<div class='publicacion__slide'>
-							<div>
-							<div class='row no-gutters'>
-								<div class='col-md-6 my-2'>
-									<div class='text-right'>
-										<img src='%s' class='equipo__imagen'/>								
+								<div>
+								<div class='row no-gutters'>
+									<div class='col-md-5 my-2'>
+										<div class='text-center text-md-right'>
+										<img src='%s' class='equipo__imagen'/>
+										</div>
+									</div>
+									<div class='col-md-7'>
+										<div class='equipo__container'>
+											<h5 class='equipo__categoria'>%s</h5>
+											<p class='equipo__nombre'>%s</p>
+											<p class='equipo__cargo'>%s</p>
+											<p class='equipo__descripcion'>%s&lrm;</p>
+										</div>
 									</div>
 								</div>
-								<div class='col-md-6'>
-									<div class='equipo__container'>
-										<h5 class='equipo__categoria'>%s</h5>
-										<p class='equipo__nombre'>%s</p>
-										<p class='equipo__cargo'>%s</p>
-										<p class='equipo__descripcion'>%s&lrm;</p>
-									</div>
 								</div>
-							</div>
-							</div>
 							</div>",
 							$dir.$miembro['imagen'],
 							$miembro['categoria'],
@@ -115,10 +115,23 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 				</div>
 			</div>	
 
-			<div class='publicacion__slider-dots'>
-				<li class='active'></li>
-				<li></li>
-			</div>
+			<ul class='publicacion__slider-dots'>
+				<?php
+					$active=true;
+					foreach ($equipo as $index => $miembro) {
+						printf("
+							<li
+								class='slider_dot %s'
+								id='%s'
+							></li>",
+							$active ? 'active' : '',
+							$index
+						);
+						$active = false;
+					}
+				?>	
+			</ul>
+
 		</div>
 
 	</div>	
@@ -150,7 +163,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 <?php
 	$this->load->view('templates/footer'); 
 ?>
-
+	<script src=<?php  echo $dir."js/conocenos_slider.js"; ?> ></script>
 </body>
 
 </html>

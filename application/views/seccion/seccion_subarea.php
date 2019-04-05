@@ -1,5 +1,5 @@
 <?php
-	$dir = base_url().'assets/uploads/';
+	$dir = base_url().'assets/';
 ?>
 
 	<div class='row no-gutters'>
@@ -18,7 +18,7 @@
 			base_url().$enlace."?active=".$subarea['enlace'],
 			$dir, $subarea['imagen'],
 			base_url().$enlace."?active=".$subarea['enlace'],
-			$subarea['nombre_subarea']
+			$subarea['subpagina']
 		);
 	}
 	?>

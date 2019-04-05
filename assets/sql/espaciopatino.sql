@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 01-04-2019 a las 03:34:38
+-- Tiempo de generación: 05-04-2019 a las 04:47:01
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 7.1.1
 
@@ -48,15 +48,18 @@ INSERT INTO `area` (`id_area`, `area`, `activa`) VALUES
 DROP TABLE IF EXISTS `categoria_equipo`;
 CREATE TABLE `categoria_equipo` (
   `id_categoria_equipo` int(11) NOT NULL,
-  `categoria` varchar(80) COLLATE utf8_spanish2_ci NOT NULL
+  `categoria` varchar(80) COLLATE utf8_spanish2_ci NOT NULL,
+  `status_categoria` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `categoria_equipo`
 --
 
-INSERT INTO `categoria_equipo` (`id_categoria_equipo`, `categoria`) VALUES
-(1, 'Dirección y Coordinación');
+INSERT INTO `categoria_equipo` (`id_categoria_equipo`, `categoria`, `status_categoria`) VALUES
+(1, 'Dirección y Coordinación', 1),
+(2, 'CEDOAL', 1),
+(6, 'CAP', 1);
 
 -- --------------------------------------------------------
 
@@ -68,14 +71,14 @@ DROP TABLE IF EXISTS `categoria_libro`;
 CREATE TABLE `categoria_libro` (
   `id_categoriaLibro` int(11) NOT NULL,
   `categoria` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `status_categoria` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `categoria_libro`
 --
 
-INSERT INTO `categoria_libro` (`id_categoriaLibro`, `categoria`, `status`) VALUES
+INSERT INTO `categoria_libro` (`id_categoriaLibro`, `categoria`, `status_categoria`) VALUES
 (1, 'Literatura', 1),
 (2, 'Filosofía', 1),
 (3, 'Artes', 1),
@@ -103,9 +106,9 @@ CREATE TABLE `contenido` (
 --
 
 INSERT INTO `contenido` (`id_content`, `titulo`, `imagen`, `html`, `mostrar`) VALUES
-(1, 'Nuestra Historia', 'subareas/historia.jpg', 'El Espacio Simón I. Patiño (ESIP) inició sus funciones en La Paz el 14 de septiembre de 1984 en la Av. 16 de Julio, El Prado, al lado del Edif. Alameda. Posteriormente, se trasladó a la calle Juan de la Riva, al Edif. Alborada. En 1993 aproximadamente volvió al Prado, a la planta baja del Edif. Alameda. En esas primeras ubicaciones, el ESIP contaba simplemente con una oficina y una sala de exposiciones reducida. La capacidad de actividades en ese entonces era de una exposición al mes, con una conferencia o presentación de libro. En los primeros tiempos, la programación cultural del Espacio estuvo a cargo de la Dirección del Centro Pedagógico y Cultural Simón I. Patiño de Cochabamba; en los años sucesivos, a medida que fue ampliando sus áreas de trabajo y consolidando su presencia en la vida cultural de La Paz, el ESIP se convirtió en un centro autónomo con una dirección propia.\r\n\r\nEn 1996, la Fundación Simón I. Patiño inauguró las actuales instalaciones, en el edificio Guayaquil, Avenida Ecuador No 2503, esquina Belisario Salinas, en el barrio de Sopocachi. Desde el 15 de mayo de 2006, habiéndose ampliado el radio de acción del ESIP, se alquila también un inmueble al que se ha denominado “Anexo del Espacio Patiño”, situado sobre la Av. Ecuador 2475.\r\nEl 28 de septiembre de 2001 se creó el Centro de Documentación en Artes y Literaturas Latinoamericanas (CEDOAL), dos años después, el 29 de enero de 2003, abrió sus puertas el Café del Cómic, que luego se transformó en el actual Centro del Cómic, C+C Espacio. Desde el 2 de enero de 2008 funciona el Centro de Acción Pedagógica (CAP) y el 1 de octubre de 2013 se inauguró el C-Musical, área que  originariamente se llamó Archivo Fonográfico del CEDOAL.\r\n\r\nActualmente, el Espacio Patiño viene llevando a cabo su proyecto más ambicioso, la construcción de un nuevo edificio que centralizará las áreas con las que cuenta. Esta nueva edificación estará ubicada sobre la avenida Ecuador esquina Rosendo Gutiérrez.', 1),
-(2, 'Misión y Visión', 'subareas/mision_vision.jpg', 'Misión\r\n\r\nNuestra misión es proyectar, ejecutar y promover, actividades culturales y de formación desde un enfoque solidario, pluralista e integrador, de diálogo entre individuos, culturas e instituciones; atender a los usuarios y al público con profesionalidad, amabilidad y esmero.\r\n\r\nPartimos de la puesta en valor y difusión de diferentes manifestaciones culturales y de formación, participando activamente en los procesos de investigación, enseñanza - aprendizaje, creación, producción y difusión intelectual y artística, preservación y conservación del patrimonio documental, tangible e intangible, estudio y aplicación de nuevas tecnologías.\r\n\r\nVisión\r\n\r\nEstablecer nuestra presencia como referente cultural y de formación, incentivando la creatividad, la investigación, el estudio y la aplicación de nuevas tecnologías, junto a la preservación del patrimonio y la memoria, promoviendo los valores humanos universales, la solidaridad y el diálogo entre culturas, participando en la construcción de ciudadanos innovadores, críticos y proactivos.\r\n\r\n', 1),
-(3, 'Equipo de Trabajo', 'subareas/equipo.jpg', '', 0);
+(1, 'Nuestra Historia', 'uploads/subpagina/historia.jpg', 'El Espacio Simón I. Patiño (ESIP) inició sus funciones en La Paz el 14 de septiembre de 1984 en la Av. 16 de Julio, El Prado, al lado del Edif. Alameda. Posteriormente, se trasladó a la calle Juan de la Riva, al Edif. Alborada. En 1993 aproximadamente volvió al Prado, a la planta baja del Edif. Alameda. En esas primeras ubicaciones, el ESIP contaba simplemente con una oficina y una sala de exposiciones reducida. La capacidad de actividades en ese entonces era de una exposición al mes, con una conferencia o presentación de libro. En los primeros tiempos, la programación cultural del Espacio estuvo a cargo de la Dirección del Centro Pedagógico y Cultural Simón I. Patiño de Cochabamba; en los años sucesivos, a medida que fue ampliando sus áreas de trabajo y consolidando su presencia en la vida cultural de La Paz, el ESIP se convirtió en un centro autónomo con una dirección propia.\r\n\r\nEn 1996, la Fundación Simón I. Patiño inauguró las actuales instalaciones, en el edificio Guayaquil, Avenida Ecuador No 2503, esquina Belisario Salinas, en el barrio de Sopocachi. Desde el 15 de mayo de 2006, habiéndose ampliado el radio de acción del ESIP, se alquila también un inmueble al que se ha denominado “Anexo del Espacio Patiño”, situado sobre la Av. Ecuador 2475.\r\nEl 28 de septiembre de 2001 se creó el Centro de Documentación en Artes y Literaturas Latinoamericanas (CEDOAL), dos años después, el 29 de enero de 2003, abrió sus puertas el Café del Cómic, que luego se transformó en el actual Centro del Cómic, C+C Espacio. Desde el 2 de enero de 2008 funciona el Centro de Acción Pedagógica (CAP) y el 1 de octubre de 2013 se inauguró el C-Musical, área que  originariamente se llamó Archivo Fonográfico del CEDOAL.\r\n\r\nActualmente, el Espacio Patiño viene llevando a cabo su proyecto más ambicioso, la construcción de un nuevo edificio que centralizará las áreas con las que cuenta. Esta nueva edificación estará ubicada sobre la avenida Ecuador esquina Rosendo Gutiérrez.', 1),
+(2, 'Misión y Visión', 'uploads/subpagina/mision_vision.jpg', 'Misión\r\n\r\nNuestra misión es proyectar, ejecutar y promover, actividades culturales y de formación desde un enfoque solidario, pluralista e integrador, de diálogo entre individuos, culturas e instituciones; atender a los usuarios y al público con profesionalidad, amabilidad y esmero.\r\n\r\nPartimos de la puesta en valor y difusión de diferentes manifestaciones culturales y de formación, participando activamente en los procesos de investigación, enseñanza - aprendizaje, creación, producción y difusión intelectual y artística, preservación y conservación del patrimonio documental, tangible e intangible, estudio y aplicación de nuevas tecnologías.\r\n\r\nVisión\r\n\r\nEstablecer nuestra presencia como referente cultural y de formación, incentivando la creatividad, la investigación, el estudio y la aplicación de nuevas tecnologías, junto a la preservación del patrimonio y la memoria, promoviendo los valores humanos universales, la solidaridad y el diálogo entre culturas, participando en la construcción de ciudadanos innovadores, críticos y proactivos.\r\n\r\n', 1),
+(3, 'Equipo de Trabajo', 'uploads/subpagina/equipo.jpg', '', 0);
 
 -- --------------------------------------------------------
 
@@ -211,22 +214,21 @@ INSERT INTO `libro` (`id_post`, `id_categoriaLibro`, `autor`, `descripcion`, `pr
 
 DROP TABLE IF EXISTS `miembro_equipo`;
 CREATE TABLE `miembro_equipo` (
-  `id_miembro` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
   `nombre` varchar(80) COLLATE utf8_spanish2_ci NOT NULL,
   `cargo` varchar(80) COLLATE utf8_spanish2_ci NOT NULL,
   `descripcion` text COLLATE utf8_spanish2_ci,
-  `imagen` varchar(80) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `id_categoria_equipo` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `id_categoria_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `miembro_equipo`
 --
 
-INSERT INTO `miembro_equipo` (`id_miembro`, `nombre`, `cargo`, `descripcion`, `imagen`, `id_categoria_equipo`, `status`) VALUES
-(1, 'Michela Pentimalli', 'Directora del Espacio Patiño', 'Está a cargo de la dirección del Espacio Patiño en su conjunto y de su personal. Proyecta y supervisa la ejecución de las propuestas, las actividades, y los productos intelectuales (libros, catálogos, videos, CDs) de las distintas áreas del Espacio Patiño. Planifica y organiza, además, las investigaciones y exposiciones de artes visuales e histórico documentales que se presentan en el Espacio.   ', 'equipo/i_michela-pentimalli.jpg', 1, 1),
-(2, 'María Tapia', 'Coordinadora de actividades culturales y de secretaría', 'Articula la logística de las actividades planeadas por Dirección y las distintas áreas que conforman el Espacio. Coordina las relaciones con artistas, profesionales, consultores y medios de comunicación. Se ocupa también de las tareas de organización secretarial.                  ', 'equipo/i_maria-tapia.jpg', 1, 1);
+INSERT INTO `miembro_equipo` (`id_post`, `nombre`, `cargo`, `descripcion`, `id_categoria_equipo`) VALUES
+(4, 'Michela Pentimalli', 'Directora del Espacio Patiño', 'Está a cargo de la dirección del Espacio Patiño en su conjunto y de su personal. Proyecta y supervisa la ejecución de las propuestas, las actividades, y los productos intelectuales (libros, catálogos, videos, CDs) de las distintas áreas del Espacio Patiño. Planifica y organiza, además, las investigaciones y exposiciones de artes visuales e histórico documentales que se presentan en el Espacio.   ', 1),
+(6, 'María Tapia', 'Coordinadora de actividades culturales y de secretaría', 'Articula la logística de las actividades planeadas por Dirección y las distintas áreas que conforman el Espacio. Coordina las relaciones con artistas, profesionales, consultores y medios de comunicación. Se ocupa también de las tareas de organización secretarial.                  ', 1),
+(38, 'Eloisa Vargas', 'Responsable del Centro de Información y Documentación', 'Está a cargo de la gestión de los Centros de información y documentación y de las adquisiciones bibliográficas. Organiza actividades culturales de extensión. Así mismo, realiza el servicio especializado de asesoramiento bibliográfico a investigadores y la selección y la supervisión de las pasantías. ', 2);
 
 -- --------------------------------------------------------
 
@@ -239,18 +241,20 @@ CREATE TABLE `modelo` (
   `id_modelo` int(11) NOT NULL,
   `nombre_modelo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `model` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `get_all_valid` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `default_limit` int(11) NOT NULL DEFAULT '6'
+  `metodo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `default_limit` int(11) NOT NULL DEFAULT '6',
+  `id_tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `modelo`
 --
 
-INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `model`, `get_all_valid`, `default_limit`) VALUES
-(1, 'libro', 'Libro_model', 'get_valid_libros', 2),
-(2, 'noticia', 'Noticias_model', 'get_valid_noticias', 3),
-(3, 'subarea', 'Subareas_model', 'get_valid_subareas', 3);
+INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `model`, `metodo`, `default_limit`, `id_tipo`) VALUES
+(1, 'libro', 'Libro_model', 'get_valid_libros', 2, 2),
+(2, 'noticia', 'Noticias_model', 'get_valid_noticias', 3, 1),
+(3, 'subpagina', 'Subpaginas_model', 'get_valid_subpaginas', 3, 0),
+(4, 'equipo', 'Equipo_model', 'get_valid_miembro', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -324,7 +328,7 @@ CREATE TABLE `publicacion` (
   `titulo` varchar(120) COLLATE utf8_spanish2_ci NOT NULL,
   `imagen` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `tipo` varchar(80) COLLATE utf8_spanish2_ci NOT NULL
+  `tipo` int(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -332,46 +336,73 @@ CREATE TABLE `publicacion` (
 --
 
 INSERT INTO `publicacion` (`id_post`, `titulo`, `imagen`, `status`, `tipo`) VALUES
-(1, 'Espacio Simón I. Patiño abrirá en 2019 el teatro Doña Albina', 'uploads/noticias/noticia1.jpg', 1, 'noticia'),
-(2, '4o Encuentro de cine: el corto boliviano, hoy', 'uploads/libros/img_4o-encuentro-de-cine-el-corto-boliviano-hoy_137.jpg', 1, 'libro'),
-(3, 'Adolfo Cáceres Romero, Una Vida entre Libros', 'uploads/libros/img_adolfo-cceres-romero-una-vida-entre-libros_77.jpg', 1, 'libro'),
-(5, 'Algas de Bolivia: con énfasis en el fitoplancton', 'uploads/libros/img_algas-de-bolivia-con-nfasis-en-el-fitoplancton_113.jpg', 1, 'libro'),
-(9, 'INAUGURAN EXPOSICIÓN DE FOTOS EN LA ESCENA TEATRAL', 'uploads/noticias/img_inauguran-exposicion-de-fotos-en-la-escena-teatral_1756.jpg', 1, 'noticia'),
-(10, 'Yolanda de américa: biografía de Yolanda Bedregal', 'uploads/libros/img_yolanda-de-amrica-biografa-de-yolanda-bedregal_98.jpg', 1, 'libro'),
-(11, 'Bolivia dibujo y artes gráficas: exposición permanente', 'uploads/libros/img_bolivia-dibujo-y-artes-graficas-exposicoin-permanente_63.jpg', 1, 'libro'),
-(21, 'Cassany: Divertirse con la lectura es una manera de incentivarla', 'uploads/noticias/img_cassany-divertirse-con-la-lectura-es-una-manera-de-incentivarla_190.jpg', 1, 'noticia'),
-(22, 'Juan Rimsa, de maestro maestros', 'uploads/noticias/img_juan-rimsa-de-maestro-maestros_195.jpg', 1, 'noticia'),
-(25, 'FILMOGRAFÍA DE TORRES EN LA CINEMATECA', 'uploads/noticias/img_filmografia-de-torres-en-la-cinemateca_186.jpg', 1, 'noticia'),
-(30, 'Amigos del muro: dibujar un personaje y hacerlo real', 'uploads/noticias/img_amigos-del-muro-dibujar-un-personaje-y-hacerlo-real_145.jpg', 1, 'noticia'),
-(31, 'ABREN TALLER DE DOBLAJE Y TÉCNICA ACTORAL', 'uploads/noticias/img_abren-taller-de-doblaje-y-tecnica-actoral_178.jpg', 1, 'noticia'),
-(33, 'Daniel Cassany hablará del presente y futuro de la lectura', 'uploads/noticias/img_daniel-cassany-hablara-del-presente-y-futuro-de-la-lectura_189.jpg', 1, 'noticia'),
-(34, 'Betshabé Salmón: precursora del pensamiento femenino en Bolivia', 'uploads/libros/img_betshab-salmn-precursora-del-pensamiento-femenino-en-bolivia_79.jpg', 1, 'libro');
+(1, 'Espacio Simón I. Patiño abrirá en 2019 el teatro Doña Albina', 'uploads/noticias/noticia1.jpg', 1, 1),
+(2, '4o Encuentro de cine: el corto boliviano, hoy', 'uploads/libros/img_4o-encuentro-de-cine-el-corto-boliviano-hoy_137.jpg', 1, 2),
+(3, 'Adolfo Cáceres Romero, Una Vida entre Libros', 'uploads/libros/img_adolfo-cceres-romero-una-vida-entre-libros_77.jpg', 1, 2),
+(4, 'Michela Pentimalli', 'uploads/equipo/i_michela-pentimalli.jpg', 1, 3),
+(5, 'Algas de Bolivia: con énfasis en el fitoplancton', 'uploads/libros/img_algas-de-bolivia-con-nfasis-en-el-fitoplancton_113.jpg', 1, 2),
+(6, 'María Tapia', 'uploads/equipo/i_maria-tapia.jpg', 1, 3),
+(9, 'INAUGURAN EXPOSICIÓN DE FOTOS EN LA ESCENA TEATRAL', 'uploads/noticias/img_inauguran-exposicion-de-fotos-en-la-escena-teatral_1756.jpg', 1, 1),
+(10, 'Yolanda de américa: biografía de Yolanda Bedregal', 'uploads/libros/img_yolanda-de-amrica-biografa-de-yolanda-bedregal_98.jpg', 1, 2),
+(11, 'Bolivia dibujo y artes gráficas: exposición permanente', 'uploads/libros/img_bolivia-dibujo-y-artes-graficas-exposicoin-permanente_63.jpg', 1, 2),
+(21, 'Cassany: Divertirse con la lectura es una manera de incentivarla', 'uploads/noticias/img_cassany-divertirse-con-la-lectura-es-una-manera-de-incentivarla_190.jpg', 1, 1),
+(22, 'Juan Rimsa, de maestro maestros', 'uploads/noticias/img_juan-rimsa-de-maestro-maestros_195.jpg', 1, 1),
+(25, 'FILMOGRAFÍA DE TORRES EN LA CINEMATECA', 'uploads/noticias/img_filmografia-de-torres-en-la-cinemateca_186.jpg', 1, 1),
+(30, 'Amigos del muro: dibujar un personaje y hacerlo real', 'uploads/noticias/img_amigos-del-muro-dibujar-un-personaje-y-hacerlo-real_145.jpg', 1, 1),
+(31, 'ABREN TALLER DE DOBLAJE Y TÉCNICA ACTORAL', 'uploads/noticias/img_abren-taller-de-doblaje-y-tecnica-actoral_178.jpg', 1, 1),
+(33, 'Daniel Cassany hablará del presente y futuro de la lectura', 'uploads/noticias/img_daniel-cassany-hablara-del-presente-y-futuro-de-la-lectura_189.jpg', 1, 1),
+(34, 'Betshabé Salmón: precursora del pensamiento femenino en Bolivia', 'uploads/libros/img_betshab-salmn-precursora-del-pensamiento-femenino-en-bolivia_79.jpg', 1, 2),
+(38, 'Eloisa Vargas', 'uploads/equipo/i_eloisa-vargas-_5.jpg', 1, 3);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subarea`
+-- Estructura de tabla para la tabla `subpagina`
 --
 
-DROP TABLE IF EXISTS `subarea`;
-CREATE TABLE `subarea` (
-  `id_subarea` int(11) NOT NULL,
-  `nombre_subarea` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+DROP TABLE IF EXISTS `subpagina`;
+CREATE TABLE `subpagina` (
+  `id_subpagina` int(11) NOT NULL,
+  `subpagina` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `componente` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `id_pagina` int(11) NOT NULL,
+  `id_modelo` int(11) NOT NULL,
   `id_content` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `subarea`
+-- Volcado de datos para la tabla `subpagina`
 --
 
-INSERT INTO `subarea` (`id_subarea`, `nombre_subarea`, `enlace`, `componente`, `status`, `id_pagina`, `id_content`) VALUES
-(1, 'Nuestra Historia', 'historia', 'default', 1, 1, 1),
-(2, 'Nuestra Misión y Visión', 'mision_vision', 'default', 1, 1, 2),
-(3, 'Nuestro Equipo de Trabajo', 'equipo_trabajo', 'equipo', 1, 1, 3);
+INSERT INTO `subpagina` (`id_subpagina`, `subpagina`, `enlace`, `status`, `id_pagina`, `id_modelo`, `id_content`) VALUES
+(1, 'Nuestra Historia', 'historia', 1, 1, 3, 1),
+(2, 'Nuestra Misión y Visión', 'mision_vision', 1, 1, 3, 2),
+(3, 'Nuestro Equipo de Trabajo', 'equipo_trabajo', 1, 1, 4, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_post`
+--
+
+DROP TABLE IF EXISTS `tipo_post`;
+CREATE TABLE `tipo_post` (
+  `id_tipo` int(11) NOT NULL,
+  `tipo_post` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre_sidebar` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `icono` varchar(80) COLLATE utf8_spanish2_ci NOT NULL,
+  `sub_categoria` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_post`
+--
+
+INSERT INTO `tipo_post` (`id_tipo`, `tipo_post`, `nombre_sidebar`, `icono`, `sub_categoria`) VALUES
+(1, 'noticia', 'Noticias', 'newspaper', 0),
+(2, 'libro', 'Libreria', 'book', 1),
+(3, 'equipo', 'Equipo', 'child', 1);
 
 -- --------------------------------------------------------
 
@@ -449,7 +480,7 @@ ALTER TABLE `libro`
 -- Indices de la tabla `miembro_equipo`
 --
 ALTER TABLE `miembro_equipo`
-  ADD PRIMARY KEY (`id_miembro`);
+  ADD PRIMARY KEY (`id_post`);
 
 --
 -- Indices de la tabla `modelo`
@@ -476,10 +507,16 @@ ALTER TABLE `publicacion`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `subarea`
+-- Indices de la tabla `subpagina`
 --
-ALTER TABLE `subarea`
-  ADD PRIMARY KEY (`id_subarea`);
+ALTER TABLE `subpagina`
+  ADD PRIMARY KEY (`id_subpagina`);
+
+--
+-- Indices de la tabla `tipo_post`
+--
+ALTER TABLE `tipo_post`
+  ADD PRIMARY KEY (`id_tipo`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -500,7 +537,7 @@ ALTER TABLE `area`
 -- AUTO_INCREMENT de la tabla `categoria_equipo`
 --
 ALTER TABLE `categoria_equipo`
-  MODIFY `id_categoria_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_categoria_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `categoria_libro`
 --
@@ -515,7 +552,7 @@ ALTER TABLE `contenido`
 -- AUTO_INCREMENT de la tabla `imagen_portada`
 --
 ALTER TABLE `imagen_portada`
-  MODIFY `id_portada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_portada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
@@ -525,12 +562,12 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `miembro_equipo`
 --
 ALTER TABLE `miembro_equipo`
-  MODIFY `id_miembro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `modelo`
 --
 ALTER TABLE `modelo`
-  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `pagina`
 --
@@ -540,9 +577,14 @@ ALTER TABLE `pagina`
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
--- AUTO_INCREMENT de la tabla `subarea`
+-- AUTO_INCREMENT de la tabla `subpagina`
 --
-ALTER TABLE `subarea`
-  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `subpagina`
+  MODIFY `id_subpagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `tipo_post`
+--
+ALTER TABLE `tipo_post`
+  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

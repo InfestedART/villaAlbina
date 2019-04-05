@@ -2,7 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
    $this->load->library('calendar');
 	$assets_dir = base_url().'assets/';
-	$admin_dir = base_url().'admin_libreria';
+	$admin_dir = base_url().'admin_libro';
 
    $error = $msg = '';
    $titulo_alert = $fecha_alert = $fuente_alert = $resumen_alert = false;
@@ -63,7 +63,7 @@
 
                <div class="admin-buscador"><?php
                   echo form_open(
-                     'admin_libreria',
+                     'admin_libro',
                      array('id' => 'form_buscar_libreria')
                   ); ?>
                   <input

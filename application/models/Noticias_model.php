@@ -64,6 +64,7 @@ class Noticias_model extends CI_Model {
   function delete_noticia($id) {
   	$this->db->delete('publicacion', array('id_post' => $id)); 
    	$this->db->delete('noticia', array('id_post' => $id));
+   	$this->db->delete('html', array('id_post' => $id));
   }
 
   function update_noticia($id, $data) {

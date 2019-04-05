@@ -4,9 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin_noticia extends MY_Controller {
 	public function index() {
 		$this->load->model("Noticias_model");
+		$this->load->model("Tipo_model");
+		$sidebar_data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 
+		$data['sidebar'] = $this->load->view('templates/admin_sidebar', $sidebar_data, true);
 		$data['header'] = $this->load->view('templates/admin_header', NULL, true);
-		$data['sidebar'] = $this->load->view('templates/admin_sidebar', NULL, true);
 		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
 
 		$orderby = $this->input->get('orderby', TRUE);
@@ -66,7 +68,7 @@ class Admin_noticia extends MY_Controller {
 		$post_data = array(
 			'titulo' => $titulo,
 			'imagen' => $imagen_destacada,
-			'tipo' => 'noticia'
+			'tipo' => 1
 		);
 		$this->Publicacion_model->insert_publicacion($post_data);
 		$last_id = $this->Publicacion_model->get_last_post();
@@ -113,7 +115,7 @@ class Admin_noticia extends MY_Controller {
       $this->load->model("Contenido_model");
 		$id = $this->uri->segment(3);
 
-		$config['upload_path'] = './assets/uploads/noticias/';
+	  $config['upload_path'] = './assets/uploads/noticias/';
       $config['allowed_types'] = 'gif|jpg|png|jpeg';
       $config['max_size'] = 0;
       $config['max_width'] = 0;
@@ -148,7 +150,7 @@ class Admin_noticia extends MY_Controller {
 
 		$post_data = array(
 			'titulo' => $titulo,
-			'tipo' => 'noticia'
+			'tipo' => 1
 		);
 		if ($imagen_destacada) {
 			$post_data['imagen'] = $imagen_destacada;
