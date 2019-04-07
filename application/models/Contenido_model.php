@@ -5,8 +5,8 @@ class Contenido_model extends CI_Model {
   	}
 
   	function update_contenido($id, $data) {
-    $this->db->where('id_post', $id);
-    $this->db->update('html', $data);
+	    $this->db->where('id_post', $id);
+	    $this->db->update('html', $data);
   	}
 }
 ?>

@@ -54,6 +54,27 @@
         echo "</li>";
       }        
       ?>
+    
+      <?php 
+      foreach ($complementos as $plugin) {
+        $isActive = (
+          strpos($this->uri->segment(2), $plugin['complemento']) > -1
+            || strpos($this->uri->segment(1), $plugin['complemento']) > -1
+          ) ? 'sidemenu--active' : '';
+        printf("
+          <li>
+            <a href='%s' class='%s'>
+              <i class='fa fa-%s' aria-hidden='true'></i>
+              <span>%s</span>
+            </a>
+          </li>",          
+          $admin_dir."admin_".$plugin['complemento'],
+          $isActive,
+          $plugin['icono'],
+          $plugin['nombre_sidebar']
+        );
+      }        
+      ?>
       
       <li><?php
          $usuario_active = (

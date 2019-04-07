@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
    <?php
-      $data['title'] = 'Conocenos';
+      $data['title'] = 'Panel de Control - Noticia Nueva';
       $this->load->view('templates/meta', $data);
    ?>
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/pickaday.css"; ?> />

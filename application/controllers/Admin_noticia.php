@@ -5,11 +5,9 @@ class Admin_noticia extends MY_Controller {
 	public function index() {
 		$this->load->model("Noticias_model");
 		$this->load->model("Tipo_model");
-		$sidebar_data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
-
-		$data['sidebar'] = $this->load->view('templates/admin_sidebar', $sidebar_data, true);
-		$data['header'] = $this->load->view('templates/admin_header', NULL, true);
-		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
+		$this->load->model("Complemento_model");
+		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
@@ -22,11 +20,21 @@ class Admin_noticia extends MY_Controller {
 	}
 
 	public function noticia_nueva() {
-		$this->load->view('noticia_nueva');
+		$this->load->model("Tipo_model");
+		$this->load->model("Complemento_model");
+		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+
+		$this->load->view('noticia_nueva', $data);
 	}
 
 	public function editar_noticia() {
 		$this->load->model("Noticias_model");
+		$this->load->model("Tipo_model");
+		$this->load->model("Complemento_model");
+		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+
 		$id = $this->uri->segment(3);
 		$data['noticia'] = $this->Noticias_model->get_noticia($id);
 		$this->load->view('editar_noticia', $data);
@@ -47,15 +55,10 @@ class Admin_noticia extends MY_Controller {
 		if (!$this->upload->do_upload('imagen')) {						
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
-				$data = array('error' => $error);	
-				$this->load->view('admin_noticia', $data);
+				$this->session->set_flashdata('error', $error);
+		 		redirect('admin_noticia');
 			}
 		}
-	   $data = array(
-	      'upload_data' => $this->upload->data(),
-	      'msg' => 'noticia agregada exitosamente'
-	   );
-
       	$titulo = $this->input->post('titulo', TRUE);
 		$fecha = $this->input->post('fecha', TRUE);
 		$fuente = $this->input->post('fuente', TRUE);
@@ -72,7 +75,6 @@ class Admin_noticia extends MY_Controller {
 		);
 		$this->Publicacion_model->insert_publicacion($post_data);
 		$last_id = $this->Publicacion_model->get_last_post();
-
 		$post_noticia = array(
 			'id_post' => $last_id,
 			'fuente' => $fuente,
@@ -81,17 +83,13 @@ class Admin_noticia extends MY_Controller {
 			'url' => $enlace
 		);
 		$this->Noticias_model->insert_noticia($post_noticia);
-
 		$post_contenido = array(
 			'id_post' => $last_id,
 			'contenido' => $contenido,
 		);
 		$this->Contenido_model->insert_contenido($post_contenido);
-		
-		$data['search'] = '';
-     	$data['noticias'] = $this->Noticias_model->get_all_noticias();
-     	$this->load->view('admin_noticia', $data);
 
+		redirect('admin_noticia');
 	}
 
 	public function delete_noticia() {
@@ -104,16 +102,14 @@ class Admin_noticia extends MY_Controller {
 			unlink($deleted_imagen);	
 		}		
 		$this->Noticias_model->delete_noticia($id);
-		$data['noticias'] = $this->Noticias_model->get_all_noticias();
-		$data['search'] = '';
-     	$this->load->view('admin_noticia', $data);
+		redirect('admin_noticia');
 	}
 
 	public function update_noticia() {
       $this->load->model("Noticias_model");
       $this->load->model("Publicacion_model");
       $this->load->model("Contenido_model");
-		$id = $this->uri->segment(3);
+	  $id = $this->uri->segment(3);
 
 	  $config['upload_path'] = './assets/uploads/noticias/';
       $config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -130,11 +126,6 @@ class Admin_noticia extends MY_Controller {
 				$this->load->view('admin_noticia', $data);
 			}
 		}
-      $data = array(
-      	'upload_data' => $this->upload->data(),
-        	'msg' => 'noticia agregada exitosamente'
-      );
-
 		$updated_noticia = $this->Noticias_model->get_noticia($id)->result_object()[0];
 		$updated_imagen = realpath('assets/'.$updated_noticia->imagen);
 		$delete_noticia = boolval($this->input->post('delete_noticia', TRUE));
@@ -175,9 +166,7 @@ class Admin_noticia extends MY_Controller {
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Noticias_model->update_noticia($id, $post_noticia);
 		$this->Contenido_model->update_contenido($id, $post_contenido);
-     	$data['noticias'] = $this->Noticias_model->get_all_noticias();
-     	$data['search'] = '';
-     	$this->load->view('admin_noticia', $data);
+		redirect('admin_noticia');
 	}
 
 	public function toggle_noticia() {
@@ -189,8 +178,6 @@ class Admin_noticia extends MY_Controller {
 			'status' => $toggle
 		);
 		$this->Publicacion_model->update_publicacion($id, $post_data);
-	   $data['search'] = '';	
-     	$data['noticias'] = $this->Noticias_model->get_all_noticias();
-     	$this->load->view('admin_noticia', $data);	
+		redirect('admin_noticia');	
 	}
 }

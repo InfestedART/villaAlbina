@@ -1,5 +1,5 @@
 .admin-body {
-	min-height: calc(100vh - 80px);
+	min-height: calc(100vh);
 	background-color: #EEEEEE;
 }
 
@@ -142,6 +142,10 @@
 	color: rgb(239, 125, 0);
 }
 
+.admin-table i {
+	font-size: 14px;
+}
+
 .admin__form {
 	margin-top: 1rem;
 }
@@ -170,6 +174,12 @@
 .form-label-inline {
 	margin-right: 15px;
 	font-size: 14px;
+	vertical-align: middle;
+}
+
+.form-label--disabled {
+	text-decoration: line-through;
+	color: #AAAAAA;
 }
 
 .form-show-img {
@@ -231,7 +241,7 @@
 
 .btn-inline {
 	vertical-align: top;
-	float: right;
+	margin-left: 15px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -243,4 +253,25 @@
 
 .img-small {
 	height: 60px;
+}
+
+.img-medium_small {
+	height: 75px;
+}
+
+.color-preview {
+	display: inline-block;
+	height: 14px;
+	width: 35px;
+	border: 1px solid #333333;
+	border-radius: 3px;
+}
+
+.color_picker-input {
+	color: white;
+	cursor: pointer;
+}
+
+.color-picker {
+	margin-top: -80px;
 }

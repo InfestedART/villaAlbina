@@ -6,10 +6,9 @@ class Admin_libro extends MY_Controller {
 		$this->load->model("Cat_libro_model");
 		$this->load->model("Libro_model");
 		$this->load->model("Tipo_model");
-		$sidebar_data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$this->load->model("Complemento_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
-
-		$data['sidebar'] = $this->load->view('templates/admin_sidebar', $sidebar_data, true);
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['header'] = $this->load->view('templates/admin_header', NULL, true);
 		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
 
@@ -27,8 +26,10 @@ class Admin_libro extends MY_Controller {
 
 	public function nuevo_libro() {
 		$this->load->model("Cat_libro_model");
-		$this->load->model("Tipo_model");		
+		$this->load->model("Tipo_model");
+		$this->load->model("Complemento_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
 		$this->load->view('nuevo_libro', $data);
 	}
@@ -37,9 +38,11 @@ class Admin_libro extends MY_Controller {
 		$this->load->model("Cat_libro_model");
 		$this->load->model("Libro_model");
 		$this->load->model("Tipo_model");
-
-		$id = $this->uri->segment(3);
+		$this->load->model("Complemento_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+		$id = $this->uri->segment(3);
+
 		$data['libro'] = $this->Libro_model->get_libro($id);
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
 		$this->load->view('editar_libro', $data);
@@ -49,11 +52,13 @@ class Admin_libro extends MY_Controller {
 		$this->load->model("Cat_libro_model");
 		$id_categoria = $this->uri->segment(3);
 		$this->load->model("Tipo_model");
+		$this->load->model("Complemento_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
-      $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      $data['selected_categoria'] = $this->Cat_libro_model->get_categoria($id_categoria);
-      $this->load->view('categorias_libro', $data);
+	    $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+	    $data['selected_categoria'] = $this->Cat_libro_model->get_categoria($id_categoria);
+	    $this->load->view('categorias_libro', $data);
 	}
 
 	public function insertar_categoria() {
@@ -61,8 +66,7 @@ class Admin_libro extends MY_Controller {
 		$categoria = $this->input->post('categoria', TRUE);
 		$cat_data = array('categoria' => $categoria);
 		$this->Cat_libro_model->insert_categoria($cat_data);
-      $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      $this->load->view('categorias_libro', $data);
+    	redirect('admin_libro/categorias_libro');
 	}
 
 	public function editar_categoria() {
@@ -71,9 +75,7 @@ class Admin_libro extends MY_Controller {
 		$id_categoria = $this->input->post('edit_id_categoria', TRUE);		
 		$cat_data = array('categoria' => $categoria);
 		$this->Cat_libro_model->update_categoria($id_categoria, $cat_data);
-      $data['categorias'] = $this->Cat_libro_model->get_all_categorias();
-      $data['selected_categoria'] = NULL;
-      $this->load->view('categorias_libro', $data);
+    	redirect('admin_libro/categorias_libro');
 	}
 
 	public function delete_libro() {

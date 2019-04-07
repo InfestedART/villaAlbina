@@ -7,10 +7,10 @@ class Admin_equipo extends MY_Controller {
 		$this->load->model("Equipo_model");
 		$this->load->model("Cat_equipo_model");
 		$this->load->model("Tipo_model");
-		$sidebar_data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$this->load->model("Complemento_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
-		$data['sidebar'] = $this->load->view('templates/admin_sidebar', $sidebar_data, true);
 		$search = $this->input->post('buscar_libreria', TRUE);
 		$data['search'] = $search;
 		$data['miembros'] = $this->Equipo_model->get_all_miembros();
@@ -22,7 +22,9 @@ class Admin_equipo extends MY_Controller {
 		$this->load->model("Cat_equipo_model");
 		$id_categoria = $this->uri->segment(3);
 		$this->load->model("Tipo_model");
+		$this->load->model("Complemento_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
 	    $data['categorias'] = $this->Cat_equipo_model->get_all_categorias();
 	    $data['selected_categoria'] = $this->Cat_equipo_model->get_categoria($id_categoria);
@@ -31,19 +33,23 @@ class Admin_equipo extends MY_Controller {
 
 	public function nuevo_equipo() {
 		$this->load->model("Cat_equipo_model");
-		$this->load->model("Tipo_model");		
+		$this->load->model("Tipo_model");
+		$this->load->model("Complemento_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['categorias'] = $this->Cat_equipo_model->get_all_categorias();
 		$this->load->view('nuevo_equipo', $data);
 	}
 
-	public function editar_libro() {
+	public function editar_equipo() {
 		$this->load->model("Cat_equipo_model");
 		$this->load->model("Equipo_model");
-		$this->load->model("Tipo_model");	
-
-		$id = $this->uri->segment(3);
+		$this->load->model("Tipo_model");
+		$this->load->model("Complemento_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
+		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+		$id = $this->uri->segment(3);
+
 		$data['miembro'] = $this->Equipo_model->get_miembro($id);
 		$data['categorias'] = $this->Cat_equipo_model->get_all_categorias();
 		$this->load->view('editar_equipo', $data);
@@ -64,7 +70,7 @@ class Admin_equipo extends MY_Controller {
 		$id_categoria = $this->input->post('edit_id_categoria', TRUE);		
 		$cat_data = array('categoria' => $categoria);
 		$this->Cat_equipo_model->update_categoria($id_categoria, $cat_data);
-      redirect('admin_equipo/categorias_equipo');
+     	redirect('admin_equipo/categorias_equipo');
 	}
 
 	public function insertar_equipo() {
