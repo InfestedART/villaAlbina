@@ -28,6 +28,7 @@ class Admin_portada extends MY_Controller {
 
 	public function editar_portada() {
 		$this->load->model("Portada_model");
+		$this->load->model("Defaults_model");
 		$this->load->model("Areas_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
@@ -37,6 +38,7 @@ class Admin_portada extends MY_Controller {
 		$id = $this->uri->segment(3);
 		$data['imagen_portada'] = $this->Portada_model->get_portada($id);
 		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
+		$data['default_color'] = $this->Defaults_model->get_value('primary_color');
 		$this->load->view('editar_portada', $data);
 	}
 
@@ -63,8 +65,9 @@ class Admin_portada extends MY_Controller {
 		$imagen = $portada == '' ? '' : 'portadas/'.$portada;
 		$area = $this->input->post('area', TRUE);
 		$color = $this->input->post('color', TRUE);
+		$color_switch = $this->input->post('color_switch', TRUE);
+		$heredar = $color_switch == 'on' ? 1 : 0;
 		$orden = $this->Portada_model->get_last_portada()['orden'];
-		echo $color."<br />";
 
 		if ($area) {
 			$color = $this->Areas_model->get_area_color($area);
@@ -74,6 +77,7 @@ class Admin_portada extends MY_Controller {
 			'imagen' => $imagen,
 			'id_area' => $area,
 			'color' => $color,
+			'heredar_color' => $heredar,
 			'orden' => $orden + 1
 		);
 		$this->Portada_model->insertar_portada($portada_data);
@@ -87,12 +91,14 @@ class Admin_portada extends MY_Controller {
 		$area = $this->input->post('area', TRUE);
 		$color = $this->input->post('color', TRUE);
 		$color_switch = $this->input->post('color_switch', TRUE);
+		$heredar = $color_switch == 'on' ? 1 : 0;
 		if ($area && $color_switch) {
 			$color = $this->Areas_model->get_area_color($area);
 		}
 
 		$portada_data = array(
 			'id_area' => $area,
+			'heredar_color' => $heredar,
 			'color' => $color,
 		);
 		var_dump($portada_data);
@@ -108,13 +114,6 @@ class Admin_portada extends MY_Controller {
 		$selected_portada = $this->Portada_model->get_portada($id)->result_array()[0];
 		$orden_inicial = $selected_portada['orden'];
 		foreach ($portadas as $portada) {
-			printf(
-				"<p>%s--%s--%s %s</p>",
-				$portada['id_portada'],
-				$portada['imagen'],
-				$portada['orden'],
-				$portada['orden'] > $orden_inicial ? '-1' : ''
-			);
 			if($portada['orden'] > $orden_inicial) {
 				$portada_data['orden'] = $portada['orden']-1;
 				$this->Portada_model->update_portada($portada['id_portada'], $portada_data);

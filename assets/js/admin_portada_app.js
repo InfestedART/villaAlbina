@@ -12,15 +12,15 @@ function main() {
 	const color__input_label = document.getElementById('color__input_label');
 	const real_color = document.getElementById('real_color').value;
 
-	var initial_color = 'rgb(239, 125, 0)';
-	if (real_color) {
+	var initial_color = 'rgb(239, 125, 0)';	
+	if (real_color && real_color.indexOf('a') >= 0) {
 		initial_color = real_color.replace('a', '')
 			.substr(0, real_color.lastIndexOf(',')-1)
 			+')';
 	}
 
 	var picker = new CP(document.getElementById('color'));	
-	console.log(initial_color);
+
 	picker.set(initial_color);
 	picker.on("change", function(color) {
 		var rgb = CP.HEX2RGB(color);
@@ -66,7 +66,7 @@ function main() {
 		area_hidden.value = area.value;
 		var area_color = area_hidden.options[area.value].innerHTML;
 
-		if (area_color) {
+		if (area_color && area.value > 0) {
 			color_switch.disabled = false;
 			color_switch_label.classList.remove('form-label--disabled');
 			color_preview.classList.remove('hidden');

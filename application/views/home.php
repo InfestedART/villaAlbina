@@ -17,10 +17,14 @@ $dir = base_url().'assets/';
 	<div class='portada slider' id='slider'>
 		<div class='slider-wrapper'>
 		<?php
-			$default = 'rgba(30,87,153,1) 0%';
-			$portadas_array = $portadas->result_array();
-			foreach ($portadas_array as $portada) {
-				$color = $portada['color'] ? $portada['color'].' 0%' : 'rgba(30,87,153,1) 0%';
+			$portadas_array = $portadas->result_array();			
+			foreach ($portadas_array as $portada) {								
+				$color = $default_color.' 0%';
+				if ($portada['color']) {
+					$color = $portada['color'].' 0%';
+				} elseif ($portada['heredar_color']) {
+					$color = $portada['color_area'].' 0%';
+				}
 				printf(
 					"<div class='slide' style='background-image: url(%suploads/%s)'>
 						<div class='gradient' style='

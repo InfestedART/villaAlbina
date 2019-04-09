@@ -80,23 +80,28 @@
             <tbody><?php
          		foreach ($valid_portadas as $portada) {
          			$color = $default_color;
-         			if (!$portada['color'] && $portada['id_area'] && $portada['color_area']) {
-         				$color = $portada['color_area'];
-         			} elseif ($portada['color']) {
-         				$color = $portada['color'];
-         			}
+                  $helper = 'Color por Defecto';
+                  if ($portada['color']) {
+                     $color = $portada['color'];
+                     $helper = 'Color Personalizado';
+                  } 
+                  if ($portada['heredar_color'] > 0) {
+                     $color = $portada['color_area'];
+                     $helper = 'Color del Area';
+                  }
          			printf("
          				<tr>
-         					<td class='text-center'>%s - %s</td>
+         					<td class='text-center'>%s</td>
          					<td>
          						<img src='%suploads/%s' class='img-medium_small' />
          					</td>
          					<td>
+                           <span class='pb-2'>%s</span> <br />
          						<span
          							class='color-preview'
          							style='background-color: %s'
          						></span>
-         						<span>%s</span>
+         						<span> - %s</span>
          					</td>
          					<td>%s</td>
          					<td class='text-center'>
@@ -115,9 +120,9 @@
                            <i class='fa fa-times' title='QUITAR'></i>
                         </a></td>
          				</tr>",
-         				$portada['orden'], $portada['id_portada'],
+         				$portada['orden'],
          				$assets_dir, $portada['imagen'],
-         				$color, $color,
+         				$helper, $color, $color,
          				$portada['area'] ? $portada['area'] : '-',
          				$admin_dir, $portada['id_portada'],
          				$admin_dir, $portada['id_portada'],
@@ -149,25 +154,30 @@
          	</thead>
             <tbody><?php
          		foreach ($other_portadas as $portada) {
-         			$color = $default_color;
-         			if (!$portada['color'] && $portada['id_area'] && $portada['color_area']) {
-         				$color = $portada['color_area'];
-         			} elseif ($portada['color']) {
-         				$color = $portada['color'];
-         			}
+                  $color = $default_color;
+                  $helper = 'Color por Defecto';
+                  if ($portada['color']) {
+                     $color = $portada['color'];
+                     $helper = 'Color Personalizado';
+                  } 
+                  if ($portada['heredar_color'] > 0) {
+                     $color = $portada['color_area'];
+                     $helper = 'Color del Area';
+                  }
          			printf("
          				<tr>
          					<td class='text-center'>%s - %s</td>
          					<td>
          						<img src='%suploads/%s' class='img-medium_small' />
          					</td>
-         					<td>
-         						<span
-         							class='color-preview'
-         							style='background-color: %s'
-         						></span>
-         						<span>%s</span>
-         					</td>
+                        <td>
+                           <span class='pb-2'>%s</span> <br />
+                           <span
+                              class='color-preview'
+                              style='background-color: %s'
+                           ></span>
+                           <span> - %s</span>
+                        </td>
          					<td>%s</td>
          					<td class='text-center'>
          						<a href='%sadd_portada/%s'>
@@ -180,7 +190,7 @@
          				</tr>",
          				$portada['orden'], $portada['id_portada'],
          				$assets_dir, $portada['imagen'],
-         				$color, $color,
+                     $helper, $color, $color,
          				$portada['area'] ? $portada['area'] : '-',
          				$admin_dir, $portada['id_portada'],
          				$admin_dir, $portada['id_portada']

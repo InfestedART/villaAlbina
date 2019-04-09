@@ -132,9 +132,8 @@
                <div class='form-group row'>
                   <div class='col-sm-9 offset-3'> 
                      <div class="checkbox">
-                        <?php
-                           // echo $color_padre."--".$portada['color']."<br />";
-                           $checked = $color_padre == $portada['color'] && $portada['color'] != '';
+                        <?php                           
+                           $checked = $portada['heredar_color'];
                         ?>
                         <label>
                            <input
@@ -170,18 +169,31 @@
                   > Color del Degradado
                   </label>
                   <div class='col-sm-9'>
+                     <?php
+                        $color = $default_color;
+                        $helper = 'Color por Defecto';
+                        if ($portada['color']) {
+                           $color = $portada['color'];
+                           $helper = 'Color Personalizado';
+                        } 
+                        if ($portada['heredar_color'] > 0) {
+                           $color = $color_padre;
+                           $helper = 'Color del Area';
+                        }
+                     ?>
                      <input
                         type="text"
                         name="real_color"
                         id='real_color'
                         class='hidden'
-                        value="<?php echo $portada['color']; ?>"
+                        value="<?php echo $color; ?>"
                      />
                      <input
                         id='color'
                         name='color'
                         class="form-control color_picker-input"
                         type='text'
+                        style='background-color: <? echo $color; ?>'
                         <?php echo $checked ? 'disabled' : ''; ?>
                      /> 
                   </div>
