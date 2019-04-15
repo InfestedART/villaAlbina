@@ -32,6 +32,7 @@ class Admin_area extends MY_Controller {
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['areas'] = $this->Areas_model->get_all_areas();
+		$data['get_area'] = $this->input->get('area', TRUE);
 
 		$this->load->view('nueva_subarea', $data);
 	}
@@ -78,7 +79,7 @@ class Admin_area extends MY_Controller {
 	}
 
 	public function insertar_subarea() {
-		$this->load->model("Areas_model");
+		// $this->load->model("Areas_model");
 		$this->load->model("Subarea_model");
 		$subarea = $this->input->post('subarea', TRUE);
 		$area = $this->input->post('area', TRUE);

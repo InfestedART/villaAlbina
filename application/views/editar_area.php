@@ -52,7 +52,7 @@
        <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">
-            <h5 class='form-title'>Editar Area</h5>
+            <h5 class='form-title'>Editar Área</h5>
             <?php
                $edited_area = $area->result_array()[0];
                echo form_open_multipart(

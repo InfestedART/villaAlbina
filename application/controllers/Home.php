@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 		$this->load->model("Portada_model");
 		$this->load->model("Defaults_model");
 		$data['portadas'] = $this->Portada_model->get_valid_portadas();
-		$data['paginas'] = $this->Paginas_model->get_valid_paginas();
+		$data['paginas'] = $this->Paginas_model->get_home_paginas();
 		$pages = $data['paginas']->result_array();
 
 		foreach ($pages as $index => $pagina) {

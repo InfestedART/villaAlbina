@@ -81,10 +81,12 @@
                   );
                   if (strlen($tiene_hijos) > 0) {
                      printf("
-                        <a href='#' class='expand_btn' id='area_%s'>
-                           <i class='fa fa-plus' id='%s'></i>
+                        <a href='#' class='expand_btn %s' id='area_%s'>
+                           <i class='fa fa-%s' id='%s'></i>
                         </a>",
+                        $open_subareas === $area['id_area'] ? 'open' : 'closed',
                         $area['id_area'],
+                        $open_subareas === $area['id_area'] ? 'minus' : 'plus',
                         $area['id_area']
                      ); 
                   }
@@ -114,10 +116,17 @@
                             <i class='fa fa-edit'></i>
                            </a>
                         </td>
+                        <td class='text-center'>
+                           <a href='%snueva_subarea?area=%s' title='NUEVA AREA'>
+                              <i class='fa fa-plus-square'
+                                 style='font-size: 16px;'></i>
+                           </a>
+                        </td>
                      </tr>",
                      $admin_dir.'/toggle_area/'.$area['id_area'].'?toggle='.$toggle,
                      $area['status'] ? 'status__on' : 'status__off',
                      $area['status'] ? 'slider__on' : 'slider__off',
+                     $admin_dir, $area['id_area'],
                      $admin_dir, $area['id_area']
                   );
                   foreach ($subareas_array as $subarea) {
@@ -138,9 +147,9 @@
                               <span class='slider %s'/>
                               </a>
                            </td>
-                           <td class='text-center'>
+                           <td colspan='2'>
                               <a href='%seditar_subarea/%s' title='EDITAR'>
-                              <i class='fa fa-edit'></i>
+                              <i class='ml-2 fa fa-edit'></i>
                               </a>
                            </td>
                         </tr>",                        

@@ -16,11 +16,11 @@
 				.substr(0, real_color.lastIndexOf(',')-1)
 				+')';
 		}
-		
+
 		picker.set(initial_color);
 		picker.on("change", function(color) {
 			var rgb = CP.HEX2RGB(color);
-			var rgb_color = 'rgba('+rgb[0]+','+rgb[1]+', '+rgb[2]+', 1)';
+			var rgb_color = 'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+', 1)';
 			color_input.style.backgroundColor = rgb_color;
 			color_input.value = rgb_color;
 		});
@@ -59,7 +59,7 @@
 				color__input_label.classList.remove('form-label--disabled');
 				color_input.style.backgroundColor = initial_color;
 				color_input.value = initial_color;
-				color_input.disabled = false;
+				color_input.disabled = false;				
 			}
 		}
 

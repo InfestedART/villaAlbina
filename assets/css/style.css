@@ -354,6 +354,7 @@ body {
 }
 
 .subarea__titulo {
+	margin-top: 0.6rem;
 	text-align: center;
 }
 
@@ -475,7 +476,7 @@ body {
 	}
 }
 
-.publicacion__container {
+.publicacion__container, .slider__container {
 	position: relative;
 }
 

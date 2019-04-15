@@ -41,3 +41,7 @@
 .flecha img {
 	height: 55px;
 }
+
+.capitalize {
+	text-transform: capitalize;
+}

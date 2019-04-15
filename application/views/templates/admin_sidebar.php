@@ -18,9 +18,16 @@
 
     <ul class="sidemenu">
 
-      <li><a href="#">
+      <li><?php
+         $page_active = (
+           strpos($this->uri->segment(1), 'pagina') > -1
+          ) ? 'sidemenu--active' : '' 
+         ?>
+        <a      
+          href='<?php echo $admin_dir."admin_pagina" ?>'
+          class='<?php echo $page_active; ?>' >
         <i class="fa fa-scroll" aria-hidden="true"></i>
-        <span>Paginas</span>
+        <span>Páginas</span>
       </a></li>
 
       <li><?php
@@ -30,9 +37,9 @@
          ?>
         <a
           href='<?php echo $admin_dir."admin_area" ?>'
-          class='<?php echo $usuario_active; ?>' >
+          class='<?php echo $area_active; ?>' >
           <i class="fa fa-table" aria-hidden="true"></i>
-          <span>Areas</span>
+          <span>Áreas</span>
       </a></li>
 
       <?php 

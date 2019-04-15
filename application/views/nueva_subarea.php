@@ -5,7 +5,7 @@
 	$admin_dir = base_url().'cpanel/';
 
    $error = $msg = '';
-   $subarea_alert = $nombre_alert = false;
+   $subarea_alert = $nombre_alert = $area_alert = false;
 ?>
 
 <!DOCTYPE html>
@@ -87,13 +87,15 @@
                         id='area'
                         name='area'
                         class="form-control
-                        <?php echo $categoria_alert ? 'alert' : ''; ?>"
+                        <?php echo $area_alert ? 'alert' : ''; ?>"
                      > 
                         <option value=''> Seleccione una opción</option>
                         <?php
                            foreach ($areas_array as $area) {
-                              printf("<option value='%s'>%s</option>",
+                              $isSelected = $area['id_area'] == $get_area ? 'selected' : '';
+                              printf("<option value='%s' %s>%s</option>",
                                     $area['id_area'],
+                                    $isSelected,
                                     $area['area']
                               );
                            }

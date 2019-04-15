@@ -2,12 +2,13 @@
 	$dir = base_url().'assets/';
 ?>
 
-	<div class='row'>
+
 	<?php
 		setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		foreach ($seccion as $noticia) {
 			printf(
-				"<div class='noticia col-12 col-sm-6 col-md-4'>
+				"<div class='slide_container noticia col-12 col-sm-6 col-md-4'>
+					<div class='publicacion__slide'>
 					<a href='%s' class='noticia__btn'>
 						<div
 							class='noticia__imagen'
@@ -22,6 +23,7 @@
 						<h5 class='noticia__titulo'>%s</h5>
 					</a>
 					<p class='noticia__descripcion'>%s</p>
+					</div>
 				</div>",
 				base_url().'noticia/?id='.$noticia['id_post'],
 				$dir,
@@ -33,4 +35,4 @@
 			);
 		}
 	?>
-	</div>
+

@@ -166,7 +166,7 @@
                      class="form-label col-sm-3 <?php
                         echo $checked ? 'form-label--disabled' : ''; ?>"
                      id='color__input_label'
-                  > Color del Degradado
+                  > Color del Degradado:
                   </label>
                   <div class='col-sm-9'>
                      <?php

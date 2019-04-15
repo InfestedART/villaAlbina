@@ -192,6 +192,7 @@
 	color: white;
 	margin-left: 20px;
 	cursor: pointer;
+	vertical-align: middle;
 }
 
 .status {
@@ -278,10 +279,11 @@
 	cursor: pointer;
 }
 
-.color-picker {
+.color-picker, .pika-single.is-bound {
 	margin-top: -80px;
 }
 
-.admin-table tr.subarea {
+.admin-table tr.subarea,
+.admin-table tr.subpagina {
 	background-color: #eaeaea;
 }

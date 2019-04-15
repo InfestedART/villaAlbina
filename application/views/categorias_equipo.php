@@ -42,7 +42,7 @@
             <div class="col-12">   
             <a class='nav-btn' href='<?php echo $admin_dir."nuevo_equipo"; ?>'>
                <i class="fa fa-plus mr-1"></i>
-               Nuevo miembro
+               Nueva Categoría
             </a>
             </div>
          </div>   

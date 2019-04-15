@@ -141,7 +141,6 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 			<div class='timeline'>
 			<?php					
 				foreach ($subareas as $index => $subarea) {
-					// var_dump($subarea);
 					printf("
 						<a class='timeline__punto' href='%s'>
 							<span>%s</span>
@@ -163,7 +162,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 <?php
 	$this->load->view('templates/footer'); 
 ?>
-	<script src=<?php  echo $dir."js/conocenos_slider.js"; ?> ></script>
+	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
 </body>
 
 </html>
