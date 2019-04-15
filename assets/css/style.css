@@ -509,6 +509,9 @@ body {
 .publicacion__slide {
 	min-width: 100%;
 	flex-grow: 1;
+}
+
+.publicacion__slide, .slide_container {
 	-webkit-transition-duration: 1s;
   	-moz-transition-duration: 1s;
   	-o-transition-duration: 1s;

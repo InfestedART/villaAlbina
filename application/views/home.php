@@ -133,6 +133,7 @@ $dir = base_url().'assets/';
 		);
 		$data['enlace'] = $paginas_array[$index]['enlace'];
 		$data['color'] = $paginas_array[$index]['color'];
+		$data['id_pagina'] = $paginas_array[$index]['id_pagina'];
 		$data['seccion'] = $row;
 		$this->load->view('seccion/'.$page_seccion, $data);
 		$enlace =  base_url().$paginas_array[$index]['enlace'];
@@ -140,7 +141,7 @@ $dir = base_url().'assets/';
 		echo "		</div>
 					</div>
 				</div>
-				<div class='row text-center'>
+				<div class='row no-gutters text-center'>
 					<div class='col-12 my-3'>
 						<a
 							href='$enlace'

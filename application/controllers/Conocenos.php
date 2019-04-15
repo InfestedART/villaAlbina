@@ -9,7 +9,7 @@ class Conocenos extends CI_Controller {
 
 		$data['active'] = $this->input->get('active', TRUE);
 		$data['color'] = $this->Paginas_model->get_page_color(1)['color'];
-		$data['paginas'] = $this->Paginas_model->get_valid_paginas()->result_array();
+		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
 		$data['subareas'] = $this->Subpaginas_model->get_valid_subpaginas()->result_array();
 		$data['equipo'] = $this->Equipo_model->get_valid_miembros()->result_array();
 		$this->load->view('conocenos', $data);

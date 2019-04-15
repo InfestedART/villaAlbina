@@ -7,7 +7,7 @@ class Noticia extends CI_Controller {
 		$this->load->model("Paginas_model");
 
 		$id = $this->input->get('id', TRUE);
-		$data['paginas'] = $this->Paginas_model->get_valid_paginas()->result_array();
+		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
 		$data['news'] = $this->Noticias_model->get_noticia($id)->result_object();
 
 		$this->load->view('noticia', $data);
