@@ -129,7 +129,7 @@ $dir = base_url().'assets/';
 			$dir.'img/flecha_derecha_2.png', $paginas_array[$index]['id_pagina'],
 			$page_color,
 			$paginas_array[$index]['titulo'],
-			$index
+			$paginas_array[$index]['id_pagina']
 		);
 		$data['enlace'] = $paginas_array[$index]['enlace'];
 		$data['color'] = $paginas_array[$index]['color'];

@@ -15,7 +15,7 @@ function main() {
 	const derechas = document.getElementsByClassName('flecha_derecha');
 	const izquierdas = document.getElementsByClassName('flecha_izquierda');
 	
-	// console.log(sliders);
+	//console.log(sliders);
 
 	function moveLeft() {
 		if (active > 1) {
@@ -41,24 +41,21 @@ function main() {
 
 	function tmoveLeft(targetId) {
 		const id = +targetId.substr(targetId.indexOf('_')+1);
-		console.log(targetId, id);
+		console.log(cantSlides[id], id);
 		
-		/*
 		if (activeArray[id] > 1) {
 			activeArray[id]--;
-			for(var i = 0; i < totalSlides; i++) {   
-			    allSlides[i].style.transform = 'translate('+(
+			for(var i = 0; i < cantSlides[id]; i++) {   
+			    /*allSlides[i].style.transform = 'translate('+(
 			    	-sliderWidth * (active-1)
-			    )+'px)';
+			    )+'px)';*/
 		  	}
-		}
-		*/
-		
+		}		
 	}
 
 	function tmoveRight(targetId) {
 		const id = +targetId.substr(targetId.indexOf('_')+1);
-		console.log(targetId, id);
+		console.log(cantSlides[id], targetId, id);
 		
 		/*
 		if (activeArray[id] > 1) {
@@ -72,16 +69,18 @@ function main() {
 		*/
 		
 	}
-
 
 	// izq_btn.addEventListener('click' , moveLeft);
 	// der_btn.addEventListener('click' , moveRight);
 
 	var activeArray = [];
-	var cantSlides = []
+	var cantSlides = {};
+	var slidersId = [];
 	for (var i=0; i<sliders.length; i++) {
+		const index = +sliders[i].id.substr(sliders[i].id.indexOf('_')+1);
+		//console.log(sliders[i].id, index);
 		activeArray[i] = 1;
-		cantSlides[i] = document.getElementById('homeSlider_'+i).children.length;
+		cantSlides[index] = document.getElementById('homeSlider_'+index).children.length;
 		izquierdas[i].addEventListener('click' , function(ev) {
 			tmoveLeft(ev.target.id);
 		});
@@ -89,9 +88,8 @@ function main() {
 			tmoveLeft(ev.target.id);
 		});	
 	}
-	console.log(cantSlides);
-	console.log(document.getElementById('homeSlider_0'));
-	console.log(document.getElementById('homeSlider_0').children);
+	//console.log(cantSlides);
+	// console.log(document.getElementById('homeSlider_0').children);
 }
 
 window.addEventListener('load' , main);
