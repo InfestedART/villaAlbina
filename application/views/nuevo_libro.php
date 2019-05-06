@@ -60,7 +60,7 @@
             <?php
                $categorias_array = $categorias->result_array();
                echo form_open_multipart(
-                  'admin_libreria/insertar_libro',
+                  'admin_libro/insertar_libro',
                   array('id' => 'form_libro')
                );
             ?>

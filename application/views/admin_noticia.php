@@ -85,11 +85,20 @@
                   $order_direction = (
                      !$direction || $direction == 'desc' || $orderby !== 'titulo'
                   ) ? 'asc'
-                    : 'desc';
+                    : 'desc';                  
                   echo $admin_dir."?orderby=titulo&direction=".$order_direction;
                   ?>'
-                  class='admin-table__title'>
+                  class='admin-table__title admin_order'>
                      Titulo
+                     <?php
+                        $titulo_sort = 'sort';
+                        if ($orderby == 'titulo' && $direction == 'asc') {
+                           $titulo_sort .= '-up';
+                        } elseif ($orderby == 'titulo' && $direction == 'desc') {
+                           $titulo_sort .= '-down';
+                        }
+                     ?>
+                     <i class='ml-2 fa fa-<?php echo $titulo_sort; ?>'></i>
                   </a>
                   </th>
                   <th>
@@ -100,8 +109,17 @@
                     : 'desc';
                   echo $admin_dir."?orderby=fecha&direction=".$order_direction;
                   ?>'
-                  class='admin-table__title'>
+                  class='admin-table__title admin_order'>
                      Fecha
+                     <?php
+                        $fecha_sort = 'sort';
+                        if ($orderby == 'fecha' && $direction == 'asc') {
+                           $fecha_sort .= '-up';
+                        } elseif ($orderby == 'fecha' && $direction == 'desc') {
+                           $fecha_sort .= '-down';
+                        }
+                     ?>
+                     <i class='ml-2 fa fa-<?php echo $fecha_sort; ?>'></i>
                   </a>
                   </th>
                   <th>
@@ -112,14 +130,23 @@
                     : 'desc';
                   echo $admin_dir."?orderby=fuente&direction=".$order_direction;
                   ?>'
-                  class='admin-table__title'>
+                  class='admin-table__title admin_order'>
                      Fuente
+                     <?php
+                        $fuente_sort = 'sort';
+                        if ($orderby == 'fuente' && $direction == 'asc') {
+                           $fuente_sort .= '-up';
+                        } elseif ($orderby == 'fuente' && $direction == 'desc') {
+                           $fuente_sort .= '-down';
+                        }
+                     ?>
+                     <i class='ml-2 fa fa-<?php echo $fuente_sort; ?>'></i>
                   </a>
                   </th>
                   <th>Resumen</th>
                   <th>Imagen Destacada</th>
                   <th>Status</th>
-                  <th colspan="2">Opciones</th>
+                  <th colspan="2">Acciones</th>
                </tr>
                </thead>
                <tbody>

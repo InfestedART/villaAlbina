@@ -15,22 +15,24 @@
 							>
 						</div>
 					</a>
-					<p class='noticia__fecha'>
-						Del %s al %s
+					<p	class='publicacion__fecha'
+						style='color: %s'
+					> Del %s al %s
 					</p>
 					<a href='%s' class='noticia__btn'>
-						<h5 class='noticia__titulo'>%s %s</h5>
+						<h5 class='noticia__titulo'>%s</h5>
 					</a>
 					<p class='noticia__descripcion'>%s</p>
 					</div>
 				</div>",
-				base_url().'agenda/?id='.$evento['id_post'],
+				base_url().'evento?id='.$evento['id_post'],
 				$dir,
 				$evento['imagen'],
+				$color,
 				strftime('%d de %B', strtotime($evento['fecha_ini'])),
 				strftime('%d de %B', strtotime($evento['fecha_fin'])),
-				base_url().'agenda/?id='.$evento['id_post'],
-				$evento['titulo'], $index,
+				base_url().'evento?id='.$evento['id_post'],
+				$evento['titulo'],
 				$evento['info']
 			);
 		}

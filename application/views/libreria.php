@@ -15,29 +15,20 @@ $dir = base_url().'assets/';
 <body>
 
 	<?php
-		$data['paginas'] = $paginas;
-		$this->load->view('templates/navbar', $data);
+		$navbar_data['paginas'] = $paginas;
+		$navbar_data['selected_pagina'] = $libro_data;
+		$this->load->view('templates/navbar', $navbar_data);
 	?>
 	<div class="seccion container seccion__last px-4 pt-0 pt-md-3">
 
 		<div class='row mt-4'>
 
-			<div class='col-md-6'>
-				<h3 class='titulo-pagina'> LIBRERIA </h3>
+			<div class='col-md-8'>
+				<h3 class='titulo-pagina' style="color: <?php echo $color; ?>">
+					LIBRERIA
+				</h3>
 				<p class='text-left'>
 				Bienvenidos al catálogo de publicaciones de la Fundación Simón I. Patiño,  que reúne los títulos de su producción intelectual (impresa y audiovisual), tanto de las Editions Patiño de Ginebra, como de los distintos Centros que desarrollan su actividad en Bolivia. Puedes adquirir todas estas publicaciones en el CEDOAL. </p>
-			</div>
-
-			<div class="buscador mt-3 col-md-6 text-right"><?php
-					echo form_open(
-	               'libreria',
-	               array('id' => 'form_buscar_libro')
-	            ); ?>
-					<input class='buscador__input' name='search_libro' id='search_libro'/>
-					<button class='buscador__button' type='submit' id='search_libro_btn'>
-						<i class="fa fa-search"></i>
-					</button><?php
-					echo form_close(); ?>
 			</div>
 
 		</div>
@@ -61,7 +52,10 @@ $dir = base_url().'assets/';
 						</div>
 						<div class='container-libro'>
 							<h4 class='libro__subtitulo'>%s</h4>
-							<p>%s</p>
+							<p class='libro__categoria' 
+							   style='color: %s'>
+							   %s
+							</p>
 							<p>%s</p>
 							<p>%s</p>
 							<p 	class='container-libro__precio'
@@ -71,9 +65,10 @@ $dir = base_url().'assets/';
 					</div>",
 					$dir, $libro['imagen'],
 					$libro['titulo'],
+					$color,
+					$libro['categoria'],	
 					$libro['autor'],
 					$libro['descripcion'],
-					$libro['categoria'],
 					$color,
 					$libro['precio']
 				);
@@ -85,14 +80,42 @@ $dir = base_url().'assets/';
 
 		<div class='publicacion__nav row'>
 			<div class='col-12 text-center'>
-				<a href='#' class='showing_nav'> << </a>
 				<?php
-					$nav=[1, 2, 3, 4, 5];
-					foreach ($nav as $page) {
-						printf("<a href='#' class='showing_nav'>%s</a>", $page);
-					}
+					$noti_dir = base_url()."libreria";
+					$nav_size = ceil($cant_libros/$limit);					
+
+					if ($nav_size > 1) {
+						if ($step > 0) {
+							$prev = $step - 1;
+							printf("
+								<a href='%s' class='showing_nav'>
+									<<
+								</a>",
+								$noti_dir."?step=".$prev
+							);
+						}
+
+						for($i=0; $i<$nav_size; $i++) {
+							printf("
+								<a href='%s' class='showing_nav'>
+									%s
+								</a>",
+								$i == 0 ? $noti_dir : $noti_dir."?step=".$i,
+								$i+1
+							);
+						}
+
+						if ($step+1 < $nav_size) {
+							$next = $step + 1;
+							printf("
+								<a href='%s' class='showing_nav'>
+									>>
+								</a>",
+								$noti_dir."?step=".$next
+							);
+						}						
+					}					
 				?>
-				<a href='#' class='showing_nav'> >> </a>
 			</div>
 		</div>
 

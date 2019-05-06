@@ -5,7 +5,7 @@
 	<?php
 	foreach ($seccion as $libro) {
 		printf("
-			<div class='slide_container col-md-6 mb-3'>
+			<div class='slide_container col-12 col-md-6 mb-3'>
 				<div class='publicacion__slide'>
 					<div class='portada-libro'>
 						<img src='%s%s'>

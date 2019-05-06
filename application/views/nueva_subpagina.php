@@ -89,12 +89,14 @@
                      > 
                         <option value=''>Seleccione una Opción</option>
                         <?php
-                           foreach ($paginas_array as $pagina_parent) {
-                              printf("<option value='%s'>%s</option>",
-                                    $pagina_parent['id_pagina'],
-                                    $pagina_parent['titulo']
-                              );
-                           }
+                        foreach ($paginas_array as $pagina_parent) {
+                           $isSelected = $pagina_parent['id_pagina'] == $get_pagina ? 'selected' : '';
+                           printf("<option value='%s' %s>%s</option>",
+                                 $pagina_parent['id_pagina'],
+                                 $isSelected,
+                                 $pagina_parent['titulo']
+                           );
+                        }
                         ?>
                      </select>
                   </div>

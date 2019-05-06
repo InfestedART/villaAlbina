@@ -64,12 +64,17 @@ $dir = base_url().'assets/';
 	      <div class='nav__item-container'>
 			<?php
 			 	$paginas_array = $paginas->result_array();
-			 	foreach ($paginas_array as $pagina) {
+			 	$nav_paginas_array = $nav_paginas->result_array();
+			 	foreach ($nav_paginas_array as $pagina) {
+			 		$link = $pagina['external_url']
+			 			? $pagina['enlace']
+			 			: base_url()."#seccion_".$pagina['id_pagina'];
 			 		printf(
-			 			"<a href='%s' class='nav__item d-none d-md-inline-block'>
+			 			"<a href='%s' class='nav__item d-none d-md-inline-block' %s>
 			 				<p class='nav__label'>%s</p>
 			 			</a>",
-			 			base_url()."#seccion_".$pagina['id_pagina'],
+			 			$link,
+			 			$pagina['external_url'] ? "target='_blank'" : "",
 			 			$pagina['titulo']
 			 		);
 			 	}			
@@ -99,16 +104,15 @@ $dir = base_url().'assets/';
 		$page_id = "seccion_".$paginas_array[$index]['id_pagina'];
 		$next_page_id = $index+1 >= sizeof($paginas_array)
 			? "footer"
-			: "seccion_".$paginas_array[$index+1]['id_pagina'];
+			: "seccion_".$paginas_array[$index+1]['id_pagina'];		
 		printf("
 			<div class='seccion slider__container' id='%s'>
-
-				<div class='flecha izquierda d-none d-md-block'>
+				<div class='flecha izquierda'>
 					<a href='#%s' class='flecha_izquierda' id='izquierda'>
 					<img src='%s' id='flechaI_%s' />
 					</a>
 				</div>
-				<div class='flecha derecha d-none d-md-block'>
+				<div class='flecha derecha'>
 					<a href='#%s'class='flecha_derecha' id='derecha'>
 					<img src='%s' id='flechaD_%s'/>
 					</a>

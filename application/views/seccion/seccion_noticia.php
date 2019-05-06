@@ -16,9 +16,9 @@
 							>
 						</div>
 					</a>
-					<p class='noticia__fecha'>
-						%s
-					</p>
+					<p	class='publicacion__fecha'
+						style='color: %s'
+					> %s </p>
 					<a href='%s' class='noticia__btn'>
 						<h5 class='noticia__titulo'>%s</h5>
 					</a>
@@ -28,7 +28,8 @@
 				base_url().'noticia/?id='.$noticia['id_post'],
 				$dir,
 				$noticia['imagen'],
-				strftime('%A %d de %B de %Y', strtotime($noticia['fecha'])),
+				$color,
+				strftime('%d de %B de %Y', strtotime($noticia['fecha'])),
 				base_url().'noticia/?id='.$noticia['id_post'],
 				$noticia['titulo'],
 				$noticia['resumen']

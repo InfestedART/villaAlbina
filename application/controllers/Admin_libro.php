@@ -83,7 +83,7 @@ class Admin_libro extends MY_Controller {
 		$this->load->model("Cat_libro_model");
 		$id = $this->uri->segment(3);
 		$deleted_libro = $this->Libro_model->get_libro($id)->result_object()[0];
-		$deleted_portada = realpath('assets/'.$deleted_libro->portada);
+		$deleted_portada = realpath('assets/'.$deleted_libro->imagen);
 		if ($deleted_portada) {
 			unlink($deleted_portada);	
 		}		

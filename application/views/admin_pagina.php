@@ -47,7 +47,6 @@
          </div>
       </div>        
 
-
       <div class='card admin-content'>
          <div class='row no-gutters'>
          <div class="col-12">
@@ -55,7 +54,6 @@
             $paginas_array = $paginas->result_array();
             $subpaginas_array = $subpaginas->result_array();
             $open_subpaginas = $this->session->flashdata('open_subpaginas');
-            echo $open_subpaginas."<br />";
          ?>          
             <table class='admin-table'>
 
@@ -135,13 +133,19 @@
                            <a href='%s'>
                            <i class='fa fa-chevron-down' title='MOVER ABAJO'></i>
                         </td>
+                        <td class='text-center'>
+                           <a href='%snueva_subpagina?pagina=%s' title='NUEVA PAGINA'>
+                              <i class='fa fa-plus-square'
+                                 style='font-size: 16px;'></i>
+                           </a>
                      </tr>",                     
                      $admin_dir.'/toggle_pagina/'.$pagina['id_pagina'].'?toggle='.$toggle,
                      $pagina['status'] ? 'status__on' : 'status__off',
                      $pagina['status'] ? 'slider__on' : 'slider__off',
                      $admin_dir, $pagina['id_pagina'],
                      $pagina['status'] ? $admin_dir.'subir_pagina/'.$pagina['id_pagina'] : '#',
-                     $pagina['status'] ? $admin_dir.'bajar_pagina/'.$pagina['id_pagina'] : '#'
+                     $pagina['status'] ? $admin_dir.'bajar_pagina/'.$pagina['id_pagina'] : '#',
+                     $admin_dir, $pagina['id_pagina']
                   );
 
                   foreach ($subpaginas_array as $subpagina) {

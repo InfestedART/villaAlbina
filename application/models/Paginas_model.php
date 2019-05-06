@@ -27,7 +27,7 @@ class Paginas_model extends CI_Model {
       $this->db->from('pagina');
       $this->db->where('pagina.status', 1);
       $this->db->where('pagina.mostrar_navbar', 1);
-      $this->db->join('modelo', 'pagina.id_modelo = modelo.id_modelo');
+      // $this->db->join('modelo', 'pagina.id_modelo = modelo.id_modelo', 'left');
       $this->db->order_by('pagina.orden', 'asc');
       $query = $this->db->get(); 
       return $query;    

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-04-2019 a las 04:36:53
+-- Tiempo de generación: 15-04-2019 a las 00:10:55
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 7.1.1
 
@@ -35,10 +35,11 @@ CREATE TABLE `area` (
 --
 
 INSERT INTO `area` (`id_area`, `area`, `color_area`, `status`) VALUES
-(1, 'Exposiciones e Investigaciones', '', 1),
-(2, 'Centros de Información y Documentación', '', 1),
-(3, 'Centro de Acción Pedagógica CAP', 'rgba(115,112, 4, 1)', 1),
-(4, 'Centro del Cómic C+C Espacio', '', 1);
+(1, 'Dirección y Coordinación', 'rgba(84,33,90,1)', 1),
+(2, 'Centros de Información y Documentación', 'rgba(134,192,63,1)', 1),
+(3, 'Centro de Acción Pedagógica (CAP)', 'rgba(150,40,45,1)', 1),
+(4, 'Centro del cómic y la animación', 'rgba(242,190,65,1)', 1),
+(5, 'Teatro Doña Albina', 'rgba(242,150,29,1)', 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +131,8 @@ CREATE TABLE `contenido` (
 INSERT INTO `contenido` (`id_content`, `titulo`, `imagen`, `html`, `mostrar`) VALUES
 (1, 'Nuestra Historia', 'uploads/subpagina/historia.jpg', 'El Espacio Simón I. Patiño (ESIP) inició sus funciones en La Paz el 14 de septiembre de 1984 en la Av. 16 de Julio, El Prado, al lado del Edif. Alameda. Posteriormente, se trasladó a la calle Juan de la Riva, al Edif. Alborada. En 1993 aproximadamente volvió al Prado, a la planta baja del Edif. Alameda. En esas primeras ubicaciones, el ESIP contaba simplemente con una oficina y una sala de exposiciones reducida. La capacidad de actividades en ese entonces era de una exposición al mes, con una conferencia o presentación de libro. En los primeros tiempos, la programación cultural del Espacio estuvo a cargo de la Dirección del Centro Pedagógico y Cultural Simón I. Patiño de Cochabamba; en los años sucesivos, a medida que fue ampliando sus áreas de trabajo y consolidando su presencia en la vida cultural de La Paz, el ESIP se convirtió en un centro autónomo con una dirección propia.\r\n\r\nEn 1996, la Fundación Simón I. Patiño inauguró las actuales instalaciones, en el edificio Guayaquil, Avenida Ecuador No 2503, esquina Belisario Salinas, en el barrio de Sopocachi. Desde el 15 de mayo de 2006, habiéndose ampliado el radio de acción del ESIP, se alquila también un inmueble al que se ha denominado “Anexo del Espacio Patiño”, situado sobre la Av. Ecuador 2475.\r\nEl 28 de septiembre de 2001 se creó el Centro de Documentación en Artes y Literaturas Latinoamericanas (CEDOAL), dos años después, el 29 de enero de 2003, abrió sus puertas el Café del Cómic, que luego se transformó en el actual Centro del Cómic, C+C Espacio. Desde el 2 de enero de 2008 funciona el Centro de Acción Pedagógica (CAP) y el 1 de octubre de 2013 se inauguró el C-Musical, área que  originariamente se llamó Archivo Fonográfico del CEDOAL.\r\n\r\nActualmente, el Espacio Patiño viene llevando a cabo su proyecto más ambicioso, la construcción de un nuevo edificio que centralizará las áreas con las que cuenta. Esta nueva edificación estará ubicada sobre la avenida Ecuador esquina Rosendo Gutiérrez.', 1),
 (2, 'Misión y Visión', 'uploads/subpagina/mision_vision.jpg', 'Misión\r\n\r\nNuestra misión es proyectar, ejecutar y promover, actividades culturales y de formación desde un enfoque solidario, pluralista e integrador, de diálogo entre individuos, culturas e instituciones; atender a los usuarios y al público con profesionalidad, amabilidad y esmero.\r\n\r\nPartimos de la puesta en valor y difusión de diferentes manifestaciones culturales y de formación, participando activamente en los procesos de investigación, enseñanza - aprendizaje, creación, producción y difusión intelectual y artística, preservación y conservación del patrimonio documental, tangible e intangible, estudio y aplicación de nuevas tecnologías.\r\n\r\nVisión\r\n\r\nEstablecer nuestra presencia como referente cultural y de formación, incentivando la creatividad, la investigación, el estudio y la aplicación de nuevas tecnologías, junto a la preservación del patrimonio y la memoria, promoviendo los valores humanos universales, la solidaridad y el diálogo entre culturas, participando en la construcción de ciudadanos innovadores, críticos y proactivos.\r\n\r\n', 1),
-(3, 'Equipo de Trabajo', 'uploads/subpagina/equipo.jpg', '', 0);
+(3, 'Equipo de Trabajo', 'uploads/subpagina/equipo.jpg', '', 0),
+(8, 'Teatro Doña Albina', 'uploads/subpagina/DSC_1289-20.jpg', 'contenido de prueba temporal', 1);
 
 -- --------------------------------------------------------
 
@@ -163,12 +165,18 @@ CREATE TABLE `evento` (
   `id_area` int(11) NOT NULL,
   `organizador` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `hora` time NOT NULL,
+  `fecha_ini` date NOT NULL,
   `fecha_fin` date NOT NULL,
-  `costo` float NOT NULL,
   `lugar` varchar(140) COLLATE utf8_spanish2_ci NOT NULL,
-  `ubicacion` text COLLATE utf8_spanish2_ci NOT NULL,
   `info` text COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `evento`
+--
+
+INSERT INTO `evento` (`id_post`, `id_area`, `organizador`, `hora`, `fecha_ini`, `fecha_fin`, `lugar`, `info`) VALUES
+(39, 2, 'Espacio Simón I. Patiño', '18:00:00', '2019-02-06', '2019-06-05', '5.° piso, aula 3', 'Todos los miércoles\r\nEstudiantes Bs 350, artistas Bs 400 y profesionales Bs 500\r\nCupo limitado\r\n\r\nInformaciones e inscripciones:\r\nRecepción\r\nSopocachi, av. Ecuador\r\nentre c. Rosendo Gutiérrez y Quito.\r\nTels. 2413530 -2418249');
 
 -- --------------------------------------------------------
 
@@ -194,7 +202,8 @@ INSERT INTO `html` (`id_post`, `contenido`) VALUES
 (25, 'Entre los protagonistas de sus filmes están Jorge Ortiz, Daniela Gandarillas, Paloma Delaine y Jess Velarde.\n\nLa compilación incluye las producciones La montaña interior (2012); Arcano (2013); La piel del mar (2013); Raptus (2013); Chroma (2014); Sakramento (2016); La república de las ideas (2017) y 2025 profético (2018).\n\nEl crítico de cine Claudio Sánchez asegura que Torres es uno de los testigos y protagonistas más importantes de la producción de súper 8 en Bolivia. \n\n“Cineasta outsider, su obra atraviesa cuatro décadas de la historia del cine nacional, y su filmografía se enriquece con producciones realizadas en diferentes formatos. Torres inscribe su nombre como el primer cineasta en estrenar un largometraje digital boliviano, se trata de su película Alma y el viaje al mar, que en enero de 2003 fue presentada comercialmente en la sala Modesta Sanjinés de la Casa de la Cultura de La Paz”.\n'),
 (30, ' \r\n<div>Página siete / <span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Alejandra Pau </span><br><br><h1 open=\"\" sans-serif;=\"\" line-height:=\"\" em;=\"\" letter-spacing:=\"\" xss=removed class=\"titular\">Amigos del muro: dibujar un personaje y hacerlo real</h1> \r\n</div> \r\n<div><br> \r\n</div> \r\n<div><span open=\"\" xss=removed class=\"bajada\">La arquitecta e historietista, Alexandra Ramirez, convierte a sus dibujos, puntada a puntada, en personajes tangibles. 30 de ellos serán los protagonistas de una exposición.</span> \r\n</div> \r\n<div><br> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Con cada puntada,  cada extremidad articulada, cada tela reciclada convertida en un cuerpo,  Alexandra Ramirez  Flores, hace  tangibles los personajes salidos de su libreta personal de dibujos en la que plasma a los habitantes de su imaginación... Los amigos del muro. </span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>“Cada uno de los muñecos son personajes de una historia que empezó en 2004 (...)Se trata de la historia de Sandy,   una niña que tiene   un muro en su habitación,   una especie de portal  en el que ellos viven. Éste es el primer paso de un proyecto más grande: obtener fondos para hacer una serie animada en Stop Motion (técnica de animación)”, detalla la arquitecta e ilustradora, Alexandra Ramirez. </span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Sus  libretas contienen 243 bocetos y más de un centenar de diseños terminados;    de éstos,  30  piezas   formarán parte de una exposición que se inaugurará el 23 de enero  en el Espacio Simón I. Patiño.</span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Junto a la protagonista Sandy estarán personajes como Lizardo, Bruno, Roger, Felipe, Lio,  entre otros.</span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Durante la exposición denominada Amigos del Muro, se contará el inicio de  la historia  de los personajes que hoy habitan el mundo real. Es la cuarta muestra  que se realiza sobre ellos y será  el paso fundamental para que  la trama se cuente en otros formatos. </span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Junto a las piezas se exhibirán  cuadros originales pintados en acuarela y digitalmente. Se proyectarán audiovisuales en los que los personajes pueden moverse;  fotografías del proceso del desarrollo; y   pruebas de animación cuadro por cuadro.</span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Con ello, la artista boliviano-brasileña, que tiene una maestría en Animación 3D, transmitirá parte de su trabajo cuyo pilar es asumir el desafío de  hacer una pieza tridimensional a partir de un dibujo.</span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>La  exposición es parte de un gran proyecto en el cual los personajes formarán parte de libros infantiles, una novela gráfica y, finalmente, una  serie animada en Stop Motion, esta última dirigida a adolescentes y adultos.</span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div><span open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></span> \r\n</div> \r\n<div> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><span xss=removed>Sandy y el muro</span></p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Sandy es una niña solitaria cuyos mejores amigos son Felipe y Roger. Ella piensa   que se está volviendo loca porque hay manchas en una de sus paredes que le hablan. Decide escucharlas y ellas replican “No te preocupes, somos tus amigos del muro. Queremos ayudarte, pero queremos salir de aquí”.</p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>“Para salir necesitan un contenedor, es decir, que Sandy haga un muñeco. Cada pequeña mancha es un ‘almita’ que de alguna manera se transforma en el muñeco que ella está cosiendo (...) Cada amigo del muro lleva un mensaje muy sutil sobre la violencia contra la niñez, porque cuando hablamos de ‘almitas’ nos  referimos   a la muerte”, explica la expositora.</p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><span xss=removed><b>“Un  proyecto de vida”<br></b></span>Confeccionar cada  pieza puede tomar entre  tres semanas y  dos meses; todo el material que se utiliza para el armado es reciclado. La búsqueda de telas y texturas que se acerquen lo mejor posible al diseño que está  en papel es siempre un desafío.  </p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>“Yo lo llamo mucho: mi proyecto de vida”, dice Ramirez cuando admite que, aunque es una actividad creativa cuya  ejecución es  muy demandante,  nunca ha sido tan feliz al realizar un proyecto.  </p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>“Muchos de ellos surgen porque después de dibujarlos, mi mamá les ponía el nombre, ha sido la gran impulsora de todo esto. Por ello, la exposición está dedicada a ella”, destaca la animadora, que desde hace seis años es directora de la Asociación  de Viñetas con Altura. </p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Su madre falleció hace tres años y una parte importante del proyecto se enfoca en reivindicar su apoyo, fundamental para que la artista decida hacer realidad este proyecto. Apoyo que estuvo con ella desde siempre, como aquella vez que la llevó al cine a ver El extraño Mundo de Jack (The Nightmare Before Christmas) de Tim Burton, director de cine que se convirtió en una inspiración para   ella.  </p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed> </p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Con el tiempo ha ido perfeccionando las técnicas para armar la estructura y las  piezas cuyos detalles, que en su mayoría miden milímetros, tienen un alto nivel del complejidad.</p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Cuando comenzó a coser las piezas, vender los muñecos le resultaba muy difícil porque no transmitían la historia  de la que eran parte. Hoy son indivisibles de este mundo imaginario que juega con la realidad,  que pretende sobrepasar  lo lúdico y  comunicar un concepto.</p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>Si bien la historia  es un tanto autobiográfica, ya que  Ramirez como Sandy cosen y le dan forma a  los personajes para hacerlos reales,  la parte más importante es la carga emotiva marcada por  la presencia de su madre en el proceso, ella la ayudó a crear muchas historias y bautizó a muchos personajes. </p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed>“Cuando alguien se lleva un Amigo del Muro, no está adquiriendo un juguete. Se trata del diseño de autor que se convierte en una pieza que  tiene un concepto, una historia, una carga emotiva. Son personajes poderosos, ellos son las estrellas de todo esto aunque, a veces, se los vea como  ‘monstritos’”, concluye Ramirez.</p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><span xss=removed>Sobre la exposición  Amigos del muro</span></p> \r\n  <ul open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed> \r\n    <li xss=removed><span xss=removed>Fecha y lugar </span>La exposición Amigos del Muro de la artista Alexandra Ramirez se inaugurará  el 23 de enero,  a las 19:30 horas, en la Sala Multifuncional del Espacio Simón I. Patiño. Dirección:  Avenida Ecuador #2503, esquina Belisario Salinas. Edificio Guayaquil, mezanine. Sopocachi. </li> \r\n    <li xss=removed><span xss=removed>Sobre la muestra </span>Las 30 piezas expuestas estarán en cúpulas de vidrio. Cada pieza cuesta entre 200 y 500 bolivianos. </li> \r\n    <li xss=removed><span xss=removed> En las redes </span>Para saber más sobre la exposición se puede ingresar a la página  en Facebook: Los Amigos del Muro.</li> \r\n  </ul> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></p> \r\n  <p open=\"\" sans-serif;=\"\" font-size:=\"\" xss=removed><br></p> \r\n</div>'),
 (31, 'Los participantes se enfrentarán al micrófono para aprender a expresarse, según los organizadores. \r\n\r\nParte del programa implica que los asistentes adquirirán técnica vocal y lectura veloz, además de divertirse sincronizando su voz con la de sus personajes favoritos, desarrollando su capacidad de concentración de una forma amena y expresando emociones y sentimientos para lograr la interpretación actoral.\r\n\r\nEl taller será dictado por Habla Studios de La Paz, productora que hace años se dedica a la producción audiovisual. \r\n\r\nGanadora del concurso ‘Muéstranos tu arte’ (2017), organizado por el Espacio Simón I. Patiño, en la actualidad realiza prácticas preprofesionales de doblaje de películas live-action, series ánime, así como radionovelas, alcanzando más de un millón de visitas en su canal de YouTube. Demo: <a href=\'https://www.youtube.com/watch?v=Mxk6hQhWQGc\'>https://www.youtube.com/watch?v=Mxk6hQhWQGc</a>\r\n\r\nEl costo es de Bs 350, informaciones en el Espacio Patiño, teléfono 2410329 int. 221, celular 69735331.'),
-(33, 'El objetivo de la V Jornadas Pedagógicas Internacionales es crear un espacio de encuentro, reflexión, diálogo y trabajo, entre las personas comprometidas con la educación regular y alternativa, sobre el presente y futuro de la lectura.\r\n\r\nDaniel Cassany es licenciado en Filología Catalana, doctor en Letras y Ciencias de la Educación e investigador en Análisis del discurso en la Universitat Pompeu Fabra (Barcelona). Ha publicado más de 12 monografías sobre escritura y enseñanza de la lengua como Describir el escribir (1988), La cocina de la escritura (1996), Construir la escritura (1999), Tras las líneas (2006), Afilar el lapicero (2007), En línea: leer y escribir en la red (2012) o Enseñar lengua (1993, en coautoría); además de unos 100 artículos científicos. Ha sido profesor invitado en instituciones de más de 25 países en Europa, América y Asia.\r\n');
+(33, 'El objetivo de la V Jornadas Pedagógicas Internacionales es crear un espacio de encuentro, reflexión, diálogo y trabajo, entre las personas comprometidas con la educación regular y alternativa, sobre el presente y futuro de la lectura.\r\n\r\nDaniel Cassany es licenciado en Filología Catalana, doctor en Letras y Ciencias de la Educación e investigador en Análisis del discurso en la Universitat Pompeu Fabra (Barcelona). Ha publicado más de 12 monografías sobre escritura y enseñanza de la lengua como Describir el escribir (1988), La cocina de la escritura (1996), Construir la escritura (1999), Tras las líneas (2006), Afilar el lapicero (2007), En línea: leer y escribir en la red (2012) o Enseñar lengua (1993, en coautoría); además de unos 100 artículos científicos. Ha sido profesor invitado en instituciones de más de 25 países en Europa, América y Asia.\r\n'),
+(39, '¿Existe una diferencia entre autor y autora?, ¿qué representaciones de la masculinidad y de lo femenino existen en la literatura?, ¿qué otras figuraciones se pueden rastrear lejos de ese binarismo?, ¿es el género un rasgo de identidad o un estado pasajero por el que atraviesa un sujeto? Estas y más preguntas serán ampliadas en el quinto curso de teoría literaria.\r\n\r\nNo es requisito haber cursado las cuatro versiones anteriores ni ser literato, pero sí estar dispuesto a leer, pensar y debatir.\r\n\r\nMónica Velásquez\r\nEs doctora en Literatura Hispanoamericana por el Colegio de México. Obtuvo una beca en el International Writing Program en Iowa (1997). En 2017 fue condecorada por la República Francesa con la insignia de Caballero en la Orden de las Artes y las Letras.\r\n\r\nProducción intelectual\r\nHa publicado los poemarios: Tres nombres para un lugar (1995); Fronteras de doble filo (1998); El viento de los náufragos (2005); Hija de Medea, Premio Nacional de Poesía Yolanda Bedregal (2018), La sed donde bebes (2011) y Abdicar de lucidez (2016).\r\n\r\nEs editora de la Antología de poesía boliviana del siglo XX: Ordenar la danza (LOM Chile, 2004).\r\n\r\nTambién es crítica literaria, ha publicado, entre otros, Múltiples voces en la poesía de Francisco Hernández, Blanca Wiethüchter y Raúl Zurita (El Colegio de México, 2009), Demoniaco afán (Plural-Pittsburgh, 2010), y la colección de diez volúmenes sobre poesía boliviana, La crítica y el poeta (UMSA, 2010-2016).\r\n\r\nActualmente dicta cátedra en la carrera de Literatura de la Universidad Mayor de San Andrés y en la Universidad Católica Boliviana.\r\n');
 
 -- --------------------------------------------------------
 
@@ -286,6 +295,7 @@ DROP TABLE IF EXISTS `modelo`;
 CREATE TABLE `modelo` (
   `id_modelo` int(11) NOT NULL,
   `nombre_modelo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `seccion` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `model` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `metodo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `default_limit` int(11) NOT NULL DEFAULT '6',
@@ -296,11 +306,12 @@ CREATE TABLE `modelo` (
 -- Volcado de datos para la tabla `modelo`
 --
 
-INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `model`, `metodo`, `default_limit`, `id_tipo`) VALUES
-(1, 'libro', 'Libro_model', 'get_valid_libros', 2, 2),
-(2, 'noticia', 'Noticias_model', 'get_valid_noticias', 3, 1),
-(3, 'subpagina', 'Subpaginas_model', 'get_valid_subpaginas', 3, 0),
-(4, 'equipo', 'Equipo_model', 'get_valid_miembro', 1, 3);
+INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `seccion`, `model`, `metodo`, `default_limit`, `id_tipo`) VALUES
+(1, 'libro', 'seccion_libro', 'Libro_model', 'get_valid_libros', 2, 2),
+(2, 'noticia', 'seccion_noticia', 'Noticias_model', 'get_valid_noticias', 3, 1),
+(3, 'subpagina', 'seccion_subarea', 'Subpaginas_model', 'get_valid_subpaginas', 3, 0),
+(4, 'equipo', 'seccion_equipo', 'Equipo_model', 'get_valid_miembro', 1, 3),
+(5, 'evento', 'seccion_evento', 'Eventos_model', 'get_all_eventos', 6, 4);
 
 -- --------------------------------------------------------
 
@@ -342,11 +353,11 @@ CREATE TABLE `pagina` (
   `id_pagina` int(11) NOT NULL,
   `titulo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `seccion` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `color` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `color` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `external` tinyint(1) NOT NULL DEFAULT '0',
   `orden` int(11) NOT NULL,
+  `mostrar_navbar` tinyint(1) NOT NULL DEFAULT '1',
+  `mostrar_home` tinyint(1) NOT NULL DEFAULT '1',
   `id_area` int(11) NOT NULL,
   `id_modelo` int(11) NOT NULL,
   `id_content` int(11) DEFAULT NULL
@@ -356,12 +367,14 @@ CREATE TABLE `pagina` (
 -- Volcado de datos para la tabla `pagina`
 --
 
-INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `seccion`, `color`, `status`, `external`, `orden`, `id_area`, `id_modelo`, `id_content`) VALUES
-(1, 'Conócenos', 'conocenos', 'seccion_subarea', '#103969', 1, 0, 2, 0, 3, NULL),
-(2, 'Áreas', 'areas', '', '', 0, 0, 0, 0, 0, NULL),
-(3, 'Agenda', 'agenda', 'seccion_evento', '', 0, 0, 1, 0, 0, NULL),
-(6, 'Librería', 'libreria', 'seccion_libro', '#98005D', 1, 0, 3, 0, 1, NULL),
-(7, 'Noticias', 'noticias', 'seccion_noticia', '#BB272D', 1, 0, 4, 0, 2, NULL);
+INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `color`, `status`, `orden`, `mostrar_navbar`, `mostrar_home`, `id_area`, `id_modelo`, `id_content`) VALUES
+(1, 'Quiénes Somos', 'conocenos', 'rgba(0,13, 97, 1)', 1, 1, 1, 1, 0, 3, NULL),
+(2, 'Áreas', 'areas', '', 0, 0, 1, 1, 0, 0, NULL),
+(3, 'Agenda', 'agenda', 'rgba(112,0, 0, 1)', 1, 4, 1, 1, 0, 5, NULL),
+(6, 'Librería', 'libreria', 'rgba(118,0, 97, 1)', 1, 2, 1, 1, 0, 1, NULL),
+(7, 'Noticias', 'noticias', 'rgba(177,0, 0, 1)', 1, 3, 1, 1, 0, 2, NULL),
+(8, 'Convocatorias', 'categorias', 'rgba(0,86, 25, 1)', 0, 0, 1, 1, 0, 0, NULL),
+(10, 'Multimedia', 'testpage', 'rgba(239,125, 0, 1)', 0, 0, 1, 1, 0, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -399,7 +412,8 @@ INSERT INTO `publicacion` (`id_post`, `titulo`, `imagen`, `status`, `tipo`) VALU
 (31, 'ABREN TALLER DE DOBLAJE Y TÉCNICA ACTORAL', 'uploads/noticias/img_abren-taller-de-doblaje-y-tecnica-actoral_178.jpg', 1, 1),
 (33, 'Daniel Cassany hablará del presente y futuro de la lectura', 'uploads/noticias/img_daniel-cassany-hablara-del-presente-y-futuro-de-la-lectura_189.jpg', 1, 1),
 (34, 'Betshabé Salmón: precursora del pensamiento femenino en Bolivia', 'uploads/libros/img_betshab-salmn-precursora-del-pensamiento-femenino-en-bolivia_79.jpg', 1, 2),
-(38, 'Eloisa Vargas', 'uploads/equipo/i_eloisa-vargas-_5.jpg', 1, 3);
+(38, 'Eloisa Vargas', 'uploads/equipo/i_eloisa-vargas-_5.jpg', 1, 3),
+(39, 'TALLER TEORÍA LITERARIA V Conduce: Mónica Velásquez', 'uploads/eventos/img_taller-teora-literaria-v-conduce-mnica-velsquez_1567.jpg', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -420,9 +434,25 @@ CREATE TABLE `subarea` (
 --
 
 INSERT INTO `subarea` (`id_subarea`, `subarea`, `status`, `id_area`) VALUES
-(1, 'subarea1-1', 1, 1),
-(2, 'subarea2-1', 1, 3),
-(3, 'test subarea', 0, 1);
+(1, 'Exposiciones', 1, 1),
+(2, 'Biblioteca de Niños', 1, 3),
+(3, 'Convocatorias', 1, 1),
+(4, 'Eventos y Actividades', 1, 4),
+(5, 'Eventos y Actividades', 1, 1),
+(6, 'CEDOAL', 1, 2),
+(7, 'CE Musical', 1, 2),
+(8, 'Centro Hemerográfico Especializado', 1, 2),
+(9, 'Huerto Educativo', 1, 3),
+(10, 'Proyectos Especiales', 1, 3),
+(11, 'Convocatorias', 1, 3),
+(12, 'Pasantías', 1, 3),
+(13, 'Cursos y Talleres', 1, 3),
+(14, 'Actividades', 1, 3),
+(15, 'Eventos y Actividades', 1, 5),
+(16, 'Convocatorias', 1, 5),
+(17, 'Cusos y Talleres', 1, 4),
+(18, 'Proyectos Especiales', 1, 4),
+(19, 'Convocatorias', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -437,7 +467,7 @@ CREATE TABLE `subpagina` (
   `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `id_pagina` int(11) NOT NULL,
-  `id_modelo` int(11) NOT NULL,
+  `id_modelo` int(11) DEFAULT NULL,
   `id_content` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
@@ -446,9 +476,10 @@ CREATE TABLE `subpagina` (
 --
 
 INSERT INTO `subpagina` (`id_subpagina`, `subpagina`, `enlace`, `status`, `id_pagina`, `id_modelo`, `id_content`) VALUES
-(1, 'Nuestra Historia', 'historia', 1, 1, 3, 1),
-(2, 'Nuestra Misión y Visión', 'mision_vision', 1, 1, 3, 2),
-(3, 'Nuestro Equipo de Trabajo', 'equipo_trabajo', 1, 1, 4, 3);
+(1, 'Nuestra Historia', 'historia', 1, 1, 0, 1),
+(2, 'Nuestra Misión y Visión', 'mision_vision', 1, 1, 0, 2),
+(3, 'Nuestro Equipo de Trabajo', 'equipo_trabajo', 1, 1, 4, 3),
+(8, 'Teatro Doña Albina', '2', 1, 2, 0, 8);
 
 -- --------------------------------------------------------
 
@@ -472,7 +503,8 @@ CREATE TABLE `tipo_post` (
 INSERT INTO `tipo_post` (`id_tipo`, `tipo_post`, `nombre_sidebar`, `icono`, `sub_categoria`) VALUES
 (1, 'noticia', 'Noticias', 'newspaper', 0),
 (2, 'libro', 'Libreria', 'book', 1),
-(3, 'equipo', 'Equipo', 'child', 1);
+(3, 'equipo', 'Equipo', 'child', 1),
+(4, 'evento', 'Eventos', 'calendar ', 0);
 
 -- --------------------------------------------------------
 
@@ -620,7 +652,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `categoria_equipo`
 --
@@ -640,7 +672,7 @@ ALTER TABLE `complemento`
 -- AUTO_INCREMENT de la tabla `contenido`
 --
 ALTER TABLE `contenido`
-  MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `imagen_portada`
 --
@@ -660,29 +692,29 @@ ALTER TABLE `miembro_equipo`
 -- AUTO_INCREMENT de la tabla `modelo`
 --
 ALTER TABLE `modelo`
-  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `pagina`
 --
 ALTER TABLE `pagina`
-  MODIFY `id_pagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT de la tabla `subarea`
 --
 ALTER TABLE `subarea`
-  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `subpagina`
 --
 ALTER TABLE `subpagina`
-  MODIFY `id_subpagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_subpagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `tipo_post`
 --
 ALTER TABLE `tipo_post`
-  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;

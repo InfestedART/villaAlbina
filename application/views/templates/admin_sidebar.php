@@ -53,11 +53,15 @@
             <a href='%s' class='%s'>
               <i class='fa fa-%s' aria-hidden='true'></i>
               <span>%s</span>
+              %s
             </a>",          
           $admin_dir."admin_".$post['tipo_post'],
           $isActive,
           $post['icono'],
-          $post['nombre_sidebar']
+          $post['nombre_sidebar'],
+          $post['sub_categoria'] 
+            ? "<i class='dropdown fa fa-chevron-down'></i>" 
+            : ""
         );
         if ($post['sub_categoria']) {
           printf("

@@ -81,7 +81,7 @@
                </div>
 
                <div class='form-group row'>
-                  <label class='form-label col-sm-3'>Area</label>
+                  <label class='form-label col-sm-3'>Área:</label>
                   <div class='col-sm-9'>
                      <select
                         id='area'

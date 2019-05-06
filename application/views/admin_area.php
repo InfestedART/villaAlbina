@@ -65,7 +65,7 @@
                <th>Area</th>
                <th>Color</th>
                <th class='text-center'>Status</th>
-               <th colspan="3">Acciones</th>
+               <th colspan="4" class='text-center'>Acciones</th>
             </tr>
             </thead>
 

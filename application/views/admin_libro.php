@@ -99,8 +99,17 @@
                        : 'desc';
                      echo $admin_dir."?orderby=titulo&direction=".$order_direction;
                      ?>'
-                     class='admin-table__title'>
+                     class='admin-table__title admin_order'>
                         Titulo
+                         <?php
+                           $titulo_sort = 'sort';
+                           if ($orderby == 'titulo' && $direction == 'asc') {
+                              $titulo_sort .= '-up';
+                           } elseif ($orderby == 'titulo' && $direction == 'desc') {
+                              $titulo_sort .= '-down';
+                           }
+                        ?>
+                        <i class='ml-2 fa fa-<?php echo $titulo_sort; ?>'></i>
                   </a>
                   </th>
                   <th>
@@ -111,8 +120,17 @@
                        : 'desc';
                      echo $admin_dir."?orderby=id_categoriaLibro&direction=".$order_direction;
                      ?>'
-                     class='admin-table__title'>
+                     class='admin-table__title admin_order'>
                         Categoria
+                        <?php
+                           $catLibro_sort = 'sort';
+                           if ($orderby == 'id_categoriaLibro' && $direction == 'asc') {
+                              $catLibro_sort .= '-up';
+                           } elseif ($orderby == 'id_categoriaLibro' && $direction == 'desc') {
+                              $catLibro_sort .= '-down';
+                           }
+                        ?>
+                        <i class='ml-2 fa fa-<?php echo $catLibro_sort; ?>'></i>
                      </a>
                   </th>
                   <th>
@@ -123,8 +141,17 @@
                        : 'desc';
                      echo $admin_dir."?orderby=autor&direction=".$order_direction;
                      ?>'
-                     class='admin-table__title'>
+                     class='admin-table__title admin_order'>
                         Autor
+                        <?php
+                           $autor_sort = 'sort';
+                           if ($orderby == 'autor' && $direction == 'asc') {
+                              $autor_sort .= '-up';
+                           } elseif ($orderby == 'autor' && $direction == 'desc') {
+                              $autor_sort .= '-down';
+                           }
+                        ?>
+                        <i class='ml-2 fa fa-<?php echo $autor_sort; ?>'></i>
                      </a>
                   </th>
                   <th class='text-center'>
@@ -135,8 +162,17 @@
                        : 'desc';
                      echo $admin_dir."?orderby=precio&direction=".$order_direction;
                      ?>'
-                     class='admin-table__title'>
+                     class='admin-table__title admin_order'>
                         Precio
+                        <?php
+                           $precio_sort = 'sort';
+                           if ($orderby == 'precio' && $direction == 'asc') {
+                              $precio_sort .= '-up';
+                           } elseif ($orderby == 'precio' && $direction == 'desc') {
+                              $precio_sort .= '-down';
+                           }
+                        ?>
+                        <i class='ml-2 fa fa-<?php echo $precio_sort; ?>'></i>
                      </a>
                   </th>
                   <th>Descripción</th>

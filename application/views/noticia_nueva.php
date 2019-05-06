@@ -131,14 +131,29 @@
                </div>
 
                <div class='form-group row'>
+                  <label class='form-label col-sm-3'>
+                     <div class=''>
+                        Galeria de Imágenes:
+                     </div>
+                     <div class='mt-2'>
+                        <span class='form-change-img m-0' id='add_img'>
+                        Añadir
+                        </span>
+                     </div>
+                  </label>
+
+                  <div class='col-sm-9'>
+                     <div id='img_array'>
+                     </div> 
+                  </div>
+               </div>
+
+               <div class='form-group row'>
                   <label class='form-label col-12'>Contenido</label>
                   <div class='col-sm-12'>
-                     <textarea
-                        id='contenido'
-                        name='contenido'
-                        class="form-control"
-                        rows=12
-                     /></textarea>
+                     <?php 
+                        echo $this->ckeditor->editor("contenido");
+                     ?>
                   </div>
                </div>
 

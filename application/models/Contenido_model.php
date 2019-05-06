@@ -8,5 +8,10 @@ class Contenido_model extends CI_Model {
 	    $this->db->where('id_post', $id);
 	    $this->db->update('html', $data);
   	}
+
+  	function delete_contenido($id) {
+	   	$this->db->delete('html', array('id_post' => $id));
+ 	}
+
 }
 ?>

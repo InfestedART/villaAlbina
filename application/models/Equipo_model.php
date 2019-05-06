@@ -19,7 +19,7 @@ class Equipo_model extends CI_Model {
         if ($orderby == 'titulo') {
           $this->db->order_by('publicacion.'.$orderby, $direction);  
         } elseif($orderby) {
-          $this->db->order_by('libro.'.$orderby, $direction);
+          $this->db->order_by('miembro_equipo.'.$orderby, $direction);
         }
         $query = $this->db->get(); 
         return $query;    

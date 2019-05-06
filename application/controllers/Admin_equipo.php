@@ -11,9 +11,13 @@ class Admin_equipo extends MY_Controller {
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
-		$search = $this->input->post('buscar_libreria', TRUE);
+		$orderby = $this->input->get('orderby', TRUE);
+		$direction = $this->input->get('direction', TRUE);
+		$search = $this->input->post('buscar_equipo', TRUE);
 		$data['search'] = $search;
-		$data['miembros'] = $this->Equipo_model->get_all_miembros();
+		$data['miembros'] = $this->Equipo_model->get_all_miembros(
+			$search, $orderby, $direction
+		);
 		$data['categorias'] = $this->Cat_equipo_model->get_all_categorias();
 		$this->load->view('admin_equipo', $data);
 	}
@@ -73,24 +77,28 @@ class Admin_equipo extends MY_Controller {
      	redirect('admin_equipo/categorias_equipo');
 	}
 
+	private function set_img_config() {
+		$img_config['upload_path'] = './assets/uploads/equipo/';
+      $img_config['allowed_types'] = 'gif|jpg|png|jpeg';
+      $img_config['max_size'] = 0;
+      $img_config['max_width'] = 0;
+      $img_config['max_height'] = 0;
+      return $img_config;
+	}
+
 	public function insertar_equipo() {
 		$this->load->model('Equipo_model');
 		$this->load->model("Publicacion_model");
 		$this->load->model("Cat_equipo_model");
-	   $this->load->library('upload', $config);
+	   $this->load->library('upload');
 
-		$config['upload_path'] = './assets/uploads/equipo/';
-	   $config['allowed_types'] = 'gif|jpg|png|jpeg';
-	   $config['max_size'] = 0;
-	   $config['max_width'] = 0;
-	   $config['max_height'] = 0;
-
+      $this->upload->initialize($this->set_img_config());
 		if (!$this->upload->do_upload('imagen')) {
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();
 				$this->session->set_flashdata('error', $error);
 				echo $error;
-		 		redirect('admin_equipo');
+		 		//redirect('admin_equipo');
 			}
 		}		
 	   $nombre = $this->input->post('nombre', TRUE);
@@ -106,9 +114,8 @@ class Admin_equipo extends MY_Controller {
 			'tipo' => 3
 		);
 		$this->Publicacion_model->insert_publicacion($post_data);
-
+		
 		$last_id = $this->Publicacion_model->get_last_post();
-
 		$miembro_data = array(
 			'id_post' => $last_id,
 			'nombre' => $nombre,
@@ -117,6 +124,7 @@ class Admin_equipo extends MY_Controller {
 			'descripcion' => $descripcion
 		);
 		$this->Equipo_model->insert_miembro($miembro_data);
+
       redirect('admin_equipo');
 	}
 

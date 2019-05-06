@@ -98,32 +98,59 @@
                        : 'desc';
                      echo $admin_dir."?orderby=titulo&direction=".$order_direction;
                      ?>'
-                     class='admin-table__title'>
-                        Nombre
+                     class='admin-table__title admin_order'>
+                     Nombre
+                     <?php
+                        $titulo_sort = 'sort';
+                        if ($orderby == 'titulo' && $direction == 'asc') {
+                           $titulo_sort .= '-up';
+                        } elseif ($orderby == 'titulo' && $direction == 'desc') {
+                           $titulo_sort .= '-down';
+                        }
+                     ?>
+                     <i class='ml-2 fa fa-<?php echo $titulo_sort; ?>'></i>
                   </a>
                   </th>
                   <th>
                   <a href='<?php
                      $order_direction = (
-                       !$direction || $direction == 'desc' || $orderby !== 'id_categoriaLibro'
+                       !$direction || $direction == 'desc' || $orderby !== 'id_categoria_equipo'
                      ) ? 'asc'
                        : 'desc';
-                     echo $admin_dir."?orderby=id_categoriaLibro&direction=".$order_direction;
+                     echo $admin_dir."?orderby=id_categoria_equipo&direction=".$order_direction;
                      ?>'
-                     class='admin-table__title'>
+                     class='admin-table__title admin_order'>
                         Categoria
+                     <?php
+                        $catEquipo_sort = 'sort';
+                        if ($orderby == 'id_categoria_equipo' && $direction == 'asc') {
+                           $catEquipo_sort .= '-up';
+                        } elseif ($orderby == 'id_categoria_equipo' && $direction == 'desc') {
+                           $catEquipo_sort .= '-down';
+                        }
+                     ?>
+                     <i class='ml-2 fa fa-<?php echo $catEquipo_sort; ?>'></i>
                      </a>
                   </th>
                   <th>
                   <a href='<?php
                      $order_direction = (
-                        !$direction || $direction == 'desc' || $orderby !== 'autor'
+                        !$direction || $direction == 'desc' || $orderby !== 'cargo'
                      ) ? 'asc'
                        : 'desc';
-                     echo $admin_dir."?orderby=autor&direction=".$order_direction;
+                     echo $admin_dir."?orderby=cargo&direction=".$order_direction;
                      ?>'
-                     class='admin-table__title'>
-                        Cargo
+                     class='admin-table__title admin_order'>
+                     Cargo
+                     <?php
+                        $cargo_sort = 'sort';
+                        if ($orderby == 'cargo' && $direction == 'asc') {
+                           $cargo_sort .= '-up';
+                        } elseif ($orderby == 'cargo' && $direction == 'desc') {
+                           $cargo_sort .= '-down';
+                        }
+                     ?>
+                     <i class='ml-2 fa fa-<?php echo $cargo_sort; ?>'></i>
                      </a>
                   </th>
                   <th>Descripción</th>

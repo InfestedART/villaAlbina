@@ -182,7 +182,7 @@
                      <input
                         id='portada'
                         name='portada'
-                        class="form-control
+                        class="form-control d-inline-block align-middle
                            <?php if ($hayImagen) { echo 'hidden'; } ?>"
                         style="<?php if ($hayImagen) { echo 'width:calc(70% - 100px)'; } ?>"
                         type='file'

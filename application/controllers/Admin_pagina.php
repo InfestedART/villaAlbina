@@ -55,7 +55,7 @@ class Admin_Pagina extends MY_Controller {
 		$data['modelos'] = $this->Modelo_model->get_all_modelos();
 		$data['paginas'] = $this->Paginas_model->get_all_paginas();
 		$data['subpaginas'] = $this->Subpaginas_model->get_all_subpaginas();
-
+		$data['get_pagina'] = $this->input->get('pagina', TRUE);
 		$this->load->view('nueva_subpagina', $data);
 	}
 

@@ -15,8 +15,9 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 
 <body>
 	<?php
-		$data['paginas'] = $paginas;
-		$this->load->view('templates/navbar', $data);
+		$navbar_data['paginas'] = $paginas;
+		$navbar_data['selected_pagina'] = $conocenos_data;
+		$this->load->view('templates/navbar', $navbar_data);
 	?>
 	
 	<div class="seccion pt-0 pt-md-3">		
@@ -117,17 +118,17 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 
 			<ul class='publicacion__slider-dots'>
 				<?php
-					$active=true;
+					$dots_active=true;
 					foreach ($equipo as $index => $miembro) {
 						printf("
 							<li
 								class='slider_dot %s'
 								id='%s'
 							></li>",
-							$active ? 'active' : '',
+							$dots_active ? 'active' : '',
 							$index
 						);
-						$active = false;
+						$dots_active = false;
 					}
 				?>	
 			</ul>
@@ -139,19 +140,20 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 	<div class='row no-gutters text-center seccion__last'>
 		<div class='col-12'>
 			<div class='timeline'>
-			<?php					
-				foreach ($subareas as $index => $subarea) {
-					printf("
-						<a class='timeline__punto' href='%s'>
-							<span>%s</span>
-						</a>",
-						base_url()."conocenos?active=".$subarea['enlace'],
-						$subarea['titulo']
-					);
-					if ($index+1 <  sizeof($subareas)) {
-						echo "<span class='timeline__linea'></span>";	
-					}						
-				}
+			<?php			
+			foreach ($subareas as $index => $subarea) {
+				printf("
+					<a class='timeline__punto %s' href='%s'>
+						<span>%s</span>
+					</a>",
+					$subarea['enlace'] == $active ? 'timeline__active' : '',
+					base_url()."conocenos?active=".$subarea['enlace'],
+					$subarea['titulo']
+				);
+				if ($index+1 < sizeof($subareas)) {
+					echo "<span class='timeline__linea'></span>";	
+				}						
+			}
 			?>
 			</div>
 		</div>
