@@ -22,9 +22,11 @@ class Admin_evento extends CI_Controller {
 		$this->load->model("Areas_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Defaults_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['areas'] = $this->Areas_model->get_all_areas();
+		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$this->load->view('nuevo_evento', $data);
 	}
 

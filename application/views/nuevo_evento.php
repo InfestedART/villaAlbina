@@ -272,8 +272,14 @@
    </div>
    </div>
 
+
    <script src=<?php  echo $assets_dir."js/pickaday.js"; ?> ></script>
    <script src=<?php  echo $assets_dir."js/admin_evento_app.js"; ?> ></script>
+   <script src=<?php  echo $assets_dir."js/contenido.js"; ?> ></script>
+   <script
+      src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=<?php echo $api_key; ?>">    
+   </script>
+
 <?php
    $this->load->view('templates/admin_footer'); 
 ?>

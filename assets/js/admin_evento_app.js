@@ -25,6 +25,21 @@
 		const hide_imgs = document.getElementsByClassName('hide_img');
 		const restaurar_imgs = document.getElementsByClassName('restaurar_img');
 
+		  tinymce.init({
+		    selector: '#contenido',
+		    plugins: 'code fullscreen lists link table', 
+		    toolbar: [
+    			'formatselect fontselect fontsizeselect',
+    			'cut copy paste',
+    			'bold italic underline strikethrough',
+    			'forecolor backcolor',
+    			'alignleft aligncenter alignright alignjustify',  
+    			'bullist numlist outdent indent',
+    			'link | table',
+    			'blockquote code | fullscreen |'
+  			]
+		  });
+
 		function init_datePicker(node) {
 			return new Pikaday({
 	        	field: node,
