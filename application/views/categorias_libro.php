@@ -2,7 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
    $this->load->library('calendar');
 	$assets_dir = base_url().'assets/';
-	$admin_dir = base_url().'admin_libreria/';
+	$admin_dir = base_url().'admin_libro/';
 
    $error = $msg = '';
    $categoria_alert = $edit_categoria_alert = false;
@@ -69,7 +69,7 @@
                               <td>%s</td>",
                               $categoria['categoria']                              
                         );
-                        if($categoria['status']) {
+                        if($categoria['status_categoria']) {
                            printf("
                               <td class='text-center'>
                                  <i class='fa fa-check'></i>
@@ -112,7 +112,7 @@
                </span>
              <?php
                echo form_open(
-                  'admin_libreria/editar_categoria',
+                  'admin_libro/editar_categoria',
                   array('id' => 'form_edit_categoria')
                );
             ?>
@@ -154,7 +154,7 @@
                </span>
              <?php
                echo form_open(
-                  'admin_libreria/insertar_categoria',
+                  'admin_libro/insertar_categoria',
                   array('id' => 'form_categoria')
                );
             ?>
