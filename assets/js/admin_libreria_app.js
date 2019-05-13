@@ -17,7 +17,6 @@ function main() {
 			&& autor.value.trim() !== ''
 			&& precio.value.trim() !== '';
 
-		console.log(form_is_validated);
 		precio.classList.remove('input-error');
 		autor.classList.remove('input-error');
 		categoria.classList.remove('input-error');

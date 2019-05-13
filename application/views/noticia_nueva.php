@@ -11,16 +11,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Espacio Simon I Patiño - Nuevo Usuario</title>
-
-	<link rel="stylesheet" href=<?php  echo $assets_dir."css/bootstrap.css"; ?> />
-   <link rel="stylesheet" href=<?php  echo $assets_dir."css/fa_all.min.css"; ?> />
-	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
-   <link rel="stylesheet" href=<?php  echo $assets_dir."css/style.css"; ?> />
-
+   <?php
+      $data['title'] = 'Panel de Control - Noticia Nueva';
+      $this->load->view('templates/meta', $data);
+   ?>
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/pickaday.css"; ?> />
 </head>
 
@@ -137,6 +131,24 @@
                </div>
 
                <div class='form-group row'>
+                  <label class='form-label col-sm-3'>
+                     <div class=''>
+                        Galeria de Imágenes:
+                     </div>
+                     <div class='mt-2'>
+                        <span class='form-change-img m-0' id='add_img'>
+                        Añadir
+                        </span>
+                     </div>
+                  </label>
+
+                  <div class='col-sm-9'>
+                     <div id='img_array'>
+                     </div> 
+                  </div>
+               </div>
+
+               <div class='form-group row'>
                   <label class='form-label col-12'>Contenido</label>
                   <div class='col-sm-12'>
                      <textarea
@@ -164,8 +176,14 @@
    </div>
    </div>
 
+   <?php
+      $contenido_src = "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=".$api_key;
+   ?>
    <script src=<?php  echo $assets_dir."js/pickaday.js"; ?> ></script>
    <script src=<?php  echo $assets_dir."js/admin_noticia_app.js"; ?> ></script>
-   <?php
-      $this->load->view('templates/admin_footer'); 
-   ?>
+   <script src=<?php echo $assets_dir."js/contenido.js"; ?> ></script>
+   <script src=<?php echo $contenido_src; ?> ></script>
+
+<?php
+   $this->load->view('templates/admin_footer'); 
+?>

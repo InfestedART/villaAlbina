@@ -6,12 +6,16 @@
 		const expand_btn = document.getElementById('expand_btn');
 		const sidebar = document.getElementById('sidebar');
 		const admin_container = document.getElementsByClassName('admin-container');
+		const iconos = document.getElementsByClassName('dropdown');
 
 		function collapse_sidebar() {
 			sidebar.classList.add('collapsed');	
 			admin_container[0].classList.add('container-expanded');	
 			collapse_btn.classList.add('hidden');
 			expand_btn.classList.remove('hidden');
+			for (let i=0; i<iconos.length; i++) {
+				iconos[i].classList.add('hidden');
+			}
 		}
 
 		function expand_sidebar() {
@@ -19,6 +23,9 @@
 			admin_container[0].classList.remove('container-expanded');	
 			expand_btn.classList.add('hidden');
 			collapse_btn.classList.remove('hidden');
+			for (let i=0; i<iconos.length; i++) {
+				iconos[i].classList.remove('hidden');
+			}
 		}
 
 		collapse_btn.addEventListener('click', function(ev){

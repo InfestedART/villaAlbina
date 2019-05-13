@@ -4,35 +4,34 @@ class Noticias_model extends CI_Model {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
-	$this->db->join('contenido', 'contenido.id_post = noticia.id_post');
+	$this->db->join('html', 'html.id_post = noticia.id_post');
 	if ($search) {
-    	$this->db->like('publicacion.titulo', $search);
-      $this->db->or_like('publicacion.resumen', $search);
+      $this->db->like('publicacion.titulo', $search);
       $this->db->or_like('noticia.fuente', $search);
-      $this->db->or_like('contenido.contenido', $search);
+      $this->db->or_like('html.contenido', $search);
     }	
 	$this->db->order_by(
-		$orderby ? $orderby : 'publicacion.fecha',
+		$orderby ? $orderby : 'noticia.fecha',
 		$direction
 	);
 	$query = $this->db->get(); 
 	return $query;
   }
 
-  function get_valid_noticias($limit, $search = false) {
+  function get_valid_noticias($limit, $search=false, $step=0) {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
-	$this->db->join('contenido', 'contenido.id_post = noticia.id_post');
+	$this->db->join('html', 'html.id_post = noticia.id_post');
 	$this->db->where('publicacion.status', 1);
 	if ($search) {
     	$this->db->like('publicacion.titulo', $search);
-      $this->db->or_like('publicacion.resumen', $search);
-      $this->db->or_like('noticia.fuente', $search);
-      $this->db->or_like('contenido.contenido', $search);
+      	$this->db->or_like('noticia.fuente', $search);
+      	$this->db->or_like('html.contenido', $search);
     }
-	$this->db->order_by('publicacion.fecha', 'desc');
-	$this->db->limit($limit);
+    $start = $step * $limit;
+	$this->db->order_by('noticia.fecha', 'desc');
+	$this->db->limit($limit, $start);
 	$query = $this->db->get(); 
 	return $query;  	
   }
@@ -41,7 +40,7 @@ class Noticias_model extends CI_Model {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
-	$this->db->order_by('publicacion.fecha', 'desc');
+	$this->db->order_by('noticia.fecha', 'desc');
 	$this->db->limit(6);
 	$query = $this->db->get(); 
 	return $query;
@@ -52,7 +51,27 @@ class Noticias_model extends CI_Model {
 	$this->db->from('noticia');
 	$this->db->where('noticia.id_post', $id);
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
-	$this->db->join('contenido', 'contenido.id_post = noticia.id_post');
+	$this->db->join('html', 'html.id_post = noticia.id_post');
+	$query = $this->db->get(); 
+	return $query;
+  }
+
+  function get_prev_noticia($fecha) {
+	$this->db->select('*');
+	$this->db->from('noticia');
+	$this->db->where('noticia.fecha >', $fecha);
+	$this->db->order_by('noticia.fecha', 'desc');
+	$this->db->limit(1);
+	$query = $this->db->get(); 
+	return $query;
+  }
+
+  function get_next_noticia($fecha) {
+	$this->db->select('*');
+	$this->db->from('noticia');
+	$this->db->where('noticia.fecha <', $fecha);
+	$this->db->order_by('noticia.fecha', 'desc');
+	$this->db->limit(1);
 	$query = $this->db->get(); 
 	return $query;
   }
@@ -64,6 +83,7 @@ class Noticias_model extends CI_Model {
   function delete_noticia($id) {
   	$this->db->delete('publicacion', array('id_post' => $id)); 
    	$this->db->delete('noticia', array('id_post' => $id));
+   	$this->db->delete('html', array('id_post' => $id));
   }
 
   function update_noticia($id, $data) {

@@ -1,5 +1,5 @@
 .admin-body {
-	min-height: calc(100vh - 80px);
+	min-height: calc(100vh);
 	background-color: #EEEEEE;
 }
 
@@ -142,20 +142,30 @@
 	color: rgb(239, 125, 0);
 }
 
+.admin-table i {
+	font-size: 14px;
+}
+
+.admin__form {
+	margin-top: 1rem;
+}
+
+.admin_order {
+	text-decoration: underline;
+}
+
 .form-title {
-	margin: 0.5rem 0 1.5rem;
-	padding-bottom: 1rem;
+	margin: 0.5rem 0;
+	padding-bottom: 0.5rem;
 	border-bottom: 1px solid #DDDDDD;
 }
 
 .form-label {
 	display: inline-block;
-	width: 25%;
 }
 
 .form-input {
 	display: inline-block;
-	width: 74%;
 }
 
 .form-input-inline {
@@ -166,6 +176,12 @@
 .form-label-inline {
 	margin-right: 15px;
 	font-size: 14px;
+	vertical-align: middle;
+}
+
+.form-label--disabled {
+	text-decoration: line-through;
+	color: #AAAAAA;
 }
 
 .form-show-img {
@@ -178,6 +194,12 @@
 	color: white;
 	margin-left: 20px;
 	cursor: pointer;
+	vertical-align: middle;
+}
+
+.form__underline {
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 8px;
 }
 
 .status {
@@ -214,6 +236,23 @@
 	left: 18px;
 }
 
+.galeria_img {
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.archivo_span {
+	display: block;	
+	margin-bottom: 0.75rem;
+}
+
+.archivo_name {
+	display: inline-block;
+	min-width: 50%;
+	margin-bottom: 12px;
+}
+
 .btn {
 	background-color: rgb(230, 125, 0);
 	font-size: 14px;
@@ -227,7 +266,33 @@
 
 .btn-inline {
 	vertical-align: top;
-	float: right;
+	margin-left: 15px;
+}
+
+.label_short {
+	display: inline-block;
+	width: 35px;
+	padding-right: 5px;
+}
+
+.input_short {
+	display: inline-block;
+	width: 40%;	
+	min-width: 200px;
+	margin-right: 0.5rem;
+}
+
+.input_dinamic {
+	display: inline-block;
+	width: 90%;
+	vertical-align: middle;
+}
+
+.button_add {
+	color: white;
+	background-color: rgb(230, 125, 0);
+	padding: 8px;
+	border-radius: 2px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -235,8 +300,49 @@
 		width: 100%;
 		display: block;
 	}
+
+	.input_short {
+		width: 80%;			
+	}
+
+	.label_short {
+		min-width: 10%;
+	}
+
+}
+
+.expand_btn i {
+	font-size: 12px;
+	color: #444;
 }
 
 .img-small {
 	height: 60px;
+}
+
+.img-medium_small {
+	height: 75px;
+}
+
+.color-preview {
+	display: inline-block;
+	height: 14px;
+	width: 35px;
+	border: 1px solid #333333;
+	border-radius: 3px;
+	vertical-align: middle;
+}
+
+.color_picker-input {
+	color: white;
+	cursor: pointer;
+}
+
+.color-picker, .pika-single.is-bound {
+	margin-top: -80px;
+}
+
+.admin-table tr.subarea,
+.admin-table tr.subpagina {
+	background-color: #eaeaea;
 }

@@ -39,13 +39,13 @@
       <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">   
-            <a class='nav-btn' href='<?php echo base_url()."admin_libreria"; ?>'>
+            <a class='nav-btn' href='<?php echo base_url()."admin_libro"; ?>'>
                <i class="fa fa-arrow-left mr-1"></i>
                Volver
             </a>
             <a
                class='nav-btn'
-               href='<?php echo base_url()."admin_libreria/categorias_libro"; ?>'
+               href='<?php echo base_url()."admin_libro/categorias_libro"; ?>'
             >
                <i class="fa fa-tags mr-1"></i>
                Categorias
@@ -62,7 +62,7 @@
                $edit_libro = $libro->result_array()[0];
                $categorias_array = $categorias->result_array();
                echo form_open_multipart(
-                  'admin_libreria/update_libro/'.$id,
+                  'admin_libro/update_libro/'.$id,
                   array('id' => 'form_libro')
                );
             ?>
@@ -161,7 +161,7 @@
               <div class='form-group row'>
                   <label class='form-label col-sm-3'>Portada</label>
                   <div class='col-sm-9'>
-                  <?php $hayImagen = trim($edit_libro['portada'])!==''; ?>                  
+                  <?php $hayImagen = trim($edit_libro['imagen'])!==''; ?>                  
                   <input
                      id='delete_imagen_libro'
                      name='delete_imagen_libro'
@@ -173,7 +173,7 @@
                      <img
                         id='preview_img'
                         class='form-show-img'
-                        src="<?php echo $assets_dir.$edit_libro['portada']; ?>"
+                        src="<?php echo $assets_dir.$edit_libro['imagen']; ?>"
                      />
                      <span class='form-change-img' id='hide_preview_btn'>
                         Quitar Imagen
@@ -182,7 +182,7 @@
                      <input
                         id='portada'
                         name='portada'
-                        class="form-control
+                        class="form-control d-inline-block align-middle
                            <?php if ($hayImagen) { echo 'hidden'; } ?>"
                         style="<?php if ($hayImagen) { echo 'width:calc(70% - 100px)'; } ?>"
                         type='file'

@@ -38,13 +38,13 @@
       <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">    
-            <a class='nav-btn' href='<?php echo base_url()."admin_libreria"; ?>'>
+            <a class='nav-btn' href='<?php echo base_url()."admin_libro"; ?>'>
                <i class="fa fa-arrow-left mr-1"></i>
                Volver
             </a>
             <a
                class='nav-btn'
-               href='<?php echo base_url()."admin_libreria/categorias_libro"; ?>'
+               href='<?php echo base_url()."admin_libro/categorias_libro"; ?>'
             >
                <i class="fa fa-tags mr-1"></i>
                Categorias
@@ -60,7 +60,7 @@
             <?php
                $categorias_array = $categorias->result_array();
                echo form_open_multipart(
-                  'admin_libreria/insertar_libro',
+                  'admin_libro/insertar_libro',
                   array('id' => 'form_libro')
                );
             ?>
