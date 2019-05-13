@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-05-2019 a las 04:32:02
+-- Tiempo de generación: 13-05-2019 a las 06:18:38
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 7.1.1
 
@@ -15,6 +15,28 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `espaciopatino` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci;
 USE `espaciopatino`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `agenda`
+--
+
+DROP TABLE IF EXISTS `agenda`;
+CREATE TABLE `agenda` (
+  `id_agenda` int(11) NOT NULL,
+  `enlace` varchar(400) COLLATE utf8_spanish2_ci NOT NULL,
+  `size` int(11) NOT NULL,
+  `fecha` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `agenda`
+--
+
+INSERT INTO `agenda` (`id_agenda`, `enlace`, `size`, `fecha`, `status`) VALUES
+(1, 'uploads/agenda/agenda.pdf', 4201679, 'Abril 2019', 1);
 
 -- --------------------------------------------------------
 
@@ -47,20 +69,22 @@ DROP TABLE IF EXISTS `area`;
 CREATE TABLE `area` (
   `id_area` int(11) NOT NULL,
   `area` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `color_area` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `id_content` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `area`
 --
 
-INSERT INTO `area` (`id_area`, `area`, `color_area`, `status`) VALUES
-(1, 'Dirección y Coordinación', 'rgba(84,33,90,1)', 1),
-(2, 'Centros de Información y Documentación', 'rgba(134,192,63,1)', 1),
-(3, 'Centro de Acción Pedagógica (CAP)', 'rgba(150,40,45,1)', 1),
-(4, 'Centro del cómic y la animación', 'rgba(242,190,65,1)', 1),
-(5, 'Teatro Doña Albina', 'rgba(242,150,29,1)', 1);
+INSERT INTO `area` (`id_area`, `area`, `enlace`, `color_area`, `status`, `id_content`) VALUES
+(1, 'Dirección y Coordinación', 'direccion_y_coordinacion', 'rgba(84,33,90,1)', 1, NULL),
+(2, 'Centros de Información y Documentación', 'centros_de_informacion_y_documentacion', 'rgba(134,192,63,1)', 1, NULL),
+(3, 'Centro de Acción Pedagógica (CAP)', 'centro_de_accion_pedagocia_(CAP)', 'rgba(150,40,45, 1)', 1, 9),
+(4, 'Centro del cómic y la animación', 'centro_del_comic_y_la_animacion', 'rgba(242,190,65,1)', 1, NULL),
+(5, 'Teatro Doña Albina', 'teatro_dona_albina', 'rgba(242,150,29,1)', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -155,7 +179,7 @@ INSERT INTO `contenido` (`id_content`, `titulo`, `imagen`, `html`, `mostrar`) VA
 (1, 'Nuestra Historia', 'uploads/subpagina/historia.jpg', 'El Espacio Simón I. Patiño (ESIP) inició sus funciones en La Paz el 14 de septiembre de 1984 en la Av. 16 de Julio, El Prado, al lado del Edif. Alameda. Posteriormente, se trasladó a la calle Juan de la Riva, al Edif. Alborada. En 1993 aproximadamente volvió al Prado, a la planta baja del Edif. Alameda. En esas primeras ubicaciones, el ESIP contaba simplemente con una oficina y una sala de exposiciones reducida. La capacidad de actividades en ese entonces era de una exposición al mes, con una conferencia o presentación de libro. En los primeros tiempos, la programación cultural del Espacio estuvo a cargo de la Dirección del Centro Pedagógico y Cultural Simón I. Patiño de Cochabamba; en los años sucesivos, a medida que fue ampliando sus áreas de trabajo y consolidando su presencia en la vida cultural de La Paz, el ESIP se convirtió en un centro autónomo con una dirección propia.\r\n\r\nEn 1996, la Fundación Simón I. Patiño inauguró las actuales instalaciones, en el edificio Guayaquil, Avenida Ecuador No 2503, esquina Belisario Salinas, en el barrio de Sopocachi. Desde el 15 de mayo de 2006, habiéndose ampliado el radio de acción del ESIP, se alquila también un inmueble al que se ha denominado “Anexo del Espacio Patiño”, situado sobre la Av. Ecuador 2475.\r\nEl 28 de septiembre de 2001 se creó el Centro de Documentación en Artes y Literaturas Latinoamericanas (CEDOAL), dos años después, el 29 de enero de 2003, abrió sus puertas el Café del Cómic, que luego se transformó en el actual Centro del Cómic, C+C Espacio. Desde el 2 de enero de 2008 funciona el Centro de Acción Pedagógica (CAP) y el 1 de octubre de 2013 se inauguró el C-Musical, área que  originariamente se llamó Archivo Fonográfico del CEDOAL.\r\n\r\nActualmente, el Espacio Patiño viene llevando a cabo su proyecto más ambicioso, la construcción de un nuevo edificio que centralizará las áreas con las que cuenta. Esta nueva edificación estará ubicada sobre la avenida Ecuador esquina Rosendo Gutiérrez.', 1),
 (2, 'Misión y Visión', 'uploads/subpagina/mision_vision.jpg', 'Misión\r\n\r\nNuestra misión es proyectar, ejecutar y promover, actividades culturales y de formación desde un enfoque solidario, pluralista e integrador, de diálogo entre individuos, culturas e instituciones; atender a los usuarios y al público con profesionalidad, amabilidad y esmero.\r\n\r\nPartimos de la puesta en valor y difusión de diferentes manifestaciones culturales y de formación, participando activamente en los procesos de investigación, enseñanza - aprendizaje, creación, producción y difusión intelectual y artística, preservación y conservación del patrimonio documental, tangible e intangible, estudio y aplicación de nuevas tecnologías.\r\n\r\nVisión\r\n\r\nEstablecer nuestra presencia como referente cultural y de formación, incentivando la creatividad, la investigación, el estudio y la aplicación de nuevas tecnologías, junto a la preservación del patrimonio y la memoria, promoviendo los valores humanos universales, la solidaridad y el diálogo entre culturas, participando en la construcción de ciudadanos innovadores, críticos y proactivos.\r\n\r\n', 1),
 (3, 'Equipo de Trabajo', 'uploads/subpagina/equipo.jpg', '', 0),
-(8, 'Teatro Doña Albina', 'uploads/subpagina/DSC_1289-20.jpg', 'contenido de prueba temporal', 1);
+(9, 'Centro de Acción Pedagógica (CAP)', 'uploads/areas/img_centro-de-accion-pedagogica-cap_18.jpg', '<p>El Centro de Acción Pedagógica CAP busca proyectar y concretar acciones de apoyo complementarias y/o alternativas a la educación formal; algunas de ellas orientadas al trabajo en aula de maestros y educadores, otras orientadas a la promoción de la lectura para niños y niñas.<br><br>A lo largo de los años, el CAP se ha convertido en un referente en el campo de la educación y la literatura infantil en Bolivia. Entre sus actividades se destacan las jornadas pedagógicas internacionales, los talleres con invitados internacionales, el taller de actualización educativa, el homenaje a pedagogos bolivianos, el fomento al libro álbum, los talleres de animación a la lectura para niños y niñas, y los talleres de creación artística dirigidos también al público infantil.</p>', 1);
 
 -- --------------------------------------------------------
 
@@ -196,6 +220,9 @@ CREATE TABLE `defaults` (
 --
 
 INSERT INTO `defaults` (`property`, `value`) VALUES
+('agenda_size', '4201679'),
+('agenda_url', 'uploads/agenda.php'),
+('api_key', '1n48pojr4gfamfuaj5s4zdnahxxrtnx92nsgp1wthmsxzz13'),
 ('primary_color', 'rgb(239, 125, 0)');
 
 -- --------------------------------------------------------
@@ -299,6 +326,34 @@ INSERT INTO `galeria` (`id_img`, `imagen`, `leyenda`, `id_post`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `galeria_area`
+--
+
+DROP TABLE IF EXISTS `galeria_area`;
+CREATE TABLE `galeria_area` (
+  `id_img` int(11) NOT NULL,
+  `imagen` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `leyenda` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_area` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `galeria_subarea`
+--
+
+DROP TABLE IF EXISTS `galeria_subarea`;
+CREATE TABLE `galeria_subarea` (
+  `id_img` int(11) NOT NULL,
+  `imagen` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `leyenda` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_subarea` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `html`
 --
 
@@ -391,6 +446,28 @@ INSERT INTO `libro` (`id_post`, `id_categoriaLibro`, `autor`, `descripcion`, `pr
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `media`
+--
+
+DROP TABLE IF EXISTS `media`;
+CREATE TABLE `media` (
+  `id_post` int(11) NOT NULL,
+  `enlace` varchar(500) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_tipo_media` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `media`
+--
+
+INSERT INTO `media` (`id_post`, `enlace`, `id_tipo_media`) VALUES
+(71, 'https://www.youtube.com/embed/k76BgIb89-s', 1),
+(72, 'https://e.issuu.com/embed.html?identifier=j60dqg3okhbj&embedType=script#0/10299286', 2),
+(76, 'https://www.youtube.com/embed/Taj58WTKdWw', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `miembro_equipo`
 --
 
@@ -424,6 +501,7 @@ CREATE TABLE `modelo` (
   `id_modelo` int(11) NOT NULL,
   `nombre_modelo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `seccion` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `btn_adicional` varchar(300) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `model` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `metodo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `default_limit` int(11) NOT NULL DEFAULT '6',
@@ -435,14 +513,16 @@ CREATE TABLE `modelo` (
 -- Volcado de datos para la tabla `modelo`
 --
 
-INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `seccion`, `model`, `metodo`, `default_limit`, `uses_date`, `id_tipo`) VALUES
-(1, 'libro', 'seccion_libro', 'Libro_model', 'get_valid_libros', 6, 0, 2),
-(2, 'noticia', 'seccion_noticia', 'Noticias_model', 'get_valid_noticias', 9, 0, 1),
-(3, 'subpagina', 'seccion_subarea', 'Subpaginas_model', 'get_valid_subpaginas', 3, 0, 0),
-(4, 'equipo', 'seccion_equipo', 'Equipo_model', 'get_valid_miembro', 1, 0, 3),
-(5, 'evento', 'seccion_evento', 'Eventos_model', 'get_valid_eventos_futuros', 6, 1, 4),
-(6, 'teatro', 'seccion_evento', 'Eventos_model', 'get_valid_obras', 6, 1, 4),
-(7, 'convocatoria', 'seccion_convocatoria', 'Convocatorias_model', 'get_valid_convocatorias', 6, 1, 2);
+INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `seccion`, `btn_adicional`, `model`, `metodo`, `default_limit`, `uses_date`, `id_tipo`) VALUES
+(1, 'libro', 'seccion_libro', NULL, 'Libro_model', 'get_valid_libros', 6, 0, 2),
+(2, 'noticia', 'seccion_noticia', NULL, 'Noticias_model', 'get_valid_noticias', 9, 0, 1),
+(3, 'subpagina', 'seccion_subarea', NULL, 'Subpaginas_model', 'get_valid_subpaginas', 3, 0, 0),
+(4, 'equipo', 'seccion_equipo', NULL, 'Equipo_model', 'get_valid_miembro', 1, 0, 3),
+(5, 'evento', 'seccion_evento', 'descargar_agenda', 'Eventos_model', 'get_valid_eventos_futuros', 6, 1, 4),
+(6, 'teatro', 'seccion_evento', NULL, 'Eventos_model', 'get_valid_obras', 6, 1, 4),
+(7, 'convocatoria', 'seccion_convocatoria', NULL, 'Convocatorias_model', 'get_valid_convocatorias', 6, 1, 5),
+(8, 'multimedia', 'seccion_multimedia', NULL, 'Media_model', 'get_valid_media', 2, 0, 6),
+(9, 'area', 'seccion_area', NULL, 'Areas_model', 'get_valid_areas', 6, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -492,7 +572,6 @@ CREATE TABLE `pagina` (
   `mostrar_home` tinyint(1) NOT NULL DEFAULT '1',
   `external_url` tinyint(1) NOT NULL DEFAULT '0',
   `enable_search` tinyint(1) NOT NULL DEFAULT '1',
-  `id_area` int(11) NOT NULL,
   `id_modelo` int(11) NOT NULL,
   `id_content` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
@@ -501,16 +580,16 @@ CREATE TABLE `pagina` (
 -- Volcado de datos para la tabla `pagina`
 --
 
-INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `color`, `status`, `orden`, `mostrar_navbar`, `mostrar_home`, `external_url`, `enable_search`, `id_area`, `id_modelo`, `id_content`) VALUES
-(1, 'Quiénes Somos', 'conocenos', 'rgba(0,13, 97, 1)', 1, 1, 1, 1, 0, 0, 0, 3, NULL),
-(2, 'Áreas', 'areas', '', 0, 0, 1, 1, 0, 1, 0, 0, NULL),
-(3, 'Agenda', 'agenda', 'rgba(112,0, 0, 1)', 1, 2, 1, 1, 0, 1, 0, 5, NULL),
-(6, 'Librería', 'libreria', 'rgba(118,0, 97, 1)', 1, 3, 1, 1, 0, 1, 0, 1, NULL),
-(7, 'Noticias', 'noticias', 'rgba(177,0, 0, 1)', 1, 4, 1, 1, 0, 1, 0, 2, NULL),
-(8, 'Convocatorias', 'convocatorias', 'rgba(0,86, 25, 1)', 1, 6, 1, 1, 0, 1, 0, 7, NULL),
-(10, 'Multimedia', 'testpage', 'rgba(239,125, 0, 1)', 0, 0, 1, 1, 0, 1, 0, 3, NULL),
-(11, 'Teatro Doña Albina', 'teatro', 'rgba(245,147, 54, 1)', 1, 5, 1, 1, 0, 1, 0, 6, NULL),
-(12, 'Catálogo en Línea', 'http://opacespacio.fundacionpatino.org', 'rgba(239, 125, 0, 1)', 1, 7, 1, 0, 1, 0, 0, 0, NULL);
+INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `color`, `status`, `orden`, `mostrar_navbar`, `mostrar_home`, `external_url`, `enable_search`, `id_modelo`, `id_content`) VALUES
+(1, 'Quiénes Somos', 'conocenos', 'rgba(0,13, 97, 1)', 1, 1, 1, 1, 0, 0, 3, NULL),
+(2, 'Áreas', 'areas', '', 1, 4, 1, 1, 0, 1, 9, NULL),
+(3, 'Agenda', 'agenda', 'rgba(112,0, 0, 1)', 1, 2, 1, 1, 0, 1, 5, NULL),
+(6, 'Librería', 'libreria', 'rgba(118,0, 97, 1)', 1, 3, 1, 1, 0, 1, 1, NULL),
+(7, 'Noticias', 'noticias', 'rgba(177,0, 0, 1)', 1, 7, 1, 1, 0, 1, 2, NULL),
+(8, 'Convocatorias', 'convocatorias', 'rgba(0,86, 25, 1)', 1, 5, 1, 1, 0, 1, 7, NULL),
+(10, 'Multimedia', 'multimedia', 'rgba(239,125, 0, 1)', 1, 8, 1, 1, 0, 1, 8, NULL),
+(11, 'Teatro Doña Albina', 'teatro', 'rgba(245,147, 54, 1)', 1, 6, 1, 1, 0, 1, 6, NULL),
+(12, 'Catálogo en Línea', 'http://opacespacio.fundacionpatino.org', 'rgba(239, 125, 0, 1)', 1, 8, 1, 0, 1, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -559,7 +638,10 @@ INSERT INTO `publicacion` (`id_post`, `titulo`, `imagen`, `status`, `tipo`) VALU
 (64, 'EL ESPACIO SIMÓN I. PATIÑO EN EL FESTIVAL INTERNACIONAL DE HISTORIETA VIÑETAS CON ALTURA 2019 - EXPOSICIÓN', 'uploads/eventos/img_el-espacio-simn-i-patio-en-el-festival-internacional-de-historieta-vietas-con-altura-2019-exposicin_1629.jpg', 1, 4),
 (65, 'FUNDACIÓN UNIVERSITARIA SIMÓN I. PATIÑO BECAS DE POSTGRADO A SALAMANCA', '', 1, 5),
 (66, 'Convocatoria y formulario IMPULSARTE', '', 1, 5),
-(68, 'Gonzalo Cansay', 'uploads/equipo/i_gonzalo-cansay_16.jpg', 1, 3);
+(68, 'Gonzalo Cansay', 'uploads/equipo/i_gonzalo-cansay_16.jpg', 1, 3),
+(71, 'testMedia', NULL, 1, 6),
+(72, 'testMedia Issu', NULL, 1, 6),
+(76, 'test#2', NULL, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -571,34 +653,36 @@ DROP TABLE IF EXISTS `subarea`;
 CREATE TABLE `subarea` (
   `id_subarea` int(11) NOT NULL,
   `subarea` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `id_area` int(11) NOT NULL
+  `id_area` int(11) NOT NULL,
+  `id_content` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `subarea`
 --
 
-INSERT INTO `subarea` (`id_subarea`, `subarea`, `status`, `id_area`) VALUES
-(1, 'Exposiciones', 1, 1),
-(2, 'Biblioteca de Niños', 1, 3),
-(3, 'Convocatorias', 1, 1),
-(4, 'Eventos y Actividades', 1, 4),
-(5, 'Eventos y Actividades', 1, 1),
-(6, 'CEDOAL', 1, 2),
-(7, 'CE Musical', 1, 2),
-(8, 'Centro Hemerográfico Especializado', 1, 2),
-(9, 'Huerto Educativo', 1, 3),
-(10, 'Proyectos Especiales', 1, 3),
-(11, 'Convocatorias', 1, 3),
-(12, 'Pasantías', 1, 3),
-(13, 'Cursos y Talleres', 1, 3),
-(14, 'Actividades', 1, 3),
-(15, 'Eventos y Actividades', 1, 5),
-(16, 'Convocatorias', 1, 5),
-(17, 'Cusos y Talleres', 1, 4),
-(18, 'Proyectos Especiales', 1, 4),
-(19, 'Convocatorias', 1, 4);
+INSERT INTO `subarea` (`id_subarea`, `subarea`, `enlace`, `status`, `id_area`, `id_content`) VALUES
+(1, 'Exposiciones', 'exposiciones', 1, 1, 0),
+(2, 'Biblioteca de Niños', 'biblioteca_de_ninos', 1, 3, 0),
+(3, 'Convocatorias', 'convocatorias', 1, 1, 0),
+(4, 'Eventos y Actividades', 'eventos_y_actividades', 1, 4, 0),
+(5, 'Eventos y Actividades', 'eventos_y_actividades', 1, 1, 0),
+(6, 'CEDOAL', 'cedoal', 1, 2, 0),
+(7, 'CE Musical', 'ce_musical', 1, 2, 0),
+(8, 'Centro Hemerográfico Especializado', 'centro_hemerografico_especializado', 1, 2, 0),
+(9, 'Huerto Educativo', 'huerto_educativo', 1, 3, 0),
+(10, 'Proyectos Especiales', 'proyectos_especiales', 1, 3, 0),
+(11, 'Convocatorias', 'convocatorias', 1, 3, 0),
+(12, 'Pasantías', 'pasantias', 1, 3, 0),
+(13, 'Cursos y Talleres', 'cursos_y_talleres', 1, 3, 0),
+(14, 'Actividades', 'actividades', 1, 3, 0),
+(15, 'Eventos y Actividades', 'eventos_y_actividades', 1, 5, 0),
+(16, 'Convocatorias', 'convocatorias', 1, 5, 0),
+(17, 'Cusos y Talleres', 'cursos_y_talleres', 1, 4, 0),
+(18, 'Proyectos Especiales', 'proyectos_especiales', 1, 4, 0),
+(19, 'Convocatorias', 'convocatorias', 1, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -629,6 +713,27 @@ INSERT INTO `subpagina` (`id_subpagina`, `subpagina`, `enlace`, `status`, `id_pa
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tipo_media`
+--
+
+DROP TABLE IF EXISTS `tipo_media`;
+CREATE TABLE `tipo_media` (
+  `id_tipo_media` int(11) NOT NULL,
+  `tipo_media` varchar(300) COLLATE utf8_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_media`
+--
+
+INSERT INTO `tipo_media` (`id_tipo_media`, `tipo_media`) VALUES
+(1, 'youtube'),
+(2, 'issuu'),
+(3, 'otro');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_post`
 --
 
@@ -649,8 +754,10 @@ INSERT INTO `tipo_post` (`id_tipo`, `tipo_post`, `nombre_sidebar`, `icono`, `sub
 (1, 'noticia', 'Noticias', 'newspaper', 0),
 (2, 'libro', 'Libreria', 'book', 1),
 (3, 'equipo', 'Equipo', 'child', 1),
-(4, 'evento', 'Eventos', 'calendar ', 0),
-(5, 'convocatoria', 'Convocatorias', 'bullhorn', 0);
+(4, 'evento', 'Eventos', 'calendar-alt', 0),
+(5, 'convocatoria', 'Convocatorias', 'bullhorn', 0),
+(6, 'media', 'Multimedia', 'video', 0),
+(7, 'agenda', 'Agenda', 'calendar-plus', 0);
 
 -- --------------------------------------------------------
 
@@ -675,6 +782,12 @@ INSERT INTO `usuarios` (`username`, `password`) VALUES
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `agenda`
+--
+ALTER TABLE `agenda`
+  ADD PRIMARY KEY (`id_agenda`);
 
 --
 -- Indices de la tabla `archivo_adjunto`
@@ -743,6 +856,18 @@ ALTER TABLE `galeria`
   ADD PRIMARY KEY (`id_img`);
 
 --
+-- Indices de la tabla `galeria_area`
+--
+ALTER TABLE `galeria_area`
+  ADD PRIMARY KEY (`id_img`);
+
+--
+-- Indices de la tabla `galeria_subarea`
+--
+ALTER TABLE `galeria_subarea`
+  ADD PRIMARY KEY (`id_img`);
+
+--
 -- Indices de la tabla `html`
 --
 ALTER TABLE `html`
@@ -758,6 +883,12 @@ ALTER TABLE `imagen_portada`
 -- Indices de la tabla `libro`
 --
 ALTER TABLE `libro`
+  ADD PRIMARY KEY (`id_post`);
+
+--
+-- Indices de la tabla `media`
+--
+ALTER TABLE `media`
   ADD PRIMARY KEY (`id_post`);
 
 --
@@ -803,6 +934,12 @@ ALTER TABLE `subpagina`
   ADD PRIMARY KEY (`id_subpagina`);
 
 --
+-- Indices de la tabla `tipo_media`
+--
+ALTER TABLE `tipo_media`
+  ADD PRIMARY KEY (`id_tipo_media`);
+
+--
 -- Indices de la tabla `tipo_post`
 --
 ALTER TABLE `tipo_post`
@@ -819,6 +956,11 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `agenda`
+--
+ALTER TABLE `agenda`
+  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT de la tabla `archivo_adjunto`
 --
 ALTER TABLE `archivo_adjunto`
@@ -827,7 +969,7 @@ ALTER TABLE `archivo_adjunto`
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `categoria_equipo`
 --
@@ -847,12 +989,22 @@ ALTER TABLE `complemento`
 -- AUTO_INCREMENT de la tabla `contenido`
 --
 ALTER TABLE `contenido`
-  MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `galeria`
 --
 ALTER TABLE `galeria`
-  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+--
+-- AUTO_INCREMENT de la tabla `galeria_area`
+--
+ALTER TABLE `galeria_area`
+  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT de la tabla `galeria_subarea`
+--
+ALTER TABLE `galeria_subarea`
+  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `imagen_portada`
 --
@@ -872,7 +1024,7 @@ ALTER TABLE `miembro_equipo`
 -- AUTO_INCREMENT de la tabla `modelo`
 --
 ALTER TABLE `modelo`
-  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `pagina`
 --
@@ -882,19 +1034,24 @@ ALTER TABLE `pagina`
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 --
 -- AUTO_INCREMENT de la tabla `subarea`
 --
 ALTER TABLE `subarea`
-  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `subpagina`
 --
 ALTER TABLE `subpagina`
   MODIFY `id_subpagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT de la tabla `tipo_media`
+--
+ALTER TABLE `tipo_media`
+  MODIFY `id_tipo_media` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT de la tabla `tipo_post`
 --
 ALTER TABLE `tipo_post`
-  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;

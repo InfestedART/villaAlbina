@@ -142,14 +142,13 @@
                      <textarea
                         id='contenido'
                         name='contenido'
-                        class="form-control fd-none"
-                        rows=12                        
+                        class="form-control fd-none"                      
                      /></textarea>
                   </div>
                </div>
 
                <div class='form-group row'>
-                  <div class='col-sm-9 offset-3'>
+                  <div class='col-sm-9 offset-3 text-right'>
                      <button type="button" id='subpagina_btn' class="btn btn-primary">
                         AGREGAR SUBPAGINA
                      </button>
@@ -164,7 +163,14 @@
 
       </div>
       </div>
-      <script src=<?php  echo $assets_dir."js/admin_subpagina_app.js"; ?> ></script>
+
+   <?php
+      $contenido_src = "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=".$api_key;
+   ?> 
+
+   <script src=<?php  echo $assets_dir."js/admin_subpagina_app.js"; ?> ></script>
+   <script src=<?php echo $assets_dir."js/contenido.js"; ?> ></script>
+   <script src=<?php echo $contenido_src; ?> ></script>
 <?php
    $this->load->view('templates/admin_footer'); 
 ?>

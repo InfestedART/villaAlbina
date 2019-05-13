@@ -22,12 +22,10 @@ class Admin_noticia extends MY_Controller {
 	public function noticia_nueva() {
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Defaults_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
-
-		$this->load->library('ckeditor');
-		$this->ckeditor->basePath = base_url().'assets/js/ckeditor/';
-
+		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$this->load->view('noticia_nueva', $data);
 	}
 
@@ -36,9 +34,10 @@ class Admin_noticia extends MY_Controller {
 		$this->load->model("Galeria_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Defaults_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
-
+		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$this->load->library('ckeditor');
 		$this->ckeditor->basePath = base_url().'assets/js/ckeditor/';
 

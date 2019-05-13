@@ -151,9 +151,12 @@
                <div class='form-group row'>
                   <label class='form-label col-12'>Contenido</label>
                   <div class='col-sm-12'>
-                     <?php 
-                        echo $this->ckeditor->editor("contenido");
-                     ?>
+                     <textarea
+                        id='contenido'
+                        name='contenido'
+                        class="form-control"
+                        rows=12
+                     /></textarea>
                   </div>
                </div>
 
@@ -173,8 +176,14 @@
    </div>
    </div>
 
+   <?php
+      $contenido_src = "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=".$api_key;
+   ?>
    <script src=<?php  echo $assets_dir."js/pickaday.js"; ?> ></script>
    <script src=<?php  echo $assets_dir."js/admin_noticia_app.js"; ?> ></script>
-   <?php
-      $this->load->view('templates/admin_footer'); 
-   ?>
+   <script src=<?php echo $assets_dir."js/contenido.js"; ?> ></script>
+   <script src=<?php echo $contenido_src; ?> ></script>
+
+<?php
+   $this->load->view('templates/admin_footer'); 
+?>

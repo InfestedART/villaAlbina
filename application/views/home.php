@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $dir = base_url().'assets/';
 ?>
@@ -61,7 +61,7 @@ $dir = base_url().'assets/';
 			<a href='#' class='navbar__logo' id='navbar_logo'>
 				<img src='<?php echo $dir.'img/logo.png'; ?>' />
 	      </a>
-	      <div class='nav__item-container'>
+	      <div class='nav__item-container' id='nav_item_container'>
 			<?php
 			 	$paginas_array = $paginas->result_array();
 			 	$nav_paginas_array = $nav_paginas->result_array();
@@ -69,10 +69,13 @@ $dir = base_url().'assets/';
 			 		$link = $pagina['external_url']
 			 			? $pagina['enlace']
 			 			: base_url()."#seccion_".$pagina['id_pagina'];
-			 		printf(
-			 			"<a href='%s' class='nav__item d-none d-md-inline-block' %s>
+			 		printf("
+			 			<div class='nav__container'>
+			 			<a href='%s' class='nav__item d-none d-md-inline-block' %s>
 			 				<p class='nav__label'>%s</p>
-			 			</a>",
+			 			</a>
+			 			</div>
+			 			",
 			 			$link,
 			 			$pagina['external_url'] ? "target='_blank'" : "",
 			 			$pagina['titulo']
@@ -153,8 +156,28 @@ $dir = base_url().'assets/';
 							style='background-color: $page_color'
 						>
 							conoce más...
-						</a>
-					</div>
+						</a>";
+		if($paginas_array[$index]['btn_adicional']) {			
+			$units = ['bytes', 'Kb', 'Mb', 'Gb'];
+			$filesize = $agenda['size'];
+			$i=0;
+			while (floor($filesize / 1024) > 1) {
+				$filesize = floor($filesize / 1024);
+				$i++;
+			}
+			printf("			
+				<a 	href='%s'
+					class='seccion__conoce_mas ml-3'	
+					style='background-color: %s'
+					target='_blank'
+				>	%s (%s) </a>",
+				base_url().'assets/'.$agenda['enlace'],
+				$page_color,
+				'Descargar Agenda',
+				$filesize." ".$units[$i]
+			);
+		}
+		echo		"</div>
 					<div class='col-12 mt-3'>
 						<span class='seccion__linea'></span>
 					</div>

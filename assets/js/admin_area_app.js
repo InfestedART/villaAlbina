@@ -31,6 +31,29 @@
 			picker.set('rgb(255, 255, 255)');		
 		}
 
+		const preview_img = document.getElementById('preview_img');
+		const hide_preview_btn = document.getElementById('hide_preview_btn');
+		const imagen = document.getElementById('imagen');
+		const show_preview_btn = document.getElementById('show_preview_btn');
+
+		function hide_preview() {
+			const delete_area = document.getElementById('delete_area');
+			preview_img.classList.add('hidden');
+			hide_preview_btn.classList.add('hidden');
+			imagen.classList.remove('hidden');
+			show_preview_btn.classList.remove('hidden');
+			delete_area.value = '1';			
+		}
+
+		function show_preview() {
+			const delete_area = document.getElementById('delete_area');
+			preview_img.classList.remove('hidden');
+			hide_preview_btn.classList.remove('hidden');
+			imagen.classList.add('hidden');
+			show_preview_btn.classList.add('hidden');
+			delete_area.value = '0';			
+		}
+
 		function form_validation() {
 			const form_area = document.getElementById('form_area');	
 			const area = document.getElementById('area');
@@ -61,6 +84,16 @@
 				color_input.value = initial_color;
 				color_input.disabled = false;				
 			}
+		}
+
+		if (hide_preview_btn && show_preview_btn) {
+			hide_preview_btn.addEventListener('click', function(){
+				hide_preview();
+			});
+
+			show_preview_btn.addEventListener('click', function(){
+				show_preview();
+			});	
 		}
 
 		area_btn.addEventListener('click', function(ev){

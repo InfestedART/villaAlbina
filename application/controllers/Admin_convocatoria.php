@@ -21,8 +21,10 @@ class Admin_convocatoria extends CI_Controller {
 	public function nueva_convocatoria() {
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Defaults_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$this->load->view('nueva_convocatoria', $data);
 	}
 
@@ -32,6 +34,7 @@ class Admin_convocatoria extends CI_Controller {
 		$this->load->model("Archivo_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Defaults_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
@@ -39,6 +42,7 @@ class Admin_convocatoria extends CI_Controller {
 		$data['convocatoria'] = $this->Convocatorias_model->get_convocatoria($id);
 		$data['galeria'] = $this->Galeria_model->get_galeria($id);
 		$data['archivos'] = $this->Archivo_model->get_archivos($id);
+		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$this->load->view('editar_convocatoria', $data);
 	}
 
@@ -263,7 +267,6 @@ class Admin_convocatoria extends CI_Controller {
 		$leyenda = $this->input->post('leyenda', TRUE);
 		$contenido = $this->input->post('contenido', TRUE);
    
-   	echo "<br />";
 		$post_data = array(
 			'titulo' => $titulo,
 			'tipo' => 5

@@ -12,11 +12,6 @@
 	display: block;
 }
 
-.fixed-navbar .main .navbar .nav__item-container,
-.fixed-navbar .nav__item-container {
-	// margin-left: 200px;
-}
-
 .navbar {
 	background-color: rgba(0, 0, 0, 0.55);
 	width: 100%;
@@ -29,10 +24,15 @@
 	font-family: Gotham;
 	transition: all 0.3s;
     -webkit-transition: all 0.3s;
+    padding: 0.5rem;
+}
+
+.navbar__tall {
+	height: 100px;
 }
 
 .navbar__long {
-	height: 120px;
+	height: 150px;
 }
 
 .navbar__row {
@@ -47,15 +47,43 @@
 	margin-top: 30px;	
 }
 
+.nav__container {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.nav__item-container {
+	display: flex;
+	align-items: center;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+
+.nav__item-container.navbar_inline {
+	margin-left: 100px;
+}
+
+.nav__item-container.navbar_inline.nav_container_tall {
+	padding-left: 100px;
+}
+
+.navbar__logo_tall {
+	margin-top: 10px;
+}
+
 .nav__item {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	color: white;
-	padding: 0;
+	padding: 9px 7px;
 	text-align: center;
 	height: 100%;
 	text-transform: uppercase;
+	font-size: 15px;
+	// max-width: 150px;
 }
 
 .nav__label:hover {
@@ -64,13 +92,13 @@
 }
 
 .nav__label {
-	padding: 15px 0;
+	padding: 0;
 	margin: 0;
 }
 
-.nav__label::after {
+.nav__container::after {
 	content: '·';
-	padding: 0 15px;
+	padding: 0 6px;
 	font-weight: bold;
 	color: white !important;
 }

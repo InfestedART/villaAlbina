@@ -117,7 +117,7 @@
                            </a>
                         </td>
                         <td class='text-center'>
-                           <a href='%snueva_subarea?area=%s' title='NUEVA AREA'>
+                           <a href='%snueva_subarea?area=%s' title='AÑADIR SUBAREA'>
                               <i class='fa fa-plus-square'
                                  style='font-size: 16px;'></i>
                            </a>

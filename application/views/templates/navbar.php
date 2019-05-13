@@ -10,7 +10,7 @@
 
 		<div class='navbar__row'>
 
-	      	<div class='nav__item-container'>
+	      	<div class='nav__item-container navbar_inline'>
 				<?php
 			 	foreach ($paginas as $pagina) {
 			 		$link = $pagina['external_url'] 

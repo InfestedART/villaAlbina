@@ -7,7 +7,7 @@
 		const search_container = document.getElementById('search_container');
 		
 		function show_sidebar() {
-			navbar.classList.add('navbar__long');
+			navbar.classList.add('navbar__tall');
 			search_container.classList.remove('hidden');
 		}
 

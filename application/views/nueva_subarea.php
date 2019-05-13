@@ -105,7 +105,48 @@
                </div>
 
                <div class='form-group row'>
-                  <div class='col-sm-9 offset-3'>
+                  <label class='form-label col-sm-3'>Imagen Destacada:</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='imagen'
+                        name='imagen'
+                        class="form-control p-0"
+                        type='file'
+                     />
+                  </div> 
+               </div>
+
+               <div class='form-group row'>
+                     <label class='form-label col-sm-3'>
+                        <div class=''>
+                           Galeria de Imágenes:
+                        </div>
+                        <div class='mt-2'>
+                           <span class='form-change-img m-0' id='add_img'>
+                           Añadir
+                           </span>
+                        </div>
+                     </label>
+                  <div class='col-sm-9'>
+                     <div id='img_array'>
+                     </div> 
+                  </div>
+               </div>
+
+               <div id='cont_container' class="form-group row">
+                  <label class='form-label col-12'>Contenido:</label>
+                  <div class='col-sm-12'>
+                     <textarea
+                        id='contenido'
+                        name='contenido'
+                        class="form-control fd-none"
+                        rows=15                     
+                     /></textarea>
+                  </div>
+               </div>
+
+               <div class='form-group row'>
+                  <div class='col-sm-9 offset-3 text-right'>
                   <button type="button" id='subarea_btn' class="btn btn-primary">
                      AGREGAR SUBAREA
                   </button>
@@ -123,6 +164,12 @@
    </div>
    </div>
 
+   <?php
+      $contenido_src = "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=".$api_key;
+   ?> 
+   <script src=<?php echo $assets_dir."js/contenido.js"; ?> ></script>
+   <script src=<?php echo $contenido_src; ?> ></script>
+   <script src=<?php echo $assets_dir."js/galeria_app.js"; ?> ></script>
    <script src=<?php  echo $assets_dir."js/admin_subarea_app.js"; ?> ></script>
 <?php
    $this->load->view('templates/admin_footer'); 

@@ -2,7 +2,6 @@
 	$dir = base_url().'assets/';
 ?>
 
-
 	<?php
 		setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		foreach ($seccion as $noticia) {

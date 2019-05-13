@@ -4,6 +4,29 @@
 	function main() {
 		const subarea_btn = document.getElementById('subarea_btn');
 
+		const preview_img = document.getElementById('preview_img');
+		const hide_preview_btn = document.getElementById('hide_preview_btn');
+		const imagen = document.getElementById('imagen');
+		const show_preview_btn = document.getElementById('show_preview_btn');
+
+		function hide_preview() {
+			const delete_imagen = document.getElementById('delete_imagen');
+			preview_img.classList.add('hidden');
+			hide_preview_btn.classList.add('hidden');
+			imagen.classList.remove('hidden');
+			show_preview_btn.classList.remove('hidden');
+			delete_imagen.value = '1';			
+		}
+
+		function show_preview() {
+			const delete_imagen = document.getElementById('delete_imagen');
+			preview_img.classList.remove('hidden');
+			hide_preview_btn.classList.remove('hidden');
+			imagen.classList.add('hidden');
+			show_preview_btn.classList.add('hidden');
+			delete_imagen.value = '0';			
+		}
+
 		function form_validation() {
 			const form_subarea = document.getElementById('form_subarea');	
 			const subarea = document.getElementById('subarea');
@@ -31,6 +54,16 @@
 			subarea_alert.innerHTML = error;			
 		}
 
+		if (hide_preview_btn && show_preview_btn) {
+			hide_preview_btn.addEventListener('click', function(){
+				hide_preview();
+			});
+
+			show_preview_btn.addEventListener('click', function(){
+				show_preview();
+			});	
+		}
+		
 		subarea_btn.addEventListener('click', function(ev){
 			form_validation();
 		});

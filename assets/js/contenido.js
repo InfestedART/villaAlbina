@@ -15,7 +15,9 @@
 			'bullist numlist outdent indent',
 			'link | table',
 			'blockquote code | fullscreen |'
-			]
+			],
+		language : 'es_MX',
+		language_url : '../assets/langs/es_MX.js'
 	  });
 
 	}

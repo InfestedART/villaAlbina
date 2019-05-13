@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 		$this->load->model("Paginas_model");
 		$this->load->model("Portada_model");
 		$this->load->model("Defaults_model");
+		$this->load->model("Agenda_model");
 		$data['portadas'] = $this->Portada_model->get_valid_portadas();
 		$data['nav_paginas'] = $this->Paginas_model->get_navbar_paginas();
 		$data['paginas'] = $this->Paginas_model->get_home_paginas();
@@ -24,6 +25,7 @@ class Home extends CI_Controller {
 					)->result_array();
 		}
 		$data['default_color'] = $this->Defaults_model->get_value('primary_color');
+		$data['agenda'] = $this->Agenda_model->get_active_agenda()->result_array()[0];
 		$data['seccion'] = $seccion;
 		$this->load->view('home', $data);
 	}

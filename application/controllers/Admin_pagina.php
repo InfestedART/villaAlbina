@@ -50,8 +50,10 @@ class Admin_Pagina extends MY_Controller {
 		$this->load->model("Subpaginas_model");
 		$this->load->model("Paginas_model");
 		$this->load->model("Modelo_model");
+		$this->load->model("Defaults_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$data['modelos'] = $this->Modelo_model->get_all_modelos();
 		$data['paginas'] = $this->Paginas_model->get_all_paginas();
 		$data['subpaginas'] = $this->Subpaginas_model->get_all_subpaginas();
@@ -74,6 +76,7 @@ class Admin_Pagina extends MY_Controller {
 		$data['paginas'] = $this->Paginas_model->get_all_paginas();
 		$data['subpagina'] = $this->Subpaginas_model->get_subpagina($id);
 		$data['default_color'] = $this->Defaults_model->get_value('primary_color');
+		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$this->load->view('editar_subpagina', $data);
 	}
 
@@ -206,7 +209,6 @@ class Admin_Pagina extends MY_Controller {
 		$contenido = $this->input->post('contenido', TRUE);
 
 		if ($modelo == '0') {
-			echo $id_content."<br />";
 			$contenido_data = array(
 				'html' => $contenido
 			);
