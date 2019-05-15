@@ -152,7 +152,7 @@ class Admin_Pagina extends MY_Controller {
 		$modelo = $this->input->post('modelo', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$img = $imagen == '' ? '' : 'uploads/subpagina/'.$imagen;
-		$contenido = $this->input->post('contenido', TRUE);
+		$contenido = $this->input->post('contenido', FALSE);
 
 		if ($modelo == '0') {
 			$contenido_data = array(
@@ -206,7 +206,7 @@ class Admin_Pagina extends MY_Controller {
 		$modelo = $this->input->post('modelo', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$img = $imagen == '' ? '' : 'uploads/subpagina/'.$imagen;
-		$contenido = $this->input->post('contenido', TRUE);
+		$contenido = $this->input->post('contenido', FALSE);
 
 		if ($modelo == '0') {
 			$contenido_data = array(

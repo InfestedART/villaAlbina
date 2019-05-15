@@ -45,9 +45,11 @@ function Slideshow( element ) {
 		const wrapper = document.getElementById('wrapper');
 		const navbar = document.getElementById('navbar');
 		const navbarContainer = document.getElementById('nav_item_container');
-		const navbar_logo = document.getElementById('navbar_logo');
+		const allContainers = document.getElementsByClassName('nav__container');
+		const inicio = document.getElementById('inicio');
+		// const navbar_logo = document.getElementById('navbar_logo');
+		console.log(allContainers);
 		fixNavbar();
-		console.log(navbar_logo)
 
 		function fixNavbar(ev) {
 			const pagePos = document['documentElement' || 'body'].scrollTop;
@@ -64,19 +66,21 @@ function Slideshow( element ) {
 			if (pageWidth-16-178 < navbarWidth) {
 				navbar.classList.add('navbar__tall');
 				navbarContainer.classList.add('nav_container_tall')
-				navbar_logo.classList.add('navbar__logo_tall')
+				// navbar_logo.classList.add('navbar__logo_tall')
 			} else {
 				navbar.classList.remove('navbar__tall');
-				navbarContainer.classList.remove('nav_container_tall')
-				navbar_logo.classList.remove('navbar__logo_tall')
+				navbarContainer.classList.remove('nav_container_tall')				
+				// navbar_logo.classList.remove('navbar__logo_tall')
 			}
 			
 			if (distance < 0) {
 				wrapper.classList.add('fixed-navbar');
-				navbarContainer.classList.add('navbar_inline');
+				// navbarContainer.classList.add('navbar_inline');
+				inicio.classList.remove('d-none')
 			} else {
 				wrapper.classList.remove('fixed-navbar');
-				navbarContainer.classList.remove('navbar_inline');
+				// navbarContainer.classList.remove('navbar_inline');
+				inicio.classList.add('d-none')
 			}
 		}
 

@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
    <?php
-      $data['title'] = 'Panel de Control - Areas';
+      $data['title'] = 'Panel de Control - Áreas';
       $this->load->view('templates/meta', $data);
    ?>
 </head>
@@ -27,7 +27,7 @@
       <div class='admin-title'>
          <div class='row no-gutters'>
             <div class="col-12">         
-            <h2>Areas</h2>
+            <h2>Áreas</h2>
             </div>
          </div>
       </div>
@@ -37,11 +37,11 @@
             <div class="col-12"> 
             <a class='nav-btn' href='<?php echo $admin_dir."nueva_area"; ?>'>
                <i class="fa fa-plus mr-1"></i>
-               Nueva Area
+               Nueva Área
             </a>
             <a class='nav-btn' href='<?php echo $admin_dir."nueva_subarea"; ?>'>
                <i class="fa fa-plus mr-1"></i>
-               Nueva Subarea
+               Nueva Subárea
             </a>
             </div>
          </div>
@@ -62,7 +62,7 @@
             <thead>
             <tr>
                <th></th>
-               <th>Area</th>
+               <th>Área</th>
                <th>Color</th>
                <th class='text-center'>Status</th>
                <th colspan="4" class='text-center'>Acciones</th>

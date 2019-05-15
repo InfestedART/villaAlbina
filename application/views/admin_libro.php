@@ -14,7 +14,7 @@
 <html lang="en">
 <head>
    <?php
-      $data['title'] = 'Panel de Control - Libreria';
+      $data['title'] = 'Panel de Control - Librería';
       $this->load->view('templates/meta', $data);
    ?>
 </head>
@@ -33,7 +33,7 @@
       <div class='admin-title'>
          <div class='row no-gutters'>
             <div class="col-12">         
-            <h2>Libreria</h2>
+            <h2>Librería</h2>
             </div>
          </div>
       </div>
@@ -100,7 +100,7 @@
                      echo $admin_dir."?orderby=titulo&direction=".$order_direction;
                      ?>'
                      class='admin-table__title admin_order'>
-                        Titulo
+                        Título
                          <?php
                            $titulo_sort = 'sort';
                            if ($orderby == 'titulo' && $direction == 'asc') {

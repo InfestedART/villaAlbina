@@ -31,7 +31,7 @@
       <div class='admin-title'>
          <div class='row no-gutters'>
             <div class="col-12">         
-            <h2>Imagenes de Portada</h2>
+            <h2>Imágenes de Portada</h2>
             </div>
          </div>
       </div>
@@ -73,7 +73,7 @@
                	<th>Orden</th>
                	<th>Imagen</th>
                	<th>Color del degradado</th>
-               	<th>Area</th>
+               	<th>Área</th>
                	<th colspan='4'>Acciones</th>
                </tr>
          	</thead>
@@ -110,11 +110,11 @@
                         </td>
                         <td class='text-center'>
          						<a href='%ssubir_portada/%s'>
-                           <i class='fa fa-chevron-up' title='MOVER ARRIBA'></i>
+                           <i class='fa fa-chevron-up' title='SUBIR'></i>
                         </td>
                         <td class='text-center'>
          						<a href='%sbajar_portada/%s'>
-                           <i class='fa fa-chevron-down' title='MOVER ABAJO'></i>
+                           <i class='fa fa-chevron-down' title='BAJAR'></i>
                         </td>
                         <td class='text-center'><a href='%squitar_portada/%s'>
                            <i class='fa fa-times' title='QUITAR'></i>
@@ -141,14 +141,14 @@
          <div class='row no-gutters'>
          <div class="col-12"> 
 
-			<h5 class='form-title'>Imagenes sin Usar</h5>
+			<h5 class='form-title'>Imágenes sin Usar</h5>
          <table class='admin-table'>
             <thead>
                <tr>
                	<th>Orden</th>
                	<th>Imagen</th>
                	<th>Color del degradado</th>
-               	<th>Area</th>
+               	<th>Área</th>
                	<th colspan='2'>Acciones</th>
                </tr>
          	</thead>

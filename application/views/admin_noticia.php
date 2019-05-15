@@ -89,7 +89,7 @@
                   echo $admin_dir."?orderby=titulo&direction=".$order_direction;
                   ?>'
                   class='admin-table__title admin_order'>
-                     Titulo
+                     Título
                      <?php
                         $titulo_sort = 'sort';
                         if ($orderby == 'titulo' && $direction == 'asc') {
