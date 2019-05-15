@@ -10,7 +10,7 @@
 		
 		var picker = new CP(document.getElementById('color'));
 
-		var initial_color = 'rgb(239, 125, 0)';
+		var initial_color = 'rgb(239,125,0)';
 		if (real_color) {
 			initial_color = real_color.replace('a', '')
 				.substr(0, real_color.lastIndexOf(',')-1)
@@ -20,15 +20,25 @@
 		picker.set(initial_color);
 		picker.on("change", function(color) {
 			var rgb = CP.HEX2RGB(color);
-			var rgb_color = 'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+', 1)';
+			var rgb_color = 'rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')';
 			color_input.style.backgroundColor = rgb_color;
 			color_input.value = rgb_color;
 		});
 
+    	function update_picker() {
+    		console.log(this.value);
+        	picker.set(this.value).enter();
+    	}
+
+	    picker.source.oncut = update_picker;
+	    picker.source.onpaste = update_picker;
+	    picker.source.onkeyup = update_picker;
+	    picker.source.oninput = update_picker;
+
 		if (color_switch.checked) {
 			color_input.style.backgroundColor = 'white';
 			color_input.value = '';	
-			picker.set('rgb(255, 255, 255)');		
+			picker.set('rgb(255,255,255)');		
 		}
 
 		const preview_img = document.getElementById('preview_img');

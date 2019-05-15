@@ -50,7 +50,10 @@ $dir = base_url().'assets/';
 
 		<div class="logo d-none d-md-block">
 			<img src=<?php echo $dir.'img/logo.png'; ?> />
-			<img src=<?php echo $dir.'img/logo_espacioPatino.png'; ?> />
+			<img 
+				class='logo_espacio'
+				src=<?php echo $dir.'img/logo_espacioPatino.png'; ?>
+			/>
 		</div>
 
 		<div class="logo d-xs-block d-md-none text-center">
@@ -58,10 +61,15 @@ $dir = base_url().'assets/';
 		</div>
 
 		<div class="navbar main__navbar" id='navbar'>
-			<a href='#' class='navbar__logo' id='navbar_logo'>
+			<!-- a href='#' class='navbar__logo' id='navbar_logo'>
 				<img src='<?php echo $dir.'img/logo.png'; ?>' />
-	      </a>
-	      <div class='nav__item-container' id='nav_item_container'>
+	      	</a -->
+	      	<div class='nav__item-container' id='nav_item_container'>
+		      	<div class='nav__container d-none' id='inicio'>
+		      		<a href='#' class='nav__item d-none d-md-inline-block'>
+		      			<p class='nav__label'>INICIO</p>
+		      		</a>
+		      	</div>
 			<?php
 			 	$paginas_array = $paginas->result_array();
 			 	$nav_paginas_array = $nav_paginas->result_array();

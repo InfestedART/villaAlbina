@@ -32,7 +32,7 @@
       <div class='admin-title'>
          <div class='row no-gutters'>
             <div class="col-12">         
-            <h2>Categorias de Equipos</h2>
+            <h2>Categorías de Equipos</h2>
             </div>
          </div>
       </div>
@@ -55,7 +55,7 @@
             <table class='admin-table'>
                <thead>
                   <tr>
-                     <th class='w-50'>Categoria</th>
+                     <th class='w-50'>Categoría</th>
                      <th class='text-center'>Status</th>
                      <th class='text-center'>Opciones</th>
                   </tr>
@@ -101,7 +101,7 @@
          <div class='row no-gutters'>
             <div class="col-12"> 
 
-            <h5>Editar Categoria</h5>
+            <h5>Editar Categoría</h5>
             <?php
                if ($selected_categoria) {
                   $curr_cat = $selected_categoria->result_array()[0];
@@ -117,7 +117,7 @@
                );
             ?>
             <label for='edit_categoria' class='form-label-inline'>
-               Nombre de la Categoria:
+               Nombre de la Categoría:
             </label>
             <input
                id='edit_id_categoria'
@@ -147,7 +147,7 @@
        <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">   
-            <h5>Categoria Nueva</h5>
+            <h5>Categoría Nueva</h5>
                <span id='categoria_alert' class='form-alert'>
                   <?php echo $this->session->flashdata('error');?>
                   <?php echo $error;?>
@@ -158,7 +158,7 @@
                   array('id' => 'form_categoria')
                );
             ?>
-            <label class='form-label-inline'>Nombre de la Categoria:</label>
+            <label class='form-label-inline'>Nombre de la Categoría:</label>
             <input
                id='categoria'
                name='categoria'
