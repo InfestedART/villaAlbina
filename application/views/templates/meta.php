@@ -9,6 +9,7 @@
    	<meta name="author" content="">
 	<title>Espacio Simon I Patiño - <?php echo $title; ?></title>
 
+	<link rel="icon" href="<?=base_url()?>favicon.ico" type="image/ico">
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/bootstrap.css"; ?> />
    	<link rel="stylesheet" href=<?php  echo $assets_dir."css/fa_all.min.css"; ?> />
    	<link rel="stylesheet" href=<?php  echo $assets_dir."css/common.css"; ?> />

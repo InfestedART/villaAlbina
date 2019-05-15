@@ -12,7 +12,7 @@ function main() {
 	const color__input_label = document.getElementById('color__input_label');
 	const real_color = document.getElementById('real_color').value;
 
-	var initial_color = 'rgb(239, 125, 0)';	
+	var initial_color = 'rgb(239,125,0)';	
 	if (real_color && real_color.indexOf('a') >= 0) {
 		initial_color = real_color.replace('a', '')
 			.substr(0, real_color.lastIndexOf(',')-1)
@@ -24,11 +24,19 @@ function main() {
 	picker.set(initial_color);
 	picker.on("change", function(color) {
 		var rgb = CP.HEX2RGB(color);
-		var rgb_color = 'rgba('+rgb[0]+','+rgb[1]+', '+rgb[2]+', 1)';
+		var rgb_color = 'rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')';
 		color_input.style.backgroundColor = rgb_color;
 		color_input.value = rgb_color;
 	});
+	function update_picker() {
+		console.log(this.value);
+    	picker.set(this.value).enter();
+	}
 
+    picker.source.oncut = update_picker;
+    picker.source.onpaste = update_picker;
+    picker.source.onkeyup = update_picker;
+    picker.source.oninput = update_picker;
 
 	function form_validation() {
 		const form_portada = document.getElementById('form_portada');	
@@ -51,8 +59,8 @@ function main() {
 		var cat_color = area_hidden.options[area.value].innerHTML;
 		var switch_value = color_switch.checked
 		color_input.disabled = switch_value;
-		color_input.value = !switch_value ? 'rgba(239, 125, 0, 1)' : '';
-		color_input.style.backgroundColor = !switch_value ? 'rgba(239, 125, 0, 1)' : cat_color;
+		color_input.value = !switch_value ? 'rgb(239,125,0)' : '';
+		color_input.style.backgroundColor = !switch_value ? 'rgb(239,125,0)' : cat_color;
 		if (switch_value) {
 			color__input_label.classList.add('form-label--disabled');
 		} else {
@@ -75,8 +83,8 @@ function main() {
 			color_switch.checked = false;
 			color_switch.disabled = true;
 			color_input.disabled = false;
-			color_input.value = 'rgba(239, 125, 0, 1)';
-			color_input.style.backgroundColor = 'rgba(239, 125, 0, 1)';
+			color_input.value = 'rgb(239,125,0)';
+			color_input.style.backgroundColor = 'rgb(239,125,0)';
 			color_switch_label.classList.add('form-label--disabled');
 			color_preview.classList.add('hidden');
 			color__input_label.classList.remove('form-label--disabled');

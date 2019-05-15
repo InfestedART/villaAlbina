@@ -25,7 +25,7 @@ $dir = base_url().'assets/';
 
 			<div class='col-md-8'>
 				<h3 class='titulo-pagina' style="color: <?php echo $color; ?>">
-					LIBRERIA
+					LIBRERÍA
 				</h3>
 				<p class='text-left'>
 				Bienvenidos al catálogo de publicaciones de la Fundación Simón I. Patiño,  que reúne los títulos de su producción intelectual (impresa y audiovisual), tanto de las Editions Patiño de Ginebra, como de los distintos Centros que desarrollan su actividad en Bolivia. Puedes adquirir todas estas publicaciones en el CEDOAL. </p>
@@ -35,7 +35,7 @@ $dir = base_url().'assets/';
 
 		<?php $show_no_results = sizeof($libros) < 1 ? '' : 'd-none'; ?>
 		<div class='no-results <?php echo $show_no_results; ?>'>
-			<p>No se encontraron resultados con esos parametros de busqueda</p>
+			<p>No se encontraron resultados con esos parámetros de busqueda</p>
 			<a class='no-result__volver' href=''>
 				Ver todas los Libros
 			</a>

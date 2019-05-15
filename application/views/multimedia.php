@@ -31,7 +31,7 @@ $dir = base_url().'assets/';
 		</div>
 		<?php $show_no_results = sizeof($multimedia) < 1 ? '' : 'd-none'; ?>
 		<div class='no-results <?php echo $show_no_results; ?>'>
-			<p>No se encontraron resultados con esos parametros de busqueda</p>
+			<p>No se encontraron resultados con esos parámetros de busqueda</p>
 			<a class='no-result__volver' href=''>
 				Ver todas Los Archivos Multimedia
 			</a>

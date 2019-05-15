@@ -9,17 +9,17 @@
       	</a>
 
 		<div class='navbar__row'>
-
-	      	<div class='nav__item-container navbar_inline'>
+	      	<div class='nav__item-container navbar_inline' id='nav_item_container'>
 				<?php
 			 	foreach ($paginas as $pagina) {
 			 		$link = $pagina['external_url'] 
 			 			? $pagina['enlace']
 			 			: base_url().$pagina['enlace'];
-			 		printf(
-			 			"<a href='%s' class='nav__item d-none d-md-inline-block %s' %s>
+			 		printf("
+			 			<div class='nav__container'>
+			 			<a href='%s' class='nav__item d-none d-md-inline-block %s' %s>
 			 				<p class='nav__label'>%s</p>
-			 			</a>",
+			 			</a></div>",
 			 			$link,
 			 			$selected_pagina['titulo'] == $pagina['titulo'] ? 'navbar__selected' : '',
 			 			$pagina['external_url'] ? "target='_blank'" : "",
@@ -63,3 +63,4 @@
 		<?php echo form_close(); ?>
 	</div>
 	</div>
+	<!-- script src=<?php  echo $dir."js/navbar.js"; ?> ></script -->

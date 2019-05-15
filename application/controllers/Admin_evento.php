@@ -114,7 +114,7 @@ class Admin_evento extends CI_Controller {
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/eventos/'.$imagen;
-		$contenido = $this->input->post('contenido', TRUE);
+		$contenido = $this->input->post('contenido', FALSE);
 
 		$post_data = array(
 			'titulo' => $titulo,
@@ -232,7 +232,7 @@ class Admin_evento extends CI_Controller {
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/eventos/'.$imagen;
-		$contenido = $this->input->post('contenido', TRUE);
+		$contenido = $this->input->post('contenido', FALSE);
 
 		$post_data = array(
 			'titulo' => $titulo,

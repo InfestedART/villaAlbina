@@ -123,13 +123,13 @@ class Admin_convocatoria extends CI_Controller {
 			}
 		}
 
-   	$titulo = $this->input->post('titulo', TRUE);
+   		$titulo = $this->input->post('titulo', TRUE);
 		$fecha_limite = $this->input->post('fecha_limite', TRUE);
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/convocatorias/'.$imagen;
 		$leyenda = $this->input->post('leyenda', TRUE);
-		$contenido = $this->input->post('contenido', TRUE);
+		$contenido = $this->input->post('contenido', FALSE);
    
 		$post_data = array(
 			'titulo' => $titulo,
@@ -265,7 +265,7 @@ class Admin_convocatoria extends CI_Controller {
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/convocatorias/'.$imagen;
 		$leyenda = $this->input->post('leyenda', TRUE);
-		$contenido = $this->input->post('contenido', TRUE);
+		$contenido = $this->input->post('contenido', FALSE);
    
 		$post_data = array(
 			'titulo' => $titulo,
