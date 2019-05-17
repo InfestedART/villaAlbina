@@ -157,9 +157,16 @@ $prev_id = $prev_evento ? $prev_evento[0]->id_post : '';
 					 echo $event->contenido 
 				?></p>
 
-				<div class='pubicacion__info publicacion__contenido'><?php
-					echo $event->info					
-				 ?></div>
+				<?php
+				if ($event->info) {
+					printf("
+						<div class='pubicacion__info publicacion__contenido'>
+						%s
+						</div>",
+						$event->info
+					);
+				}
+				?>				
 			</div>
 			</div>
 		</div>	

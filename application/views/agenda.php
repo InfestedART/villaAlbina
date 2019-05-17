@@ -63,13 +63,13 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 				</div>",
 				base_url().'evento?id='.$evento['id_post'],
 				$dir,
-				$evento['imagen'],
+				$evento['imagen'] ? $evento['imagen'] : 'img/placeholder.jpg',
 				$agenda_data['color'],
 				strftime('%d de %B', strtotime($evento['fecha_ini'])),
 				strftime('%d de %B', strtotime($evento['fecha_fin'])),
 				base_url().'evento?id='.$evento['id_post'],
 				$evento['titulo'],
-				$evento['info']
+				$evento['descripcion']
 			);
 			}
 		?>

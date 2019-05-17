@@ -26,7 +26,7 @@
 				</div>",
 				base_url().'noticia/?id='.$noticia['id_post'],
 				$dir,
-				$noticia['imagen'],
+				$noticia['imagen'] ? $noticia['imagen'] : 'img/placeholder.jpg',
 				$color,
 				strftime('%d de %B de %Y', strtotime($noticia['fecha'])),
 				base_url().'noticia/?id='.$noticia['id_post'],

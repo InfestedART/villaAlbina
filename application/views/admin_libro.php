@@ -61,17 +61,41 @@
          <div class='row no-gutters'>
             <div class="col-12">         
 
-               <div class="admin-buscador"><?php
+               <div class="admin-buscador">
+                  <div class='buscador__container'><?php
                   echo form_open(
                      'admin_libro',
                      array('id' => 'form_buscar_libreria')
                   ); ?>
-                  <input
-                     class='buscador__input'
-                     name='buscar_libreria'
-                     id='buscar_libreria'
-                     value='<?php echo $search; ?>'
-                  />
+                     <input
+                        class='buscador__input'
+                        name='buscar_libreria'
+                        id='buscar_libreria'
+                        placeholder='Buscar...'
+                        value='<?php echo $search; ?>'
+                     />
+                  </div>
+
+                  <div class='buscador__container'>
+                     <select
+                        class='buscador__input'
+                        name='buscar_categoria'
+                        id='buscar_categoria'
+                     >
+                        <option value=''>Todas las áreas</option>
+                        <?php
+                        $cat_array = $categorias->result_array();
+                        foreach ($cat_array as $cat_libro) {
+                           printf("
+                              <option value='%s' %s>%s</option>
+                              ",
+                              $cat_libro['id_categoriaLibro'],
+                              $search_cat == $cat_libro['id_categoriaLibro'] ? 'selected' : '',
+                              $cat_libro['categoria']
+                           );
+                        }
+                        ?>
+                     </select>
                   <button class='buscador__button' type='submit' id='buscar_libreria_btn'>
                      <i class="fa fa-search"></i>
                   </button>
@@ -79,6 +103,7 @@
                      <a href=''>Limpiar Busqueda</a>
                   </span>
                   <?php echo form_close(); ?>
+                  </div>
                </div>
 
             </div>
@@ -86,7 +111,6 @@
 
          <?php
             $libros_array = $libros->result_array();
-            $cat_array = $categorias->result_array();
             if (sizeof($libros_array) > 0) {  ?>
             <table class='admin-table'>
                <thead>

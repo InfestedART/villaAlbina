@@ -104,8 +104,8 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 									</div>
 								</div>
 								</div>
-							</div>",
-							$dir.$miembro['imagen'],
+							</div>",							
+							$miembro['imagen'] ? $dir.$miembro['imagen'] : 'img/placeholder.jpg',
 							$miembro['categoria'],
 							$miembro['nombre'],
 							$miembro['cargo'],

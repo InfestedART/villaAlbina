@@ -8,6 +8,7 @@ class Noticia extends CI_Controller {
 		$this->load->model("Paginas_model");
 		$search = $this->input->post('buscar', TRUE);
 		$data['search'] = $search;
+		$data['search_cat'] = '';
 		$id = $this->input->get('id', TRUE);
 		$data['news'] = $this->Noticias_model->get_noticia($id)->result_object();
 		$fecha = $data['news'][0]->fecha;

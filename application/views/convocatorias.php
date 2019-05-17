@@ -39,7 +39,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 
 		<div class='row'>
 		<?php
-			foreach ($convocatorias as $convocatoria) {
+			foreach ($convocatorias as $convo) {
 				printf(
 				"<div class='slide_container noticia col-12 col-sm-6 col-md-4'>
 					<div class='publicacion__slide'>
@@ -60,14 +60,14 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 					<p class='noticia__descripcion'>%s</p>
 					</div>
 				</div>",
-				base_url().'convocatoria?id='.$convocatoria['id_post'],
+				base_url().'convocatoria?id='.$convo['id_post'],
 				$dir,
-				$convocatoria['imagen'],
+				$convo['imagen'] ? $convo['imagen'] : 'img/placeholder.jpg',
 				$convo_data['color'],
-				strftime('%d de %B', strtotime($convocatoria['fecha_limite'])),
-				base_url().'convocatoria?id='.$convocatoria['id_post'],
-				$convocatoria['titulo'],
-				$convocatoria['descripcion']
+				strftime('%d de %B', strtotime($convo['fecha_limite'])),
+				base_url().'convocatoria?id='.$convo['id_post'],
+				$convo['titulo'],
+				$convo['descripcion']
 			);
 			}
 		?>

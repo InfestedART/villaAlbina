@@ -100,8 +100,7 @@ $dir = base_url().'assets/';
 			<a
 				href="#seccion_<?php echo $paginas_array[0]['id_pagina'] ?>"
 				id="flecha-abajo"
-			>
-				<img src=<?php echo $dir.'img/flecha_abajo.png'; ?> />
+			> <img src=<?php echo $dir.'img/flecha_abajo.png'; ?> />
 			</a>
 		</div>
 

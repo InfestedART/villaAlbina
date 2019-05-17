@@ -6,14 +6,18 @@ class Admin_evento extends CI_Controller {
 		$this->load->model("Eventos_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Areas_model");
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
-		$search = $this->input->post('buscar_evento', TRUE);
+		$search = $this->input->post('buscar', TRUE);
+		$search_cat = $this->input->post('buscar_cat', TRUE);
 		$data['search'] = $search;
+		$data['search_cat'] = $search_cat;
+		$data['areas'] = $this->Areas_model->get_all_areas();
 		$data['eventos'] = $this->Eventos_model->get_all_eventos(
-			$search, $orderby, $direction
+			$search, $search_cat, $orderby, $direction
 		);
 		$this->load->view('admin_evento', $data);
 	}
@@ -51,11 +55,11 @@ class Admin_evento extends CI_Controller {
 
 	private function set_img_config() {
 		$img_config['upload_path'] = './assets/uploads/eventos/';
-      $img_config['allowed_types'] = 'gif|jpg|png|jpeg';
-      $img_config['max_size'] = 0;
-      $img_config['max_width'] = 0;
-      $img_config['max_height'] = 0;
-      return $img_config;
+      	$img_config['allowed_types'] = 'gif|jpg|png|jpeg';
+      	$img_config['max_size'] = 0;
+      	$img_config['max_width'] = 0;
+      	$img_config['max_height'] = 0;
+      	return $img_config;
 	}
 
 	public function insertar_evento() {

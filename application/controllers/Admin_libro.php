@@ -14,10 +14,12 @@ class Admin_libro extends MY_Controller {
 
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE); 
-		$search = $this->input->post('buscar_libreria', TRUE);
-		$data['search'] = $search;
+		$search_libro = $this->input->post('buscar_libreria', TRUE);
+		$search_cat = $this->input->post('buscar_categoria', TRUE);
+		$data['search'] = $search_libro;
+		$data['search_cat'] = $search_cat;
 		$data['libros'] = $this->Libro_model->get_all_libros(
-			$search, $orderby, $direction
+			$search_libro, $search_cat, $orderby, $direction
 		);
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
 

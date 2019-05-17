@@ -1,7 +1,12 @@
 <?php
 class Libro_model extends CI_Model {
 
-  function get_all_libros($search = false, $orderby = false, $direction = 'asc')  {
+  function get_all_libros(
+    $search = false,
+    $search_cat = false,
+    $orderby = false,
+    $direction = 'asc'
+  )  {
     $this->db->select('*');
     $this->db->from('libro');
     $this->db->join(
@@ -14,6 +19,9 @@ class Libro_model extends CI_Model {
       $this->db->or_like('libro.descripcion', $search);
       $this->db->or_like('libro.autor', $search);
     }
+    if ($search_cat) {
+      $this->db->where('libro.id_categoriaLibro', $search_cat);
+    }
     if ($orderby == 'titulo') {
       $this->db->order_by('publicacion.'.$orderby, $direction);  
     } elseif($orderby) {
@@ -24,7 +32,12 @@ class Libro_model extends CI_Model {
     return $result;    
   }
 
-  function get_valid_libros($limit, $search = false, $step=0)  {
+  function get_valid_libros(
+    $limit,
+    $search = false,
+    $search_cat = false,
+    $step = 0
+  )  {
     $this->db->select('*');
     $this->db->from('libro');
     $this->db->join('publicacion', 'publicacion.id_post = libro.id_post');
@@ -33,6 +46,9 @@ class Libro_model extends CI_Model {
       $this->db->like('publicacion.titulo', $search);
       $this->db->or_like('libro.descripcion', $search);
       $this->db->or_like('libro.autor', $search);
+    }
+    if ($search_cat) {
+      $this->db->where('libro.id_categoriaLibro', $search_cat);
     }
     $this->db->join(
       'categoria_libro',

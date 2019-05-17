@@ -64,7 +64,7 @@ $prev_id = $prev_area ? $prev_area[0]->enlace : '';
 				<div class='publicacion__slider' id='slider'>
 					<?php
 						$galeria = [];
-						$galeria[0] = $area->imagen;
+						$galeria[0] = $area->imagen ? $area->imagen : 'img/placeholder.jpg';
 						for ($i=1; $i<=sizeof($galeria_areas); $i++) {
 							$galeria[$i] = $galeria_areas[$i-1]['imagen'];
 						}
@@ -134,10 +134,7 @@ $prev_id = $prev_area ? $prev_area[0]->enlace : '';
 					<a href='%s'
 						class='archivo__btn'
 						style='background-color: %s'
-						target='_blank'
-						>
-						%s
-					</a>",
+					> %s </a>",
 					base_url().'subarea?subarea='.$subarea['enlace'].'&area='.$subarea['id_area'],
 					$area->color_area,
 					$subarea['subarea']

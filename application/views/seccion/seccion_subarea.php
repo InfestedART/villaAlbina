@@ -18,7 +18,8 @@
 					</div>
 				</div>",
 				base_url().$enlace."?active=".$subarea['enlace'],
-				$dir, $subarea['imagen'],
+				$dir,
+				$subarea['imagen'] ? $subarea['imagen'] : 'img/placeholder.jpg',
 				base_url().$enlace."?active=".$subarea['enlace'],
 				$subarea['subpagina']
 			);	
