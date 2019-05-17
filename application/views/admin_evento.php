@@ -50,24 +50,49 @@
          <div class='row no-gutters'>
          <div class="col-12">
 
-            <div class="admin-buscador"><?php
+            <div class="admin-buscador">
+               <div class='buscador__container'><?php
                echo form_open(
                   'admin_evento',
                   array('id' => 'form_buscar_evento')
                ); ?>
                <input
                   class='buscador__input'
-                  name='buscar_evento'
-                  id='buscar_evento'
+                  name='buscar'
+                  id='buscar'
+                  placeholder='Buscar...'
                   value='<?php echo $search; ?>'
                />
-               <button class='buscador__button' type='submit' id='buscar_evento_btn'>
-                  <i class="fa fa-search"></i>
-               </button>
-               <span class="<?php if(!$search) { echo 'd-none'; } ?>">
-                  <a href=''>Limpiar Busqueda</a>
-               </span>
+               </div>
+               <div class='buscador__container'>
+                  <select
+                     class='buscador__input'
+                     name='buscar_cat'
+                     id='buscar_cat'
+                     style='width: 250px'
+                  >
+                     <option value=''>Todas las áreas</option>
+                     <?php
+                     $areas_array = $areas->result_array();
+                     foreach ($areas_array as $area) {
+                        printf("
+                           <option value='%s' %s>%s</option>
+                           ",
+                           $area['id_area'],
+                           $area['id_area'] == $search_cat ? 'selected': '',
+                           $area['area']
+                        );
+                     }
+                     ?>
+                  </select>
+                  <button class='buscador__button' type='submit' id='buscar_evento_btn'>
+                     <i class="fa fa-search"></i>
+                  </button>
+                  <span class="<?php if(!$search) { echo 'd-none'; } ?>">
+                     <a href=''>Limpiar Busqueda</a>
+                  </span>
                <?php echo form_close(); ?>
+               </div>
             </div>
 
             <?php

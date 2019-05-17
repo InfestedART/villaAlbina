@@ -11,6 +11,7 @@ class Convocatorias extends CI_Controller {
 		if (!$step) { $step = 0; }	
 		$today = date('Y-m-d');
 		$data['search'] = $search;
+		$data['search_cat'] = '';
 		$data['convo_data'] = $this->Paginas_model->get_pagina(8)->result_array()[0];
 		$data['cant_convo'] = sizeof(
 			$this->Convocatorias_model->get_valid_convocatorias($today, 100)->result_array()

@@ -17,7 +17,8 @@
 				</div>
 			</div>",
 			base_url().$enlace."?area=".$area['enlace'],
-			$dir, $area['imagen'],
+			$dir,
+			$area['imagen'] ? $area['imagen'] : 'img/placeholder.jpg',
 			base_url().$enlace."?area=".$area['enlace'],
 			$area['area']
 		);	

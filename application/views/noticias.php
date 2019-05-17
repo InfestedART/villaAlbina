@@ -60,7 +60,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 				</div>",
 				base_url().'noticia/?id='.$noticia['id_post'],
 				$dir,
-				$noticia['imagen'],
+				$noticia['imagen'] ? $noticia['imagen'] : 'img/placeholder.jpg',
 				$noticias_data['color'],
 				strftime('%A %d de %B de %Y', strtotime($noticia['fecha'])),
 				base_url().'noticia/?id='.$noticia['id_post'],

@@ -1,7 +1,12 @@
 <?php
 class Eventos_model extends CI_Model {
 
-	function get_all_eventos($search = false, $orderby = false, $direction = 'desc') {
+	function get_all_eventos(
+		$search = false,
+		$search_cat = false,
+		$orderby = false,
+		$direction = 'desc'
+	) {
 		$this->db->select('evento.*, publicacion.*, html.*, area.area, area.color_area');
 		$this->db->from('evento');
 		$this->db->join('publicacion', 'publicacion.id_post = evento.id_post');
@@ -13,6 +18,9 @@ class Eventos_model extends CI_Model {
 	      	$this->db->or_like('evento.organizador', $search);
 	      	$this->db->or_like('html.contenido', $search);
 	    }
+	    if ($search_cat) {
+	      $this->db->where('evento.id_area', $search_cat);
+	    }	    
 	    $this->db->order_by(
 			$orderby ? $orderby : 'evento.id_post',
 			$direction
@@ -21,23 +29,34 @@ class Eventos_model extends CI_Model {
 	  	return $result;    		
 	}
 
-	function get_valid_eventos_futuros($date, $limit, $search = false, $step=0) {
+	function get_valid_eventos_futuros(
+		$date,
+		$limit,
+		$search = false,
+		$search_cat = false,
+		$step=0
+	) {
 		$this->db->select('evento.*, publicacion.*, html.*, area.area, area.color_area');
 		$this->db->from('evento');
 		$this->db->join('publicacion', 'publicacion.id_post = evento.id_post');
 		$this->db->join('area', 'area.id_area = evento.id_area');
 		$this->db->join('html', 'html.id_post = evento.id_post', 'left');
 		$this->db->where('publicacion.status', 1);
-		
 		if ($search) {
     		$this->db->like('publicacion.titulo', $search);
 	      	$this->db->or_like('evento.info', $search);
+	      	$this->db->or_like('evento.descripcion', $search);
 	      	$this->db->or_like('evento.organizador', $search);
 	      	$this->db->or_like('html.contenido', $search);
 	    }
+	   	if ($search_cat) {
+	      $this->db->where('evento.id_area', $search_cat);
+	    }	  
 	    $start = $step * $limit;
-	    $this->db->where('evento.fecha_ini >', $date);
-		$this->db->or_where('evento.fecha_fin >', $date);
+	    $this->db->group_start();
+	    	$this->db->where('evento.fecha_ini >', $date);
+			$this->db->or_where('evento.fecha_fin >', $date);
+		$this->db->group_end();
 		$this->db->limit($limit, $start);
 		$result = $this->db->get();
 	  	return $result;    		
@@ -52,12 +71,15 @@ class Eventos_model extends CI_Model {
 		if ($search) {
     		$this->db->like('publicacion.titulo', $search);
 	      	$this->db->or_like('evento.info', $search);
+	      	$this->db->or_like('evento.descripcion', $search);
 	      	$this->db->or_like('evento.organizador', $search);
 	    }
-	    $this->db->where('evento.fecha_ini >', $date);
+	    $this->db->group_start();
+	    	$this->db->where('evento.fecha_ini >', $date);
+			$this->db->or_where('evento.fecha_fin >', $date);
+		$this->db->group_end();		
 	    $start = $step * $limit;
 	    $this->db->limit($limit, $start);
-		// $this->db->or_where('evento.fecha_fin >', $date);
 		$result = $this->db->get();
 	  	return $result;    		
 	}

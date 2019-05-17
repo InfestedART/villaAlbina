@@ -23,7 +23,6 @@
 				navWidth += allContainers[i].offsetWidth
 			}
 			if (navWidth > navbarWidth) {
-				console.log('tall');
 				navbar.classList.add('navbar__tall');
 				navbarContainer.classList.add('nav_container_tall')
 				navbar_logo.classList.add('navbar__logo_tall')
@@ -31,9 +30,11 @@
 
 		}
 
-		function show_searchbar() {			
-			navbar.style.height = navbar.offsetHeight + 40 + 'px';
-			search_container.classList.remove('hidden');
+		function show_searchbar() {
+			if (search_container.classList.contains('hidden')) {
+				navbar.style.height = navbar.offsetHeight + 40 + 'px';
+				search_container.classList.remove('hidden');	
+			}			
 		}
 
 		navbar_search.addEventListener('click', function(ev){
