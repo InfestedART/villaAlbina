@@ -17,6 +17,8 @@ $dir = base_url().'assets/';
 	<?php
 		$navbar_data['paginas'] = $paginas;
 		$navbar_data['selected_pagina'] = $libro_data;
+		$navbar_data['search'] = $search;
+		$navbar_data['search_cat'] = $search_cat;
 		$this->load->view('templates/navbar', $navbar_data);
 	?>
 	<div class="seccion container seccion__last px-4 pt-0 pt-md-3">
@@ -72,7 +74,6 @@ $dir = base_url().'assets/';
 					$color,
 					$libro['precio']
 				);
-				// $this->load->view('templates/libro_footer', $data);
 			}
 			?>
 			</div>
@@ -86,13 +87,20 @@ $dir = base_url().'assets/';
 
 					if ($nav_size > 1) {
 						if ($step > 0) {
-							$prev = $step - 1;
+							$prev = $step - 1;							
+							echo form_open(
+				               $noti_dir."?step=".$prev, array(
+				               	'id' => 'form_prev',
+				               	'class' => 'd-inline-block'
+				            	));  
 							printf("
-								<a href='%s' class='showing_nav'>
-									<<
-								</a>",
-								$noti_dir."?step=".$prev
+								<input name='buscar' id='buscar' value='%s' type='hidden' />
+								<input name='buscar_cat' id='buscar_cat' value='%s' type='hidden' />
+								<input type='submit' class='showing_nav' value='<<' />",
+								$search,
+								$search_cat
 							);
+							echo form_close();
 						}
 
 						for($i=0; $i<$nav_size; $i++) {
@@ -107,12 +115,19 @@ $dir = base_url().'assets/';
 
 						if ($step+1 < $nav_size) {
 							$next = $step + 1;
+							echo form_open(
+				               $noti_dir."?step=".$next, array(
+				               	'id' => 'form_prev',
+				               	'class' => 'd-inline-block'
+				               ));  
 							printf("
-								<a href='%s' class='showing_nav'>
-									>>
-								</a>",
-								$noti_dir."?step=".$next
+								<input name='buscar' id='buscar' value='%s' type='hidden' />
+								<input name='buscar_cat' id='buscar_cat' value='%s' type='hidden' />
+								<input type='submit' class='showing_nav'value='>>'	/>",
+								$search,
+								$search_cat
 							);
+							echo form_close();
 						}						
 					}					
 				?>

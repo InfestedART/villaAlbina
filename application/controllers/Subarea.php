@@ -11,6 +11,7 @@ class Subarea extends CI_Controller {
 		$data['active'] = $this->input->get('subarea', TRUE);
 		$data['id_area'] = $this->input->get('area', TRUE);
 		$data['search'] = $search;
+		$data['search_cat'] = '';
 		$subarea_id = $this->Subarea_model->get_subarea_id($data['active'], $data['id_area']);
 		if (!$subarea_id) {
 			$subarea_id = $this->Subarea_model->get_first_id();

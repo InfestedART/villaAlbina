@@ -27,7 +27,7 @@
 				</div>",
 				base_url().'evento?id='.$evento['id_post'],
 				$dir,
-				$evento['imagen'],
+				$evento['imagen'] ? $evento['imagen'] : 'img/placeholder.jpg',
 				$color,
 				strftime('%d de %B', strtotime($evento['fecha_ini'])),
 				strftime('%d de %B', strtotime($evento['fecha_fin'])),

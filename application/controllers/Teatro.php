@@ -11,6 +11,7 @@ class Teatro extends CI_Controller {
 		$search = $this->input->post('buscar', TRUE);
 		$today = date('Y-m-d');
 		$data['search'] = $search;
+		$data['search_cat'] = '';
 		$data['teatro_data'] = $this->Paginas_model->get_pagina(11)->result_array()[0];
 		$data['cant_eventos'] = sizeof($this->Eventos_model->get_valid_obras(
 			$today, 60)->result_array()

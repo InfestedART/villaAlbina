@@ -62,7 +62,7 @@ $prev_id = $prev_subarea ? $prev_subarea[0]->enlace : '';
 				<div class='publicacion__slider' id='slider'>
 					<?php
 						$galeria = [];
-						$galeria[0] = $subarea->imagen;
+						$galeria[0] = $subarea->imagen ? $subarea->imagen : 'img/placeholder.jpg';
 						for ($i=1; $i<=sizeof($galeria_subareas); $i++) {
 							$galeria[$i] = $galeria_subareas[$i-1]['imagen'];
 						}

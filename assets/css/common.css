@@ -5,6 +5,7 @@
 
 .buscador__input {
 	width: 200px;
+	height: 30px;
 }
 
 .buscador__button {
@@ -18,6 +19,10 @@
 	color: #121212;
 	margin: 0 10px;
 	font-size: 20px;
+	padding: 0;
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .showing_nav:hover {

@@ -1,9 +1,13 @@
 	<?php
 		$dir = base_url().'assets/';
+		$show_searchbar = $search || $search_cat;
 	?>
 
-	<div class="navbar fixed-navbar" id='navbar'>
-
+	<div
+		class="navbar fixed-navbar"
+		id='navbar'
+		style="<? echo $show_searchbar ? 'height: 140px' : ''; ?>"
+	>		
 		<a href='<?php echo base_url(); ?>' class='navbar__logo d-block' id='navbar_logo'>
 			<img src='<?php echo $dir.'img/logo.png'; ?>' />
       	</a>
@@ -46,8 +50,11 @@
 	      	 <script src=<?php  echo $dir."js/navbar_app.js"; ?> ></script>
 	    </div>
 
-	<div class='navbar__row hidden' id='search_container'>
-		<?php
+		<div
+			class="navbar__row <? echo $show_searchbar ? '' : 'hidden'; ?>"
+			id='search_container'
+		>
+			<?php
 			echo form_open(
                $selected_pagina['enlace'],
                array('id' => 'form_buscar')
@@ -59,8 +66,13 @@
 				id='buscar'
 				value='<?php echo $search; ?>'
 			/>
-		<button class='navbar__search_btn'>Buscar</button>
+			<?php
+				if ($selected_pagina['search_by_cat']) {
+					$this->load->view('templates/'.$selected_pagina['search_by_cat']);	
+				}
+				
+			?>
+			<button class='navbar__search_btn'>Buscar</button>
 		<?php echo form_close(); ?>
 	</div>
 	</div>
-	<!-- script src=<?php  echo $dir."js/navbar.js"; ?> ></script -->

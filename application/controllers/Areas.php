@@ -10,6 +10,7 @@ class Areas extends CI_Controller {
 		$search = $this->input->post('buscar', TRUE);
 		$data['active'] = $this->input->get('area', TRUE);
 		$data['search'] = $search;
+		$data['search_cat'] = '';
 		$area_id = $this->Areas_model->get_area_id($data['active']);
 		if (!$area_id) {
 			$area_id = $this->Areas_model->get_first_id();

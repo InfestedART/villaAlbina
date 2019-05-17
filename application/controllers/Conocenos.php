@@ -8,6 +8,7 @@ class Conocenos extends CI_Controller {
 		$this->load->model("Equipo_model");
 		$search = $this->input->post('buscar', TRUE);
 		$data['search'] = $search;
+		$data['search_cat'] = '';
 		$data['active'] = $this->input->get('active', TRUE);
 		$data['color'] = $this->Paginas_model->get_page_color(1)['color'];
 		$data['conocenos_data'] = $this->Paginas_model->get_pagina(1)->result_array()[0];
