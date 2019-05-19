@@ -25,6 +25,7 @@ class Areas extends CI_Controller {
 		$data['galeria_areas'] = $this->Galeria_area_model->get_galeria($area_id)->result_array();
 		$data['area_data'] = $this->Paginas_model->get_pagina(2)->result_array()[0];
 		$data['all_areas'] = $this->Areas_model->get_valid_areas()->result_array();
+		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['subareas'] = $this->Subarea_model->get_area_subareas($area_id)->result_array();
 		
 		$this->load->view('areas', $data);

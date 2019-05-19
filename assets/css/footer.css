@@ -1,0 +1,107 @@
+
+.footer {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	padding: 30px 20px;
+	width: 100%;
+	color: white;
+	font-size: 12px;
+	background-color: #444;
+}
+
+.footer p {
+	margin-bottom: 0;
+	line-height: 14px;
+}
+
+.footer__titulo {
+	font-family: Gotham;
+	font-size: 14px;
+}
+
+.footer__subtitulo {
+	color: rgb(239, 125, 0);
+
+}
+
+.footer__address {
+	display: inline-block;
+	float: left;
+	margin-right: 20px;
+	max-width: 33.3%;
+}
+
+.footer__icono-direccion {
+	vertical-align: top;
+	margin-right: 5px;
+	margin-top: 3px;
+}
+
+.footer__icono-direccion .footer__icono {
+ 	height: 26px;
+ }
+
+.footer__social-media {
+	display: inline-block;
+	float: right;
+	font-size: 1.7rem;
+}
+
+ .footer__social-media a {
+ 	color: rgb(236, 125, 0);
+ 	padding: 0;
+ }
+
+ .footer__icono {
+ 	height: 38px;
+ 	padding: 0;
+ 	margin: 0;
+ }
+
+ .footer__contacto {
+ 	font-family: Gotham;
+ 	font-size: 16px;	
+ }
+
+.footer__contacto a {
+	color: white;
+}
+
+.footer__contacto a:hover {
+	color: rgb(239, 125, 0);
+}
+
+.footer__contacto span {
+	vertical-align: top;
+}
+
+ .footer__contacto i {
+ 	font-size: 28px;
+ 	margin-right: 15px;
+ }
+
+@media only screen and (max-width: 768px) {
+	.footer__social-media {
+		display: block;
+		float: none;
+		text-align: right;
+	}
+
+ 	.footer__address {
+		display: block;
+		float: none;
+		max-width: 100%;
+		margin-bottom: 20px;
+		margin-right: 0;
+	}
+
+	.footer__social-media {
+		text-align: center;
+	}
+
+	.footer__icono {
+		height: 32px;
+	}
+
+}

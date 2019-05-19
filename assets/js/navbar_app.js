@@ -1,7 +1,8 @@
 (function () {
 	'use strict';
 
-	function main() {		
+	function main() {
+		const navbar_menu = document.getElementById('navbar_menu');
 		const navbar_search = document.getElementById('navbar_search');
 		const navbar = document.getElementById('navbar');
 		const navbarContainer = document.getElementById('nav_item_container');
@@ -37,8 +38,20 @@
 			}			
 		}
 
+		function open_menu() {			
+			if(!navbar.classList.contains('navbar__mobile'))	{
+				navbar.classList.add('navbar__mobile');
+			} else {
+				navbar.classList.remove('navbar__mobile');
+			}
+		}
+
 		navbar_search.addEventListener('click', function(ev){
 			show_searchbar();
+		});
+
+		navbar_menu.addEventListener('click', function(ev){
+			open_menu();
 		});
 	}
 

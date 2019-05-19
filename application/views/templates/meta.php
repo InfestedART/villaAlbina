@@ -16,4 +16,5 @@
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_style.css"; ?> />
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/admin_sidebar.css"; ?> />
 	<link rel="stylesheet" href=<?php  echo $assets_dir."css/navbar.css"; ?> />
+	<link rel="stylesheet" href=<?php  echo $assets_dir."css/footer.css"; ?> />
    	<link rel="stylesheet" href=<?php  echo $assets_dir."css/style.css"; ?> />

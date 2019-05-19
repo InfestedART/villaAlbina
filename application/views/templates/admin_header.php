@@ -8,7 +8,11 @@
 	<div class='admin-logo'>
     <a href='<?php echo $admin_dir; ?>'>
  		  <img src='<? echo $assets_dir."img/logo.png";?>'/>
-      <img style='height: 30px;' src='<? echo $assets_dir."img/logo_espacioPatino.png";?>'/>
+      <img
+        class='d-none d-sm-inline-block'
+        style='height: 30px;'
+        src='<? echo $assets_dir."img/logo_espacioPatino.png";?>'
+      />
     </a>
  	</div>
  	
@@ -21,9 +25,9 @@
          >  Cerrar Sesion
          </a>
       </div>
-      <div class='admin-menu__container d-block d-md-none' id='sidebar_btn'>
-         <span class='admin-menu'></span>
-      </div>
+        <a href='#' class="admin__menu navbar__menu" id='sidebar_btn'>
+          <i class='fa fa-bars'> </i>
+        </a>
    </div>
     	
  </div>

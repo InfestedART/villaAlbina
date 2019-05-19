@@ -96,9 +96,10 @@ $dir = base_url().'assets/';
 
 	</div>
 	
-<?php
-	$this->load->view('templates/footer'); 
-?>
+	<?php
+		$footer_data['areas'] = $areas;
+		$this->load->view('templates/footer', $footer_data);
+	?>
 
 </body>
 

@@ -43,12 +43,11 @@ function Slideshow( element ) {
 	
 	function main() {	
 		const wrapper = document.getElementById('wrapper');
+		const navbar_menu = document.getElementById('navbar_menu');
 		const navbar = document.getElementById('navbar');
 		const navbarContainer = document.getElementById('nav_item_container');
 		const allContainers = document.getElementsByClassName('nav__container');
 		const inicio = document.getElementById('inicio');
-		// const navbar_logo = document.getElementById('navbar_logo');
-		console.log(allContainers);
 		fixNavbar();
 
 		function fixNavbar(ev) {
@@ -84,7 +83,19 @@ function Slideshow( element ) {
 			}
 		}
 
+		function open_menu() {			
+			if(!navbar.classList.contains('navbar__mobile'))	{
+				navbar.classList.add('navbar__mobile');
+			} else {
+				navbar.classList.remove('navbar__mobile');
+			}
+		}
+
 		window.addEventListener('scroll' , fixNavbar);
+
+		navbar_menu.addEventListener('click', function(ev){
+			open_menu();
+		});
 	}
 
 	window.addEventListener('load' , main);

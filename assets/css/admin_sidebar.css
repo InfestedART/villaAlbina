@@ -100,8 +100,14 @@
 	}
 
 	.admin-sidebar a {
-		padding: 1rem 0.75rem;
+		padding: 0.85rem 0.5rem;
 		text-align: center;
+		text-overflow: ellipsis;
+		overflow: hidden
+	}
+
+	.admin-sidebar i {
+		display: block;
 	}
 
 	.admin-container {
@@ -126,9 +132,12 @@
 		margin-bottom: 4px
 	}
 
-
 	.admin-sidebar.collapsed {
 		width: 45px;
+	}
+
+	.dropdown {
+		float: none;		
 	}
 
 	.collapsed .admin-sidebar__title span,
@@ -144,8 +153,13 @@
 	}
 
 	.admin-sidebar a {
+		padding: 0.85rem 0.75rem;
 		text-align: left;
 	}
+
+	.admin-sidebar i {
+		display: inline-block;
+	}	
 
 	.admin-container {
 		margin-left: 180px;
