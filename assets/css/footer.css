@@ -1,13 +1,14 @@
 
 .footer {
-	position: absolute;
+	// position: absolute;
 	display: block;
-	bottom: 0;
+	// bottom: 0;
 	padding: 30px 20px;
 	width: 100%;
 	color: white;
 	font-size: 12px;
 	background-color: #444;
+	margin-top: 80px;
 }
 
 .footer p {

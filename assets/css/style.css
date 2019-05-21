@@ -33,7 +33,7 @@ body {
 
 .main__wrapper {
 	position: relative;
-	padding-bottom: 80px;
+	// padding-bottom: 80px;
 }
 
 .main__fixed-header {
@@ -201,11 +201,6 @@ body {
 	text-transform: uppercase;
 	text-align: left;
 }
-
-.seccion__last {
-	padding-bottom: 200px;
-}
-
 
 .seccion__conoce_mas {
 	padding: 6px 36px;
@@ -424,7 +419,7 @@ body {
 	}
 
 	.seccion__last {
-		padding-bottom: 300px;
+		// padding-bottom: 300px;
 	}
 }
 
@@ -472,6 +467,7 @@ body {
 .publicacion__slider {
 	overflow: hidden;
 	display: flex;
+	width: 100%
 }
 
 .publicacion__slide {
@@ -488,54 +484,6 @@ body {
   	-moz-transition-property: -moz-transform;
   	-o-transition-property: -o-transform;
   	transition-property: transform;
-}
-
-
-.timeline {
-	padding: 30px 0 0;
-	margin: 0 auto 70px;
-}
-
-.timeline__punto {
-	display: inline-block;
-	background-color: #A8A8A8;
-	width: 18px;
-	height: 18px;
-	border-radius: 50%;
-	cursor: pointer;
-	position: relative;
-}
-
-.timeline__punto span {
-	text-align: center;
-	text-transform: uppercase;
-	color: #A8A8A8;
-	top: 22px;
-	left: -60px;
-	position: absolute;
-	font-weight: bold;
-	line-height: 18px;
-	width: 140px;
-}
-
-.timeline__punto:hover,
-.timeline__active {
-	background-color: rgb(239, 125, 0);
-}
-
-.timeline__punto:hover span,
-.timeline__active span {
-	color: rgb(239, 125, 0);;
-}
-
-.timeline__linea {
-	display: inline-block;
-	background-color: #A8A8A8;
-	width: 140px;
-	height: 3px;
-	margin-bottom: 7px;
-	margin-right: -6px;
-	margin-left: -6px;
 }
 
 .eternal-carrousel__slide {
