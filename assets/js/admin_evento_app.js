@@ -29,6 +29,34 @@
 			return new Pikaday({
 	        	field: node,
 	        	format: 'YYYY-MM-DD',
+	        	i18n: {
+				    previousMonth : 'Previous Month 1',
+				    nextMonth     : 'Next Month 2',
+				    months        : [
+				    	'Enero',
+				    	'Febrero',
+				    	'Marzo',
+				    	'Abril',
+				    	'Mayo',
+				    	'Junio',
+				    	'Julio',
+				    	'Agosto',
+				    	'Septiembre',
+				    	'Octubre',
+				    	'Noviembre',
+				    	'Diciembre'
+				    ],
+				    weekdays      : [
+				    	'Domingo',
+				    	'Lunes',
+				    	'Martes',
+				    	'Miercoles',
+				    	'Jueves',
+				    	'Viernes',
+				    	'Sábado'
+				    ],
+				    weekdaysShort : ['Dom','Lun','Mar','Mie','Jue','Vie','Sab']
+				},
 	        	toString(date, format) {
 	          	const day = ("0" + date.getDate()).slice(-2);
 	           	const month = ("0" + (date.getMonth() + 1)).slice(-2);

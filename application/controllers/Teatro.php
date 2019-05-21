@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Teatro extends CI_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
+		$this->load->model("Areas_model");
 		$this->load->model("Eventos_model");
 		$limit = 6;
 		$step = $this->input->get('step', TRUE);
@@ -19,6 +20,7 @@ class Teatro extends CI_Controller {
 		$data['step'] = $step;
 		$data['limit'] = $limit;
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
+		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['color'] = $this->Paginas_model->get_page_color(11)['color'];
 		$data['eventos'] = $this->Eventos_model->get_valid_obras(
 			$today, 6, $search

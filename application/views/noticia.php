@@ -140,7 +140,8 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 	</div>
 	
 	<?php
-		$this->load->view('templates/footer'); 
+		$footer_data['areas'] = $areas;
+		$this->load->view('templates/footer', $footer_data);
 	?>
 	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
 </body>

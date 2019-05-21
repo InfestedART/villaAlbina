@@ -168,9 +168,10 @@ $prev_id = $prev_area ? $prev_area[0]->enlace : '';
 
 	</div>
 
-<?php
-	$this->load->view('templates/footer'); 
-?>
+	<?php
+		$footer_data['areas'] = $areas;
+		$this->load->view('templates/footer', $footer_data);
+	?>
 	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
 </body>
 

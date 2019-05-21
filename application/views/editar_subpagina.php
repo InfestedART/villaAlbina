@@ -212,7 +212,7 @@
    <?php
       $contenido_src = "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=".$api_key;
    ?> 
-   <script src=<?php echo $assets_dir."js/contenido.js"; ?> ></script>
+   <script src=<?php echo $assets_dir."js/contenidoe.js"; ?> ></script>
    <script src=<?php echo $contenido_src; ?> ></script>
    <script src=<?php  echo $assets_dir."js/admin_subpagina_app.js"; ?> ></script>
 <?php

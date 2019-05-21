@@ -16,6 +16,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 
 	<?php
 		$navbar_data['paginas'] = $paginas;
+		$navbar_data['areas'] = $areas->result_array();
 		$navbar_data['selected_pagina'] = $agenda_data;
 		$this->load->view('templates/navbar', $navbar_data);
 	?>
@@ -91,7 +92,6 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 								$noti_dir."?step=".$prev
 							);
 						}
-
 						for($i=0; $i<$nav_size; $i++) {
 							printf("
 								<a href='%s' class='showing_nav'>
@@ -101,7 +101,6 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 								$i+1
 							);
 						}
-
 						if ($step+1 < $nav_size) {
 							$next = $step + 1;
 							printf("
@@ -117,8 +116,11 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		</div>
 	</div>
    <script src=<?php  echo $dir."js/shave.js"; ?> ></script>
-<?php
-	$this->load->view('templates/footer'); 
-?>
+   <script src=<?php  echo $dir."js/clamp.min.js"; ?> ></script>
+   <script src=<?php  echo $dir."js/clamp_app.js"; ?> ></script>
+	<?php
+		$footer_data['areas'] = $areas->result_array();
+		$this->load->view('templates/footer', $footer_data);
+	?>
 </body>
 </html>

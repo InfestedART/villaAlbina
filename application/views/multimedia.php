@@ -40,14 +40,18 @@ $dir = base_url().'assets/';
 		<div class='row'>
 		<?php			
 		foreach ($multimedia as $media) {
-			printf(
-				"<div class='noticia col-12 col-md-6'>
+			printf("
+				<div class='noticia col-12 col-md-6'>
+				<div class='iframe__container'>
 					<iframe src='%s'
-						width='500' height='300'							
+						width='%s'
+						height='%s'						
 						allowfullscreen></iframe>
 					<h5 class='noticia__titulo'>%s</h5>
+				</div>
 				</div>",
 				$media['enlace'],
+				'100%', '100%',
 				$media['titulo']
 				);
 			}
@@ -96,9 +100,10 @@ $dir = base_url().'assets/';
 
 	</div>
 	
-<?php
-	$this->load->view('templates/footer'); 
-?>
+	<?php
+		$footer_data['areas'] = $areas;
+		$this->load->view('templates/footer', $footer_data);
+	?>
 
 </body>
 

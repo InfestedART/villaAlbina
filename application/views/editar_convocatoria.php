@@ -291,7 +291,7 @@
    ?>
    <script src=<?php  echo $assets_dir."js/pickaday.js"; ?> ></script>
    <script src=<?php  echo $assets_dir."js/admin_convocatoria_app.js"; ?> ></script>
-   <script src=<?php echo $assets_dir."js/contenido.js"; ?> ></script>
+   <script src=<?php echo $assets_dir."js/contenidoe.js"; ?> ></script>
    <script src=<?php echo $contenido_src; ?> ></script>
 
 <?php

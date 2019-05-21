@@ -16,6 +16,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 <body>
 	<?php
 		$navbar_data['paginas'] = $paginas;
+		$navbar_data['areas'] = $areas;
 		$navbar_data['selected_pagina'] = $conocenos_data;
 		$this->load->view('templates/navbar', $navbar_data);
 	?>
@@ -39,9 +40,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 							<img src='%s' class='publicacion__imagen'/>
 						</div>
 						<div class='col-sm-6 col-md-8'>
-							<div class='publicacion__column'>
-							<p>%s</p>
-							</div>
+							<div class='publicacion__column'>%s</div>
 						</div>				
 					</div>
 				</div>",
@@ -161,9 +160,10 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 
 	</div>
 
-<?php
-	$this->load->view('templates/footer'); 
-?>
+	<?php
+		$footer_data['areas'] = $areas;
+		$this->load->view('templates/footer', $footer_data);
+	?>
 	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
 </body>
 
