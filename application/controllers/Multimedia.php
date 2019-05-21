@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Multimedia extends CI_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
+		$this->load->model("Areas_model");
 		$this->load->model("Media_model");	
 		$limit = 6;
 		$search = $this->input->post('buscar', TRUE);
@@ -18,6 +19,7 @@ class Multimedia extends CI_Controller {
 		);
 		$data['step'] = $step;
 		$data['limit'] = $limit;
+		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['multimedia'] = $this->Media_model->get_valid_media(
 			$limit, $search, $step
 		)->result_array();

@@ -175,7 +175,8 @@ $prev_id = $prev_evento ? $prev_evento[0]->id_post : '';
 	
 	
 	<?php
-		$this->load->view('templates/footer'); 
+		$footer_data['areas'] = $areas->result_array();
+		$this->load->view('templates/footer', $footer_data);
 	?>
 	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
 </body>

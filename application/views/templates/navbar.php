@@ -12,40 +12,73 @@
 			<img src='<?php echo $dir.'img/logo.png'; ?>' />
       	</a>
 
+		<a href='#' class="navbar__menu" id='navbar_menu'>
+         	<i class='fa fa-bars'> </i>
+      	</a>
+
 		<div class='navbar__row'>
-	      	<div class='nav__item-container navbar_inline' id='nav_item_container'>
+	      	<div
+	      		class='nav__item-container navbar_inline'
+	      		id='nav_item_container'
+	      	>
 				<?php
 			 	foreach ($paginas as $pagina) {
 			 		$link = $pagina['external_url'] 
 			 			? $pagina['enlace']
 			 			: base_url().$pagina['enlace'];
-			 		printf("
-			 			<div class='nav__container'>
-			 			<a href='%s' class='nav__item d-none d-md-inline-block %s' %s>
-			 				<p class='nav__label'>%s</p>
-			 			</a></div>",
-			 			$link,
-			 			$selected_pagina['titulo'] == $pagina['titulo'] ? 'navbar__selected' : '',
-			 			$pagina['external_url'] ? "target='_blank'" : "",
-			 			$pagina['titulo']
-			 		);
+			 		if ($pagina['id_pagina'] == 2) {
+			 			printf("
+			 				<div class='nav__container navbar__dropdown'>
+							   	<a
+							   		href='%s'
+							   		class='dropbtn nav__item %s'
+							   	>	<p class='nav__label'> %s 
+							      		<i class='fa fa-caret-down ml-1'></i>
+							      	</p>
+							    </a>
+						    <div class='navbar__dropdown--content'>",
+						    $link,
+						    $selected_pagina['titulo'] == $pagina['titulo'] ? 'navbar__selected' : '',
+						    $pagina['titulo']
+						);
+						foreach ($areas as $area) {
+							printf("
+						      <a href='%s' class='navbar__dropdown__item'>
+						      	%s
+						      </a>",
+						      base_url().'areas?area='.$area['enlace'],
+						      $area['area']
+							);
+						}
+			 			
+						printf("
+						    </div>
+						  </div>"
+			 			);
+			 		} else {
+				 		printf("
+				 			<div class='nav__container'>
+				 			<a href='%s' class='nav__item %s' %s>
+				 				<p class='nav__label'>%s</p>
+				 			</a></div>",
+				 			$link,
+				 			$selected_pagina['titulo'] == $pagina['titulo'] ? 'navbar__selected' : '',
+				 			$pagina['external_url'] ? "target='_blank'" : "",
+				 			$pagina['titulo']
+				 		);	
+			 		}			 		
 			 	}
-				 ?>
+				?>
 			 	<a
 			 		href="#"
-			 		class="nav__item d-none d-md-inline-block <?php			 	
+			 		class="nav__item nav_search_container <?php			 	
 						if (!$selected_pagina['enable_search']) {
 							echo 'hidden';
 						}				
 			 		?>"
-			 	>
-			 		<i class='nav__item fa fa-search' id='navbar_search'></i>
+			 	> <i class='nav__item fa fa-search' id='navbar_search'></i>
 			 	</a>
 			</div>
-
-			<a class="menu__container d-block d-md-none" id='navbar_btn'>
-	         	<span class='menu mr-4'></span>
-	      	</a>
 
 	      	 <script src=<?php  echo $dir."js/navbar_app.js"; ?> ></script>
 	    </div>

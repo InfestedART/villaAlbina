@@ -23,9 +23,13 @@ function main() {
 
 	function moveRight(targetId) {
 		const id = +targetId.substr(targetId.indexOf('_')+1);
-		const currSlider = document.getElementById('homeSlider_'+id);
+		const currSlider = document.getElementById('homeSlider_'+id);		
 		const tallSlides = currSlider.children;
-		if (activeArray[id] < tallSlides.length) {
+		const lastSlide = tallSlides[tallSlides.length-1];
+		const containerPos = currSlider.offsetWidth
+		const lastSlidePos = lastSlide.offsetLeft
+		const translation = lastSlide.offsetWidth * (activeArray[id]-1)
+		if (lastSlidePos - translation > containerPos) {
 			activeArray[id]++;
 			for(var i = 0; i < tallSlides.length; i++) {   
 			    tallSlides[i].style.transform = 'translate('+(

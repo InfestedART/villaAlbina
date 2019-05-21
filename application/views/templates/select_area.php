@@ -6,7 +6,7 @@
          >
             <option value=''>Todas las áreas</option>
             <?php
-            $areas_array = $areas->result_array();
+            $areas_array = $areas;
             foreach ($areas_array as $area) {
                printf("
                   <option value='%s' %s>%s</option>

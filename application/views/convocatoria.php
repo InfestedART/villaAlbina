@@ -170,7 +170,8 @@ $prev_id = $prev_convo ? $prev_convo[0]->id_post : '';
 	</div>	
 		
 	<?php
-		$this->load->view('templates/footer'); 
+		$footer_data['areas'] = $areas;
+		$this->load->view('templates/footer', $footer_data);
 	?>
 	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
 </body>

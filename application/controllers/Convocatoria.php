@@ -5,6 +5,7 @@ class Convocatoria extends CI_Controller {
 	public function index()	{
 		$this->load->model("Convocatorias_model");
 		$this->load->model("Paginas_model");
+		$this->load->model("Areas_model");
 		$this->load->model("Galeria_model");
 		$this->load->model("Archivo_model");
 
@@ -14,6 +15,7 @@ class Convocatoria extends CI_Controller {
 		$data['search_cat'] = '';
 		$data['convo_data'] = $this->Paginas_model->get_pagina(8)->result_array()[0];
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
+		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['convocatoria'] = $this->Convocatorias_model->get_convocatoria($id)->result_object();
 		$data['next_convo'] = $this->Convocatorias_model->get_next_convo($id)->result_object();
 		$data['prev_convo'] = $this->Convocatorias_model->get_prev_convo($id)->result_object();

@@ -5,6 +5,7 @@ class Libreria extends CI_Controller {
 	public function index()	{
 		$this->load->model("Cat_libro_model");
 		$this->load->model("Paginas_model");
+		$this->load->model("Areas_model");
 		$this->load->model("Libro_model");
 		$limit = 6;
 		$search = $this->input->post('buscar', TRUE);
@@ -27,6 +28,7 @@ class Libreria extends CI_Controller {
 		)->result_array();
 		$data['color'] = $this->Paginas_model->get_page_color(6)['color'];
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
+		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$this->load->view('libreria', $data);
 	}
 }
