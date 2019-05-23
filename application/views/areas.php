@@ -60,7 +60,7 @@ $prev_id = $prev_area ? $prev_area[0]->enlace : '';
 
 		<div class="row">
 
-			<div class="publicacion__container col-12 col-sm-6 col-md-4">
+			<div class="publicacion__container col-md-4">
 				<div class='publicacion__slider' id='slider'>
 					<?php
 						$galeria = [];
@@ -118,7 +118,7 @@ $prev_id = $prev_area ? $prev_area[0]->enlace : '';
 				?>
 			</div>
 
-			<div class="col-12 col-sm-6 col-md-8">
+			<div class="col-md-8">
 				<div class='publicacion__column'>
 					<?php echo $area->html ?>
 				</div>

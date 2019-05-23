@@ -20,6 +20,7 @@ $prev_id = $prev_evento ? $prev_evento[0]->id_post : '';
 
 	<?php
 		$navbar_data['paginas'] = $paginas;
+		$navbar_data['areas'] = $areas->result_array();
 		$navbar_data['selected_pagina'] = $agenda_data;
 		$this->load->view('templates/navbar', $navbar_data);
 	?>
@@ -64,7 +65,7 @@ $prev_id = $prev_evento ? $prev_evento[0]->id_post : '';
 		</div>
 
 		<div class="row">
-			<div class="publicacion__container col-12 col-sm-6 col-md-4">
+			<div class="publicacion__container col-md-4">
 				<div class='publicacion__slider' id='slider'>
 					<?php
 						$galeria = [];
@@ -122,7 +123,7 @@ $prev_id = $prev_evento ? $prev_evento[0]->id_post : '';
 				?>
 			</div>
 
-			<div class="col-12 col-sm-6 col-md-8">
+			<div class="col-md-8">
 			<div class='publicacion__column'>
 				<h5 class='publicacion__subtitulo'><?php echo $event->titulo ?> </h5>
 				<p class='publicacion__fecha' style="color: <?php echo $color; ?>">

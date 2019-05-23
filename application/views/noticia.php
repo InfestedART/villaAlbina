@@ -27,7 +27,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 		<?php
 		if ($prev_noticia) {
 			printf("
-				<div class='flecha izquierda d-none d-md-block'>
+				<div class='flecha izquierda'>
 					<a href='%s'>
 					<img src='%s' />
 					</a>
@@ -38,7 +38,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 		}		
 		if ($next_noticia) {
 			printf("
-				<div class='flecha derecha d-none d-md-block'>
+				<div class='flecha derecha'>
 					<a href='%s'>
 					<img src='%s' />
 					</a>
@@ -65,7 +65,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 
 		<div class="row">
 
-			<div class="publicacion__container col-12 col-sm-6 col-md-4">
+			<div class="publicacion__container col-md-4">
 				<div class='publicacion__slider' id='slider'>
 					<?php
 						$galeria = [];
@@ -123,7 +123,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 				?>
 			</div>
 
-			<div class="col-12 col-sm-6 col-md-8">
+			<div class="col-md-8">
 				<div class='publicacion__column'>
 					<h5 class='publicacion__subtitulo'><?php echo $noticia->titulo ?> </h5>
 					<p class='publicacion__fuente  mb-2'>

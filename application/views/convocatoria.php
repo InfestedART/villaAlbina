@@ -64,7 +64,7 @@ $prev_id = $prev_convo ? $prev_convo[0]->id_post : '';
 		</div>
 
 		<div class="row">
-			<div class="publicacion__container col-12 col-sm-6 col-md-4">
+			<div class="publicacion__container col-md-4">
 				<div class='publicacion__slider' id='slider'>
 					<?php
 						$galeria = [];
@@ -124,7 +124,7 @@ $prev_id = $prev_convo ? $prev_convo[0]->id_post : '';
 				?>
 			</div>
 
-			<div class="col-12 col-sm-6 col-md-8">
+			<div class="col-md-8">
 			<div class='publicacion__column'>
 				<h5 class='publicacion__subtitulo'><?php echo $convo->titulo ?> </h5>
 				<p class='publicacion__fecha' style="color: <?php echo $color; ?>">

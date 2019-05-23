@@ -191,13 +191,15 @@ $dir = base_url().'assets/';
 				</div>
 				<div class='row no-gutters text-center'>
 					<div class='col-12 my-3'>
+						<div class='btn_mas_container'>
 						<a
 							href='$enlace'
 							class='seccion__conoce_mas'
 							style='background-color: $page_color'
 						>
 							conoce más...
-						</a>";
+						</a>
+						</div>";
 		if($paginas_array[$index]['btn_adicional']) {			
 			$units = ['bytes', 'Kb', 'Mb', 'Gb'];
 			$filesize = $agenda['size'];
@@ -240,7 +242,7 @@ $dir = base_url().'assets/';
 	<script src=<?php  echo $dir."js/home_slider.js"; ?> ></script>
 	<script src=<?php  echo $dir."js/main_app.js"; ?> ></script>
 	<script src=<?php  echo $dir."js/clamp.min.js"; ?> ></script>
-   <script src=<?php  echo $dir."js/clamp_app.js"; ?> ></script>
+  	<script src=<?php  echo $dir."js/clamp_app.js"; ?> ></script>
 </body>
 
 </html>

@@ -42,7 +42,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		<?php			
 		foreach ($noticias as $noticia) {
 			printf(
-				"<div class='noticia col-12 col-sm-6 col-md-4'>
+				"<div class='noticia col-12 col-sm-6 col-lg-4'>
 					<a href='%s' class='noticia__btn'>
 						<div
 							class='noticia__imagen'
