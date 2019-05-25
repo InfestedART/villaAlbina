@@ -58,7 +58,7 @@ $dir = base_url().'assets/';
 		</div>
 
 		<div class="logo d-xs-block d-md-none text-center">
-			<img src=<?php echo $dir.'img/logo_mobile.png'; ?> />
+			<img src=<?php echo $dir.'img/logo.png'; ?> />
 		</div>
 
 		<div class="navbar main__navbar" id='navbar'>

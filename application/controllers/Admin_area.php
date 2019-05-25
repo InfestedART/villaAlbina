@@ -431,6 +431,7 @@ public function insertar_subarea() {
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/areas/'.$imagen;
 		$leyenda = $this->input->post('leyenda', TRUE);
+		$new_leyenda = $this->input->post('new_leyenda', TRUE);		
 		$contenido = $this->input->post('contenido', FALSE);
 		$id_content = $updated_subarea->id_content;
 
@@ -463,17 +464,21 @@ public function insertar_subarea() {
 			$galeria_data = array(
 				'id_subarea' => $id_subarea,
 				'imagen' => $img_galeria,
-				'leyenda' => $leyenda[$i]
+				'leyenda' => $new_leyenda[$i]
 			);
 			$this->Galeria_subarea_model->insert_imagen($galeria_data);
 		}
-
+		print_r($current_galeria);
+		echo "<br /><br />";
+		print_r($leyenda);
+		echo "<br /><br />";
 		foreach ($current_galeria as $i => $galeria_item) {
 			$galeria_data = array(
-				'leyenda' => $leyenda[$i]
+				'leyenda' => $leyenda[$i],
+				'orden' => $i+1
 			);
-			echo "<br />".$i."<br/>";
 			print_r($galeria_data);
+			echo "<br />";
 			$this->Galeria_subarea_model->update_imagen(
 				$galeria_item['id_img'],
 				$galeria_data
@@ -481,7 +486,7 @@ public function insertar_subarea() {
 		}
 
 		$this->Subarea_model->update_subarea($id, $subarea_data);
-		// redirect('admin_area');
+		redirect('admin_area');
 	}
 
 	public function toggle_area() {
