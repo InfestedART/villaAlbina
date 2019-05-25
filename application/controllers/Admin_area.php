@@ -401,16 +401,23 @@ public function insertar_subarea() {
 
    	// delete selected imgs
   	  	$current_galeria = $this->Galeria_subarea_model->get_galeria($id)->result_array();
-  	  	foreach ($current_galeria as $index => $current_img) {
+  	  	foreach ($current_galeria as $index => $current_img) {  	  		
   	  		if ($delete_img[$index]) {
-  	  			$this->Galeria_subarea_model->delete_imagen($id, $current_img['imagen']);
-  	  			unlink(realpath('assets/'.$current_img['imagen']));
+  	  			$this->Galeria_subarea_model->delete_imagen(
+  	  				$current_img['id_img'],
+  	  				$current_img['imagen']
+  	  			);
+  	  			$img_file = realpath('assets/'.$current_img['imagen']);
+  	  			echo $img_file;
+				if(file_exists($img_file)){
+				    unlink($img_file);
+				}
   	  		}  	  		
   	  	}
 		$updated_subarea = $this->Subarea_model->get_subarea($id)->result_object()[0];
 		$updated_imagen = realpath('assets/'.$updated_subarea->imagen);
 		$delete_imagen = boolval($this->input->post('delete_imagen', TRUE));
-		echo $delete_imagen."<br />";
+		// echo $delete_imagen."<br />";
 		
      	if ($updated_subarea->imagen && $delete_imagen) {
      		unlink($updated_imagen);
@@ -460,8 +467,21 @@ public function insertar_subarea() {
 			);
 			$this->Galeria_subarea_model->insert_imagen($galeria_data);
 		}
+
+		foreach ($current_galeria as $i => $galeria_item) {
+			$galeria_data = array(
+				'leyenda' => $leyenda[$i]
+			);
+			echo "<br />".$i."<br/>";
+			print_r($galeria_data);
+			$this->Galeria_subarea_model->update_imagen(
+				$galeria_item['id_img'],
+				$galeria_data
+			);
+		}
+
 		$this->Subarea_model->update_subarea($id, $subarea_data);
-		redirect('admin_area');
+		// redirect('admin_area');
 	}
 
 	public function toggle_area() {

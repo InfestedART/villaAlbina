@@ -8,13 +8,13 @@
 			printf("
 				<div class='slide_container noticia col-12 col-md-6'>
 					<div class='publicacion__slide'>
-					<div class='iframe__container'>
+						<div class='iframe__container'>
 						<iframe src='%s'
 							width='%s'
 							height='%s'
 							allowfullscreen></iframe>
-						<h5 class='noticia__titulo'>%s</h5>
-					</div>
+						</div>
+					<h5 class='noticia__titulo'>%s</h5>
 					</div>
 				</div>
 				",

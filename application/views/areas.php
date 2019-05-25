@@ -65,6 +65,9 @@ $prev_id = $prev_area ? $prev_area[0]->enlace : '';
 					<?php
 						$galeria = [];
 						$galeria[0] = $area->imagen ? $area->imagen : 'img/placeholder.jpg';
+						if (sizeof($galeria_areas) > 1 && !$subarea->imagen) {
+							array_shift($galeria);
+						}						
 						for ($i=1; $i<=sizeof($galeria_areas); $i++) {
 							$galeria[$i] = $galeria_areas[$i-1]['imagen'];
 						}

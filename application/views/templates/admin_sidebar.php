@@ -111,6 +111,11 @@
           <span>Usuarios</span>
       </a></li>
 
+      <li><a href='<?php echo $admin_dir; ?>admin/close_session' >
+        <i class="fa fa-exit" aria-hidden="true"></i>
+        <span>Cerrar Sesión</span>
+      </a></li>
+
     </ul>
 
    <script src='<?php  echo $assets_dir."js/admin_sidebar_app.js"; ?>' ></script>

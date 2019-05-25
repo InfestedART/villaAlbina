@@ -70,6 +70,9 @@ $prev_id = $prev_evento ? $prev_evento[0]->id_post : '';
 					<?php
 						$galeria = [];
 						$galeria[0] = $event->imagen;
+						if (sizeof($galeria_evento) > 1 && !$subarea->imagen) {
+							array_shift($galeria);
+						}
 						for ($i=1; $i<=sizeof($galeria_evento); $i++) {
 							$galeria[$i] = $galeria_evento[$i-1]['imagen'];
 						}

@@ -70,6 +70,9 @@ $prev_id = $prev_convo ? $prev_convo[0]->id_post : '';
 						$galeria = [];
 						if ($convo->imagen || sizeof($galeria_convo) > 0) {
 							$galeria[0] = $convo->imagen;
+						if (sizeof($galeria_convo) > 1 && !$subarea->imagen) {
+							array_shift($galeria);
+						}
 							for ($i=1; $i<=sizeof($galeria_convo); $i++) {
 								$galeria[$i] = $galeria_convo[$i-1]['imagen'];
 							}

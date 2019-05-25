@@ -196,7 +196,7 @@
 }
 
 .form-show-img {
-	height: 90px;
+	height: 80px;
 }
 
 .form-change-img {
@@ -247,10 +247,32 @@
 	left: 18px;
 }
 
+.galeria__item {	
+	min-height: 80px;
+	width: 100%;
+}
+
 .galeria_img {
-	display: inline-block;
+	display: flex;
 	margin-left: 5px;
 	vertical-align: middle;
+	width: 100%;
+}
+
+.galeria_input {
+	display: inline-block;
+	margin: 5px 10px;
+	width: 50%;
+	min-width: 200px;
+}
+
+.hide_img, .restaurar_img,
+.moveUp_img, .moveDown_img {
+	max-height: 32px;
+	margin-top: 5px;
+	margin-left: 5px;
+	font-size: 14px;
+	padding: 6px 12px;
 }
 
 .archivo_span {

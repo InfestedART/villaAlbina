@@ -49,11 +49,12 @@ $dir = base_url().'assets/';
 		</div>
 
 		<div class="logo d-none d-md-block">
-			<img src=<?php echo $dir.'img/logo.png'; ?> />
 			<img 
 				class='logo_espacio'
-				src=<?php echo $dir.'img/logo_espacioPatino.png'; ?>
+				src=<?php echo $dir.'img/logo_espacio.png'; ?>
 			/>
+			<img class='logo_fundacion' src=<?php echo $dir.'img/logo.png'; ?> />
+
 		</div>
 
 		<div class="logo d-xs-block d-md-none text-center">
@@ -62,7 +63,7 @@ $dir = base_url().'assets/';
 
 		<div class="navbar main__navbar" id='navbar'>
 			<a href='#' class='navbar__logo main__logo'>
-				<img src='<?php echo $dir.'img/logo.png'; ?>' />
+				<img src='<?php echo $dir.'img/logo_espacio.png'; ?>' />
 	      	</a>
 
 			<a href='javascript:void(0);' class="navbar__menu" id='navbar_menu'>
