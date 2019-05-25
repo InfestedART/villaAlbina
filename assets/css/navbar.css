@@ -203,6 +203,10 @@
 		padding: 0;
 	}
 
+	#inicio {
+		display: none;
+	}
+
 	.navbar__logo img {
 		height: 50px;
 		margin: 6px 0;

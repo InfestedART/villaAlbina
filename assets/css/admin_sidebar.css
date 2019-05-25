@@ -51,16 +51,17 @@
 }
 
 .admin-sidebar {
+	overflow: auto;
 	background-color: #2c3136;
 	font-family: Gotham;
 	color: white;
-	min-height: calc(100vh - 80px);
+	height: 100%;
 	width: 100%;
 	position: absolute;
 	z-index: 5;
 	top: 0;
 	left: 0;
-	margin-top: 80px;
+	padding-top: 80px;
 	visibility: hidden;
 	opacity: 0;
 	font-size: 13px;
