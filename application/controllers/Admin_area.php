@@ -468,17 +468,11 @@ public function insertar_subarea() {
 			);
 			$this->Galeria_subarea_model->insert_imagen($galeria_data);
 		}
-		print_r($current_galeria);
-		echo "<br /><br />";
-		print_r($leyenda);
-		echo "<br /><br />";
 		foreach ($current_galeria as $i => $galeria_item) {
 			$galeria_data = array(
 				'leyenda' => $leyenda[$i],
 				'orden' => $i+1
 			);
-			print_r($galeria_data);
-			echo "<br />";
 			$this->Galeria_subarea_model->update_imagen(
 				$galeria_item['id_img'],
 				$galeria_data

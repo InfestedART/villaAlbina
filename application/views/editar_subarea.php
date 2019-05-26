@@ -164,6 +164,7 @@
 
                   <div id='galeria_preview' class='mb-2'>
                      <?php
+                     /*
                         foreach ($galeria_array as $index => $img) {
                            printf("<div class='galeria__item' id='galeriaItem_%s'>
                               <div id='img_preview%s' class='galeria_img'>
@@ -218,6 +219,7 @@
                            $index, $index, $index, $index, $index, $index, $index
                            );  
                         }
+                        */
                      ?>
                   </div>
 

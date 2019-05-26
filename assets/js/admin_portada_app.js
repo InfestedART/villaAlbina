@@ -13,10 +13,14 @@ function main() {
 	const real_color = document.getElementById('real_color').value;
 
 	var initial_color = 'rgb(239,125,0)';	
-	if (real_color && real_color.indexOf('a') >= 0) {
-		initial_color = real_color.replace('a', '')
-			.substr(0, real_color.lastIndexOf(',')-1)
-			+')';
+	if (real_color) {
+		if(real_color.indexOf('a') >= 0) {
+			initial_color = real_color.replace('a', '')
+				.substr(0, real_color.lastIndexOf(',')-1)
+				+')';
+		} else {
+			initial_color = real_color;
+		}
 	}
 
 	var picker = new CP(document.getElementById('color'));	

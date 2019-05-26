@@ -12,9 +12,13 @@
 
 		var initial_color = 'rgb(239,125,0)';
 		if (real_color) {
-			initial_color = real_color.replace('a', '')
-				.substr(0, real_color.lastIndexOf(',')-1)
-				+')';
+			if(real_color.indexOf('a') >= 0) {
+				initial_color = real_color.replace('a', '')
+					.substr(0, real_color.lastIndexOf(',')-1)
+					+')';
+			} else {
+				initial_color = real_color;
+			}
 		}
 
 		picker.set(initial_color);
