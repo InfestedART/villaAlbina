@@ -31,4 +31,10 @@ class Admin extends CI_Controller {
 		 	redirect('admin/');
 		 }		
 	}
+
+	public function close_session() {
+		$this->session->sess_destroy();
+		redirect('/');
+	}
+	
 }

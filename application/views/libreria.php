@@ -52,7 +52,7 @@ $dir = base_url().'assets/';
 						<div class='portada-libro'>
 							<img src='%s%s'>
 						</div>
-						<div class='container-libro'>
+						<div class='container-libro mb-4 mb-md-0'>
 							<h4 class='libro__subtitulo'>%s</h4>
 							<p class='libro__categoria' 
 							   style='color: %s'>

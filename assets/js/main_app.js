@@ -91,11 +91,30 @@ function Slideshow( element ) {
 			}
 		}
 
+		function close_menu() {			
+			if(navbar.classList.contains('navbar__mobile'))	{
+				navbar.classList.remove('navbar__mobile');
+			} 
+		}
+
 		window.addEventListener('scroll' , fixNavbar);
 
 		navbar_menu.addEventListener('click', function(ev){
 			open_menu();
 		});
+
+		for(let i=0; i<allContainers.length; i++) {
+			allContainers[i].addEventListener('click', function(ev){
+				close_menu(ev);
+			})
+		}
+
+		document.addEventListener('keydown', ev => {
+		    if (ev.key === 'Escape' || ev.keyCode === 27) {
+		        close_menu(ev);
+		    }
+		});
+
 	}
 
 	window.addEventListener('load' , main);

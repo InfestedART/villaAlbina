@@ -49,20 +49,21 @@ $dir = base_url().'assets/';
 		</div>
 
 		<div class="logo d-none d-md-block">
-			<img src=<?php echo $dir.'img/logo.png'; ?> />
 			<img 
 				class='logo_espacio'
-				src=<?php echo $dir.'img/logo_espacioPatino.png'; ?>
+				src=<?php echo $dir.'img/logo_espacio.png'; ?>
 			/>
+			<img class='logo_fundacion' src=<?php echo $dir.'img/logo.png'; ?> />
+
 		</div>
 
 		<div class="logo d-xs-block d-md-none text-center">
-			<img src=<?php echo $dir.'img/logo_mobile.png'; ?> />
+			<img src=<?php echo $dir.'img/logo.png'; ?> />
 		</div>
 
 		<div class="navbar main__navbar" id='navbar'>
 			<a href='#' class='navbar__logo main__logo'>
-				<img src='<?php echo $dir.'img/logo.png'; ?>' />
+				<img src='<?php echo $dir.'img/logo_espacio.png'; ?>' />
 	      	</a>
 
 			<a href='javascript:void(0);' class="navbar__menu" id='navbar_menu'>
@@ -191,13 +192,15 @@ $dir = base_url().'assets/';
 				</div>
 				<div class='row no-gutters text-center'>
 					<div class='col-12 my-3'>
+						<div class='btn_mas_container'>
 						<a
 							href='$enlace'
 							class='seccion__conoce_mas'
 							style='background-color: $page_color'
 						>
 							conoce más...
-						</a>";
+						</a>
+						</div>";
 		if($paginas_array[$index]['btn_adicional']) {			
 			$units = ['bytes', 'Kb', 'Mb', 'Gb'];
 			$filesize = $agenda['size'];
@@ -240,7 +243,7 @@ $dir = base_url().'assets/';
 	<script src=<?php  echo $dir."js/home_slider.js"; ?> ></script>
 	<script src=<?php  echo $dir."js/main_app.js"; ?> ></script>
 	<script src=<?php  echo $dir."js/clamp.min.js"; ?> ></script>
-   <script src=<?php  echo $dir."js/clamp_app.js"; ?> ></script>
+  	<script src=<?php  echo $dir."js/clamp_app.js"; ?> ></script>
 </body>
 
 </html>

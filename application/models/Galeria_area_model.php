@@ -11,7 +11,7 @@ class Galeria_area_model extends CI_Model {
 
   	function delete_imagen($id, $imagen) {
 	   	$this->db->delete('galeria_area', array(
-	   		'id_post' => $id,
+	   		'id_img' => $id,
 	   		'imagen' => $imagen
 	   	));
  	}

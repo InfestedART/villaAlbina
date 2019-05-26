@@ -6,7 +6,7 @@
 		setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		foreach ($seccion as $index => $evento) {
 			printf(
-				"<div class='slide_container noticia col-12 col-sm-6 col-md-4'>
+				"<div class='slide_container noticia col-12 col-sm-6 col-lg-4'>
 					<div class='publicacion__slide'>
 					<a href='%s' class='noticia__btn'>
 						<div

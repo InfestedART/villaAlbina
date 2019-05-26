@@ -30,16 +30,16 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 			if ($subarea['mostrar']) {
 			printf("
 				<div class='container %s'>
-					<div class='row mt-3 mb-4'>
+					<div class='row my-3'>
 						<div class='col-12' style='color:%s'>
 							<h3 class='titulo-pagina titulo__small'>%s</h3>
 						</div>				
 					</div>
 					<div class='row'>
-						<div class='col-sm-6 col-md-4'>
+						<div class='col-md-4'>
 							<img src='%s' class='publicacion__imagen'/>
 						</div>
-						<div class='col-sm-6 col-md-8'>
+						<div class='col-md-8'>
 							<div class='publicacion__column'>%s</div>
 						</div>				
 					</div>

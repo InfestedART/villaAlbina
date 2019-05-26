@@ -58,11 +58,14 @@ $prev_id = $prev_subarea ? $prev_subarea[0]->enlace : '';
 		</div>
 
 		<div class="row">
-			<div class="publicacion__container col-12 col-sm-6 col-md-4">
+			<div class="publicacion__container col-md-4">
 				<div class='publicacion__slider' id='slider'>
 					<?php
 						$galeria = [];
 						$galeria[0] = $subarea->imagen ? $subarea->imagen : 'img/placeholder.jpg';
+						if (sizeof($galeria_subareas) > 1 && !$subarea->imagen) {
+							array_shift($galeria);
+						}
 						for ($i=1; $i<=sizeof($galeria_subareas); $i++) {
 							$galeria[$i] = $galeria_subareas[$i-1]['imagen'];
 						}
@@ -115,7 +118,7 @@ $prev_id = $prev_subarea ? $prev_subarea[0]->enlace : '';
 				}
 				?>
 			</div>
-			<div class="col-12 col-sm-6 col-md-8">
+			<div class="col-md-8">
 				<div class='publicacion__column'>
 					<?php echo $subarea->html ?>
 				</div>

@@ -13,6 +13,13 @@
   src: url(../font/Chevin-Light.otf);
 }
 
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
 html, body {
 	font-family: Chevin;
 	scroll-behavior: smooth;
@@ -28,12 +35,10 @@ a:hover {
 
 body {
 	position: relative;
-	min-height: 100vh;
 }
 
 .main__wrapper {
 	position: relative;
-	// padding-bottom: 80px;
 }
 
 .main__fixed-header {
@@ -42,12 +47,6 @@ body {
 	left: 0;
 	right: 0;
 	height: 80px;
-}
-
-@media only screen and (max-width: 768px) {
-	.main__wrapper {
-		padding-bottom: 200px;	
-	}	
 }
 
 .form-alert {
@@ -115,12 +114,18 @@ body {
 
 .logo img {
 	z-index: 2;
-	height: 120px;
+	height: 110px;
 	margin: 1rem 0;
 }
 
+.logo_fundacion {
+	float: right;
+	padding: 0 15px;
+}
+
 .logo .logo_espacio {
-	height: 60px;
+	height: 100px;
+	padding: 10px 20px 0;
 }
 
 .main__icono {
@@ -221,9 +226,24 @@ body {
 	min-height: 1px;
 }
 
+.btn_mas_container {
+	display: inline-block;
+}
+
+@media only screen and (max-width: 768px) {
+	.seccion {
+		padding-top: 90px;
+	}
+
+	.btn_mas_container {
+		display: block;
+		margin-bottom: 15px;
+	}
+}
+
 .noticia {
 	padding-top: 1rem;
-	padding-bottom: 2rem;
+	padding-bottom: 1rem;
 }
 
 .noticia__imagen {
@@ -365,7 +385,7 @@ body {
 }
 
 .publicacion__column {
-		height: 420px;
+		height: 450px;
 		overflow: auto; 
 
 	  -webkit-column-width: auto; /* Chrome, Safari, Opera */
@@ -382,7 +402,7 @@ body {
 
 	  -webkit-column-gap: 30px;
 	  -moz-column-gap: 30px;
-	  column-gap: 30px;
+	  column-gap: 20px;
 
 	  text-align: justify;
 	  font-size: 14px;
@@ -399,23 +419,33 @@ body {
 
 @media only screen and (max-width: 1196px) {
 	.publicacion__column {
-	height: 650px;
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
 	.titulo-pagina {
-		margin: 20px auto;
+		margin: 20px auto 10px;
+		padding-left: 15px;
 	}
 
 	.publicacion__titulo {
 		text-align: center;
 	}
 
+	.publicacion__imagen {
+		margin-bottom: 20px;
+		padding: 15px;
+	}
+
 	.publicacion__column {
 		-webkit-column-count: 1;
 	  	-moz-column-count: 1;
-	  	column-count: 1;	
+	  	column-count: 1;
+	  	height: auto;
+	  	padding: 0 15px;
 	}
 
 	.seccion__last {
@@ -564,6 +594,19 @@ body {
 	margin-bottom: 14px;
 	font-size: 17px;
 }
+
+@media only screen and (max-width: 768px) {
+	.portada-libro {
+		width: 100%;
+		padding: 0 15% 15px;
+	}
+
+	 .container-libro {
+	 	width: 100%;
+	 	padding: 0 20px !important;
+	 }
+}
+
 
 .equipo__imagen {
 	margin-right: 15px;

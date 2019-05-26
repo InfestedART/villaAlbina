@@ -49,6 +49,7 @@
 @media only screen and (max-width: 768px) {
 	.timeline {
 		padding-bottom: 0;
+		margin-right: 25px;
 	}
 
 	.timeline__punto {
