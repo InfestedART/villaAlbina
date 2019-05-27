@@ -70,7 +70,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 					<?php
 						$galeria = [];
 						$galeria[0] = $noticia->imagen;
-						if (sizeof($galeria_noticias) > 1 && !$subarea->imagen) {
+						if (sizeof($galeria_noticias) > 1 && !$noticia->imagen) {
 							array_shift($galeria);
 						}						
 						for ($i=1; $i<=sizeof($galeria_noticias); $i++) {

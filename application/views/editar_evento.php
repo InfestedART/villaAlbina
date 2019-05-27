@@ -57,7 +57,6 @@
                $areas_array = $areas->result_array();
                $fechas_array = $fechas->result_array();
                $galeria_array = $galeria->result_array();
-               echo substr($edit_evento['hora'], 0, 5);
                echo form_open_multipart(
                   'admin_evento/update_evento/'.$id,
                   array('id' => 'form_evento')

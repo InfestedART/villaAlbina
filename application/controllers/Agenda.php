@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Agenda extends CI_Controller {
+class Agenda extends MY_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
 		$this->load->model("Areas_model");
@@ -10,7 +10,9 @@ class Agenda extends CI_Controller {
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }		
 		$search = $this->input->post('buscar', TRUE);
-		$search_cat = $this->input->post('buscar_cat', TRUE);
+		$post_search_cat = $this->input->post('buscar_cat', TRUE);
+		$get_search_cat = $this->input->get('search_cat', TRUE);
+		$search_cat = $post_search_cat ? $post_search_cat : $get_search_cat;
 		$today = date('Y-m-d');
 		$data['search'] = $search;
 		$data['search_cat'] = $search_cat;

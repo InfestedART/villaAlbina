@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Evento extends CI_Controller {
+class Evento extends MY_Controller {
 	public function index()	{
 		$this->load->model("Eventos_model");
 		$this->load->model("Paginas_model");

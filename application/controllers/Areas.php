@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Areas extends CI_Controller {
+class Areas extends MY_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
 		$this->load->model("Galeria_area_model");

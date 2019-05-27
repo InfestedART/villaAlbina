@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_evento extends CI_Controller {
+class Admin_evento extends Admin_Controller {
 	public function index()	{
 		$this->load->model("Eventos_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Areas_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$orderby = $this->input->get('orderby', TRUE);
@@ -27,6 +29,8 @@ class Admin_evento extends CI_Controller {
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Defaults_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['areas'] = $this->Areas_model->get_all_areas();
@@ -41,6 +45,8 @@ class Admin_evento extends CI_Controller {
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Defaults_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 

@@ -148,15 +148,18 @@
                               </a>
                            </td>
                            <td colspan='2'>
-                              <a href='%seditar_subarea/%s' title='EDITAR'>
+                              <a class='%s' href='%seditar_subarea/%s' title='EDITAR'>
                               <i class='ml-2 fa fa-edit'></i>
                               </a>
+                              %s
                            </td>
                         </tr>",                        
                         $admin_dir.'/toggle_subarea/'.$subarea['id_subarea'].'?toggle='.$sub_toggle,
                         $subarea['status'] ? 'status__on' : 'status__off',
                         $subarea['status'] ? 'slider__on' : 'slider__off',
-                        $admin_dir, $subarea['id_subarea']
+                        $subarea['mostrar_componente'] ? 'hidden' : '',
+                        $admin_dir, $subarea['id_subarea'],
+                        $subarea['mostrar_componente']
                      );
                   }}
                }
