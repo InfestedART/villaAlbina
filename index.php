@@ -56,7 +56,7 @@
 	define(
 		'ENVIRONMENT',
 		$_SERVER['SERVER_NAME'] === 'punto-apparte.com' ? 'production' : (
-			$_SERVER['SERVER_NAME'] === 'localhost' ? 'development' : 'invalid'
+			$_SERVER['SERVER_NAME'] === 'localhost' || '192.168.0.16' ? 'development' : 'invalid'
 		)
 	);
 
@@ -90,7 +90,7 @@ switch (ENVIRONMENT)
 
 	default:
 		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-		echo 'The application environment is not set correctly.';
+		echo 'The application environment is not set correctly. '.$_SERVER['SERVER_NAME'];
 		exit(1); // EXIT_ERROR
 }
 

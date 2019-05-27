@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Subarea extends CI_Controller {
+class Subarea extends MY_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
 		$this->load->model("Galeria_subarea_model");
@@ -38,7 +38,10 @@ class Subarea extends CI_Controller {
 											->Subarea_model
 											->get_area_subareas($data['id_area'])
 											->result_array();
-		
-		$this->load->view('subarea', $data);
+		if($data['subarea']->mostrar_componente) {
+			redirect($data['subarea']->mostrar_componente.'?search_cat='.$data['id_area']);
+		} else {
+			$this->load->view('subarea', $data);	
+		}		
 	}
 }

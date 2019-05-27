@@ -181,7 +181,8 @@
                   <div id='galeria_preview' class='mb-2'>
                      <?php
                         foreach ($galeria_array as $index => $img) {
-                           printf("
+                           printf(
+                           "<div class='galeria__item' id='galeriaItem_%s'>
                               <div id='img_preview%s' class='galeria_img'>
                                  <input
                                     type='text'
@@ -191,24 +192,57 @@
                                     value=0
                                     readonly
                                  >
+                                 <input
+                                    type='text'
+                                    name='id_img[]'
+                                    id='id_img_%s'
+                                    class='hidden'
+                                    value='%s'
+                                    readonly
+                                    style='width: 40px; height: 40px'
+                                 >
                                  <img
-                                    id='preview_img'
-                                    class='form-show-img d-block mb-2'
+                                    class='form-show-img mb-2'
                                     src='%s'
-                                 />                                 
-                                 <span class='form-change-img hide_img' id='hideImg_%s'>
-                                    Quitar
-                                 </span>                                 
+                                 />
+                                 <input                                    
+                                    name='leyenda[]'
+                                    class='form-control galeria_input'
+                                    type='text'
+                                    value='%s'
+                                 />
+                                 <span
+                                    class='form-change-img moveUp_img'
+                                    id='subirImg_%s'
+                                    title='SUBIR'
+                                 > 
+                                    <i class='fa fa-chevron-up' id='iconUp_%s'></i>
+                                 </span>
+                                 <span
+                                    class='form-change-img moveDown_img'
+                                    id='bajarImg_%s'
+                                    title='BAJAR'
+                                 > 
+                                    <i class='fa fa-chevron-down' id='iconDown_%s'></i>
+                                 </span>
+                                 <span
+                                    class='form-change-img hide_img'
+                                    id='hideImg_%s'
+                                 > Quitar
+                                 </span>                               
                               </div>
                               <div class='galeria_img hidden' id='restoreImg_div%s'>
                                  <span class='form-change-img restaurar_img' id='restoreImg_%s'>
                                  Restaurar
                                  </span>
-                              </div>",
-                              $index, $index,
-                              $assets_dir.$img['imagen'],
-                              $index, $index, $index
-                              );  
+                              </div>
+                           </div>",
+                           $index, $index, $index,
+                           $index, $img['id_img'],
+                           $assets_dir.$img['imagen'],
+                           $img['leyenda'],
+                           $index, $index, $index, $index, $index, $index, $index
+                           );  
                         }
                      ?>
                   </div>

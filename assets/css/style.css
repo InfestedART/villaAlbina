@@ -461,6 +461,8 @@ body {
 	padding-top: 25px;
 	padding-left: 0;
   	text-align: center;
+  	margin-left: -6px;
+	margin-right: -6px;
 }
 
 .slider_dot {
@@ -469,7 +471,7 @@ body {
    height: 12px;
    background-color: gray;
    border-radius: 50%;
-   margin: 0 4px;
+   margin: 0 2px;
    cursor: pointer;
   }
 
@@ -482,8 +484,8 @@ body {
 	list-style: none;
 	display: inline-block;	
 	font-weight: bold;
-	margin: 0 15px;
-	font-size: 20px;
+	margin: 0 6px;
+	font-size: 21px;
 }
 
 .slider_arrow a {

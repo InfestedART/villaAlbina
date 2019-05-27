@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Noticia extends CI_Controller {
+class Noticia extends MY_Controller {
 	public function index()	{
 		$this->load->model("Noticias_model");
 		$this->load->model("Galeria_model");

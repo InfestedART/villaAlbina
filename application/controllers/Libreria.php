@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Libreria extends CI_Controller {
+class Libreria extends MY_Controller {
 	public function index()	{
 		$this->load->model("Cat_libro_model");
 		$this->load->model("Paginas_model");

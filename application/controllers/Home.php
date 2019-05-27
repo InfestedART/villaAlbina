@@ -1,13 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends MY_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
 		$this->load->model("Portada_model");
 		$this->load->model("Areas_model");
 		$this->load->model("Defaults_model");
 		$this->load->model("Agenda_model");
+
 		$data['portadas'] = $this->Portada_model->get_valid_portadas();
 		$data['nav_paginas'] = $this->Paginas_model->get_navbar_paginas();
 		$data['paginas'] = $this->Paginas_model->get_home_paginas();

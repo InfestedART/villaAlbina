@@ -118,6 +118,14 @@
 
     </ul>
 
+    <ul class="sidemenu">
+      <li><span class='sidemenu_visitas'>
+        N° de Visitas: <?php echo $visitas; ?>
+        </span>
+      </li>
+    </ul>
+
+
    <script src='<?php  echo $assets_dir."js/admin_sidebar_app.js"; ?>' ></script>
 
   </div>
