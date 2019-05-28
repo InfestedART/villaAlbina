@@ -7,5 +7,13 @@ class Modelo_model extends CI_Model {
     	return $result;
   }
 
+  function get_subpagina_modelos() {
+	$this->db->select('*');
+	$this->db->from('modelo');
+	$this->db->where('mostrar_subpagina', 1);
+	$query = $this->db->get(); 
+	return $query;
+  }
+
 }
 ?>

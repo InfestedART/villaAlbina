@@ -47,7 +47,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 				$active === $subarea['enlace'] ? 'subarea__active' : 'd-none',
 				$color,
 				$subarea['subpagina'],
-				$dir.$subarea['imagen'],
+				$subarea['imagen'] ? $dir.$subarea['imagen'] : $dir.'img/placeholder.jpg',
 				$subarea['html']
 			);
 			}			

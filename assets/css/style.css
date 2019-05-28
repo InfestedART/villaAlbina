@@ -250,12 +250,42 @@ body {
 	position: relative;
 	width: 100%;
 	margin-bottom: 10px;
-	height: 240px;
+	height: 280px;
     background-position: center 33%;
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
     font-weight: 500;
+}
+
+.area__imagen,
+.galeria__imagen
+ {
+	width: 100%;
+	margin-bottom: 10px;
+	max-width: 340px;
+	min-height: 340px;
+    background-position: center 33%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+@media only screen and (min-width: 576px) {
+	.area__imagen { min-height: 240px; }
+}
+
+@media only screen and (min-width: 768px) {
+	.area__imagen { min-height: 320px; 	}
+	.galeria__imagen { min-height: 200px; }
+}
+
+@media only screen and (min-width: 992px) {
+ 	.galeria__imagen { min-height: 280px; }
+}
+
+@media only screen and (min-width: 1200px ) {
+ 	.galeria__imagen { min-height: 340px; }
 }
 
 .noticia__tipo {

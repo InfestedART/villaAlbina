@@ -60,7 +60,7 @@
 }
 
 .nav__item-container.navbar_inline {
-	margin-left: 150px;
+	margin-left: 160px;
 }
 
 .nav__item-container.navbar_inline.nav_container_tall {
@@ -97,7 +97,7 @@
 .nav__container::after,
 .nav_search_container::before {
 	content: '·';
-	padding: 0 5px;
+	padding: 0 4px;
 	font-weight: bold;
 	color: white !important;
 

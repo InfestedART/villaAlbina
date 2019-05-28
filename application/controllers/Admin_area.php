@@ -195,7 +195,6 @@ class Admin_area extends Admin_Controller {
    	$files = $_FILES;   	
    	$img_cant = array_key_exists("galeria", $_FILES) ? sizeof($_FILES['galeria']['name']) : 0;
    	$delete_img = $this->input->post('delete_img', TRUE);
-   	$delete_file = $this->input->post('delete_file', TRUE);
    	$galeria_array=[];
 
   	  	// insert imgs
@@ -241,8 +240,9 @@ class Admin_area extends Admin_Controller {
   	  	}
 		$updated_area = $this->Areas_model->get_area($id)->result_object()[0];
 		$updated_imagen = realpath('assets/'.$updated_area->imagen);
-		$delete_imagen = boolval($this->input->post('delete_imagen', TRUE));
-
+		$delete_imagen = boolval($this->input->post('delete_area', TRUE));
+		echo $delete_imagen;
+		
      	if ($updated_area->imagen && $delete_imagen) {
      		unlink($updated_imagen);
      	}
@@ -310,7 +310,7 @@ class Admin_area extends Admin_Controller {
 			}	
 		}	
 
-		redirect('admin_area');
+		//redirect('admin_area');
 	}
 
 public function insertar_subarea() {
