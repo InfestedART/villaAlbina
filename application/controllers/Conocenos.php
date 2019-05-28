@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Conocenos extends CI_Controller {
+class Conocenos extends MY_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
 		$this->load->model("Areas_model");

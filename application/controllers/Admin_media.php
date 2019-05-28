@@ -1,11 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_media extends CI_Controller {
+class Admin_media extends Admin_Controller {
 	public function index()	{
 		$this->load->model("Media_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$orderby = $this->input->get('orderby', TRUE);
@@ -22,6 +24,9 @@ class Admin_media extends CI_Controller {
 		$this->load->model("Media_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
+		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['tipos'] = $this->Media_model->get_all_tipos();
 		$this->load->view('nuevo_media', $data);
@@ -31,6 +36,8 @@ class Admin_media extends CI_Controller {
 		$this->load->model("Media_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$id = $this->uri->segment(3);

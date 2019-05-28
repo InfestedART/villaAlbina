@@ -1,5 +1,12 @@
 <?php
+
 class Content_model extends CI_Model {
+	function get_contenido($id) {
+		$this->db->where('id_content',$id);
+        $result = $this->db->get('contenido',1);
+        return $result->result_array();  
+	}
+
  	function insertar_contenido($data) {
   		$this->db->insert('contenido', $data);
   	}
@@ -7,6 +14,10 @@ class Content_model extends CI_Model {
   	function update_contenido($id, $data) {
 	    $this->db->where('id_content', $id);
 	    $this->db->update('contenido', $data);
+  	}
+
+  	function delete_contenido($id) {
+		$this->db->delete('contenido', array('id_content' => $id)); 
   	}
 
   	function get_last_post() {
@@ -17,4 +28,5 @@ class Content_model extends CI_Model {
     	return $last;
 	}
 }
+
 ?>

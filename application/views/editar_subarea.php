@@ -165,7 +165,8 @@
                   <div id='galeria_preview' class='mb-2'>
                      <?php
                         foreach ($galeria_array as $index => $img) {
-                           printf("<div class='galeria__item' id='galeriaItem_%s'>
+                           printf(
+                           "<div class='galeria__item' id='galeriaItem_%s'>
                               <div id='img_preview%s' class='galeria_img'>
                                  <input
                                     type='text'
@@ -175,8 +176,16 @@
                                     value=0
                                     readonly
                                  >
+                                 <input
+                                    type='text'
+                                    name='id_img[]'
+                                    id='id_img_%s'
+                                    class='hidden'
+                                    value='%s'
+                                    readonly
+                                    style='width: 40px; height: 40px'
+                                 >
                                  <img
-                                    id='preview_img'
                                     class='form-show-img mb-2'
                                     src='%s'
                                  />
@@ -213,6 +222,7 @@
                               </div>
                            </div>",
                            $index, $index, $index,
+                           $index, $img['id_img'],
                            $assets_dir.$img['imagen'],
                            $img['leyenda'],
                            $index, $index, $index, $index, $index, $index, $index

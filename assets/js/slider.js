@@ -42,7 +42,7 @@ function main() {
 
 	function moveTo(ev) {
 		ev.preventDefault();
-		const slide = ev.target.id
+		const slide = ev.target.id;
 		for(var i = 0; i < totalSlides; i++) {			      
 		  allSlides[i].style.transform = 'translate('+(
 		   	-sliderWidth * (slide)

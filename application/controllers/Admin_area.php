@@ -1,13 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_area extends MY_Controller {
+class Admin_area extends Admin_Controller {
 	public function index() {
 		$this->load->model("Areas_model");
 		$this->load->model("Subarea_model");
 
 		$this->load->model("Tipo_model");
-		$this->load->model("Complemento_model");		
+		$this->load->model("Complemento_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['open_subareas'] = $this->input->get('open_subareas', TRUE);
@@ -20,6 +22,8 @@ class Admin_area extends MY_Controller {
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Defaults_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['api_key'] = $this->Defaults_model->get_value('api_key');
@@ -32,6 +36,8 @@ class Admin_area extends MY_Controller {
 		$this->load->model("Complemento_model");
 		$this->load->model("Areas_model");
 		$this->load->model("Defaults_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['areas'] = $this->Areas_model->get_all_areas();
@@ -47,6 +53,8 @@ class Admin_area extends MY_Controller {
 		$this->load->model("Complemento_model");
 		$this->load->model("Defaults_model");
 		$this->load->model("Galeria_area_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$id = $this->uri->segment(3);
@@ -63,6 +71,8 @@ class Admin_area extends MY_Controller {
 		$this->load->model("Complemento_model");
 		$this->load->model("Defaults_model");
 		$this->load->model("Galeria_subarea_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$id = $this->uri->segment(3);
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
@@ -141,7 +151,7 @@ class Admin_area extends MY_Controller {
 		$enlace = strtolower($this->translate($enlace));
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/areas/'.$imagen;
-		$leyenda = $this->input->post('leyenda', TRUE);
+		$leyenda = $this->input->post('new_leyenda', TRUE);
 		$contenido = $this->input->post('contenido', FALSE);
 
 		$contenido_data = array(
@@ -149,8 +159,7 @@ class Admin_area extends MY_Controller {
 			'titulo' => $area,
 			'imagen' => $imagen_destacada
 		);	
-		print_r($contenido_data);
-		echo "<br /><br />";
+		
 		$this->Content_model->insertar_contenido($contenido_data);
  		$id_content = $this->Content_model->get_last_post();
 		
@@ -160,8 +169,6 @@ class Admin_area extends MY_Controller {
 			'enlace' => $enlace,
 			'id_content' => $id_content
 		);
-		print_r($area_data);
-		echo "<br /><br />";
 		$this->Areas_model->insertar_area($area_data);
 		$id_area = $this->Areas_model->get_last_post();
 
@@ -169,10 +176,9 @@ class Admin_area extends MY_Controller {
 			$galeria_data = array(
 				'id_area' => $id_area,
 				'imagen' => $img_galeria,
-				'leyenda' => $leyenda[$i]
+				'leyenda' => $leyenda[$i],
+				'orden' => $i+1
 			);
-			print_r($galeria_array);
-			echo "<br /><br />";
 			$this->Galeria_area_model->insert_imagen($galeria_data);
 		}
 
@@ -189,7 +195,6 @@ class Admin_area extends MY_Controller {
    	$files = $_FILES;   	
    	$img_cant = array_key_exists("galeria", $_FILES) ? sizeof($_FILES['galeria']['name']) : 0;
    	$delete_img = $this->input->post('delete_img', TRUE);
-   	$delete_file = $this->input->post('delete_file', TRUE);
    	$galeria_array=[];
 
   	  	// insert imgs
@@ -221,16 +226,23 @@ class Admin_area extends MY_Controller {
 
    	// delete selected imgs
   	  	$current_galeria = $this->Galeria_area_model->get_galeria($id)->result_array();
-  	  	foreach ($current_galeria as $index => $current_img) {
+  	  	foreach ($current_galeria as $index => $current_img) {  	  		
   	  		if ($delete_img[$index]) {
-  	  			$this->Galeria_area_model->delete_imagen($id, $current_img['imagen']);
-  	  			unlink(realpath('assets/'.$current_img['imagen']));
+  	  			$this->Galeria_area_model->delete_imagen(
+  	  				$current_img['id_img'],
+  	  				$current_img['imagen']
+  	  			);
+  	  			$img_file = realpath('assets/'.$current_img['imagen']);
+				if(file_exists($img_file)){
+				    unlink($img_file);
+				}
   	  		}  	  		
   	  	}
 		$updated_area = $this->Areas_model->get_area($id)->result_object()[0];
 		$updated_imagen = realpath('assets/'.$updated_area->imagen);
-		$delete_imagen = boolval($this->input->post('delete_imagen', TRUE));
-
+		$delete_imagen = boolval($this->input->post('delete_area', TRUE));
+		echo $delete_imagen;
+		
      	if ($updated_area->imagen && $delete_imagen) {
      		unlink($updated_imagen);
      	}
@@ -244,6 +256,8 @@ class Admin_area extends MY_Controller {
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/areas/'.$imagen;
 		$leyenda = $this->input->post('leyenda', TRUE);
+		$new_leyenda = $this->input->post('new_leyenda', TRUE);		
+		$id_img = $this->input->post('id_img', TRUE);
 		$contenido = $this->input->post('contenido', FALSE);
 		$id_content = $updated_area->id_content;
 
@@ -271,16 +285,32 @@ class Admin_area extends MY_Controller {
 		);
 		$this->Areas_model->update_area($id, $area_data);
 
+		$initial_orden = sizeof($current_galeria);
 		foreach ($galeria_array as $i => $img_galeria) {
 			$galeria_data = array(
 				'id_area' => $id,
 				'imagen' => $img_galeria,
-				'leyenda' => $leyenda[$i]
+				'leyenda' => $new_leyenda[$i],
+				'orden' => $initial_orden+$i+1
 			);
 			$this->Galeria_area_model->insert_imagen($galeria_data);
 		}
 
-		redirect('admin_area');
+		if ($id_img) {
+			foreach ($id_img as $i => $galeria_img) {
+				$galeria_data = array(
+					'id_img' =>	$galeria_img,
+					'leyenda' => $leyenda[$i],
+					'orden' => $i+1
+				);
+					$this->Galeria_area_model->update_imagen(
+					$galeria_img,
+					$galeria_data
+				);
+			}	
+		}	
+
+		//redirect('admin_area');
 	}
 
 public function insertar_subarea() {
@@ -328,7 +358,7 @@ public function insertar_subarea() {
 		$enlace = strtolower($this->translate($enlace));
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/areas/'.$imagen;
-		$leyenda = $this->input->post('leyenda', TRUE);
+		$leyenda = $this->input->post('new_leyenda', TRUE);
 		$contenido = $this->input->post('contenido', FALSE);
 
 		$contenido_data = array(
@@ -408,7 +438,6 @@ public function insertar_subarea() {
   	  				$current_img['imagen']
   	  			);
   	  			$img_file = realpath('assets/'.$current_img['imagen']);
-  	  			echo $img_file;
 				if(file_exists($img_file)){
 				    unlink($img_file);
 				}
@@ -417,7 +446,6 @@ public function insertar_subarea() {
 		$updated_subarea = $this->Subarea_model->get_subarea($id)->result_object()[0];
 		$updated_imagen = realpath('assets/'.$updated_subarea->imagen);
 		$delete_imagen = boolval($this->input->post('delete_imagen', TRUE));
-		// echo $delete_imagen."<br />";
 		
      	if ($updated_subarea->imagen && $delete_imagen) {
      		unlink($updated_imagen);
@@ -431,6 +459,7 @@ public function insertar_subarea() {
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/areas/'.$imagen;
 		$leyenda = $this->input->post('leyenda', TRUE);
+		$id_img = $this->input->post('id_img', TRUE);
 		$new_leyenda = $this->input->post('new_leyenda', TRUE);		
 		$contenido = $this->input->post('contenido', FALSE);
 		$id_content = $updated_subarea->id_content;
@@ -458,32 +487,31 @@ public function insertar_subarea() {
 			'id_content' => $id_content
 		);
 		$this->Subarea_model->update_subarea($id, $subarea_data);
-		$id_subarea = $this->Subarea_model->get_last_post();
 
+		$initial_orden = sizeof($current_galeria);
 		foreach ($galeria_array as $i => $img_galeria) {
 			$galeria_data = array(
-				'id_subarea' => $id_subarea,
+				'id_subarea' => $id,
 				'imagen' => $img_galeria,
-				'leyenda' => $new_leyenda[$i]
+				'leyenda' => $new_leyenda[$i],
+				'orden' => $initial_orden+$i+1
 			);
 			$this->Galeria_subarea_model->insert_imagen($galeria_data);
 		}
-		print_r($current_galeria);
-		echo "<br /><br />";
-		print_r($leyenda);
-		echo "<br /><br />";
-		foreach ($current_galeria as $i => $galeria_item) {
-			$galeria_data = array(
-				'leyenda' => $leyenda[$i],
-				'orden' => $i+1
-			);
-			print_r($galeria_data);
-			echo "<br />";
-			$this->Galeria_subarea_model->update_imagen(
-				$galeria_item['id_img'],
-				$galeria_data
-			);
-		}
+
+		if ($id_img) {
+			foreach ($id_img as $i => $galeria_img) {
+				$galeria_data = array(
+					'id_img' =>	$galeria_img,
+					'leyenda' => $leyenda[$i],
+					'orden' => $i+1
+				);
+					$this->Galeria_subarea_model->update_imagen(
+					$galeria_img,
+					$galeria_data
+				);
+			}	
+		}		
 
 		$this->Subarea_model->update_subarea($id, $subarea_data);
 		redirect('admin_area');

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Convocatoria extends CI_Controller {
+class Convocatoria extends MY_Controller {
 	public function index()	{
 		$this->load->model("Convocatorias_model");
 		$this->load->model("Paginas_model");

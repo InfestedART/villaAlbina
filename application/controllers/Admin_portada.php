@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_portada extends MY_Controller {
+class Admin_portada extends Admin_Controller {
 	public function index() {
 		$this->load->model("Portada_model");
 		$this->load->model("Defaults_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['valid_portadas'] = $this->Portada_model->get_valid_portadas()->result_array();
@@ -19,6 +21,8 @@ class Admin_portada extends MY_Controller {
 		$this->load->model("Areas_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
@@ -32,6 +36,8 @@ class Admin_portada extends MY_Controller {
 		$this->load->model("Areas_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 

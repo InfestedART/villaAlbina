@@ -61,16 +61,40 @@
                   id='buscar_convocatoria'
                   value='<?php echo $search; ?>'
                />
-               <button class='buscador__button' type='submit' id='buscar_convo_btn'>
-                  <i class="fa fa-search"></i>
-               </button>
-               <span class="<?php if(!$search) { echo 'd-none'; } ?>">
-                  <a href=''>Limpiar Busqueda</a>
-               </span>
+               <div class='buscador__container'>
+                  <select
+                     class='buscador__input'
+                     name='buscar_cat'
+                     id='buscar_cat'
+                     style='width: 250px'
+                  >
+                     <option value=''>Todas las áreas</option>
+                     <?php
+                     $areas_array = $areas->result_array();
+                     foreach ($areas_array as $area) {
+                        printf("
+                           <option value='%s' %s>%s</option>
+                           ",
+                           $area['id_area'],
+                           $area['id_area'] == $search_cat ? 'selected': '',
+                           $area['area']
+                        );
+                     }
+                     ?>
+                  </select>
+                  <button class='buscador__button' type='submit' id='buscar_convo_btn'>
+                     <i class="fa fa-search"></i>
+                  </button>
+                  <span class="<?php if(!$search) { echo 'd-none'; } ?>">
+                     <a href=''>Limpiar Busqueda</a>
+                  </span>
                <?php echo form_close(); ?>
+               </div>
             </div>
 
-            <?php $convo_array = $convocatorias->result_array();  ?> 
+            <?php
+               $convo_array = $convocatorias->result_array(); 
+            ?> 
             <table class='admin-table'>
 
             <thead>
@@ -94,6 +118,27 @@
                         }
                      ?>
                      <i class='ml-2 fa fa-<?php echo $titulo_sort; ?>'></i>
+                  </a>
+               </th>
+                <th>
+                  <a href='<?php
+                  $order_direction = (
+                     !$direction || $direction == 'desc' || $orderby !== 'id_area'
+                  ) ? 'asc'
+                    : 'desc';                  
+                  echo $admin_dir."?orderby=id_area&direction=".$order_direction;
+                  ?>'
+                  class='admin-table__title admin_order'>
+                     Área
+                     <?php
+                        $area_sort = 'sort';
+                        if ($orderby == 'id_area' && $direction == 'asc') {
+                           $area_sort .= '-up';
+                        } elseif ($orderby == 'id_area' && $direction == 'desc') {
+                           $area_sort .= '-down';
+                        }
+                     ?>
+                     <i class='ml-2 fa fa-<?php echo $area_sort; ?>'></i>
                   </a>
                </th>
                <th class='text-center'>
@@ -132,6 +177,7 @@
                         <td class='text-center'>%s</td>
                         <td>%s</td>",
                      $conv['titulo'],
+                     $conv['area'],
                      $conv['fecha_limite'],
                      $conv['descripcion']
                   );                  

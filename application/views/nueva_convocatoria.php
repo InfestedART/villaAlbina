@@ -53,6 +53,7 @@
             <div class="col-12">
           <h5 class='form-title'>Insertar Convocatoria</h5>
             <?php
+               $areas_array = $areas->result_array();
                echo form_open_multipart(
                   'admin_convocatoria/insertar_convocatoria',
                   array('id' => 'form_convocatoria')
@@ -73,6 +74,31 @@
                      <?php echo $titulo_alert ? 'alert' : ''; ?>"
                      type='text'
                   /> 
+               </div>
+            </div>
+
+           <div class='form-group row'>
+               <label class='form-label col-sm-3'>
+                  Área:
+               </label>
+               <div class='col-sm-9'>
+               <select
+                  id='area'
+                  name='area'
+                  class="form-control
+                  <?php echo $categoria_alert ? 'alert' : ''; ?>"
+               > 
+                  <option value=''> Seleccione una opción</option>
+                  <?php
+                     foreach ($areas_array as $area) {
+                        printf(
+                           "<option value='%s'>%s</option>",
+                           $area['id_area'],
+                           $area['area']
+                        );
+                     }
+                  ?>
+               </select>
                </div>
             </div>
 

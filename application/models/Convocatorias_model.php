@@ -1,15 +1,24 @@
 <?php
 class Convocatorias_model extends CI_Model {
 
-	function get_all_convocatorias($search = false, $orderby = false, $direction = 'desc') {
+	function get_all_convocatorias(
+		$search = false,
+		$search_cat = false,
+		$orderby = false,
+		$direction = 'desc'
+	) {
 		$this->db->select('*');
 		$this->db->from('convocatoria');
 		$this->db->join('publicacion', 'publicacion.id_post = convocatoria.id_post');
+		$this->db->join('area', 'area.id_area = convocatoria.id_area');
 		$this->db->join('html', 'html.id_post = convocatoria.id_post', 'left');
 		if ($search) {
     		$this->db->like('publicacion.titulo', $search);
 	      	$this->db->or_like('convocatoria.descripcion', $search);	      	
 	      	$this->db->or_like('html.contenido', $search);
+	    }
+	    if ($search_cat) {
+	      $this->db->where('convocatoria.id_area', $search_cat);
 	    }
 	    $this->db->order_by(
 			$orderby ? $orderby : 'convocatoria.id_post',
@@ -19,16 +28,28 @@ class Convocatorias_model extends CI_Model {
 	  	return $result;    		
 	}
 
-	function get_valid_convocatorias($date, $limit, $search = false, $step=0) {
+	function get_valid_convocatorias(
+		$date,
+		$limit,
+		$search = false,
+		$search_cat = false,
+		$step=0
+	) {
 		$this->db->select('*');
 		$this->db->from('convocatoria');
 		$this->db->join('publicacion', 'publicacion.id_post = convocatoria.id_post');
+		$this->db->join('area', 'area.id_area = convocatoria.id_area');
 		$this->db->join('html', 'html.id_post = convocatoria.id_post', 'left');
+		$this->db->where('publicacion.status', 1);
 		if ($search) {
     		$this->db->like('publicacion.titulo', $search);
 	      	$this->db->or_like('convocatoria.descripcion', $search);	      	
 	      	$this->db->or_like('html.contenido', $search);
-	   	$this->db->where('convocatoria.fecha_limite >', $date);}
+	    }
+	    if ($search_cat) {
+	      $this->db->where('convocatoria.id_area', $search_cat);
+	    }	
+	   	$this->db->where('convocatoria.fecha_limite >', $date);
 	   	$start = $step * $limit;
 	    $this->db->order_by('convocatoria.fecha_limite', 'desc');
 		$this->db->limit($limit, $start);

@@ -1,27 +1,37 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_convocatoria extends CI_Controller {
+class Admin_convocatoria extends Admin_Controller {
 	public function index()	{
 		$this->load->model("Convocatorias_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Areas_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
 		$search = $this->input->post('buscar_convocatoria', TRUE);
+		$search_cat = $this->input->post('buscar_cat', TRUE);
 		$data['search'] = $search;
+		$data['search_cat'] = $search_cat;
+		$data['areas'] = $this->Areas_model->get_all_areas();
 		$data['convocatorias'] = $this->Convocatorias_model->get_all_convocatorias(
-			$search, $orderby, $direction
+			$search, $search_cat, $orderby, $direction
 		);
 		$this->load->view('admin_convocatoria', $data);
 	}
 
 	public function nueva_convocatoria() {
+		$this->load->model("Areas_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Defaults_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
+		$data['areas'] = $this->Areas_model->get_all_areas();
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['api_key'] = $this->Defaults_model->get_value('api_key');
@@ -29,17 +39,21 @@ class Admin_convocatoria extends CI_Controller {
 	}
 
 	public function editar_convocatoria() {
+		$this->load->model("Areas_model");
 		$this->load->model("Convocatorias_model");
 		$this->load->model("Galeria_model");
 		$this->load->model("Archivo_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Defaults_model");
+		$this->load->model("Visitas_model");
+		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
 		$id = $this->uri->segment(3);
 		$data['convocatoria'] = $this->Convocatorias_model->get_convocatoria($id);
+		$data['areas'] = $this->Areas_model->get_all_areas();
 		$data['galeria'] = $this->Galeria_model->get_galeria($id);
 		$data['archivos'] = $this->Archivo_model->get_archivos($id);
 		$data['api_key'] = $this->Defaults_model->get_value('api_key');
@@ -124,6 +138,7 @@ class Admin_convocatoria extends CI_Controller {
 		}
 
    		$titulo = $this->input->post('titulo', TRUE);
+   		$area = $this->input->post('area', TRUE);
 		$fecha_limite = $this->input->post('fecha_limite', TRUE);
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
@@ -141,6 +156,7 @@ class Admin_convocatoria extends CI_Controller {
 
 		$convocatoria_data = array(
 			'id_post' => $last_id,
+			'id_area' => $area,
 			'fecha_limite' =>  $fecha_limite,
 			'descripcion' => $descripcion,
 		);
@@ -260,6 +276,7 @@ class Admin_convocatoria extends CI_Controller {
 
 		//save data to database
    	$titulo = $this->input->post('titulo', TRUE);
+   	$area = $this->input->post('area', TRUE);
 		$fecha_limite = $this->input->post('fecha_limite', TRUE);
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
@@ -279,6 +296,7 @@ class Admin_convocatoria extends CI_Controller {
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 
 		$convocatoria_data = array(
+			'id_area' => $area,
 			'fecha_limite' =>  $fecha_limite,
 			'descripcion' => $descripcion,
 		);

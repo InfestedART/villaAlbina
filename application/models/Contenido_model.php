@@ -1,5 +1,10 @@
 <?php
 class Contenido_model extends CI_Model {
+
+	function get_contenido($id) {
+
+	}
+
  	function insert_contenido($data) {
   		$this->db->insert('html', $data);
   	}

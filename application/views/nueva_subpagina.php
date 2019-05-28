@@ -110,8 +110,8 @@
                         name='modelo'
                         class="form-control capitalize"
                      > 
-                        <option value=''>No mostrar ningún componente</option>
-                        <option value='0'>Componente Personalizado</option>
+                        <option value='-1'>No mostrar ningún componente</option>
+                        <option value='0' selected>Componente Personalizado</option>
                         <?php
                            foreach ($modelos_array as $modelo) {
                               printf("<option value='%s'>%s</option>",
@@ -124,7 +124,7 @@
                   </div>
                </div>
 
-               <div id='imagen_container' class='form-group row d-none'>
+               <div id='imagen_container' class='form-group row'>
                   <label class='form-label col-sm-3'>Imagen Destacada</label>
                   <div class='col-sm-9'>
                      <input
@@ -136,7 +136,7 @@
                   </div>
                </div>
 
-               <div id='cont_container' class='form-group row d-none'>
+               <div id='cont_container' class='form-group row'>
                   <label class='form-label col-12'>Contenido</label>
                   <div class='col-sm-12'>
                      <textarea

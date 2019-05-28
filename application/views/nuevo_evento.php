@@ -79,7 +79,7 @@
 
            <div class='form-group row'>
                <label class='form-label col-sm-3'>
-                  Area
+                  Área:
                </label>
                <div class='col-sm-9'>
                <select
