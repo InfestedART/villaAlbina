@@ -27,8 +27,8 @@
 			 			? $pagina['enlace']
 			 			: base_url().$pagina['enlace'];
 			 		if ($pagina['id_pagina'] == 2) {
-			 			printf("
-			 				<div class='nav__container navbar__dropdown'>
+			 			printf(
+			 				"<div class='nav__container navbar__dropdown'>
 							   	<a
 							   		href='%s'
 							   		class='dropbtn nav__item %s'
@@ -42,8 +42,8 @@
 						    $pagina['titulo']
 						);
 						foreach ($areas as $area) {
-							printf("
-						      <a href='%s' class='navbar__dropdown__item'>
+							printf(
+						      "<a href='%s' class='navbar__dropdown__item'>
 						      	%s
 						      </a>",
 						      base_url().'areas?area='.$area['enlace'],
@@ -56,8 +56,8 @@
 						  </div>"
 			 			);
 			 		} else {
-				 		printf("
-				 			<div class='nav__container'>
+				 		printf(
+				 			"<div class='nav__container'>
 				 			<a href='%s' class='nav__item %s' %s>
 				 				<p class='nav__label'>%s</p>
 				 			</a></div>",
@@ -68,10 +68,9 @@
 				 		);	
 			 		}			 		
 			 	}
-				?>
-			 	<a
+				?><a
 			 		href="#"
-			 		class="nav__item nav_search_container <?php			 	
+			 		class="nav__item nav_search_container pl-0 <?php			 	
 						if (!$selected_pagina['enable_search']) {
 							echo 'hidden';
 						}				

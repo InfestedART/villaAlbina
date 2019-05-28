@@ -62,7 +62,7 @@ class Admin_Pagina extends Admin_Controller {
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['api_key'] = $this->Defaults_model->get_value('api_key');
-		$data['modelos'] = $this->Modelo_model->get_all_modelos();
+		$data['modelos'] = $this->Modelo_model->get_subpagina_modelos();
 		$data['paginas'] = $this->Paginas_model->get_all_paginas();
 		$data['subpaginas'] = $this->Subpaginas_model->get_all_subpaginas();
 		$data['get_pagina'] = $this->input->get('pagina', TRUE);
@@ -82,7 +82,7 @@ class Admin_Pagina extends Admin_Controller {
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$id = $this->uri->segment(3);
 
-		$data['modelos'] = $this->Modelo_model->get_all_modelos();
+		$data['modelos'] = $this->Modelo_model->get_subpagina_modelos();
 		$data['paginas'] = $this->Paginas_model->get_all_paginas();
 		$data['subpagina'] = $this->Subpaginas_model->get_subpagina($id);
 		$data['default_color'] = $this->Defaults_model->get_value('primary_color');
@@ -217,6 +217,8 @@ class Admin_Pagina extends Admin_Controller {
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$img = $imagen == '' ? '' : 'uploads/subpagina/'.$imagen;
 		$contenido = $this->input->post('contenido', FALSE);
+		$current_contenido = $this->Content_model->get_contenido($id_content);
+		$last_id = NULL;		
 
 		if ($modelo == '0') {
 			$contenido_data = array(
@@ -230,10 +232,19 @@ class Admin_Pagina extends Admin_Controller {
 	     	if ($updated_subpagina->imagen && $delete_subpagina) {
 	     		unlink($updated_imagen);
 	     	}
-			$this->Content_model->update_contenido($id_content, $contenido_data);	
-		}
 
-		$last_id = $modelo == '0' ? $id_content : NULL;
+	     	if (sizeof($current_contenido) < 1) {
+	     		$this->Content_model->insertar_contenido($contenido_data);
+	     		$last_id = $this->Content_model->get_last_post();
+	     	} else {
+	     		$this->Content_model->update_contenido($id_content, $contenido_data);	
+	     		$last_id = $id_content;
+	     	}
+			
+		} else {
+			$this->Content_model->delete_contenido($id_content);
+		}
+		
 		$subpagina_data = array(
 			'subpagina' => $subpagina,
 			'id_pagina' => $pagina,
@@ -241,6 +252,7 @@ class Admin_Pagina extends Admin_Controller {
 			'id_content' => $last_id
 		);
 		$this->Subpaginas_model->update_subpagina($id, $subpagina_data);
+
 		redirect('admin_pagina');
 	}
 

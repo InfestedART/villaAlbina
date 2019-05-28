@@ -9,7 +9,11 @@
 				<div class='publicacion__slide'>
 					<div class='subarea__container'>
 						<a href='%s'>
-						<img src='%s%s' class='subarea__imagen'>
+						<div
+							class='area__imagen'
+							style='background-image: url(\"%s%s\")'
+						>
+						</div>
 						<a href='%s'>
 					</div>					
 					<h5 class='subarea__titulo'>%s</h5>

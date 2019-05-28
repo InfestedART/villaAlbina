@@ -10,11 +10,15 @@
 					<div class='publicacion__slide'>
 						<div class='subarea__container'>
 							<a href='%s'>
-							<img src='%s%s' class='subarea__imagen'>
-							<a href='%s'>
-						</div>					
+							<div
+								class='area__imagen'
+								style='background-image: url(\"%s%s\")'
+							></div>
+							</a>
+						</div>
+						<a href='%s'>				
 						<h5 class='subarea__titulo'>%s</h5>
-					</a>
+						</a>
 					</div>
 				</div>",
 				base_url().$enlace."?active=".$subarea['enlace'],

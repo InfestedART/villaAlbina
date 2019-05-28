@@ -11,18 +11,12 @@
 		adjust_navbar()
 
 		function adjust_navbar() {
-			const pageWidth = Math.max(
-			    document.body.scrollWidth,
-			    document.documentElement.scrollWidth,
-			    document.body.offsetWidth,
-			    document.documentElement.offsetWidth,
-			    document.documentElement.clientWidth
-			);
 			const navbarWidth = navbarContainer.offsetWidth;
 			let navWidth = 0;
 			for (let i=0; i<allContainers.length; i++) {
 				navWidth += allContainers[i].offsetWidth
 			}
+			console.log(navWidth, navbarWidth);
 			if (navWidth > navbarWidth) {
 				navbar.classList.add('navbar__tall');
 				navbarContainer.classList.add('nav_container_tall')

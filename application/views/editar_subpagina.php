@@ -115,7 +115,11 @@
                         name='modelo'
                         class="form-control capitalize"
                      > 
-                        <option value=''>No mostrar ningún componente</option>
+                        <option value='-1' <?php
+                           echo $edited_subpagina['id_modelo'] == '-1' ? 'selected' : '';
+                        ?> >
+                           No mostrar ningún componente
+                        </option>
                         <option
                            value='0' <?php
                            echo $edited_subpagina['id_modelo'] == '0' ? 'selected' : '';
