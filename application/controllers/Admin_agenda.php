@@ -68,7 +68,7 @@ class Admin_agenda extends Admin_Controller {
 		$id = $this->uri->segment(3);
 		$deleted_agenda = $this->Agenda_model->get_agenda($id)->result_object()[0];
 		$deleted_file = realpath('assets/'.$deleted_agenda->enlace);
-		if ($deleted_file) {
+		if ($deleted_file && file_exists($deleted_file)) {
 			unlink($deleted_file);
 		}		
 		$this->Agenda_model->delete_agenda($id);

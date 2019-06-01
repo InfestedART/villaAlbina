@@ -68,15 +68,14 @@ $prev_id = $prev_subarea ? $prev_subarea[0]->enlace : '';
 							$galeria[$i] = $galeria_subareas[$i-1]['imagen'];
 							$leyenda[$i] = $galeria_subareas[$i-1]['leyenda'];
 						}
-						if (sizeof($galeria_subareas) > 1 && !$subarea->imagen) {
+						if (sizeof($galeria_subareas) > 0 && !$subarea->imagen) {
 							array_shift($galeria);
 							array_shift($leyenda);
 						}
 
-
 						foreach ($galeria as $index => $img_galeria) {
-							printf("
-								<div class='publicacion__slide'>
+							printf(
+								"<div class='publicacion__slide'>
 									<div
 										class='galeria__imagen galeria-slide'
 										style='background-image: url(\"%s\")'

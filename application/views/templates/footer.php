@@ -5,29 +5,32 @@ $dir = base_url().'assets/';
 <div class="footer" id='footer'> 
 	<div class="container">
 
-		<div class='row'>
+		<div class='row footer__row hidden text-center' id='footer_mapa'>
+			<div class='col-12'>
+				<div class='footer__close'>
+					<span class=' footer__btn' id='close_mapa' />
+						<i class='fa fa-times'></i>
+					</span>
+				</div>
+				<div class='footer__mapa'>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1352.448327657117!2d-68.12873352127164!3d-16.510867908389315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f20629ca5e4eb%3A0x9d278a907c8ede66!2sSim%C3%B3n+I.+Pati%C3%B1o+space!5e0!3m2!1sen!2sbo!4v1559412325871!5m2!1sen!2sbo&language=es" width='100%' height="100%" frameborder="0" style="border:0" allowfullscreen>
+					</iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class='row footer__row'>
 		<div class='col-12'>
 
-			<!-- div class='footer__address'>
-				<div class="footer__icono-direccion d-inline-block">
-					<img
-						class="footer__icono"
-						src="<?php echo $dir.'img/icono_direccion.png'; ?>" 
-					/>
-				</div>
-				<div class="d-inline-block">
-					<p class='footer__direccion footer__titulo'>ANEXO DEL ESPACIO PATIÑO</p>
-					<p class='footer__direccion'>
-						Av.Ecuador 2475 esq Belisario Salinas
-					</p>
-					<p class='footer__direccion'>
-						Casilla 3289 • Tel. (+591 2) 241 09329 int. 235
-					</p>
-				</div>
-			</div -->
-
-
 			<div class='footer__address'>
+
+				<div class='footer__contacto mb-3 footer__btn' id='find_us'>
+					<a href='#footer_correos' >
+						<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+						<span>ENCUENTRANOS</span>				
+					</a>
+				</div>
+
 				<div class='footer__contacto mb-3'>
 				<a href='mailto:espacio@fundacionpatino.org' target="_top">
 					<i class="far fa-envelope" aria-hidden="true"></i>
@@ -55,7 +58,13 @@ $dir = base_url().'assets/';
 				</div>
 			</div>
 
-			<div class='footer__address mt-2'>
+			<div class='footer__address mt=1' id='footer_correos'>
+				<div class='footer__contacto mb-3'>
+				<a href='convocatorias?buscar=beca' target="_top">
+					<span>INFORMACION SOBRE BECAS</span>
+				</a>
+				</div>
+
 				<p class='footer__titulo mb-2'>CORREOS DE CONTACTO</p>
 				<?php
 					foreach ($areas as $area) {
@@ -95,6 +104,6 @@ $dir = base_url().'assets/';
 
 		</div>
 		</div>
-
+	<script src=<?php  echo $dir."js/footer_app.js"; ?> ></script>
 	</div>
 </div>

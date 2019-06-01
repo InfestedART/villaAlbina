@@ -210,15 +210,24 @@ class Admin_convocatoria extends Admin_Controller {
   	  	$current_galeria = $this->Galeria_model->get_galeria($id)->result_array();
   	  	foreach ($current_galeria as $index => $current_img) {
   	  		if ($delete_img[$index]) {
-  	  			$this->Galeria_model->delete_imagen($id, $current_img['imagen']);
-  	  			unlink(realpath('assets/'.$current_img['imagen']));
+  	  			$this->Galeria_model->delete_imagen(
+  	  				$current_img['id_img'],
+  	  				$current_img['imagen']
+  	  			);
+  	  			$img_file = realpath('assets/'.$current_img['imagen']);
+				if(file_exists($img_file)){
+				    unlink($img_file);
+				}
   	  		}  	  		
   	  	}
   	  	$current_archivos = $this->Archivo_model->get_archivos($id)->result_array();
   	  	foreach ($current_archivos as $index => $current_file) {
   	  		if ($delete_file[$index]) {
   	  			$this->Archivo_model->delete_archivo($id, $current_file['archivo']);
-  	  			unlink(realpath('assets/'.$current_file['archivo']));
+  	  			$file_to_delete = realpath('assets/'.$current_file['archivo']))
+  	  			if(file_exists($file_to_delete) {
+  	  				unlink($file_to_delete);
+  	  			}
   	  		}  	  		
   	  	}
 
@@ -271,7 +280,9 @@ class Admin_convocatoria extends Admin_Controller {
 		$delete_imagen = boolval($this->input->post('delete_imagen', TRUE));
 
      	if ($updated_convo->imagen && $delete_imagen) {
-     		unlink($updated_imagen);
+     		if(file_exists($updated_imagen)) { 
+     			unlink($updated_imagen);
+     		}
      	}
 
 		//save data to database
@@ -282,6 +293,8 @@ class Admin_convocatoria extends Admin_Controller {
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/convocatorias/'.$imagen;
 		$leyenda = $this->input->post('leyenda', TRUE);
+		$new_leyenda = $this->input->post('new_leyenda', TRUE);
+		$id_img = $this->input->post('id_img', TRUE);
 		$contenido = $this->input->post('contenido', FALSE);
    
 		$post_data = array(
@@ -307,14 +320,29 @@ class Admin_convocatoria extends Admin_Controller {
 		);
 		$this->Contenido_model->update_contenido($id, $contenido_data);	
 
+		$initial_orden = sizeof($current_galeria);
 		foreach ($galeria_array as $i => $img_galeria) {
 			$galeria_data = array(
 				'id_post' => $id,
 				'imagen' => $img_galeria,
-				'leyenda' => $leyenda[$i]
-			);	
+				'leyenda' => $new_leyenda[$i],
+				'orden' => $initial_orden+$i+1
+			);
 			$this->Galeria_model->insert_imagen($galeria_data);
 		}
+		if ($id_img) {
+			foreach ($id_img as $i => $galeria_img) {
+				$galeria_data = array(
+					'id_img' =>	$galeria_img,
+					'leyenda' => $leyenda[$i],
+					'orden' => $i+1
+				);
+				$this->Galeria_model->update_imagen(
+					$galeria_img,
+					$galeria_data
+				);
+			}	
+		}		
 
 		foreach ($file_array as $index => $adjunto) {
 			$archivo_data = array(

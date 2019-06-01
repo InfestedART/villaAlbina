@@ -9,7 +9,7 @@ function main() {
 	const allSlides = document.getElementsByClassName('publicacion__slide');
 	
 	const totalSlides = allSlides.length;
-	const sliderWidth = slider.offsetWidth;
+	let sliderWidth = slider.offsetWidth;
 	var active = 1;
 
 	function moveLeft(ev) {
@@ -66,6 +66,21 @@ function main() {
 			moveTo(ev);
 		});
 	}
+
+	window.addEventListener('resize', function() {
+		const slide = 0;
+		for(var i = 0; i < totalSlides; i++) {			      
+		  allSlides[i].style.transform = 'translate('+(
+		   	-sliderWidth * (slide)
+		  )+'px)';
+		}
+		for(var i=0; i<dots.length; i++) {
+			dots[i].classList.remove("active");
+		}
+		dots[slide].classList.add("active");
+		active = +slide+1;
+		sliderWidth = slider.offsetWidth;
+	});
 
 }
 

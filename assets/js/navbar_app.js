@@ -16,7 +16,6 @@
 			for (let i=0; i<allContainers.length; i++) {
 				navWidth += allContainers[i].offsetWidth
 			}
-			console.log(navWidth, navbarWidth);
 			if (navWidth > navbarWidth) {
 				navbar.classList.add('navbar__tall');
 				navbarContainer.classList.add('nav_container_tall')
