@@ -11,7 +11,7 @@ class Galeria_model extends CI_Model {
 
   	function delete_imagen($id, $imagen) {
 	   	$this->db->delete('galeria', array(
-	   		'id_post' => $id,
+	   		'id_img' => $id,
 	   		'imagen' => $imagen
 	   	));
  	}
@@ -20,6 +20,7 @@ class Galeria_model extends CI_Model {
  		$this->db->select('*');
 		$this->db->from('galeria');
 		$this->db->where('id_post', $id);
+		$this->db->order_by('orden', 'asc');
 		$query = $this->db->get(); 
 		return $query;
  	}

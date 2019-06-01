@@ -94,7 +94,7 @@ class Admin_libro extends Admin_Controller {
 		$id = $this->uri->segment(3);
 		$deleted_libro = $this->Libro_model->get_libro($id)->result_object()[0];
 		$deleted_portada = realpath('assets/'.$deleted_libro->imagen);
-		if ($deleted_portada) {
+		if ($deleted_portada && file_exists($deleted_portada)) {
 			unlink($deleted_portada);	
 		}		
 		$this->Libro_model->delete_libro($id);
@@ -204,7 +204,9 @@ class Admin_libro extends Admin_Controller {
 		);
 
      	if ($updated_libro->imagen && $delete_imagen_libro) {
+     		if (file_exists($updated_portada)) {
      		unlink($updated_portada);
+     		}
      	}
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Libro_model->update_libro($id, $libro_data);

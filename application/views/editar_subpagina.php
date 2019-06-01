@@ -56,6 +56,7 @@
                $edited_subpagina = $subpagina->result_array()[0];
                $paginas_array = $paginas->result_array();
                $modelos_array = $modelos->result_array();
+               $galeria_array = $galeria->result_array();
                echo form_open_multipart(
                   'admin_pagina/update_subpagina/'.$id,
                   array('id' => 'form_subpagina')
@@ -180,6 +181,94 @@
                   </div>
                </div>
 
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>
+                     <div class=''>
+                        Galeria de Imágenes:
+                     </div>
+                     <div class='mt-2'>
+                        <span class='form-change-img m-0' id='add_img'>
+                        Añadir
+                        </span>
+                     </div>
+                  </label>
+
+                  <div class='col-sm-9'>
+                     <div id='galeria_preview' class='mb-2'>
+                        <?php
+                           foreach ($galeria_array as $index => $img) {
+                              printf(
+                              "<div class='galeria__item' id='galeriaItem_%s'>
+                                 <div id='img_preview%s' class='galeria_img'>
+                                    <input
+                                       type='text'
+                                       name='delete_img[]'
+                                       id='delete_img_%s'
+                                       class='hidden'
+                                       value=0
+                                       readonly
+                                    >
+                                    <input
+                                       type='text'
+                                       name='id_img[]'
+                                       id='id_img_%s'
+                                       class='hidden'
+                                       value='%s'
+                                       readonly
+                                       style='width: 40px; height: 40px'
+                                    >
+                                    <img
+                                       class='form-show-img mb-2'
+                                       src='%s'
+                                    />
+                                    <input                                    
+                                       name='leyenda[]'
+                                       class='form-control galeria_input'
+                                       type='text'
+                                       value='%s'
+                                    />
+                                    <span
+                                       class='form-change-img moveUp_img'
+                                       id='subirImg_%s'
+                                       title='SUBIR'
+                                    > 
+                                       <i class='fa fa-chevron-up' id='iconUp_%s'></i>
+                                    </span>
+                                    <span
+                                       class='form-change-img moveDown_img'
+                                       id='bajarImg_%s'
+                                       title='BAJAR'
+                                    > 
+                                       <i class='fa fa-chevron-down' id='iconDown_%s'></i>
+                                    </span>
+                                    <span
+                                       class='form-change-img hide_img'
+                                       id='hideImg_%s'
+                                    > Quitar
+                                    </span>                                 
+                                 </div>
+                                 <div class='galeria_img hidden' id='restoreImg_div%s'>
+                                    <span class='form-change-img restaurar_img' id='restoreImg_%s'>
+                                    Restaurar
+                                    </span>
+                                 </div>
+                              </div>",
+                              $index, $index, $index,
+                              $index, $img['id_img'],
+                              $assets_dir.$img['imagen'],
+                              $img['leyenda'],
+                              $index, $index, $index, $index, $index, $index, $index
+                              );  
+                           }
+                        ?>
+                     </div>
+
+                     <div id='img_array' class='hidden'>
+                     </div> 
+
+                     </div>
+               </div>
+
                <div id='cont_container' class="form-group row <?php
                   echo $edited_subpagina['id_modelo'] != '0' ? 'd-none' : ''; ?>">
                   <label class='form-label col-12'>Contenido</label>
@@ -217,6 +306,7 @@
       $contenido_src = "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=".$api_key;
    ?> 
    <script src=<?php echo $assets_dir."js/contenidoe.js"; ?> ></script>
+   <script src=<?php echo $assets_dir."js/galeria_app.js"; ?> ></script>
    <script src=<?php echo $contenido_src; ?> ></script>
    <script src=<?php  echo $assets_dir."js/admin_subpagina_app.js"; ?> ></script>
 <?php

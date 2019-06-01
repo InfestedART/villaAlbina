@@ -191,10 +191,16 @@ class Admin_evento extends Admin_Controller {
 
 	  	$current_galeria = $this->Galeria_model->get_galeria($id)->result_array();
 	  	foreach ($current_galeria as $index => $current_img) {
-	  		if ($delete_img[$index]) {
-	  			$this->Galeria_model->delete_imagen($id, $current_img['imagen']);
-	  			unlink(realpath('assets/'.$current_img['imagen']));
-	  		}
+  	  		if ($delete_img[$index]) {
+  	  			$this->Galeria_model->delete_imagen(
+  	  				$current_img['id_img'],
+  	  				$current_img['imagen']
+  	  			);
+  	  			$img_file = realpath('assets/'.$current_img['imagen']);
+				if(file_exists($img_file)){
+				    unlink($img_file);
+				}
+  	  		}  	
 	  	}
 
      	for($i=0; $i<$img_cant; $i++) {           
@@ -242,6 +248,9 @@ class Admin_evento extends Admin_Controller {
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/eventos/'.$imagen;
+		$leyenda = $this->input->post('leyenda', TRUE);
+		$new_leyenda = $this->input->post('new_leyenda', TRUE);
+		$id_img = $this->input->post('id_img', TRUE);
 		$contenido = $this->input->post('contenido', FALSE);
 
 		$post_data = array(
@@ -284,16 +293,34 @@ class Admin_evento extends Admin_Controller {
 		$this->Contenido_model->insert_contenido($contenido_data);	
 
      	if ($updated_evento->imagen && $delete_imagen) {
-     		unlink($updated_imagen);
+     		if(file_exists($updated_imagen)) {
+     			unlink($updated_imagen);
+     		}
      	}
+
+		$initial_orden = sizeof($current_galeria);
 		foreach ($galeria_array as $i => $img_galeria) {
 			$galeria_data = array(
 				'id_post' => $id,
 				'imagen' => $img_galeria,
-				'leyenda' => $leyenda[$i]
-			);	
+				'leyenda' => $new_leyenda[$i],
+				'orden' => $initial_orden+$i+1
+			);
 			$this->Galeria_model->insert_imagen($galeria_data);
 		}
+		if ($id_img) {
+			foreach ($id_img as $i => $galeria_img) {
+				$galeria_data = array(
+					'id_img' =>	$galeria_img,
+					'leyenda' => $leyenda[$i],
+					'orden' => $i+1
+				);
+				$this->Galeria_model->update_imagen(
+					$galeria_img,
+					$galeria_data
+				);
+			}	
+		}		
 
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Eventos_model->update_evento($id, $evento_data);
@@ -317,13 +344,13 @@ class Admin_evento extends Admin_Controller {
 		$id = $this->uri->segment(3);
 		$deleted_evento = $this->Eventos_model->get_evento($id)->result_object()[0];
 		$deleted_imagen = realpath('assets/'.$deleted_evento->imagen);
-		if ($deleted_imagen) {
+		if ($deleted_imagen && file_exists($deleted_imagen)) {
 			unlink($deleted_imagen);
 		}
 		$current_galeria = $this->Galeria_model->get_galeria($id)->result_array();
   	  	foreach ($current_galeria as $index => $current_img) {
   	  		$deleted_img = realpath('assets/'.$current_img['imagen']);
-			if ($deleted_img) {
+			if ($deleted_img && file_exists($deleted_img)) {
 				unlink($deleted_img);
 			}		
   	  	}
