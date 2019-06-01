@@ -67,34 +67,37 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 
 			<div class="publicacion__container col-md-4">
 				<div class='publicacion__slider' id='slider'>
-					<?php
-						$galeria = [];
-						$galeria[0] = $noticia->imagen;
-						if (sizeof($galeria_noticias) > 1 && !$noticia->imagen) {
-							array_shift($galeria);
-						}						
-						for ($i=1; $i<=sizeof($galeria_noticias); $i++) {
-							$galeria[$i] = $galeria_noticias[$i-1]['imagen'];
-						}
-
-						foreach ($galeria as $index => $img_galeria) {
-							printf("
-								<div class='publicacion__slide'>
-									<img
-										src='%s'
-										class='publicacion__imagen galeria-slide'
-									>",
-								 $dir.$img_galeria
-							);
-							if($index > 0) {
-								printf(
-									"<p> %s </p>",
-									$galeria_noticias[$index-1]['leyenda']
-								);	
-							}
-							echo "</div>";
-						}
-					?>
+				<?php
+					$galeria = [];
+					$leyenda[0] = '';
+					$galeria[0] = $noticia->imagen ? $noticia->imagen : 'img/placeholder.jpg';
+					for ($i=1; $i<=sizeof($galeria_noticias); $i++) {
+						$galeria[$i] = $galeria_noticias[$i-1]['imagen'];
+						$leyenda[$i] = $galeria_noticias[$i-1]['leyenda'];
+					}
+					if (sizeof($galeria_noticias) > 0 && !$noticia->imagen) {
+						array_shift($galeria);
+						array_shift($leyenda);
+					}
+					foreach ($galeria as $index => $img_galeria) {
+						printf(
+							"<div class='publicacion__slide'>
+								<div
+									class='galeria__imagen galeria-slide'
+									style='background-image: url(\"%s\")'
+								>
+							</div>",
+							 $dir.$img_galeria
+						);
+						printf(
+							"<p> %s </p>",
+							sizeof($leyenda) > 0 
+								? $leyenda[$index]
+								: ''
+						);	
+						echo "</div>";
+					}
+				?>
 				</div>
 				<?php
 				if(sizeof($galeria) > 1) {

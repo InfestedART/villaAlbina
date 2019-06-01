@@ -7,7 +7,9 @@ class Convocatorias extends MY_Controller {
 		$this->load->model("Convocatorias_model");
 		$this->load->model("Areas_model");
 		$limit = 6;
-		$search = $this->input->post('buscar', TRUE);
+		$post_search = $this->input->post('buscar', TRUE);
+		$get_search = $this->input->get('buscar', TRUE);
+		$search = $post_search ? $post_search : $get_search;
 		$post_search_cat = $this->input->post('buscar_cat', TRUE);
 		$get_search_cat = $this->input->get('search_cat', TRUE);
 		$search_cat = $post_search_cat ? $post_search_cat : $get_search_cat;

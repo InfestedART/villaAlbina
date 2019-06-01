@@ -13,11 +13,22 @@ class Subpaginas_model extends CI_Model {
 	    return $query;  
   	}
 
-  	function get_valid_subpaginas()  {
+    function get_home_subpaginas()  {
+      $this->db->select('*');
+      $this->db->from('subpagina');
+      $this->db->join('contenido', 'subpagina.id_content = contenido.id_content', 'left');
+      $this->db->where('subpagina.status', 1);
+      $this->db->order_by('subpagina.id_subpagina', 'asc');
+      $query = $this->db->get(); 
+      return $query;    
+    }
+
+  	function get_valid_subpaginas($id_pagina)  {
     	$this->db->select('*');
     	$this->db->from('subpagina');
     	$this->db->join('contenido', 'subpagina.id_content = contenido.id_content', 'left');
     	$this->db->where('subpagina.status', 1);
+      $this->db->where('subpagina.id_pagina', $id_pagina);
     	$this->db->order_by('subpagina.id_subpagina', 'asc');
     	$query = $this->db->get(); 
     	return $query;    
@@ -38,6 +49,16 @@ class Subpaginas_model extends CI_Model {
       	$this->db->join('contenido', 'subpagina.id_content = contenido.id_content', 'left');
       	$result = $this->db->get();
      	return $result;    
+    }
+
+    function get_subpaginas_id($id_pagina) {
+      $this->db->select('subpagina.id_subpagina');
+      $this->db->from('subpagina');
+      $this->db->where('subpagina.id_pagina',$id_pagina);
+      $this->db->join('galeria_subpagina', 'subpagina.id_subpagina = galeria_subpagina.id_subpagina');
+      $this->db->distinct();
+      $result = $this->db->get();
+      return $result->result_array();  
     }
 
     function insertar_subpagina($data) {

@@ -65,21 +65,25 @@ $prev_id = $prev_area ? $prev_area[0]->enlace : '';
 					<?php
 						$galeria = [];
 						$galeria[0] = $area->imagen ? $area->imagen : 'img/placeholder.jpg';
-						if (sizeof($galeria_areas) > 1 && !$area->imagen) {
-							array_shift($galeria);
-						}						
+						$leyenda[0] = '';
 						for ($i=1; $i<=sizeof($galeria_areas); $i++) {
 							$galeria[$i] = $galeria_areas[$i-1]['imagen'];
+							$leyenda[$i] = $galeria_areas[$i-1]['leyenda'];
 						}
+						if (sizeof($galeria_areas) > 0 && !$area->imagen) {
+							array_shift($galeria);
+							array_shift($leyenda);
+						}						
 
 						foreach ($galeria as $index => $img_galeria) {
-							printf("
-								<div class='publicacion__slide'>
-									<img
-										src='%s'
-										class='publicacion__imagen galeria-slide'
-									>",
-								 $dir.$img_galeria
+							printf(
+								"<div class='publicacion__slide'>
+									<div
+										class='galeria__imagen galeria-slide'
+										style='background-image: url(\"%s\")'
+									></div>",
+								$dir.$img_galeria,
+								$dir.$img_galeria
 							);
 							if($index > 0) {
 								printf(

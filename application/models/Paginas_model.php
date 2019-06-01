@@ -12,6 +12,17 @@ class Paginas_model extends CI_Model {
       return $query;  
     }
 
+    function get_parent_paginas() {
+      $this->db->select('*');
+      $this->db->from('pagina');
+      $this->db->where('pagina.status', 1);
+      $this->db->where('pagina.id_modelo', 3);
+      $this->db->join('modelo', 'pagina.id_modelo = modelo.id_modelo');
+      $this->db->order_by('pagina.orden', 'asc');
+      $query = $this->db->get(); 
+      return $query;         
+    }
+
   	function get_valid_paginas()  {
     	$this->db->select('*');
     	$this->db->from('pagina');

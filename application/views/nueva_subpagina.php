@@ -136,6 +136,23 @@
                   </div>
                </div>
 
+               <div class='form-group row'>
+                     <label class='form-label col-sm-3'>
+                        <div class=''>
+                           Galeria de Imágenes:
+                        </div>
+                        <div class='mt-2'>
+                           <span class='form-change-img m-0' id='add_img'>
+                           Añadir
+                           </span>
+                        </div>
+                     </label>
+                  <div class='col-sm-9'>
+                     <div id='img_array'>
+                     </div> 
+                  </div>
+               </div>
+
                <div id='cont_container' class='form-group row'>
                   <label class='form-label col-12'>Contenido</label>
                   <div class='col-sm-12'>
@@ -170,6 +187,7 @@
 
    <script src=<?php  echo $assets_dir."js/admin_subpagina_app.js"; ?> ></script>
    <script src=<?php echo $assets_dir."js/contenido.js"; ?> ></script>
+   <script src=<?php echo $assets_dir."js/galeria_app.js"; ?> ></script>
    <script src=<?php echo $contenido_src; ?> ></script>
 <?php
    $this->load->view('templates/admin_footer'); 

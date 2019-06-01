@@ -186,7 +186,9 @@ class Admin_equipo extends Admin_Controller {
 		);
 
      	if ($updated_miembro->imagen && $delete_imagen_equipo) {
-     		unlink($updated_imagen);
+     		if(file_exists($updated_imagen)) {
+     			unlink($updated_imagen);
+     		} 
      	}
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Equipo_model->update_miembro($id, $miembro_data);
@@ -210,7 +212,9 @@ class Admin_equipo extends Admin_Controller {
 		$deleted_miembro = $this->Equipo_model->get_miembro($id)->result_object()[0];
 		$deleted_imagen = realpath('assets/'.$deleted_miembro->imagen);
 		if ($deleted_imagen) {
-			unlink($deleted_imagen);	
+			if(file_exists($updated_imagen)) {
+				unlink($deleted_imagen);
+			}
 		}		
 		$this->Equipo_model->delete_miembro($id);
      	redirect('admin_equipo');

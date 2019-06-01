@@ -151,18 +151,30 @@ class Admin_noticia extends Admin_Controller {
 		$id = $this->uri->segment(3);
 	   $this->load->library('upload');
 
-   	$files = $_FILES;   	
-   	$img_cant = array_key_exists("galeria", $_FILES) ? sizeof($_FILES['galeria']['name']) : 0;
-   	$delete_img = $this->input->post('delete_img', TRUE);
-   	$galeria_array=[];
-   	$file_array=[];
-   	$file_size=[];
+	   	$files = $_FILES;   	
+	   	$img_cant = array_key_exists("galeria", $_FILES) ? sizeof($_FILES['galeria']['name']) : 0;
+	   	$delete_img = $this->input->post('delete_img', TRUE);
+	   	$galeria_array=[];
+	   	$file_array=[];
+	   	$file_size=[];
+
+	   	// print_r($delete_img);
 
 	  	$current_galeria = $this->Galeria_model->get_galeria($id)->result_array();
-	  	foreach ($current_galeria as $index => $current_img) {
+	  	foreach ($current_galeria as $index => $current_img) {	  		
+	  		echo "<br/>".$index."<br/>";
+	  		print_r($delete_img[$index]);
+	  		echo "<br/>";
+	  		print_r($current_img);
 	  		if ($delete_img[$index]) {
-	  			$this->Galeria_model->delete_imagen($id, $current_img['imagen']);
-	  			unlink(realpath('assets/'.$current_img['imagen']));
+  	  			$this->Galeria_model->delete_imagen(
+  	  				$current_img['id_img'],
+  	  				$current_img['imagen']
+  	  			);
+  	  			$img_file = realpath('assets/'.$current_img['imagen']);
+				if(file_exists($img_file)){
+				    unlink($img_file);
+				}
 	  		}  	  		
 	  	}
 
@@ -206,6 +218,8 @@ class Admin_noticia extends Admin_Controller {
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias/'.$imagen;
 		$contenido = $this->input->post('contenido', FALSE);
 		$leyenda = $this->input->post('leyenda', TRUE);
+		$new_leyenda = $this->input->post('new_leyenda', TRUE);
+		$id_img = $this->input->post('id_img', TRUE);
 
 		$post_data = array(
 			'titulo' => $titulo,
@@ -228,23 +242,40 @@ class Admin_noticia extends Admin_Controller {
 			'contenido' => $contenido
 		);
      	if ($updated_noticia->imagen && $delete_noticia) {
-     		unlink($updated_imagen);
+     		if (file_exists($updated_imagen)) {
+     			unlink($updated_imagen);
+     		}
      	}
 
+		$initial_orden = sizeof($current_galeria);
 		foreach ($galeria_array as $i => $img_galeria) {
 			$galeria_data = array(
 				'id_post' => $id,
 				'imagen' => $img_galeria,
-				'leyenda' => $leyenda[$i]
-			);	
+				'leyenda' => $new_leyenda[$i],
+				'orden' => $initial_orden+$i+1
+			);
 			$this->Galeria_model->insert_imagen($galeria_data);
 		}
+		if ($id_img) {
+			foreach ($id_img as $i => $galeria_img) {
+				$galeria_data = array(
+					'id_img' =>	$galeria_img,
+					'leyenda' => $leyenda[$i],
+					'orden' => $i+1
+				);
+				$this->Galeria_model->update_imagen(
+					$galeria_img,
+					$galeria_data
+				);
+			}	
+		}		
 
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Noticias_model->update_noticia($id, $post_noticia);
 		$this->Contenido_model->update_contenido($id, $post_contenido);
 
-		redirect('admin_noticia');
+		//redirect('admin_noticia');
 	}
 
 	public function toggle_noticia() {
@@ -267,7 +298,9 @@ class Admin_noticia extends Admin_Controller {
 		$deleted_noticia = $this->Noticias_model->get_noticia($id)->result_object()[0];
 		$deleted_imagen = realpath('assets/'.$deleted_noticia->imagen);
 		if ($deleted_imagen) {
-			unlink($deleted_imagen);	
+			if (file_exists($deleted_imagen)) {
+				unlink($deleted_imagen);
+			}
 		}
 		$current_galeria = $this->Galeria_model->get_galeria($id)->result_array();
   	  	foreach ($current_galeria as $index => $current_img) {
