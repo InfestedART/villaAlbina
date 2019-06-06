@@ -244,7 +244,9 @@ class Admin_area extends Admin_Controller {
 		echo $delete_imagen;
 		
      	if ($updated_area->imagen && $delete_imagen) {
-     		unlink($updated_imagen);
+     		if(file_exists($updated_imagen)) {
+     			unlink($updated_imagen);
+     		}
      	}
 
 		//save data to database
@@ -448,7 +450,9 @@ public function insertar_subarea() {
 		$delete_imagen = boolval($this->input->post('delete_imagen', TRUE));
 		
      	if ($updated_subarea->imagen && $delete_imagen) {
-     		unlink($updated_imagen);
+     		if(file_exists($updated_imagen)) { 
+     			unlink($updated_imagen);
+     		}
      	}
 
 		//save data to database

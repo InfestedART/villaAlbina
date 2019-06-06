@@ -69,29 +69,31 @@ $prev_id = $prev_evento ? $prev_evento[0]->id_post : '';
 				<div class='publicacion__slider' id='slider'>
 					<?php
 						$galeria = [];
-						$galeria[0] = $event->imagen;
-						if (sizeof($galeria_evento) > 1 && !$event->imagen) {
-							array_shift($galeria);
-						}
+						$leyenda[0] = '';
+						$galeria[0] = $event->imagen ? $event->imagen : 'img/placeholder.jpg';
 						for ($i=1; $i<=sizeof($galeria_evento); $i++) {
 							$galeria[$i] = $galeria_evento[$i-1]['imagen'];
+							$leyenda[$i] = $galeria_evento[$i-1]['leyenda'];
 						}
-
+						if (sizeof($galeria_evento) > 1 && !$event->imagen) {
+							array_shift($galeria);
+							array_shift($leyenda);
+						}
 						foreach ($galeria as $index => $img_galeria) {
 							printf("
 								<div class='publicacion__slide'>
-									<img
-										src='%s'
-										class='publicacion__imagen galeria-slide'
-									>",
+								<div
+									class='galeria__imagen galeria-slide'
+									style='background-image: url(\"%s\")'
+								></div>",
 								$dir.$img_galeria
 							);
-							if($index > 0) {
-								printf(
-									"<p> %s </p>",
-									$galeria_evento[$index-1]['leyenda']
-								);	
-							}
+						printf(
+							"<p> %s </p>",
+							sizeof($leyenda) > 0 
+								? $leyenda[$index]
+								: ''
+						);	
 							echo "</div>";							
 						}
 					?>

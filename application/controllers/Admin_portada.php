@@ -202,7 +202,9 @@ class Admin_portada extends Admin_Controller {
 		$selected_portada = $this->Portada_model->get_portada($id)->result_object()[0];
 		$deleted_imagen = realpath('assets/uploads/'.$selected_portada->imagen);
 		if ($deleted_imagen) {
-			unlink($deleted_imagen);	
+			if (file_exists($deleted_imagen)) {
+				unlink($deleted_imagen);	
+			}
 		}		
 		$this->Portada_model->delete_portada($id);
 		redirect('admin_portada');

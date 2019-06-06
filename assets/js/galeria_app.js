@@ -69,29 +69,23 @@
 
 		function moveUp(ev) {
 			const id = ev.target.id.substr(ev.target.id.indexOf('_')+1);
-			// if (id > 0) {
 			const galeria_item = document.getElementById('galeriaItem_'+id);
-			if (galeria_item.previousElementSibling) {
-				console.log(id);
-				
+			if (galeria_item.previousElementSibling) {			
 				galeria_item.parentNode.insertBefore(
 					galeria_item,
 					galeria_item.previousElementSibling
 				);
 			}								  			
-			// }
 			
 		}
 
 		function moveDown(ev) {
 			const id = ev.target.id.substr(ev.target.id.indexOf('_')+1);
-			// if (+id+1 < moveDown_imgs.length) {
-				const galeria_item = document.getElementById('galeriaItem_'+id);
-				galeria_item.parentNode.insertBefore(
-					galeria_item,
-					galeria_item.nextSibling.nextSibling
-				);	
-			// }			
+			const galeria_item = document.getElementById('galeriaItem_'+id);
+			galeria_item.parentNode.insertBefore(
+				galeria_item,
+				galeria_item.nextSibling.nextSibling
+			);			
 		}
 
 		add_img.addEventListener('click', function(ev){

@@ -28,34 +28,106 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		}
 		foreach ($subareas as $subarea) {
 			if ($subarea['mostrar']) {
-			printf("
-				<div class='container %s'>
-					<div class='row my-3'>
-						<div class='col-12' style='color:%s'>
-							<h3 class='titulo-pagina titulo__small'>%s</h3>
-						</div>				
-					</div>
-					<div class='row'>
-						<div class='col-md-4'>
-							<img src='%s' class='publicacion__imagen'/>
+				$galeria = [];
+				$galeria[0] = $subarea['imagen'] ? $subarea['imagen'] : 'img/placeholder.jpg';
+				$leyenda[0] = '';
+				for ($i=0; $i<sizeof($galeria_subareas); $i++) {
+					if ($galeria_subareas[$i]['id_subpagina'] == $subarea['id_subpagina']) {
+						$galery = $galeria_subareas[$i]['galeria'];
+						for($j=1; $j<=sizeof($galery); $j++) {
+							$galeria[$j] = $galery[$j-1]['imagen'];
+							$leyenda[$j] = $galery[$j-1]['leyenda'];							
+						}
+						if (sizeof($galery) > 0 && !$subarea['imagen']) {
+							array_shift($galeria);
+							array_shift($leyenda);
+						}					
+					}					
+				}
+				printf("
+					<div class='container %s'>
+						<div class='row my-3'>
+							<div class='col-12' style='color:%s'>
+								<h3 class='titulo-pagina titulo__small'>%s</h3>
+							</div>				
 						</div>
-						<div class='col-md-8'>
-							<div class='publicacion__column'>%s</div>
-						</div>				
-					</div>
-				</div>",
-				$active === $subarea['enlace'] ? 'subarea__active' : 'd-none',
-				$color,
-				$subarea['subpagina'],
-				$subarea['imagen'] ? $dir.$subarea['imagen'] : $dir.'img/placeholder.jpg',
-				$subarea['html']
-			);
+						<div class='row'>
+							<div class='publicacion__container col-md-4'>
+								<div class='galeria__slider galeria__slider_%s'>",
+					$active === $subarea['enlace'] ? 'subarea__active' : 'd-none',
+					$color,
+					$subarea['subpagina'],
+					$subarea['id_subpagina']
+				);
+
+				foreach ($galeria as $index => $img_galeria) {
+							printf(
+									"<input type='hidden' id='%s' value='%s' />
+									<div class='galeria__slide galeria__slide_%s'>
+										<div
+											class='galeria__imagen galeria-slide'
+											style='background-image: url(\"%s\")'
+										></div>",
+								$active === $subarea['enlace'] ? 'galeria_active' : '',
+								$subarea['id_subpagina'],
+								$subarea['id_subpagina'],
+								$dir.$img_galeria
+							);
+							printf(
+										"<p> %s </p>",
+								sizeof($leyenda) > 0 
+									? $leyenda[$index]
+									: ''
+							);	
+							echo "</div>";
+				}
+				echo "</div>";
+				if(sizeof($galeria) > 1) {
+					printf("
+						<ul class='publicacion__slider-dots pt-1'>
+							<li class='slider_arrow'>
+								<a href='#' id='izquierda_%s'> < </a>
+							</li>",
+						$subarea['id_subpagina']	
+					);
+						$dots_active=true;
+						foreach ($galeria as $index => $img_galeria) {
+							printf("
+								<li
+									class='slider_dot galeria_dot_%s %s'
+									id='dot_%s'
+								></li>",
+								$subarea['id_subpagina'],
+								$dots_active ? 'active' : '',								
+								$index
+							);
+							$dots_active = false;
+						}
+					printf("
+							<li class='slider_arrow'>
+								<a href='#' id='derecha_%s'> > </a>
+							</li>
+						</ul>",
+						$subarea['id_subpagina']
+					);
+				}
+				printf(		"</div>
+							<div class='col-md-8'>
+								<div class='publicacion__column'>%s</div>
+							</div>				
+						</div>
+					</div>",
+					$subarea['html']
+				);
 			}			
 		}
 		?>
 
+		<?php
+			$equipo_active = $active == 'equipo_trabajo';
+		?>
 		<div class="container <?php
-			echo $active == 'equipo_trabajo' ? 'subarea__active' : 'd-none'
+			echo $equipo_active ? 'subarea__active' : 'd-none'
 		 ?>">
 		<div class='row mt-3 mb-4'>
 			<div class='col-12' style='color:<?php echo $color; ?>'>
@@ -67,7 +139,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		</div>
 
 		<div class="publicacion__container <?php
-			echo $active === 'equipo_trabajo' ? 'subarea__active' : 'd-none'
+			echo $equipo_active ? 'subarea__active' : 'd-none'
 		 ?>">
 			<div class="flecha izquierda">
 				<a href='#' id='izquierda'>
@@ -165,6 +237,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 		$this->load->view('templates/footer', $footer_data);
 	?>
 	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
+	<script src=<?php  echo $dir."js/subp_slider.js"; ?> ></script>
 </body>
 
 </html>

@@ -63,7 +63,7 @@ class Admin_Pagina extends Admin_Controller {
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$data['modelos'] = $this->Modelo_model->get_subpagina_modelos();
-		$data['paginas'] = $this->Paginas_model->get_all_paginas();
+		$data['paginas'] = $this->Paginas_model->get_parent_paginas();
 		$data['subpaginas'] = $this->Subpaginas_model->get_all_subpaginas();
 		$data['get_pagina'] = $this->input->get('pagina', TRUE);
 		$this->load->view('nueva_subpagina', $data);
@@ -75,6 +75,7 @@ class Admin_Pagina extends Admin_Controller {
 		$this->load->model("Modelo_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
+		$this->load->model("Galeria_subpagina_model");
 		$this->load->model("Defaults_model");
 		$this->load->model("Visitas_model");
 		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
@@ -83,12 +84,14 @@ class Admin_Pagina extends Admin_Controller {
 		$id = $this->uri->segment(3);
 
 		$data['modelos'] = $this->Modelo_model->get_subpagina_modelos();
-		$data['paginas'] = $this->Paginas_model->get_all_paginas();
+		$data['paginas'] = $this->Paginas_model->get_parent_paginas();
 		$data['subpagina'] = $this->Subpaginas_model->get_subpagina($id);
 		$data['default_color'] = $this->Defaults_model->get_value('primary_color');
+		$data['galeria'] = $this->Galeria_subpagina_model->get_galeria($id);
 		$data['api_key'] = $this->Defaults_model->get_value('api_key');
 		$this->load->view('editar_subpagina', $data);
 	}
+
 
 	public function insertar_pagina() {
 		$this->load->model("Paginas_model");
@@ -137,18 +140,58 @@ class Admin_Pagina extends Admin_Controller {
 		redirect('admin_pagina');
 	}
 
+	private function set_img_config() {
+		$img_config['upload_path'] = './assets/uploads/subpagina/';
+   	$img_config['allowed_types'] = 'gif|jpg|png|jpeg';
+   	$img_config['max_size'] = 0;
+   	$img_config['max_width'] = 0;
+   	$img_config['max_height'] = 0;
+   	return $img_config;
+	}
+
+	private function translate($str) {
+		$trans = array(
+			"ñ" => "n", "Ñ" => "N",
+			"á" => "a", "Á" => "A",
+			"é" => "e", "É" => "E",
+			"í" => "i", "Í" => "I",
+			"ó" => "o", "Ó" => "O",
+			"ú" => "u", "Ú" => "U",
+			"ü" => "u", "Ü" => "U"
+		);	
+		return strtr($str, $trans);
+	}
 
 	public function insertar_subpagina() {
 		$this->load->model("Subpaginas_model");
 		$this->load->model("Content_model");
+		$this->load->model("Galeria_subpagina_model");
+	   $this->load->library('upload');
 
-		$config['upload_path'] = './assets/uploads/subpagina/';
-   	$config['allowed_types'] = 'gif|jpg|png|jpeg';
-   	$config['max_size'] = 0;
-   	$config['max_width'] = 0;
-   	$config['max_height'] = 0;
-      $this->load->library('upload', $config);
+		$files = $_FILES;   	
+   	$img_cant = array_key_exists("galeria", $_FILES) ? sizeof($_FILES['galeria']['name']) : 0;
+   	$delete_img = $this->input->post('delete_img', TRUE);
+   	$galeria_array=[];
 
+  	  	// insert imgs
+     	for($i=0; $i<$img_cant; $i++) {
+	      $_FILES['img_upload']['name']= $files['galeria']['name'][$i];
+	      $_FILES['img_upload']['type']= $files['galeria']['type'][$i];
+	      $_FILES['img_upload']['tmp_name']= $files['galeria']['tmp_name'][$i];
+	      $_FILES['img_upload']['error']= $files['galeria']['error'][$i];
+	      $_FILES['img_upload']['size']= $files['galeria']['size'][$i];
+      	$this->upload->initialize($this->set_img_config());
+			if (!$this->upload->do_upload('img_upload')) {						
+				if ($_FILES['img_upload']['error'] != 4) {				
+					$error = $this->upload->display_errors();				
+					$this->session->set_flashdata('error', $error);
+			 		redirect('admin_area');
+				}
+			}			
+			$galeria_array[$i]='uploads/subpagina/'
+				.str_replace(" ", "_", $_FILES['img_upload']['name']);
+	    }
+	    $this->upload->initialize($this->set_img_config());
 		if (!$this->upload->do_upload('imagen')) {						
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
@@ -156,12 +199,15 @@ class Admin_Pagina extends Admin_Controller {
 		 		redirect('admin_pagina');
 			}
 		}
+
+		//save data to database
 		$pagina = $this->input->post('pagina', TRUE);
 		$subpagina = $this->input->post('subpagina', TRUE);
 		$enlace = str_replace(" ", "_", strtolower($subpagina));
 		$modelo = $this->input->post('modelo', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$img = $imagen == '' ? '' : 'uploads/subpagina/'.$imagen;
+		$leyenda = $this->input->post('new_leyenda', TRUE);
 		$contenido = $this->input->post('contenido', FALSE);
 
 		if ($modelo == '0') {
@@ -184,6 +230,17 @@ class Admin_Pagina extends Admin_Controller {
 			'id_content' => $last_id
 		);
 		$this->Subpaginas_model->insertar_subpagina($subpagina_data);		
+		$id_subpagina = $this->Subpaginas_model->get_last_post();
+
+		foreach ($galeria_array as $i => $img_galeria) {
+			$galeria_data = array(
+				'id_subpagina' => $id_subpagina,
+				'imagen' => $img_galeria,
+				'leyenda' => $leyenda[$i]
+			);
+			$this->Galeria_subpagina_model->insert_imagen($galeria_data);
+		}
+
 		redirect('admin_pagina');
 	}
 
@@ -191,14 +248,34 @@ class Admin_Pagina extends Admin_Controller {
 	public function update_subpagina() {
 		$this->load->model("Subpaginas_model");
 		$this->load->model("Content_model");
+		$this->load->model("Galeria_subpagina_model");
+		$this->load->library('upload');
 	 	$id = $this->uri->segment(3);
 
-	  	$config['upload_path'] = './assets/uploads/subpagina/';
-      $config['allowed_types'] = 'gif|jpg|png|jpeg';
-      $config['max_size'] = 0;
-      $config['max_width'] = 0;
-      $config['max_height'] = 0;
-      $this->load->library('upload', $config);
+		$files = $_FILES;   	
+   	$img_cant = array_key_exists("galeria", $_FILES) ? sizeof($_FILES['galeria']['name']) : 0;
+   	$delete_img = $this->input->post('delete_img', TRUE);
+   	$galeria_array=[];
+
+  	  	// insert imgs
+     	for($i=0; $i<$img_cant; $i++) {
+	      $_FILES['img_upload']['name']= $files['galeria']['name'][$i];
+	      $_FILES['img_upload']['type']= $files['galeria']['type'][$i];
+	      $_FILES['img_upload']['tmp_name']= $files['galeria']['tmp_name'][$i];
+	      $_FILES['img_upload']['error']= $files['galeria']['error'][$i];
+	      $_FILES['img_upload']['size']= $files['galeria']['size'][$i];
+      	$this->upload->initialize($this->set_img_config());
+			if (!$this->upload->do_upload('img_upload')) {						
+				if ($_FILES['img_upload']['error'] != 4) {				
+					$error = $this->upload->display_errors();				
+					$this->session->set_flashdata('error', $error);
+			 		redirect('admin_pagina');
+				}
+			}			
+			$galeria_array[$i]='uploads/subpagina/'
+				.str_replace(" ", "_", $_FILES['img_upload']['name']);
+	    }
+		$this->upload->initialize($this->set_img_config());
 		if (!$this->upload->do_upload('imagen')) {						
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
@@ -206,16 +283,34 @@ class Admin_Pagina extends Admin_Controller {
 		 		redirect('admin_pagina');
 			}
 		}
+
+   	// delete selected imgs
+  	  	$current_galeria = $this->Galeria_subpagina_model->get_galeria($id)->result_array();
+  	  	foreach ($current_galeria as $index => $current_img) {  	  		
+  	  		if ($delete_img[$index]) {
+  	  			$this->Galeria_subpagina_model->delete_imagen(
+  	  				$current_img['id_img'],
+  	  				$current_img['imagen']
+  	  			);
+  	  			$img_file = realpath('assets/'.$current_img['imagen']);
+				if(file_exists($img_file)){
+				    unlink($img_file);
+				}
+  	  		}  	  		
+  	  	}		
 		$updated_subpagina = $this->Subpaginas_model->get_subpagina($id)->result_object()[0];
 		$updated_imagen = realpath('assets/'.$updated_subpagina->imagen);
 		$delete_subpagina = boolval($this->input->post('delete_subpagina', TRUE));
-		$id_content = $updated_subpagina->id_content;
 
+		$id_content = $updated_subpagina->id_content;
 		$pagina = $this->input->post('pagina', TRUE);
 		$subpagina = $this->input->post('subpagina', TRUE);
 		$modelo = $this->input->post('modelo', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$img = $imagen == '' ? '' : 'uploads/subpagina/'.$imagen;
+		$leyenda = $this->input->post('leyenda', TRUE);
+		$id_img = $this->input->post('id_img', TRUE);
+		$new_leyenda = $this->input->post('new_leyenda', TRUE);	
 		$contenido = $this->input->post('contenido', FALSE);
 		$current_contenido = $this->Content_model->get_contenido($id_content);
 		$last_id = NULL;		
@@ -229,8 +324,11 @@ class Admin_Pagina extends Admin_Controller {
 			} elseif ($updated_subpagina->imagen && $delete_subpagina) {
 				$contenido_data['imagen'] = '';
 			}
+			echo $updated_subpagina->imagen."--".$delete_subpagina."<br />";
 	     	if ($updated_subpagina->imagen && $delete_subpagina) {
-	     		unlink($updated_imagen);
+	     		if(file_exists($updated_imagen)) {
+	     			unlink($updated_imagen);
+	     		}
 	     	}
 
 	     	if (sizeof($current_contenido) < 1) {
@@ -241,6 +339,31 @@ class Admin_Pagina extends Admin_Controller {
 	     		$last_id = $id_content;
 	     	}
 			
+			$initial_orden = sizeof($current_galeria);
+			foreach ($galeria_array as $i => $img_galeria) {
+				$galeria_data = array(
+					'id_subpagina' => $id,
+					'imagen' => $img_galeria,
+					'leyenda' => $new_leyenda[$i],
+					'orden' => $initial_orden+$i+1
+				);
+				$this->Galeria_subpagina_model->insert_imagen($galeria_data);
+			}
+
+			if ($id_img) {
+				foreach ($id_img as $i => $galeria_img) {
+					$galeria_data = array(
+						'id_img' =>	$galeria_img,
+						'leyenda' => $leyenda[$i],
+						'orden' => $i+1
+					);
+						$this->Galeria_subpagina_model->update_imagen(
+						$galeria_img,
+						$galeria_data
+					);
+				}	
+			}	
+
 		} else {
 			$this->Content_model->delete_contenido($id_content);
 		}
@@ -253,7 +376,7 @@ class Admin_Pagina extends Admin_Controller {
 		);
 		$this->Subpaginas_model->update_subpagina($id, $subpagina_data);
 
-		redirect('admin_pagina');
+		// redirect('admin_pagina');
 	}
 
 	public function toggle_pagina() {
