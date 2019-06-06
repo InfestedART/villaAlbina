@@ -156,14 +156,8 @@ class Admin_noticia extends Admin_Controller {
 	   	$file_array=[];
 	   	$file_size=[];
 
-	   	// print_r($delete_img);
-
 	  	$current_galeria = $this->Galeria_model->get_galeria($id)->result_array();
 	  	foreach ($current_galeria as $index => $current_img) {	  		
-	  		echo "<br/>".$index."<br/>";
-	  		print_r($delete_img[$index]);
-	  		echo "<br/>";
-	  		print_r($current_img);
 	  		if ($delete_img[$index]) {
   	  			$this->Galeria_model->delete_imagen(
   	  				$current_img['id_img'],
@@ -271,7 +265,7 @@ class Admin_noticia extends Admin_Controller {
 		$this->Noticias_model->update_noticia($id, $post_noticia);
 		$this->Contenido_model->update_contenido($id, $post_contenido);
 
-		//redirect('admin_noticia');
+		redirect('admin_noticia');
 	}
 
 	public function toggle_noticia() {
