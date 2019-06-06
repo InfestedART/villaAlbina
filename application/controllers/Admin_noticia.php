@@ -103,7 +103,6 @@ class Admin_noticia extends Admin_Controller {
       $titulo = $this->input->post('titulo', TRUE);
 		$fecha = $this->input->post('fecha', TRUE);
 		$fuente = $this->input->post('fuente', TRUE);
-		$enlace = 'noticia/'.$titulo;
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias/'.$imagen;
@@ -121,8 +120,7 @@ class Admin_noticia extends Admin_Controller {
 			'id_post' => $last_id,
 			'fuente' => $fuente,
 			'fecha' => $fecha,
-			'resumen' => $resumen,
-			'url' => $enlace
+			'resumen' => $resumen
 		);
 		$this->Noticias_model->insert_noticia($post_noticia);
 		$post_contenido = array(
@@ -212,7 +210,6 @@ class Admin_noticia extends Admin_Controller {
      	$titulo = $this->input->post('titulo', TRUE);
 		$fecha = $this->input->post('fecha', TRUE);
 		$fuente = $this->input->post('fuente', TRUE);
-		$enlace = 'noticia/'.$titulo;
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias/'.$imagen;
@@ -234,8 +231,7 @@ class Admin_noticia extends Admin_Controller {
 		$post_noticia = array(
 			'fuente' => $fuente,
 			'fecha' => $fecha,
-			'resumen' => $resumen,
-			'url' => $enlace
+			'resumen' => $resumen
 		);
 
 		$post_contenido = array(
