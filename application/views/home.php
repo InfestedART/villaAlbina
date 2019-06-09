@@ -197,11 +197,10 @@ $dir = base_url().'assets/';
 							href='$enlace'
 							class='seccion__conoce_mas'
 							style='background-color: $page_color'
-						>
-							conoce más...
+						> Conoce Más...
 						</a>
 						</div>";
-		if($paginas_array[$index]['btn_adicional']) {			
+		if($paginas_array[$index]['btn_adicional']) {
 			$units = ['bytes', 'Kb', 'Mb', 'Gb'];
 			$filesize = $agenda['size'];
 			$i=0;
@@ -219,6 +218,17 @@ $dir = base_url().'assets/';
 				$page_color,
 				'Descargar Agenda',
 				$filesize." ".$units[$i]
+			);
+		}
+		if($paginas_array[$index]['id_modelo'] == 5) {
+			printf(
+				"<a 
+					href='%s'
+					class='seccion__conoce_mas ml-3'	
+					style='background-color: %s'					
+				> Eventos Pasados </a>",
+				$enlace.'?eventos_pasados=1',
+				$page_color
 			);
 		}
 		printf("

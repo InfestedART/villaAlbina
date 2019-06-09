@@ -118,9 +118,11 @@ body {
 	margin: 1rem 0;
 }
 
-.logo_fundacion {
+.logo .logo_fundacion {
 	float: right;
 	padding: 0 15px;
+	height: 100px;
+	padding-top: 10px;
 }
 
 .logo .logo_espacio {
@@ -640,9 +642,15 @@ body {
 		padding: 0 15% 15px;
 	}
 
+	.portada-libro img {
+		width: auto;
+		max-height: 200px
+
+	}
+
 	 .container-libro {
 	 	width: 100%;
-	 	padding: 0 20px !important;
+	 	padding: 0 30px !important;
 	 }
 }
 

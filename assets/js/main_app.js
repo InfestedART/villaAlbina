@@ -37,7 +37,7 @@ function Slideshow( element ) {
 					self.index = 0;
 				}
 				self._slideTo( self.index );				
-			}, 5000);
+			}, 7500);
 		}		
 	};
 	

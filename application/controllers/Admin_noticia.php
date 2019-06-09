@@ -10,9 +10,12 @@ class Admin_noticia extends Admin_Controller {
 		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
-
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
+		if (!$orderby) {
+			$orderby = 'fecha';
+			$direction = 'desc';
+		}	
 		$search = $this->input->post('buscar_noticia', TRUE);
 		$data['search'] = $search;
 		$data['noticias'] = $this->Noticias_model->get_all_noticias(

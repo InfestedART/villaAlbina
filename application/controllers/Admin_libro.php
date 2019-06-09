@@ -16,6 +16,10 @@ class Admin_libro extends Admin_Controller {
 
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE); 
+		if (!$orderby) {
+			$orderby = 'id_post';
+			$direction = 'desc';
+		}	
 		$search_libro = $this->input->post('buscar_libreria', TRUE);
 		$search_cat = $this->input->post('buscar_categoria', TRUE);
 		$data['search'] = $search_libro;

@@ -6,7 +6,8 @@ class Teatro extends MY_Controller {
 		$this->load->model("Paginas_model");
 		$this->load->model("Areas_model");
 		$this->load->model("Eventos_model");
-		$limit = 6;
+		$this->load->model("Modelo_model");	
+		$limit = $this->Modelo_model->get_limit(6);
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }	
 		$search = $this->input->post('buscar', TRUE);

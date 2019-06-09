@@ -6,7 +6,8 @@ class Multimedia extends MY_Controller {
 		$this->load->model("Paginas_model");
 		$this->load->model("Areas_model");
 		$this->load->model("Media_model");	
-		$limit = 6;
+		$this->load->model("Modelo_model");	
+		$limit = $this->Modelo_model->get_limit(8);
 		$search = $this->input->post('buscar', TRUE);
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }		

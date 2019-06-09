@@ -15,5 +15,13 @@ class Modelo_model extends CI_Model {
 	return $query;
   }
 
+  function get_limit($id) {
+    $this->db->select('default_limit');
+    $this->db->from('modelo');
+    $this->db->where('id_modelo', $id);
+    $query = $this->db->get(); 
+    return $query->result_array()[0]['default_limit'];
+  }
+
 }
 ?>
