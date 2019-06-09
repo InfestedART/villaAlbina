@@ -13,6 +13,10 @@ class Admin_evento extends Admin_Controller {
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
+		if (!$orderby) {
+			$orderby = 'fecha_ini';
+			$direction = 'desc';
+		}		
 		$search = $this->input->post('buscar', TRUE);
 		$search_cat = $this->input->post('buscar_cat', TRUE);
 		$data['search'] = $search;

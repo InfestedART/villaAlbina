@@ -7,7 +7,8 @@ class Libreria extends MY_Controller {
 		$this->load->model("Paginas_model");
 		$this->load->model("Areas_model");
 		$this->load->model("Libro_model");
-		$limit = 6;
+		$this->load->model("Modelo_model");	
+		$limit = $this->Modelo_model->get_limit(1);
 		$search = $this->input->post('buscar', TRUE);
 		$search_cat = $this->input->post('buscar_cat', TRUE);
 		$step = $this->input->get('step', TRUE);
