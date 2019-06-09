@@ -54,8 +54,30 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 					</a>
 					<p	class='publicacion__fecha'
 						style='color: %s'
-					> Del %s al %s
-					</p>
+					>",
+					base_url().'evento?id='.$evento['id_post'],
+					$dir,
+					$evento['imagen'] ? $evento['imagen'] : 'img/placeholder.jpg',
+					$agenda_data['color']
+					);
+				if ($evento['rango']) {
+					echo "Del ".strftime('%d de %B', strtotime($evento['fecha_ini']));
+					echo " al ".strftime('%d de %B', strtotime($evento['fecha_fin']));
+				} else {
+					foreach($fechas as $index => $fecha) {
+						if ($fecha['id_post'] == $evento['id_post']) {
+							$coma = '';
+							if ($index < sizeof($fechas)-2) {
+								$coma = ', ';
+							}
+							if ($index == sizeof($fechas)-2) {
+								$coma = ' y ';	
+							}
+							echo strftime('%d de %B', strtotime($fecha['fecha'])).$coma;
+						}
+					}					
+				}
+				printf("</p>
 					<a href='%s' class='noticia__btn'>
 						<h5 class='noticia__titulo'>%s</h5>
 					</a>
@@ -63,18 +85,26 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 					</div>
 				</div>",
 				base_url().'evento?id='.$evento['id_post'],
-				$dir,
-				$evento['imagen'] ? $evento['imagen'] : 'img/placeholder.jpg',
-				$agenda_data['color'],
-				strftime('%d de %B', strtotime($evento['fecha_ini'])),
-				strftime('%d de %B', strtotime($evento['fecha_fin'])),
-				base_url().'evento?id='.$evento['id_post'],
 				$evento['titulo'],
 				$evento['descripcion']
 			);
 			}
 		?>
 		</div>
+
+		<?php			
+			echo "<div class='col-12 text-center'>";			
+				printf("
+					<a  href='%s'
+						class='archivo__btn'
+						style='background-color: %s'
+					>  %s </a>",
+					$pasados ? base_url().'agenda' : base_url().'agenda?eventos_pasados=1',
+					$agenda_data['color'],
+					$pasados ? 'Eventos Futuros' : 'Eventos Pasados'
+				);			
+			echo "</div>";			
+		?>
 
 		<div class='publicacion__nav row'>
 			<div class='col-12 text-center'>

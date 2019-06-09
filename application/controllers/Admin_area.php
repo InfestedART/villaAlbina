@@ -312,7 +312,7 @@ class Admin_area extends Admin_Controller {
 			}	
 		}	
 
-		//redirect('admin_area');
+		redirect('admin_area');
 	}
 
 public function insertar_subarea() {

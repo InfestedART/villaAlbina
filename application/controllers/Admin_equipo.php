@@ -106,7 +106,7 @@ class Admin_equipo extends Admin_Controller {
 				$error = $this->upload->display_errors();
 				$this->session->set_flashdata('error', $error);
 				echo $error;
-		 		//redirect('admin_equipo');
+		 		redirect('admin_equipo');
 			}
 		}		
 	   $nombre = $this->input->post('nombre', TRUE);

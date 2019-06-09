@@ -134,8 +134,8 @@ $prev_id = $prev_evento ? $prev_evento[0]->id_post : '';
 				<p class='publicacion__fecha' style="color: <?php echo $color; ?>">
 				<?php
 					if ($event->rango) {
-						echo 'Del '.$event->fecha_ini;
-						echo ' al '.$event->fecha_fin;
+						echo 'Del '.strftime('%d de %B', strtotime($event->fecha_ini));
+						echo ' al '.strftime('%d de %B', strtotime($event->fecha_fin));	
 					} else {
 						foreach($fechas as $index => $fecha) {
 							$coma = '';

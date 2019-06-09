@@ -13,6 +13,10 @@ class Admin_convocatoria extends Admin_Controller {
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
+		if (!$orderby) {
+			$orderby = 'fecha_limite';
+			$direction = 'desc';
+		}	
 		$search = $this->input->post('buscar_convocatoria', TRUE);
 		$search_cat = $this->input->post('buscar_cat', TRUE);
 		$data['search'] = $search;
@@ -224,8 +228,8 @@ class Admin_convocatoria extends Admin_Controller {
   	  	foreach ($current_archivos as $index => $current_file) {
   	  		if ($delete_file[$index]) {
   	  			$this->Archivo_model->delete_archivo($id, $current_file['archivo']);
-  	  			$file_to_delete = realpath('assets/'.$current_file['archivo']))
-  	  			if(file_exists($file_to_delete) {
+  	  			$file_to_delete = realpath('assets/'.$current_file['archivo']);
+  	  			if(file_exists($file_to_delete)) {
   	  				unlink($file_to_delete);
   	  			}
   	  		}  	  		

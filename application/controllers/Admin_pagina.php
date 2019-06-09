@@ -376,7 +376,7 @@ class Admin_Pagina extends Admin_Controller {
 		);
 		$this->Subpaginas_model->update_subpagina($id, $subpagina_data);
 
-		// redirect('admin_pagina');
+		redirect('admin_pagina');
 	}
 
 	public function toggle_pagina() {
