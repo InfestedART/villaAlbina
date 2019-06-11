@@ -8,22 +8,35 @@ class Admin_convocatoria extends Admin_Controller {
 		$this->load->model("Complemento_model");
 		$this->load->model("Areas_model");
 		$this->load->model("Visitas_model");
-		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
+		$data['visitas'] = $this
+			->Visitas_model
+			->get_visitas_count()
+			->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
+		$step = $this->input->get('step', TRUE);
+		if (!$step) { $step = 0; }	
+		$limit = 12;
 		if (!$orderby) {
 			$orderby = 'fecha_limite';
 			$direction = 'desc';
-		}	
+		}
+		$data['step'] = $step;
+		$data['limit'] = $limit;
 		$search = $this->input->post('buscar_convocatoria', TRUE);
 		$search_cat = $this->input->post('buscar_cat', TRUE);
 		$data['search'] = $search;
 		$data['search_cat'] = $search_cat;
 		$data['areas'] = $this->Areas_model->get_all_areas();
+		$data['cant_convocatorias'] = sizeof(
+			$this->Convocatorias_model->get_all_convocatorias(
+				$search, $search_cat, $orderby, $direction, 0, 144
+			)->result_array()
+		);
 		$data['convocatorias'] = $this->Convocatorias_model->get_all_convocatorias(
-			$search, $search_cat, $orderby, $direction
+			$search, $search_cat, $orderby, $direction, $step, $limit
 		);
 		$this->load->view('admin_convocatoria', $data);
 	}

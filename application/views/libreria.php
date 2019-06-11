@@ -58,7 +58,10 @@ $dir = base_url().'assets/';
 							   style='color: %s'>
 							   %s
 							</p>
+							%s
+							%s
 							<p>%s</p>
+							%s
 							<p>%s</p>
 							<p 	class='container-libro__precio'
 								style='background-color: %s'
@@ -68,8 +71,11 @@ $dir = base_url().'assets/';
 					$dir, $libro['imagen'],
 					$libro['titulo'],
 					$color,
-					$libro['categoria'],	
+					$libro['categoria'],
 					$libro['autor'],
+					$libro['editorial'] ? '<p>'.$libro['editorial'].'</p>' : '',
+					$libro['year'] ? '<p>'.$libro['year'].'</p>' : '',
+					$libro['paginas'] ? '<p>'.$libro['paginas'].' páginas</p>' : '',
 					$libro['descripcion'],
 					$color,
 					$libro['precio']

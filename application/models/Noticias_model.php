@@ -1,6 +1,12 @@
 <?php
 class Noticias_model extends CI_Model {
-  function get_all_noticias($search = false, $orderby = false, $direction = 'desc') {
+  function get_all_noticias(
+  	$search = false,
+  	$orderby = false,
+  	$direction = 'desc',
+  	$step = 0,
+  	$limit = 12
+  ) {
 	$this->db->select('*');
 	$this->db->from('noticia');
 	$this->db->join('publicacion', 'publicacion.id_post = noticia.id_post');
@@ -14,6 +20,8 @@ class Noticias_model extends CI_Model {
 		$orderby ? $orderby : 'noticia.fecha',
 		$direction
 	);
+	$start = $step * $limit;
+	$this->db->limit($limit, $start);
 	$query = $this->db->get(); 
 	return $query;
   }

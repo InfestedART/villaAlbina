@@ -158,6 +158,47 @@
                   </div>
                </div>
 
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Año</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='year'
+                        name='year'
+                        value=<?php echo $edit_libro['year']; ?>
+                        class="form-control"
+                        type='number'
+                        min='1900'
+                        max='2500'
+                     /> 
+                  </div>
+               </div>
+
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Editorial</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='editorial'
+                        name='editorial'
+                        value='<?php echo $edit_libro['editorial']; ?>'
+                        class="form-control"
+                        type='text'                        
+                     /> 
+                  </div>
+               </div>
+
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Páginas</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='paginas'
+                        name='paginas'
+                        value='<?php echo $edit_libro['paginas']; ?>'
+                        class="form-control"
+                        type='number'                        
+                     /> 
+                  </div>
+               </div>
+
               <div class='form-group row'>
                   <label class='form-label col-sm-3'>Portada</label>
                   <div class='col-sm-9'>

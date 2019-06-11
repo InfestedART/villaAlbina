@@ -5,7 +5,9 @@ class Convocatorias_model extends CI_Model {
 		$search = false,
 		$search_cat = false,
 		$orderby = false,
-		$direction = 'desc'
+		$direction = 'desc',
+		$step = 0,
+  		$limit = 12
 	) {
 		$this->db->select('*');
 		$this->db->from('convocatoria');
@@ -24,6 +26,8 @@ class Convocatorias_model extends CI_Model {
 			$orderby ? $orderby : 'convocatoria.id_post',
 			$direction
 		);
+		$start = $step * $limit;
+		$this->db->limit($limit, $start);
 	  	$result = $this->db->get();
 	  	return $result;    		
 	}

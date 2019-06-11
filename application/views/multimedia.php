@@ -47,8 +47,8 @@ $dir = base_url().'assets/';
 						width='%s'
 						height='%s'						
 						allowfullscreen></iframe>
-					<h5 class='noticia__titulo'>%s</h5>
 				</div>
+				<h5 class='noticia__titulo'>%s</h5>
 				</div>",
 				$media['enlace'],
 				'100%', '100%',

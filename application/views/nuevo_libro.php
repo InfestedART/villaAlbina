@@ -135,9 +135,46 @@
                </div>
 
                <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Año</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='year'
+                        name='year'
+                        class="form-control"
+                        type='number'
+                        min='1900'
+                        max='2500'
+                     /> 
+                  </div>
+               </div>
+
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Editorial</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='editorial'
+                        name='editorial'
+                        class="form-control"
+                        type='text'                        
+                     /> 
+                  </div>
+               </div>
+
+               <div class='form-group row'>
+                  <label class='form-label col-sm-3'>Páginas</label>
+                  <div class='col-sm-9'>
+                     <input
+                        id='paginas'
+                        name='paginas'
+                        class="form-control"
+                        type='number'                        
+                     /> 
+                  </div>
+               </div>
+
+               <div class='form-group row'>
                   <label class='form-label col-sm-3'>
-                     Descripción <br>
-                     (Lugar, Año, Páginas, etc.)
+                     Descripción 
                   </label>
                   <div class='col-sm-9'>
                      <textarea

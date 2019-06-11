@@ -111,7 +111,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 				<?php
 					$noti_dir = base_url()."agenda";
 					$nav_size = ceil($cant_eventos/$limit);	
-
+					$q_params = $pasados ? '&eventos_pasados=1' : '';
 					if ($nav_size > 1) {
 						if ($step > 0) {
 							$prev = $step - 1;
@@ -119,7 +119,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 								<a href='%s' class='showing_nav'>
 									<<
 								</a>",
-								$noti_dir."?step=".$prev
+								$noti_dir."?step=".$prev.$q_params
 							);
 						}
 						for($i=0; $i<$nav_size; $i++) {
@@ -127,7 +127,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 								<a href='%s' class='showing_nav'>
 									%s
 								</a>",
-								$i == 0 ? $noti_dir : $noti_dir."?step=".$i,
+								$i == 0 ? $noti_dir : $noti_dir."?step=".$i.$q_params,
 								$i+1
 							);
 						}
@@ -137,7 +137,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 								<a href='%s' class='showing_nav'>
 									>>
 								</a>",
-								$noti_dir."?step=".$next
+								$noti_dir."?step=".$next.$q_params
 							);
 						}						
 					}					

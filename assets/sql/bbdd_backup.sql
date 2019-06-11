@@ -1,25 +1,27 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 09-06-2019 a las 16:35:51
--- Versión del servidor: 5.7.17-log
--- Versión de PHP: 5.6.30
+-- Host: localhost:3306
+-- Generation Time: Jun 10, 2019 at 07:58 PM
+-- Server version: 5.6.43-cll-lve
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Base de datos: `espaciopatino`
+-- Database: `espaciopatino`
 --
-CREATE DATABASE IF NOT EXISTS `espaciopatino` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci;
+CREATE DATABASE IF NOT EXISTS `espaciopatino` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `espaciopatino`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `agenda`
+-- Table structure for table `agenda`
 --
 
 DROP TABLE IF EXISTS `agenda`;
@@ -32,7 +34,7 @@ CREATE TABLE `agenda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `agenda`
+-- Dumping data for table `agenda`
 --
 
 INSERT INTO `agenda` (`id_agenda`, `enlace`, `size`, `fecha`, `status`) VALUES
@@ -42,7 +44,7 @@ INSERT INTO `agenda` (`id_agenda`, `enlace`, `size`, `fecha`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `archivo_adjunto`
+-- Table structure for table `archivo_adjunto`
 --
 
 DROP TABLE IF EXISTS `archivo_adjunto`;
@@ -54,7 +56,7 @@ CREATE TABLE `archivo_adjunto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `archivo_adjunto`
+-- Dumping data for table `archivo_adjunto`
 --
 
 INSERT INTO `archivo_adjunto` (`id_archivo`, `archivo`, `size`, `id_post`) VALUES
@@ -63,7 +65,7 @@ INSERT INTO `archivo_adjunto` (`id_archivo`, `archivo`, `size`, `id_post`) VALUE
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `area`
+-- Table structure for table `area`
 --
 
 DROP TABLE IF EXISTS `area`;
@@ -78,7 +80,7 @@ CREATE TABLE `area` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `area`
+-- Dumping data for table `area`
 --
 
 INSERT INTO `area` (`id_area`, `area`, `enlace`, `correo`, `color_area`, `status`, `id_content`) VALUES
@@ -91,7 +93,7 @@ INSERT INTO `area` (`id_area`, `area`, `enlace`, `correo`, `color_area`, `status
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria_equipo`
+-- Table structure for table `categoria_equipo`
 --
 
 DROP TABLE IF EXISTS `categoria_equipo`;
@@ -102,7 +104,7 @@ CREATE TABLE `categoria_equipo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `categoria_equipo`
+-- Dumping data for table `categoria_equipo`
 --
 
 INSERT INTO `categoria_equipo` (`id_categoria_equipo`, `categoria`, `status_categoria`) VALUES
@@ -115,7 +117,7 @@ INSERT INTO `categoria_equipo` (`id_categoria_equipo`, `categoria`, `status_cate
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria_libro`
+-- Table structure for table `categoria_libro`
 --
 
 DROP TABLE IF EXISTS `categoria_libro`;
@@ -126,7 +128,7 @@ CREATE TABLE `categoria_libro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `categoria_libro`
+-- Dumping data for table `categoria_libro`
 --
 
 INSERT INTO `categoria_libro` (`id_categoriaLibro`, `categoria`, `status_categoria`) VALUES
@@ -141,7 +143,7 @@ INSERT INTO `categoria_libro` (`id_categoriaLibro`, `categoria`, `status_categor
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `complemento`
+-- Table structure for table `complemento`
 --
 
 DROP TABLE IF EXISTS `complemento`;
@@ -153,7 +155,7 @@ CREATE TABLE `complemento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `complemento`
+-- Dumping data for table `complemento`
 --
 
 INSERT INTO `complemento` (`id_complemento`, `complemento`, `nombre_sidebar`, `icono`) VALUES
@@ -162,7 +164,7 @@ INSERT INTO `complemento` (`id_complemento`, `complemento`, `nombre_sidebar`, `i
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `contenido`
+-- Table structure for table `contenido`
 --
 
 DROP TABLE IF EXISTS `contenido`;
@@ -175,7 +177,7 @@ CREATE TABLE `contenido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `contenido`
+-- Dumping data for table `contenido`
 --
 
 INSERT INTO `contenido` (`id_content`, `titulo`, `imagen`, `html`, `mostrar`) VALUES
@@ -226,7 +228,7 @@ INSERT INTO `contenido` (`id_content`, `titulo`, `imagen`, `html`, `mostrar`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `convocatoria`
+-- Table structure for table `convocatoria`
 --
 
 DROP TABLE IF EXISTS `convocatoria`;
@@ -238,7 +240,7 @@ CREATE TABLE `convocatoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `convocatoria`
+-- Dumping data for table `convocatoria`
 --
 
 INSERT INTO `convocatoria` (`id_post`, `id_area`, `fecha_limite`, `descripcion`) VALUES
@@ -249,7 +251,7 @@ INSERT INTO `convocatoria` (`id_post`, `id_area`, `fecha_limite`, `descripcion`)
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `defaults`
+-- Table structure for table `defaults`
 --
 
 DROP TABLE IF EXISTS `defaults`;
@@ -259,7 +261,7 @@ CREATE TABLE `defaults` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `defaults`
+-- Dumping data for table `defaults`
 --
 
 INSERT INTO `defaults` (`property`, `value`) VALUES
@@ -271,7 +273,7 @@ INSERT INTO `defaults` (`property`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `evento`
+-- Table structure for table `evento`
 --
 
 DROP TABLE IF EXISTS `evento`;
@@ -289,7 +291,7 @@ CREATE TABLE `evento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `evento`
+-- Dumping data for table `evento`
 --
 
 INSERT INTO `evento` (`id_post`, `id_area`, `organizador`, `rango`, `fecha_ini`, `fecha_fin`, `hora`, `lugar`, `descripcion`, `info`) VALUES
@@ -307,7 +309,7 @@ INSERT INTO `evento` (`id_post`, `id_area`, `organizador`, `rango`, `fecha_ini`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fecha_evento`
+-- Table structure for table `fecha_evento`
 --
 
 DROP TABLE IF EXISTS `fecha_evento`;
@@ -317,7 +319,7 @@ CREATE TABLE `fecha_evento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `fecha_evento`
+-- Dumping data for table `fecha_evento`
 --
 
 INSERT INTO `fecha_evento` (`id_post`, `fecha`) VALUES
@@ -333,7 +335,7 @@ INSERT INTO `fecha_evento` (`id_post`, `fecha`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `galeria`
+-- Table structure for table `galeria`
 --
 
 DROP TABLE IF EXISTS `galeria`;
@@ -346,7 +348,7 @@ CREATE TABLE `galeria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `galeria`
+-- Dumping data for table `galeria`
 --
 
 INSERT INTO `galeria` (`id_img`, `imagen`, `leyenda`, `orden`, `id_post`) VALUES
@@ -371,7 +373,7 @@ INSERT INTO `galeria` (`id_img`, `imagen`, `leyenda`, `orden`, `id_post`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `galeria_area`
+-- Table structure for table `galeria_area`
 --
 
 DROP TABLE IF EXISTS `galeria_area`;
@@ -384,7 +386,7 @@ CREATE TABLE `galeria_area` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `galeria_area`
+-- Dumping data for table `galeria_area`
 --
 
 INSERT INTO `galeria_area` (`id_img`, `imagen`, `leyenda`, `orden`, `id_area`) VALUES
@@ -394,7 +396,7 @@ INSERT INTO `galeria_area` (`id_img`, `imagen`, `leyenda`, `orden`, `id_area`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `galeria_subarea`
+-- Table structure for table `galeria_subarea`
 --
 
 DROP TABLE IF EXISTS `galeria_subarea`;
@@ -407,7 +409,7 @@ CREATE TABLE `galeria_subarea` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `galeria_subarea`
+-- Dumping data for table `galeria_subarea`
 --
 
 INSERT INTO `galeria_subarea` (`id_img`, `imagen`, `leyenda`, `orden`, `id_subarea`) VALUES
@@ -475,7 +477,7 @@ INSERT INTO `galeria_subarea` (`id_img`, `imagen`, `leyenda`, `orden`, `id_subar
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `galeria_subpagina`
+-- Table structure for table `galeria_subpagina`
 --
 
 DROP TABLE IF EXISTS `galeria_subpagina`;
@@ -490,7 +492,7 @@ CREATE TABLE `galeria_subpagina` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `html`
+-- Table structure for table `html`
 --
 
 DROP TABLE IF EXISTS `html`;
@@ -500,7 +502,7 @@ CREATE TABLE `html` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `html`
+-- Dumping data for table `html`
 --
 
 INSERT INTO `html` (`id_post`, `contenido`) VALUES
@@ -539,7 +541,7 @@ INSERT INTO `html` (`id_post`, `contenido`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `imagen_portada`
+-- Table structure for table `imagen_portada`
 --
 
 DROP TABLE IF EXISTS `imagen_portada`;
@@ -554,7 +556,7 @@ CREATE TABLE `imagen_portada` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `imagen_portada`
+-- Dumping data for table `imagen_portada`
 --
 
 INSERT INTO `imagen_portada` (`id_portada`, `imagen`, `color`, `id_area`, `heredar_color`, `orden`, `status`) VALUES
@@ -574,7 +576,7 @@ INSERT INTO `imagen_portada` (`id_portada`, `imagen`, `color`, `id_area`, `hered
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `libro`
+-- Table structure for table `libro`
 --
 
 DROP TABLE IF EXISTS `libro`;
@@ -588,7 +590,7 @@ CREATE TABLE `libro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `libro`
+-- Dumping data for table `libro`
 --
 
 INSERT INTO `libro` (`id_post`, `id_categoriaLibro`, `autor`, `descripcion`, `precio`, `id_area`) VALUES
@@ -604,7 +606,7 @@ INSERT INTO `libro` (`id_post`, `id_categoriaLibro`, `autor`, `descripcion`, `pr
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `media`
+-- Table structure for table `media`
 --
 
 DROP TABLE IF EXISTS `media`;
@@ -615,7 +617,7 @@ CREATE TABLE `media` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `media`
+-- Dumping data for table `media`
 --
 
 INSERT INTO `media` (`id_post`, `enlace`, `id_tipo_media`) VALUES
@@ -626,7 +628,7 @@ INSERT INTO `media` (`id_post`, `enlace`, `id_tipo_media`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `miembro_equipo`
+-- Table structure for table `miembro_equipo`
 --
 
 DROP TABLE IF EXISTS `miembro_equipo`;
@@ -639,7 +641,7 @@ CREATE TABLE `miembro_equipo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `miembro_equipo`
+-- Dumping data for table `miembro_equipo`
 --
 
 INSERT INTO `miembro_equipo` (`id_post`, `nombre`, `cargo`, `descripcion`, `id_categoria_equipo`) VALUES
@@ -661,7 +663,7 @@ INSERT INTO `miembro_equipo` (`id_post`, `nombre`, `cargo`, `descripcion`, `id_c
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `modelo`
+-- Table structure for table `modelo`
 --
 
 DROP TABLE IF EXISTS `modelo`;
@@ -679,7 +681,7 @@ CREATE TABLE `modelo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `modelo`
+-- Dumping data for table `modelo`
 --
 
 INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `seccion`, `btn_adicional`, `mostrar_subpagina`, `model`, `metodo`, `default_limit`, `uses_date`, `id_tipo`) VALUES
@@ -696,7 +698,7 @@ INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `seccion`, `btn_adicional`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `noticia`
+-- Table structure for table `noticia`
 --
 
 DROP TABLE IF EXISTS `noticia`;
@@ -708,7 +710,7 @@ CREATE TABLE `noticia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `noticia`
+-- Dumping data for table `noticia`
 --
 
 INSERT INTO `noticia` (`id_post`, `fuente`, `fecha`, `resumen`) VALUES
@@ -733,7 +735,7 @@ INSERT INTO `noticia` (`id_post`, `fuente`, `fecha`, `resumen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pagina`
+-- Table structure for table `pagina`
 --
 
 DROP TABLE IF EXISTS `pagina`;
@@ -753,7 +755,7 @@ CREATE TABLE `pagina` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `pagina`
+-- Dumping data for table `pagina`
 --
 
 INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `color`, `status`, `orden`, `mostrar_navbar`, `mostrar_home`, `external_url`, `enable_search`, `search_by_cat`, `id_modelo`) VALUES
@@ -770,7 +772,7 @@ INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `color`, `status`, `orden
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `publicacion`
+-- Table structure for table `publicacion`
 --
 
 DROP TABLE IF EXISTS `publicacion`;
@@ -783,7 +785,7 @@ CREATE TABLE `publicacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `publicacion`
+-- Dumping data for table `publicacion`
 --
 
 INSERT INTO `publicacion` (`id_post`, `titulo`, `imagen`, `status`, `tipo`) VALUES
@@ -846,7 +848,7 @@ INSERT INTO `publicacion` (`id_post`, `titulo`, `imagen`, `status`, `tipo`) VALU
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subarea`
+-- Table structure for table `subarea`
 --
 
 DROP TABLE IF EXISTS `subarea`;
@@ -861,7 +863,7 @@ CREATE TABLE `subarea` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `subarea`
+-- Dumping data for table `subarea`
 --
 
 INSERT INTO `subarea` (`id_subarea`, `subarea`, `enlace`, `status`, `mostrar_componente`, `id_area`, `id_content`) VALUES
@@ -897,7 +899,7 @@ INSERT INTO `subarea` (`id_subarea`, `subarea`, `enlace`, `status`, `mostrar_com
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subpagina`
+-- Table structure for table `subpagina`
 --
 
 DROP TABLE IF EXISTS `subpagina`;
@@ -912,7 +914,7 @@ CREATE TABLE `subpagina` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `subpagina`
+-- Dumping data for table `subpagina`
 --
 
 INSERT INTO `subpagina` (`id_subpagina`, `subpagina`, `enlace`, `status`, `id_pagina`, `id_modelo`, `id_content`) VALUES
@@ -924,7 +926,7 @@ INSERT INTO `subpagina` (`id_subpagina`, `subpagina`, `enlace`, `status`, `id_pa
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_media`
+-- Table structure for table `tipo_media`
 --
 
 DROP TABLE IF EXISTS `tipo_media`;
@@ -934,7 +936,7 @@ CREATE TABLE `tipo_media` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `tipo_media`
+-- Dumping data for table `tipo_media`
 --
 
 INSERT INTO `tipo_media` (`id_tipo_media`, `tipo_media`) VALUES
@@ -945,7 +947,7 @@ INSERT INTO `tipo_media` (`id_tipo_media`, `tipo_media`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_post`
+-- Table structure for table `tipo_post`
 --
 
 DROP TABLE IF EXISTS `tipo_post`;
@@ -958,7 +960,7 @@ CREATE TABLE `tipo_post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `tipo_post`
+-- Dumping data for table `tipo_post`
 --
 
 INSERT INTO `tipo_post` (`id_tipo`, `tipo_post`, `nombre_sidebar`, `icono`, `sub_categoria`) VALUES
@@ -973,7 +975,7 @@ INSERT INTO `tipo_post` (`id_tipo`, `tipo_post`, `nombre_sidebar`, `icono`, `sub
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -983,7 +985,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`username`, `password`) VALUES
@@ -994,7 +996,7 @@ INSERT INTO `usuarios` (`username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `visitas`
+-- Table structure for table `visitas`
 --
 
 DROP TABLE IF EXISTS `visitas`;
@@ -1005,7 +1007,7 @@ CREATE TABLE `visitas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `visitas`
+-- Dumping data for table `visitas`
 --
 
 INSERT INTO `visitas` (`userip`, `timestamp`, `visita`) VALUES
@@ -1013,13 +1015,13 @@ INSERT INTO `visitas` (`userip`, `timestamp`, `visita`) VALUES
 ('181.114.122.251', '2019-05-29 22:11:55', 2),
 ('181.114.123.96', '2019-05-29 10:43:12', 1),
 ('181.115.131.86', '2019-05-28 14:56:21', 1),
-('181.115.248.25', '2019-05-30 23:30:56', 3),
+('181.115.248.25', '2019-06-10 15:19:34', 4),
 ('181.188.160.64', '2019-06-01 00:31:27', 1),
 ('181.188.176.226', '2019-05-30 03:17:44', 2),
 ('181.188.177.15', '2019-05-31 13:24:12', 1),
 ('181.188.177.74', '2019-06-03 14:30:48', 1),
 ('181.188.177.9', '2019-05-30 14:02:24', 1),
-('181.188.179.109', '2019-06-08 23:29:37', 11),
+('181.188.179.109', '2019-06-10 22:56:03', 13),
 ('190.181.5.60', '2019-05-29 20:01:54', 1),
 ('200.105.171.234', '2019-06-06 22:35:28', 3),
 ('200.105.182.19', '2019-06-06 19:06:36', 1),
@@ -1030,284 +1032,304 @@ INSERT INTO `visitas` (`userip`, `timestamp`, `visita`) VALUES
 ('66.249.88.61', '2019-06-06 19:09:20', 1);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `agenda`
+-- Indexes for table `agenda`
 --
 ALTER TABLE `agenda`
   ADD PRIMARY KEY (`id_agenda`);
 
 --
--- Indices de la tabla `archivo_adjunto`
+-- Indexes for table `archivo_adjunto`
 --
 ALTER TABLE `archivo_adjunto`
   ADD PRIMARY KEY (`id_archivo`);
 
 --
--- Indices de la tabla `area`
+-- Indexes for table `area`
 --
 ALTER TABLE `area`
   ADD PRIMARY KEY (`id_area`);
 
 --
--- Indices de la tabla `categoria_equipo`
+-- Indexes for table `categoria_equipo`
 --
 ALTER TABLE `categoria_equipo`
   ADD PRIMARY KEY (`id_categoria_equipo`);
 
 --
--- Indices de la tabla `categoria_libro`
+-- Indexes for table `categoria_libro`
 --
 ALTER TABLE `categoria_libro`
   ADD PRIMARY KEY (`id_categoriaLibro`);
 
 --
--- Indices de la tabla `complemento`
+-- Indexes for table `complemento`
 --
 ALTER TABLE `complemento`
   ADD PRIMARY KEY (`id_complemento`);
 
 --
--- Indices de la tabla `contenido`
+-- Indexes for table `contenido`
 --
 ALTER TABLE `contenido`
   ADD PRIMARY KEY (`id_content`);
 
 --
--- Indices de la tabla `convocatoria`
+-- Indexes for table `convocatoria`
 --
 ALTER TABLE `convocatoria`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `defaults`
+-- Indexes for table `defaults`
 --
 ALTER TABLE `defaults`
   ADD PRIMARY KEY (`property`);
 
 --
--- Indices de la tabla `evento`
+-- Indexes for table `evento`
 --
 ALTER TABLE `evento`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `fecha_evento`
+-- Indexes for table `fecha_evento`
 --
 ALTER TABLE `fecha_evento`
   ADD PRIMARY KEY (`id_post`,`fecha`);
 
 --
--- Indices de la tabla `galeria`
+-- Indexes for table `galeria`
 --
 ALTER TABLE `galeria`
   ADD PRIMARY KEY (`id_img`);
 
 --
--- Indices de la tabla `galeria_area`
+-- Indexes for table `galeria_area`
 --
 ALTER TABLE `galeria_area`
   ADD PRIMARY KEY (`id_img`);
 
 --
--- Indices de la tabla `galeria_subarea`
+-- Indexes for table `galeria_subarea`
 --
 ALTER TABLE `galeria_subarea`
   ADD PRIMARY KEY (`id_img`);
 
 --
--- Indices de la tabla `html`
+-- Indexes for table `html`
 --
 ALTER TABLE `html`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `imagen_portada`
+-- Indexes for table `imagen_portada`
 --
 ALTER TABLE `imagen_portada`
   ADD PRIMARY KEY (`id_portada`);
 
 --
--- Indices de la tabla `libro`
+-- Indexes for table `libro`
 --
 ALTER TABLE `libro`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `media`
+-- Indexes for table `media`
 --
 ALTER TABLE `media`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `miembro_equipo`
+-- Indexes for table `miembro_equipo`
 --
 ALTER TABLE `miembro_equipo`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `modelo`
+-- Indexes for table `modelo`
 --
 ALTER TABLE `modelo`
   ADD PRIMARY KEY (`id_modelo`);
 
 --
--- Indices de la tabla `noticia`
+-- Indexes for table `noticia`
 --
 ALTER TABLE `noticia`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `pagina`
+-- Indexes for table `pagina`
 --
 ALTER TABLE `pagina`
   ADD PRIMARY KEY (`id_pagina`);
 
 --
--- Indices de la tabla `publicacion`
+-- Indexes for table `publicacion`
 --
 ALTER TABLE `publicacion`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indices de la tabla `subarea`
+-- Indexes for table `subarea`
 --
 ALTER TABLE `subarea`
   ADD PRIMARY KEY (`id_subarea`);
 
 --
--- Indices de la tabla `subpagina`
+-- Indexes for table `subpagina`
 --
 ALTER TABLE `subpagina`
   ADD PRIMARY KEY (`id_subpagina`);
 
 --
--- Indices de la tabla `tipo_media`
+-- Indexes for table `tipo_media`
 --
 ALTER TABLE `tipo_media`
   ADD PRIMARY KEY (`id_tipo_media`);
 
 --
--- Indices de la tabla `tipo_post`
+-- Indexes for table `tipo_post`
 --
 ALTER TABLE `tipo_post`
   ADD PRIMARY KEY (`id_tipo`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`username`);
 
 --
--- Indices de la tabla `visitas`
+-- Indexes for table `visitas`
 --
 ALTER TABLE `visitas`
   ADD PRIMARY KEY (`userip`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `agenda`
+-- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
   MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `archivo_adjunto`
+-- AUTO_INCREMENT for table `archivo_adjunto`
 --
 ALTER TABLE `archivo_adjunto`
   MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT de la tabla `area`
+-- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
   MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT de la tabla `categoria_equipo`
+-- AUTO_INCREMENT for table `categoria_equipo`
 --
 ALTER TABLE `categoria_equipo`
   MODIFY `id_categoria_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT de la tabla `categoria_libro`
+-- AUTO_INCREMENT for table `categoria_libro`
 --
 ALTER TABLE `categoria_libro`
   MODIFY `id_categoriaLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT de la tabla `complemento`
+-- AUTO_INCREMENT for table `complemento`
 --
 ALTER TABLE `complemento`
   MODIFY `id_complemento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT de la tabla `contenido`
+-- AUTO_INCREMENT for table `contenido`
 --
 ALTER TABLE `contenido`
   MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
--- AUTO_INCREMENT de la tabla `galeria`
+-- AUTO_INCREMENT for table `galeria`
 --
 ALTER TABLE `galeria`
   MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
 --
--- AUTO_INCREMENT de la tabla `galeria_area`
+-- AUTO_INCREMENT for table `galeria_area`
 --
 ALTER TABLE `galeria_area`
   MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
--- AUTO_INCREMENT de la tabla `galeria_subarea`
+-- AUTO_INCREMENT for table `galeria_subarea`
 --
 ALTER TABLE `galeria_subarea`
   MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
 --
--- AUTO_INCREMENT de la tabla `imagen_portada`
+-- AUTO_INCREMENT for table `imagen_portada`
 --
 ALTER TABLE `imagen_portada`
   MODIFY `id_portada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
--- AUTO_INCREMENT de la tabla `libro`
+-- AUTO_INCREMENT for table `libro`
 --
 ALTER TABLE `libro`
   MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
 --
--- AUTO_INCREMENT de la tabla `miembro_equipo`
+-- AUTO_INCREMENT for table `miembro_equipo`
 --
 ALTER TABLE `miembro_equipo`
   MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+
 --
--- AUTO_INCREMENT de la tabla `modelo`
+-- AUTO_INCREMENT for table `modelo`
 --
 ALTER TABLE `modelo`
   MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
--- AUTO_INCREMENT de la tabla `pagina`
+-- AUTO_INCREMENT for table `pagina`
 --
 ALTER TABLE `pagina`
   MODIFY `id_pagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
--- AUTO_INCREMENT de la tabla `publicacion`
+-- AUTO_INCREMENT for table `publicacion`
 --
 ALTER TABLE `publicacion`
   MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
 --
--- AUTO_INCREMENT de la tabla `subarea`
+-- AUTO_INCREMENT for table `subarea`
 --
 ALTER TABLE `subarea`
   MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
--- AUTO_INCREMENT de la tabla `subpagina`
+-- AUTO_INCREMENT for table `subpagina`
 --
 ALTER TABLE `subpagina`
   MODIFY `id_subpagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT de la tabla `tipo_media`
+-- AUTO_INCREMENT for table `tipo_media`
 --
 ALTER TABLE `tipo_media`
   MODIFY `id_tipo_media` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT de la tabla `tipo_post`
+-- AUTO_INCREMENT for table `tipo_post`
 --
 ALTER TABLE `tipo_post`
   MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
