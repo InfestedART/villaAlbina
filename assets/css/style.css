@@ -604,6 +604,7 @@ body {
 	color: rgb(239, 125, 0);
 	font-size: 17px;
 	font-family: GothamBold;
+	margin-bottom: 4px;
 }
 
 .libro__categoria {
@@ -617,7 +618,7 @@ body {
 	white-space: pre-line;
 	margin: 0;
 	padding: 0;
-	margin-bottom: 5px;
+	margin-bottom: 3px;
 }	
 
 .container-libro .container-libro__footer {

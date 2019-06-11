@@ -174,7 +174,7 @@
                      id='hora'
                      name='hora'
                      class="form-control"
-                     type='time'
+                     type='text'
                   /> 
                </div>
             </div>

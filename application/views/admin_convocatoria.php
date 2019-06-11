@@ -181,7 +181,7 @@
                      $conv['fecha_limite'],
                      $conv['descripcion']
                   );                  
-                  if($conv['imagen'] !== '') {
+                  if($conv['imagen']) {
                      printf("
                         <td class='text-center'><img src='%s' class='img-small'></td>",
                         $assets_dir.$conv['imagen']
@@ -211,6 +211,42 @@
                   );
                }
             ?></tbody>
+         </table>
+
+         <div class='admin__page_nav'>
+            <?php
+               $nav_dir = base_url()."admin_convocatoria";
+               $nav_size = ceil($cant_convocatorias/$limit);
+               $q_params = '';
+               if ($orderby) { $q_params .= '&orderby='.$orderby; }
+               if ($direction) { $q_params .= '&direction='.$direction; }
+
+                if ($nav_size > 1) {
+                  if ($step > 0) {
+                     $prev = $step - 1;
+                     printf("
+                        <a href='%s' class='showing_nav'> << </a>",
+                        $nav_dir."?step=".$prev.$q_params
+                     );
+                  }
+                  for($i=0; $i<$nav_size; $i++) {
+                     printf(
+                        "<a href='%s' class='showing_nav %s'> %s </a>",
+                        $i == 0 ? $nav_dir : $nav_dir."?step=".$i.$q_params,
+                        $step == $i ? 'active' : '',
+                        $i+1
+                     );
+                  }
+                   if ($step+1 < $nav_size) {
+                     $next = $step + 1;
+                     printf("
+                        <a href='%s' class='showing_nav'> >> </a>",
+                        $nav_dir."?step=".$next.$q_params
+                     );
+                  }  
+               }
+            ?>               
+            </div>
 
          </div>
          </div>

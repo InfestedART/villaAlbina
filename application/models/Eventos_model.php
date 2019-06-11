@@ -5,7 +5,9 @@ class Eventos_model extends CI_Model {
 		$search = false,
 		$search_cat = false,
 		$orderby = false,
-		$direction = 'desc'
+		$direction = 'desc',
+		$step = 0,
+  		$limit = 12
 	) {
 		$this->db->select('evento.*, publicacion.*, html.*, area.area, area.color_area');
 		$this->db->from('evento');
@@ -25,6 +27,8 @@ class Eventos_model extends CI_Model {
 			$orderby ? $orderby : 'evento.id_post',
 			$direction
 		);
+		$start = $step * $limit;
+		$this->db->limit($limit, $start);
 	  	$result = $this->db->get();
 	  	return $result;    		
 	}
@@ -127,24 +131,35 @@ class Eventos_model extends CI_Model {
 		return $query;
 	  }
 
-	  function get_prev_evento($id) {
+	  function get_prev_evento($id, $fecha) {
 		$this->db->select('*');
 		$this->db->from('evento');
-		$this->db->where('evento.id_post <', $id);
-		$this->db->order_by('evento.id_post', 'desc');
+		$this->db->where('evento.fecha_ini <', $fecha);
+		$this->db->where('evento.id_post <>', $id);
+		$this->db->order_by('evento.fecha_ini', 'desc');
 		$this->db->limit(1);
 		$query = $this->db->get(); 
 		return $query;
 	  }
 
-	  function get_next_evento($id) {
+	  function get_next_evento($id, $fecha) {
 		$this->db->select('*');
 		$this->db->from('evento');
-		$this->db->where('evento.id_post >', $id);
-		$this->db->order_by('evento.id_post', 'asc');
+		$this->db->where('evento.fecha_ini >', $fecha);
+		$this->db->where('evento.id_post <>', $id);
+		$this->db->order_by('evento.fecha_ini', 'asc');
 		$this->db->limit(1);
 		$query = $this->db->get(); 
 		return $query;
+	  }
+
+	  function get_fecha_ini($id) {
+	  	$this->db->select('fecha_ini');
+		$this->db->from('evento');
+		$this->db->where('id_post', $id);
+		$this->db->limit(1);
+		$query = $this->db->get(); 
+		return $query->result_array()[0]['fecha_ini'];
 	  }
 
 	  function get_fechas($id) {

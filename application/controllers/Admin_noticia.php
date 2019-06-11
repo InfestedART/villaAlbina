@@ -7,19 +7,32 @@ class Admin_noticia extends Admin_Controller {
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Visitas_model");
-		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
+		$data['visitas'] = $this
+			->Visitas_model
+			->get_visitas_count()
+			->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
+		$step = $this->input->get('step', TRUE);
+		if (!$step) { $step = 0; }	
+		$limit = 12;
 		if (!$orderby) {
 			$orderby = 'fecha';
 			$direction = 'desc';
 		}	
 		$search = $this->input->post('buscar_noticia', TRUE);
+		$data['step'] = $step;
+		$data['limit'] = $limit;
 		$data['search'] = $search;
+		$data['cant_noticias'] = sizeof(
+			$this->Noticias_model->get_all_noticias(
+				$search, $orderby, $direction, 0, 144
+			)->result_array()
+		);
 		$data['noticias'] = $this->Noticias_model->get_all_noticias(
-		$search, $orderby, $direction
+			$search, $orderby, $direction, $step, $limit
 		);
 		$this->load->view('admin_noticia', $data);
 	}

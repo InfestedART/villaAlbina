@@ -3,7 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Equipo_model extends CI_Model {
 
-    function get_all_miembros($search = false, $orderby = false, $direction = 'asc')  {
+    function get_all_miembros(
+        $search = false,
+        $orderby = false,
+        $direction = 'asc',
+        $step = 0,
+        $limit = 12
+    )  {
         $this->db->select('*');
         $this->db->from('miembro_equipo');
         $this->db->join('publicacion','publicacion.id_post = miembro_equipo.id_post');
@@ -21,6 +27,8 @@ class Equipo_model extends CI_Model {
         } elseif($orderby) {
           $this->db->order_by('miembro_equipo.'.$orderby, $direction);
         }
+        $start = $step * $limit;
+        $this->db->limit($limit, $start);
         $query = $this->db->get(); 
         return $query;    
     }

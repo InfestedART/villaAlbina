@@ -8,12 +8,17 @@ class Admin_libro extends Admin_Controller {
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Visitas_model");
-		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
+		$data['visitas'] = $this
+			->Visitas_model
+			->get_visitas_count()
+			->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$data['header'] = $this->load->view('templates/admin_header', NULL, true);
 		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
-
+		$step = $this->input->get('step', TRUE);
+		if (!$step) { $step = 0; }	
+		$limit = 12;
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE); 
 		if (!$orderby) {
@@ -22,10 +27,17 @@ class Admin_libro extends Admin_Controller {
 		}	
 		$search_libro = $this->input->post('buscar_libreria', TRUE);
 		$search_cat = $this->input->post('buscar_categoria', TRUE);
+		$data['step'] = $step;
+		$data['limit'] = $limit;
 		$data['search'] = $search_libro;
 		$data['search_cat'] = $search_cat;
+		$data['cant_libros'] = sizeof(
+			$this->Libro_model->get_all_libros(
+				$search_libro, $search_cat, $orderby, $direction, 0, 144
+			)->result_array()
+		);
 		$data['libros'] = $this->Libro_model->get_all_libros(
-			$search_libro, $search_cat, $orderby, $direction
+			$search_libro, $search_cat, $orderby, $direction, $step, $limit
 		);
 		$data['categorias'] = $this->Cat_libro_model->get_all_categorias();
 
@@ -132,6 +144,9 @@ class Admin_libro extends Admin_Controller {
 		$categoria = $this->input->post('categoria', TRUE);
 		$autor = $this->input->post('autor', TRUE);
 		$precio = $this->input->post('precio', TRUE);
+		$year = $this->input->post('year', TRUE);
+		$editorial = $this->input->post('editorial', TRUE);
+		$paginas = $this->input->post('paginas', TRUE);
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['portada']['name']);
 		$portada = $imagen == '' ? '' : 'uploads/libros/'.$imagen;
@@ -150,6 +165,9 @@ class Admin_libro extends Admin_Controller {
 			'autor' => $autor,
 			'precio' => $precio,
 			'descripcion' => $descripcion,
+			'year' => $year,
+			'paginas' => $paginas,
+			'editorial' => $editorial
 		);
 		$this->Libro_model->insert_libro($libro_data);
      	redirect('admin_libro');
@@ -186,6 +204,9 @@ class Admin_libro extends Admin_Controller {
 		$categoria = $this->input->post('categoria', TRUE);
 		$autor = $this->input->post('autor', TRUE);
 		$precio = $this->input->post('precio', TRUE);
+		$year = $this->input->post('year', TRUE);
+		$editorial = $this->input->post('editorial', TRUE);
+		$paginas = $this->input->post('paginas', TRUE);
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['portada']['name']);
 		$portada = $imagen == '' ? '' : 'uploads/libros/'.$imagen;
@@ -205,6 +226,9 @@ class Admin_libro extends Admin_Controller {
 			'autor' => $autor,
 			'precio' => $precio,
 			'descripcion' => $descripcion,
+			'year' => $year,
+			'paginas' => $paginas,
+			'editorial' => $editorial
 		);
 
      	if ($updated_libro->imagen && $delete_imagen_libro) {

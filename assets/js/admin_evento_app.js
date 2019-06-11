@@ -108,7 +108,7 @@
 			const titulo = document.getElementById('titulo');
 			const area = document.getElementById('area');
 			const regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
-			const regex_time = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+			const regex_time = /(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/;
 			let error = '';
 			fecha_ini.classList.remove('input-error');
 			fecha0.classList.remove('input-error');
@@ -143,7 +143,7 @@
 					titulo.classList.add('input-error');			
 				}
 				if (!hora.value.match(regex_time) && hora.value.trim() != '') {
-					error = 'Ingrese un formato de hora valido (HH-MM)';
+					error = 'Ingrese un texto con un formato de hora valido (HH-MM)';
 					hora.classList.add('input-error');
 				}
 				evento_alert.innerHTML = error;
