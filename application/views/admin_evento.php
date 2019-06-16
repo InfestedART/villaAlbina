@@ -241,7 +241,7 @@
                      $evento['hora'],
                      $evento['info']
                   );
-                  if($evento['imagen'] !== '') {
+                  if($evento['imagen']) {
                      printf("
                         <td class='text-center'><img src='%s' class='img-small'></td>",
                         $assets_dir.$evento['imagen']

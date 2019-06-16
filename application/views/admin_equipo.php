@@ -154,9 +154,10 @@
                      </a>
                   </th>
                   <th>Descripción</th>
+                  <th>Órden</th>
                   <th>Imagen</th>
                   <th>Status</th>
-                  <th colspan="2">Opciones</th>
+                  <th colspan="4">Opciones</th>
                </tr>
                </thead>
                <tbody>
@@ -170,11 +171,13 @@
                         <td>%s</td>
                         <td>%s</td>
                         <td>%s</td>
-                        <td>%s</td>",
+                        <td>%s</td>
+                        <td class='text-center'>%s</td>",
                         $miembro['nombre'],
                         $cat_array[$cat_index]['categoria'],
                         $miembro['cargo'],
-                        $miembro['descripcion']                        
+                        $miembro['descripcion'],
+                        $miembro['orden']
                   );
                   if($miembro['imagen'] !== '') {
                      printf("
@@ -199,11 +202,21 @@
                         <td class='text-center'><a href='%s/editar_equipo/%s'>
                            <i class='fa fa-edit'></i>
                         </a></td>
+                        <td class='text-center'>
+                           <a href='%s'>
+                           <i class='fa fa-chevron-up' title='MOVER ARRIBA'></i>
+                        </td>
+                        <td class='text-center'>
+                           <a href='%s'>
+                           <i class='fa fa-chevron-down' title='MOVER ABAJO'></i>
+                        </td>
                         <td class='text-center'><a href='%s/delete_equipo/%s'>
                            <i class='fa fa-trash-alt'></i>
                         </a></td>
                      </tr>",
                      $admin_dir, $miembro['id_post'],
+                     $miembro['status'] ? $admin_dir.'/subir_equipo/'.$miembro['id_post'] : '#',
+                     $miembro['status'] ? $admin_dir.'/bajar_equipo/'.$miembro['id_post'] : '#',
                      $admin_dir, $miembro['id_post']
                   );
                }  

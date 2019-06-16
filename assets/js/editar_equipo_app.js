@@ -63,13 +63,15 @@ function main() {
 		delete_imagen_equipo.value = '0';
 	}
 
-	hide_preview_btn.addEventListener('click', function(ev){
-		hide_preview();
-	});
+	if (hide_preview_btn && show_preview_btn) {
+		hide_preview_btn.addEventListener('click', function(ev){
+			hide_preview();
+		});
 
-	show_preview_btn.addEventListener('click', function(ev){
-		show_preview();
-	});
+		show_preview_btn.addEventListener('click', function(ev){
+			show_preview();
+		});
+	}
 
 	equipo_btn.addEventListener('click', function(ev){
 		form_validation();

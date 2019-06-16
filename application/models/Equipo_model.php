@@ -5,7 +5,7 @@ class Equipo_model extends CI_Model {
 
     function get_all_miembros(
         $search = false,
-        $orderby = false,
+        $orderby = 'orden',
         $direction = 'asc',
         $step = 0,
         $limit = 12
@@ -42,7 +42,7 @@ class Equipo_model extends CI_Model {
     		'miembro_equipo.id_categoria_equipo = categoria_equipo.id_categoria_equipo'
     	);
     	$this->db->where('publicacion.status', 1);
-    	$this->db->order_by('miembro_equipo.id_post', 'asc');
+    	$this->db->order_by('miembro_equipo.orden', 'ASC');
     	$query = $this->db->get(); 
     	return $query;    
   	}
@@ -53,6 +53,13 @@ class Equipo_model extends CI_Model {
         $result = $this->db->get('miembro_equipo',1);
         return $result;    
   }
+
+    function get_cant_miembros() {
+        $this->db->select('*');
+        $this->db->from('miembro_equipo');
+        $query = $this->db->get(); 
+        return sizeof($query->result_array());
+    }
 
     function insert_miembro($data) {
         $this->db->insert('miembro_equipo', $data);
