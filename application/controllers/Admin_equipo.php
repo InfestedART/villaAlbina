@@ -9,16 +9,29 @@ class Admin_equipo extends Admin_Controller {
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Visitas_model");
-		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
+		$data['visitas'] = $this
+			->Visitas_model
+			->get_visitas_count()
+			->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
+		$step = $this->input->get('step', TRUE);
+		if (!$step) { $step = 0; }	
+		$limit = 12;
 		$search = $this->input->post('buscar_equipo', TRUE);
 		$data['search'] = $search;
+		$data['step'] = $step;
+		$data['limit'] = $limit;
+		$data['cant_miembros'] = sizeof(
+			$this->Equipo_model->get_all_miembros(
+				$search, $orderby, $direction, 0, 144
+			)->result_array()
+		);
 		$data['miembros'] = $this->Equipo_model->get_all_miembros(
-			$search, $orderby, $direction
+			$search, $orderby, $direction, $step, $limit
 		);
 		$data['categorias'] = $this->Cat_equipo_model->get_all_categorias();
 		$this->load->view('admin_equipo', $data);

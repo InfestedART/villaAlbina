@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
    <?php
-      $data['title'] = 'Panel de Control - Agenda';
+      $data['title'] = 'Panel de Control - Agenda PDF';
       $this->load->view('templates/meta', $data);
    ?>
 </head>

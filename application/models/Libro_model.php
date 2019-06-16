@@ -5,7 +5,9 @@ class Libro_model extends CI_Model {
     $search = false,
     $search_cat = false,
     $orderby = false,
-    $direction = 'asc'
+    $direction = 'asc',
+    $step = 0,
+    $limit = 12
   )  {
     $this->db->select('*');
     $this->db->from('libro');
@@ -27,7 +29,8 @@ class Libro_model extends CI_Model {
     } elseif($orderby) {
       $this->db->order_by('libro.'.$orderby, $direction);
     }
-
+    $start = $step * $limit;
+    $this->db->limit($limit, $start);
     $result = $this->db->get();
     return $result;    
   }

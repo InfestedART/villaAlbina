@@ -8,9 +8,15 @@ class Admin_evento extends Admin_Controller {
 		$this->load->model("Complemento_model");
 		$this->load->model("Areas_model");
 		$this->load->model("Visitas_model");
-		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
+		$data['visitas'] = $this
+			->Visitas_model
+			->get_visitas_count()
+			->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+		$step = $this->input->get('step', TRUE);
+		if (!$step) { $step = 0; }	
+		$limit = 12;
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
 		if (!$orderby) {
@@ -19,11 +25,18 @@ class Admin_evento extends Admin_Controller {
 		}		
 		$search = $this->input->post('buscar', TRUE);
 		$search_cat = $this->input->post('buscar_cat', TRUE);
+		$data['step'] = $step;
+		$data['limit'] = $limit;
 		$data['search'] = $search;
 		$data['search_cat'] = $search_cat;
 		$data['areas'] = $this->Areas_model->get_all_areas();
+		$data['cant_eventos'] = sizeof(
+			$this->Eventos_model->get_all_eventos(
+				$search, $search_cat, $orderby, $direction, 0, 144
+			)->result_array()
+		);
 		$data['eventos'] = $this->Eventos_model->get_all_eventos(
-			$search, $search_cat, $orderby, $direction
+			$search, $search_cat, $orderby, $direction, $step, $limit
 		);
 		$this->load->view('admin_evento', $data);
 	}

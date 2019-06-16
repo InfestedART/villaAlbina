@@ -15,8 +15,16 @@ class Evento extends MY_Controller {
 		$data['agenda_data'] = $this->Paginas_model->get_pagina(3)->result_array()[0];
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
 		$data['evento'] = $this->Eventos_model->get_evento($id)->result_object();
-		$data['next_evento'] = $this->Eventos_model->get_next_evento($id)->result_object();
-		$data['prev_evento'] = $this->Eventos_model->get_prev_evento($id)->result_object();
+		$today = date('Y-m-d');
+		$fecha_ini = $this->Eventos_model->get_fecha_ini($id);
+		$data['next_evento'] = $this
+			->Eventos_model
+			->get_next_evento($id, $fecha_ini)
+			->result_object();
+		$data['prev_evento'] = $this
+			->Eventos_model
+			->get_prev_evento($id, $fecha_ini)
+			->result_object();
 		$data['galeria_evento'] = $this->Galeria_model->get_galeria($id)->result_array();
 		$data['fechas'] = $this->Eventos_model->get_fechas($id)->result_array();
 		$data['areas'] = $this->Areas_model->get_all_areas();

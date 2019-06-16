@@ -210,9 +210,12 @@ body {
 }
 
 .seccion__conoce_mas {
-	padding: 6px 36px;
+	padding: 6px 20px;
 	color: white;
 	margin-bottom: 0.5rem;
+	display: inline-block;
+	min-width: 150px;
+	max-width: 250px;
 }
 
 .seccion__conoce_mas:hover {
@@ -604,6 +607,7 @@ body {
 	color: rgb(239, 125, 0);
 	font-size: 17px;
 	font-family: GothamBold;
+	margin-bottom: 4px;
 }
 
 .libro__categoria {
@@ -617,7 +621,7 @@ body {
 	white-space: pre-line;
 	margin: 0;
 	padding: 0;
-	margin-bottom: 5px;
+	margin-bottom: 3px;
 }	
 
 .container-libro .container-libro__footer {
