@@ -16,7 +16,7 @@ class Admin_evento extends Admin_Controller {
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }	
-		$limit = 12;
+		$limit = 16;
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE);
 		if (!$orderby) {
@@ -32,7 +32,7 @@ class Admin_evento extends Admin_Controller {
 		$data['areas'] = $this->Areas_model->get_all_areas();
 		$data['cant_eventos'] = sizeof(
 			$this->Eventos_model->get_all_eventos(
-				$search, $search_cat, $orderby, $direction, 0, 144
+				$search, $search_cat, $orderby, $direction, 0, 240
 			)->result_array()
 		);
 		$data['eventos'] = $this->Eventos_model->get_all_eventos(

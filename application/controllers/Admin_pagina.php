@@ -415,22 +415,22 @@ class Admin_Pagina extends Admin_Controller {
       $paginas = $this->Paginas_model->get_valid_paginas()->result_array();
 		$selected_pagina = $this->Paginas_model->get_pagina($id)->result_array()[0];
 		$orden_inicial = $selected_pagina['orden'];
-
 		if ($orden_inicial == 1) {
 			redirect('admin_pagina');				
-		}
-
-		foreach ($paginas as $pagina) {
-			if($pagina['orden'] == $orden_inicial) {
-				$pagina_up_data['orden'] = $pagina['orden']-1;
-				$this->Paginas_model->update_pagina($pagina['id_pagina'], $pagina_up_data);
+		} else {
+			foreach ($paginas as $pagina) {
+				echo $pagina['titulo'].": ".$pagina['orden']."==".$orden_inicial."<br/>";
+				if($pagina['orden'] == $orden_inicial-1) {
+					$pagina_down_data['orden'] = $pagina['orden']+1;
+					$this->Paginas_model->update_pagina($pagina['id_pagina'], $pagina_down_data);
+				}
+				if($pagina['orden'] == $orden_inicial) {
+					$pagina_up_data['orden'] = $pagina['orden']-1;
+					$this->Paginas_model->update_pagina($pagina['id_pagina'], $pagina_up_data);
+				}
 			}
-			if($pagina['orden'] == $orden_inicial-1) {
-				$pagina_down_data['orden'] = $pagina['orden']+1;
-				$this->Paginas_model->update_pagina($pagina['id_pagina'], $pagina_down_data);
-			}
+		redirect('admin_pagina');
 		}
-		redirect('admin_pagina');	
 	}
 
 	public function bajar_pagina() {

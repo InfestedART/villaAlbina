@@ -18,7 +18,7 @@ class Admin_libro extends Admin_Controller {
 		$data['footer'] = $this->load->view('templates/admin_footer', NULL, true);
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }	
-		$limit = 12;
+		$limit = 16;
 		$orderby = $this->input->get('orderby', TRUE);
 		$direction = $this->input->get('direction', TRUE); 
 		if (!$orderby) {
@@ -33,7 +33,7 @@ class Admin_libro extends Admin_Controller {
 		$data['search_cat'] = $search_cat;
 		$data['cant_libros'] = sizeof(
 			$this->Libro_model->get_all_libros(
-				$search_libro, $search_cat, $orderby, $direction, 0, 144
+				$search_libro, $search_cat, $orderby, $direction, 0, 240
 			)->result_array()
 		);
 		$data['libros'] = $this->Libro_model->get_all_libros(
