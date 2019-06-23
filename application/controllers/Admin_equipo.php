@@ -17,17 +17,20 @@ class Admin_equipo extends Admin_Controller {
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
 
 		$orderby = $this->input->get('orderby', TRUE);
+		if (!$orderby) {
+			$orderby = 'orden';
+		}
 		$direction = $this->input->get('direction', TRUE);
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }	
-		$limit = 12;
+		$limit = 25;
 		$search = $this->input->post('buscar_equipo', TRUE);
 		$data['search'] = $search;
 		$data['step'] = $step;
 		$data['limit'] = $limit;
 		$data['cant_miembros'] = sizeof(
 			$this->Equipo_model->get_all_miembros(
-				$search, $orderby, $direction, 0, 144
+				$search, $orderby, $direction, 0, 150
 			)->result_array()
 		);
 		$data['miembros'] = $this->Equipo_model->get_all_miembros(
@@ -107,13 +110,27 @@ class Admin_equipo extends Admin_Controller {
       return $img_config;
 	}
 
+	private function translate($str) {
+		$trans = array(
+			"ñ" => "n", "Ñ" => "N",
+			"á" => "a", "Á" => "A",
+			"é" => "e", "É" => "E",
+			"í" => "i", "Í" => "I",
+			"ó" => "o", "Ó" => "O",
+			"ú" => "u", "Ú" => "U",
+			"ü" => "u", "Ü" => "U"
+		);	
+		return strtr($str, $trans);
+	}
+
 	public function insertar_equipo() {
 		$this->load->model('Equipo_model');
 		$this->load->model("Publicacion_model");
 		$this->load->model("Cat_equipo_model");
-	   $this->load->library('upload');
+	   	$this->load->library('upload');
 
-      $this->upload->initialize($this->set_img_config());
+		$_FILES['imagen']['name']= $this->translate($_FILES['imagen']['name']); 
+      	$this->upload->initialize($this->set_img_config());
 		if (!$this->upload->do_upload('imagen')) {
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();
@@ -128,6 +145,7 @@ class Admin_equipo extends Admin_Controller {
 		$descripcion = $this->input->post('descripcion', TRUE);
 		$foto = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen = $foto == '' ? '' : 'uploads/equipo/'.$foto;
+		$orden = $this->Equipo_model->get_cant_miembros();
 
 		$post_data = array(
 			'titulo' => $nombre,
@@ -142,7 +160,8 @@ class Admin_equipo extends Admin_Controller {
 			'nombre' => $nombre,
 			'id_categoria_equipo' => $categoria,
 			'cargo' => $cargo,
-			'descripcion' => $descripcion
+			'descripcion' => $descripcion,
+			'orden' => $orden+1
 		);
 		$this->Equipo_model->insert_miembro($miembro_data);
 
@@ -153,15 +172,11 @@ class Admin_equipo extends Admin_Controller {
 		$this->load->model('Equipo_model');
 		$this->load->model("Publicacion_model");
 		$this->load->model("Cat_equipo_model");
-		$id = $this->uri->segment(3);
-	   
-		$config['upload_path'] = './assets/uploads/equipo/';
-	   $config['allowed_types'] = 'gif|jpg|png|jpeg';
-	   $config['max_size'] = 0;
-	   $config['max_width'] = 0;
-	   $config['max_height'] = 0;
-	   $this->load->library('upload', $config);
+		$this->load->library('upload');
+		$id = $this->uri->segment(3);   
 
+		$_FILES['imagen']['name']= $this->translate($_FILES['imagen']['name']); 
+		$this->upload->initialize($this->set_img_config());
 		if (!$this->upload->do_upload('imagen')) {
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
@@ -231,6 +246,54 @@ class Admin_equipo extends Admin_Controller {
 		}		
 		$this->Equipo_model->delete_miembro($id);
      	redirect('admin_equipo');
+	}
+
+	public function subir_equipo() {
+      $this->load->model("Equipo_model");
+      $id = $this->uri->segment(3);
+      $miembros = $this->Equipo_model->get_valid_miembros()->result_array();
+		$selected_miembro = $this->Equipo_model->get_miembro($id)->result_array()[0];
+		$orden_inicial = $selected_miembro['orden'];
+
+		if ($orden_inicial == 1) {
+			redirect('admin_equipo');				
+		}
+
+		foreach ($miembros as $miembro) {
+			if($miembro['orden'] == $orden_inicial) {
+				$miembro_up_data['orden'] = $miembro['orden']-1;
+				$this->Equipo_model->update_miembro($miembro['id_post'], $miembro_up_data);
+			}
+			if($miembro['orden'] == $orden_inicial-1) {
+				$miembro_down_data['orden'] = $miembro['orden']+1;
+				$this->Equipo_model->update_miembro($miembro['id_post'], $miembro_down_data);
+			}
+		}
+		redirect('admin_equipo');	
+	}
+
+	public function bajar_equipo() {
+      $this->load->model("Equipo_model");
+      $id = $this->uri->segment(3);
+      $miembros = $this->Equipo_model->get_valid_miembros()->result_array();
+		$selected_miembro = $this->Equipo_model->get_miembro($id)->result_array()[0];
+		$orden_inicial = $selected_miembro['orden'];
+      
+      if ($orden_inicial == sizeof($miembros)) {
+			redirect('admin_equipo');				
+		}
+
+		foreach ($miembros as $miembro) {
+			if($miembro['orden'] == $orden_inicial) {
+				$miembro_up_data['orden'] = $miembro['orden']+1;
+				$this->Equipo_model->update_miembro($miembro['id_post'], $miembro_up_data);
+			}
+			if($miembro['orden'] == $orden_inicial+1) {
+				$miembro_down_data['orden'] = $miembro['orden']-1;
+				$this->Equipo_model->update_miembro($miembro['id_post'], $miembro_down_data);
+			}
+		}
+		redirect('admin_equipo');	
 	}
 
 }

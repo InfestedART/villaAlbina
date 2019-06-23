@@ -120,6 +120,7 @@
                   </a>
                </th>
                <th>Enlace</th>
+               <th>Órden</th>
                <th>Status</th>
                <th class='text-center' colspan="4">Acciones</th>
             </tr>
@@ -133,10 +134,12 @@
                         <td>%s</td>
                         <td><a href='%s' target='_blank'>
                            %s
-                        </a></td>",
+                        </a></td>
+                        <td class='text-center'>%s</td>",
                      $media['titulo'],
                      $media['tipo_media'],
-                     $media['enlace'], $media['enlace']
+                     $media['enlace'], $media['enlace'],
+                     $media['orden']
                   );
                   $toggle = $media['status'] ? '0' : '1';
                   printf("
@@ -145,6 +148,15 @@
                               <span class='slider %s'/>
                            </a>
                         </td>
+                        <td class='text-center'>
+                           <a href='%s'>
+                           <i class='fa fa-chevron-up' title='MOVER ARRIBA'></i>
+                        </td>
+                        <td class='text-center'>
+                           <a href='%s'>
+                           <i class='fa fa-chevron-down' title='MOVER ABAJO'></i>
+                        </td>
+                        <td class
                          <td class='text-center'><a href='%seditar_media/%s'>
                            <i class='fa fa-edit'></i>
                         </a></td>
@@ -155,6 +167,8 @@
                      $admin_dir.'toggle_media/'.$media['id_post'].'?toggle='.$toggle,
                      $media['status'] ? 'status__on' : 'status__off',
                      $media['status'] ? 'slider__on' : 'slider__off',
+                     $media['status'] ? $admin_dir.'subir_media/'.$media['id_post'] : '#',
+                     $media['status'] ? $admin_dir.'bajar_media/'.$media['id_post'] : '#',
                      $admin_dir, $media['id_post'],
                      $admin_dir, $media['id_post']
                   );

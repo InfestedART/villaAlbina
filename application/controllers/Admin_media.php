@@ -46,10 +46,11 @@ class Admin_media extends Admin_Controller {
 	}
 
 	public function insertar_media() {
-   	$this->load->model("Media_model");
+   		$this->load->model("Media_model");
     	$this->load->model("Publicacion_model");
 		$titulo = $this->input->post('titulo', TRUE);
 		$enlace = $this->input->post('enlace', TRUE);
+		$orden = $this->Media_model->get_cant_media();
 
 		if (strrpos($enlace, 'youtube')) {
 			$id_tipo_media = 1;
@@ -70,6 +71,7 @@ class Admin_media extends Admin_Controller {
 		$media_data = array(
 			'id_post' => $last_id,
 			'enlace' => $enlace,
+			'orden' => $orden+1, 
 			'id_tipo_media' => $id_tipo_media
 		);
 
@@ -78,7 +80,7 @@ class Admin_media extends Admin_Controller {
 	}
 
 	public function update_media() {
-   	$this->load->model("Media_model");
+   		$this->load->model("Media_model");
     	$this->load->model("Publicacion_model");
   	  	$id = $this->uri->segment(3);
 
@@ -108,12 +110,31 @@ class Admin_media extends Admin_Controller {
 
 	public function toggle_media() {
       $this->load->model("Publicacion_model");
+      $this->load->model("Media_model");
 		$id = $this->uri->segment(3);
 		$toggle = $this->input->get('toggle', TRUE);
+		$orden = $toggle
+			? $this->Media_model->get_cant_media()+1
+			: 0;
+		$selected_media = $this->Media_model->get_media($id)->result_array()[0];
+		$orden_inicial = $selected_media['orden'];
+		$multimedia = $this->Media_model->get_valid_media()->result_array();
+		if (!$toggle) {
+			foreach ($multimedia as $media) {
+				if($media['orden'] > $orden_inicial) {
+					$media_data['orden'] = $media['orden']-1;
+					$this->Media_model->update_media($media['id_post'], $media_data);
+				}
+			}
+		}
 		$post_data = array(
-			'status' => $toggle
+			'status' => $toggle			
 		);
 		$this->Publicacion_model->update_publicacion($id, $post_data);
+		$multimedia_data = array(
+			'orden' => $orden			
+		);
+		$this->Media_model->update_media($id, $multimedia_data);
 		redirect('admin_media');	
 	}
 
@@ -125,5 +146,52 @@ class Admin_media extends Admin_Controller {
 		redirect('admin_media');
 	}
 
+	public function subir_media() {
+      $this->load->model("Media_model");
+      $id = $this->uri->segment(3);
+      $multimedia = $this->Media_model->get_valid_media()->result_array();
+		$selected_media = $this->Media_model->get_media($id)->result_array()[0];
+		$orden_inicial = $selected_media['orden'];
+		if ($orden_inicial == 1) {
+			redirect('admin_media');				
+		} else {
+			foreach ($multimedia as $media) {
+				echo $media['titulo'].": ".$media['orden']."==".$orden_inicial."<br/>";
+				if($media['orden'] == $orden_inicial-1) {
+					$media_down_data['orden'] = $media['orden']+1;
+					$this->Media_model->update_media($media['id_post'], $media_down_data);
+				}
+				if($media['orden'] == $orden_inicial) {
+					$media_up_data['orden'] = $media['orden']-1;
+					$this->Media_model->update_media($media['id_post'], $media_up_data);
+				}
+			}
+		redirect('admin_media');
+		}
+	}
+
+	public function bajar_media() {
+      $this->load->model("Media_model");
+      $id = $this->uri->segment(3);
+      $multimedia = $this->Media_model->get_valid_media()->result_array();
+		$selected_media = $this->Media_model->get_media($id)->result_array()[0];
+		$orden_inicial = $selected_media['orden'];
+      
+      if ($orden_inicial == sizeof($multimedia)) {
+			redirect('admin_media');				
+		}
+
+		foreach ($multimedia as $media) {
+			if($media['orden'] == $orden_inicial) {
+				$media_up_data['orden'] = $media['orden']+1;
+				$this->Media_model->update_media($media['id_post'], $media_up_data);
+			}
+			if($media['orden'] == $orden_inicial+1) {
+				$media_down_data['orden'] = $media['orden']-1;
+				$this->Media_model->update_media($media['id_post'], $media_down_data);
+			}
+		}
+		redirect('admin_media');	
+	}
 
 }

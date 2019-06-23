@@ -69,7 +69,7 @@
                               <td>%s</td>",
                               $categoria['categoria']                              
                         );
-                        if($categoria['status_categoria']) {
+                        if($categoria['status']) {
                            printf("
                               <td class='text-center'>
                                  <i class='fa fa-check'></i>

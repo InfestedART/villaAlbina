@@ -18,7 +18,7 @@ class Admin_convocatoria extends Admin_Controller {
 		$direction = $this->input->get('direction', TRUE);
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }	
-		$limit = 12;
+		$limit = 16;
 		if (!$orderby) {
 			$orderby = 'fecha_limite';
 			$direction = 'desc';
@@ -32,7 +32,7 @@ class Admin_convocatoria extends Admin_Controller {
 		$data['areas'] = $this->Areas_model->get_all_areas();
 		$data['cant_convocatorias'] = sizeof(
 			$this->Convocatorias_model->get_all_convocatorias(
-				$search, $search_cat, $orderby, $direction, 0, 144
+				$search, $search_cat, $orderby, $direction, 0, 240
 			)->result_array()
 		);
 		$data['convocatorias'] = $this->Convocatorias_model->get_all_convocatorias(

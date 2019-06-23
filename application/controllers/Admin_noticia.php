@@ -17,7 +17,7 @@ class Admin_noticia extends Admin_Controller {
 		$direction = $this->input->get('direction', TRUE);
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }	
-		$limit = 12;
+		$limit = 16;
 		if (!$orderby) {
 			$orderby = 'fecha';
 			$direction = 'desc';
@@ -28,7 +28,7 @@ class Admin_noticia extends Admin_Controller {
 		$data['search'] = $search;
 		$data['cant_noticias'] = sizeof(
 			$this->Noticias_model->get_all_noticias(
-				$search, $orderby, $direction, 0, 144
+				$search, $orderby, $direction, 0, 240
 			)->result_array()
 		);
 		$data['noticias'] = $this->Noticias_model->get_all_noticias(
@@ -78,6 +78,19 @@ class Admin_noticia extends Admin_Controller {
       return $img_config;
 	}
 
+	private function translate($str) {
+		$trans = array(
+			"ñ" => "n", "Ñ" => "N",
+			"á" => "a", "Á" => "A",
+			"é" => "e", "É" => "E",
+			"í" => "i", "Í" => "I",
+			"ó" => "o", "Ó" => "O",
+			"ú" => "u", "Ú" => "U",
+			"ü" => "u", "Ü" => "U"
+		);	
+		return strtr($str, $trans);
+	}
+
 	public function insertar_noticia() {
       $this->load->model("Noticias_model");
       $this->load->model("Publicacion_model");
@@ -90,7 +103,9 @@ class Admin_noticia extends Admin_Controller {
    	$galeria_array=[];
 
       for($i=0; $i<$img_cant; $i++) {           
-	      $_FILES['img_upload']['name']= $files['galeria']['name'][$i];
+	      $_FILES['img_upload']['name']= $this->translate(
+	      	$files['galeria']['name'][$i]
+	      );
 	      $_FILES['img_upload']['type']= $files['galeria']['type'][$i];
 	      $_FILES['img_upload']['tmp_name']= $files['galeria']['tmp_name'][$i];
 	      $_FILES['img_upload']['error']= $files['galeria']['error'][$i];
@@ -108,7 +123,8 @@ class Admin_noticia extends Admin_Controller {
 				.str_replace(" ", "_", $_FILES['img_upload']['name']);
 	   }
 	      
-	   $this->upload->initialize($this->set_img_config());
+		$_FILES['imagen']['name']= $this->translate($files['imagen']['name']); 
+	   	$this->upload->initialize($this->set_img_config());
 		if (!$this->upload->do_upload('imagen')) {						
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
@@ -166,7 +182,9 @@ class Admin_noticia extends Admin_Controller {
 	   $this->load->library('upload');
 
 	   	$files = $_FILES;   	
-	   	$img_cant = array_key_exists("galeria", $_FILES) ? sizeof($_FILES['galeria']['name']) : 0;
+	   	$img_cant = array_key_exists("galeria", $_FILES)
+	   		? sizeof($_FILES['galeria']['name'])
+	   		: 0;
 	   	$delete_img = $this->input->post('delete_img', TRUE);
 	   	$galeria_array=[];
 	   	$file_array=[];
@@ -187,7 +205,9 @@ class Admin_noticia extends Admin_Controller {
 	  	}
 
      	for($i=0; $i<$img_cant; $i++) {           
-	      $_FILES['img_upload']['name']= $files['galeria']['name'][$i];
+	      $_FILES['img_upload']['name']= $this->translate(
+	      	$files['galeria']['name'][$i]
+	      );
 	      $_FILES['img_upload']['type']= $files['galeria']['type'][$i];
 	      $_FILES['img_upload']['tmp_name']= $files['galeria']['tmp_name'][$i];
 	      $_FILES['img_upload']['error']= $files['galeria']['error'][$i];
@@ -204,7 +224,8 @@ class Admin_noticia extends Admin_Controller {
 				.str_replace(" ", "_", $_FILES['img_upload']['name']);
 	    }
 
-	   $this->upload->initialize($this->set_img_config());
+	    $_FILES['imagen']['name']= $this->translate($files['imagen']['name']);
+	   	$this->upload->initialize($this->set_img_config());
 		if (!$this->upload->do_upload('imagen')) {						
 			if ($_FILES['imagen']['error'] != 4) {				
 				$error = $this->upload->display_errors();				
@@ -233,7 +254,7 @@ class Admin_noticia extends Admin_Controller {
 			'tipo' => 1
 		);
 		if ($imagen_destacada) {
-			$post_data['imagen'] = $imagen_destacada;
+			$post_data['imagen'] = $this->translate($imagen_destacada);
 		} elseif ($updated_noticia->imagen && $delete_noticia) {
 			$post_data['imagen'] = '';
 		}
