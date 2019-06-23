@@ -8,6 +8,9 @@
 		const fecha_fin = document.getElementById('fecha_fin');
 		const fecha0 = document.getElementById('fecha0');
 		const hora = document.getElementById('hora');
+		const area = document.getElementById('area');
+		const repetir_div = document.getElementById('repetir_div');
+		const repetir_check = document.getElementById('repetir_check');
 		const evento_btn = document.getElementById('evento_btn');
 
 		const rango = document.getElementById('rango');
@@ -174,6 +177,15 @@
 			delete_imagen.value = '0';			
 		}
 
+		function toggle_repetir(ev) {
+			if (ev.target.value == 5) {				
+				repetir_div.classList.remove('hidden');			
+			} else {
+				if(!repetir_div.classList.contains('hidden')) {
+					repetir_div.classList.add('hidden');
+				}				
+			}			
+		}
 
 		if (hide_preview_btn && show_preview_btn) {
 			hide_preview_btn.addEventListener('click', function(){
@@ -185,6 +197,10 @@
 			});	
 		}
 		
+		area.addEventListener('change', function(ev) {
+			toggle_repetir(ev);
+		});
+
 		rango.addEventListener('change', function(){
 			toggle_fecha();
 		});

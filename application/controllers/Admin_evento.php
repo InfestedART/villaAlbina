@@ -94,7 +94,9 @@ class Admin_evento extends Admin_Controller {
      	$this->load->library('upload');
 
    	$files = $_FILES;
-   	$img_cant = sizeof($_FILES['galeria']['name']);
+   	$img_cant = array_key_exists('galeria', $_FILES)
+	   	? sizeof($_FILES['galeria']['name'])
+	   	: 0;
    	$galeria_array=[];
 
       for($i=0; $i<$img_cant; $i++) {           
@@ -128,6 +130,7 @@ class Admin_evento extends Admin_Controller {
 
 		$titulo = $this->input->post('titulo', TRUE);
 		$area = $this->input->post('area', TRUE);
+		$repetir = $this->input->post('repetir', TRUE) ? 1 : 0;
 		$rango = $this->input->post('rango', TRUE);
 		$fecha_ini = $this->input->post('fecha_ini', TRUE);
 		$fecha_fin = $this->input->post('fecha_fin', TRUE);
@@ -153,6 +156,7 @@ class Admin_evento extends Admin_Controller {
 		$evento_data = array(
 			'id_post' => $last_id,
 			'id_area' => $area,
+			'repetir' => $area == 5 ? $repetir : 1, 
 			'organizador' => $organizador,
 			'rango' => $rango ? 1 : 0,
 			'fecha_ini' =>  $rango ? $fecha_ini : $fecha[0],
@@ -253,6 +257,7 @@ class Admin_evento extends Admin_Controller {
 
    	$titulo = $this->input->post('titulo', TRUE);
    	$area = $this->input->post('area', TRUE);
+		$repetir = $this->input->post('repetir', TRUE) ? 1 : 0;
    	$rango = $this->input->post('rango', TRUE);
 		$fecha_ini = $this->input->post('fecha_ini', TRUE);
 		$fecha_fin = $this->input->post('fecha_fin', TRUE);
@@ -282,6 +287,7 @@ class Admin_evento extends Admin_Controller {
 
 		$evento_data = array(
 			'id_area' => $area,
+			'repetir' => $area == 5 ? $repetir : 1, 
 			'organizador' => $organizador,
 			'rango' => $rango ? 1 : 0,
 			'fecha_ini' =>  $rango ? $fecha_ini : $fecha[0],
@@ -341,7 +347,7 @@ class Admin_evento extends Admin_Controller {
 
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Eventos_model->update_evento($id, $evento_data);
-		redirect('admin_evento');
+		// redirect('admin_evento');
 	}
 
 	public function toggle_evento() {

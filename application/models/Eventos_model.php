@@ -46,6 +46,7 @@ class Eventos_model extends CI_Model {
 		$this->db->join('area', 'area.id_area = evento.id_area');
 		$this->db->join('html', 'html.id_post = evento.id_post', 'left');
 		$this->db->where('publicacion.status', 1);
+		$this->db->where('evento.repetir', 1);
 		if ($search) {
     		$this->db->like('publicacion.titulo', $search);
 	      	$this->db->or_like('evento.info', $search);
@@ -80,6 +81,7 @@ class Eventos_model extends CI_Model {
 		$this->db->join('area', 'area.id_area = evento.id_area');
 		$this->db->join('html', 'html.id_post = evento.id_post', 'left');
 		$this->db->where('publicacion.status', 1);
+		$this->db->where('evento.repetir', 1);
 		if ($search) {
     		$this->db->like('publicacion.titulo', $search);
 	      	$this->db->or_like('evento.info', $search);
