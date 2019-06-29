@@ -5,7 +5,7 @@
 	$admin_dir = base_url().'admin_media/';
 
    $error = $msg = '';
-   $titulo_alert = $fecha_alert = $ifecha_alert = false;
+   $titulo_alert = $fecha_alert = $ifecha_alert = $area_alert = false;
    $id = $this->uri->segment(3);
 ?>
 
@@ -55,6 +55,7 @@
 
             <?php
                $edit_media = $media->result_array()[0];
+               $areas_array = $areas->result_array();
                echo form_open_multipart(
                   'admin_media/update_media/'.$id,
                   array('id' => 'form_media')
@@ -76,6 +77,36 @@
                      type='text'
                      value="<?php echo $edit_media['titulo'] ?>"
                   /> 
+               </div>
+            </div>
+
+           <div class='form-group row'>
+               <label class='form-label col-sm-3'>
+                  Area
+               </label>
+               <div class='col-sm-9'>
+               <select
+                  id='area'
+                  name='area'
+                  class="form-control
+                  <?php echo $area_alert ? 'alert' : ''; ?>"
+               > 
+                  <option value=''> Seleccione una opción</option>
+                  <?php
+                     foreach ($areas_array as $area) {
+                        $is_selected =
+                           $area['id_area'] === $edit_media['id_area']
+                              ? 'selected'
+                              : '';
+                        printf(
+                           "<option value='%s' %s>%s</option>",
+                           $area['id_area'],
+                           $is_selected,
+                           $area['area']
+                        );
+                     }
+                  ?>
+               </select>
                </div>
             </div>
 

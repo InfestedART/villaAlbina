@@ -139,7 +139,7 @@ $prev_id = $prev_area ? $prev_area[0]->enlace : '';
 			foreach ($subareas as $i => $subarea) {
 				printf("
 					<a href='%s'
-						class='archivo__btn'
+						class='archivo__btn wordwrap'
 						style='background-color: %s'
 					> %s </a>",
 					base_url().'subarea?subarea='.$subarea['enlace'].'&area='.$subarea['id_area'],

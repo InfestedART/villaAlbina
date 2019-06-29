@@ -708,6 +708,11 @@ body {
 	word-break: break-all;
 }
 
+.wordwrap {
+	max-width: 200px;
+	word-break: keep-all;
+}
+
 .archivo__btn:hover {
 	color: white;
 }

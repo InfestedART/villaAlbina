@@ -5,6 +5,7 @@ class Media_model extends CI_Model {
 	$this->db->from('media');
 	$this->db->join('publicacion', 'publicacion.id_post = media.id_post');
 	$this->db->join('tipo_media', 'tipo_media.id_tipo_media = media.id_tipo_media');
+	$this->db->join('area', 'area.id_area = media.id_area');
 	if ($search) {
       $this->db->like('publicacion.titulo', $search);
     }
@@ -14,7 +15,7 @@ class Media_model extends CI_Model {
 	return $query;
   }
 
-  function get_valid_media($limit, $search=false, $step=0) {
+  function get_valid_media($limit, $search=false, $search_cat = false, $step=0) {
 	$this->db->select('*');
 	$this->db->from('media');
 	$this->db->join('publicacion', 'publicacion.id_post = media.id_post');
@@ -22,6 +23,9 @@ class Media_model extends CI_Model {
 	if ($search) {
     	$this->db->like('publicacion.titulo', $search);
     }
+   	if ($search_cat) {
+	    $this->db->where('media.id_area', $search_cat);
+	}	
     $this->db->order_by('orden ASC');
     $start = $step * $limit;
 	$this->db->limit($limit, $start);

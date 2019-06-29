@@ -12,7 +12,10 @@ class Multimedia extends MY_Controller {
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }		
 		$data['search'] = $search;
-		$data['search_cat'] = '';
+		$post_search_cat = $this->input->post('buscar_cat', TRUE);
+		$get_search_cat = $this->input->get('search_cat', TRUE);
+		$search_cat = $post_search_cat ? $post_search_cat : $get_search_cat;
+		$data['search_cat'] = $search_cat;
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
 		$data['media_data'] = $this->Paginas_model->get_pagina(10)->result_array()[0];
 		$data['cant_media'] = sizeof(
@@ -22,7 +25,7 @@ class Multimedia extends MY_Controller {
 		$data['limit'] = $limit;
 		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['multimedia'] = $this->Media_model->get_valid_media(
-			$limit, $search, $step
+			$limit, $search, $search_cat, $step
 		)->result_array();
 		$this->load->view('multimedia', $data);
 	}

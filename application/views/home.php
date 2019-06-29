@@ -120,7 +120,7 @@ $dir = base_url().'assets/';
 				 			</div>
 				 			",
 				 			$link,
-				 			$pagina['external_url'] ? "target='_blank'" : "",
+				 			$pagina['new_window'] ? "target='_blank'" : "",
 				 			$pagina['titulo']
 				 		);
 				 	}
