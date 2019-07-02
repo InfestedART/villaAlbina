@@ -7,6 +7,8 @@ class Agenda extends MY_Controller {
 		$this->load->model("Areas_model");
 		$this->load->model("Eventos_model");
 		$this->load->model("Modelo_model");
+		$this->load->model("Agenda_model");
+
 		$limit = $this->Modelo_model->get_limit(5);
 		$step = $this->input->get('step', TRUE);
 		if (!$step) { $step = 0; }		
@@ -35,6 +37,7 @@ class Agenda extends MY_Controller {
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
 		$data['color'] = $this->Paginas_model->get_page_color(3)['color'];
 		$data['areas'] = $this->Areas_model->get_all_areas();
+		$data['agenda'] = $this->Agenda_model->get_active_agenda()->result_array()[0];
 		$data['eventos'] = $this->Eventos_model->{$method}(
 			$today, $limit, $search, $search_cat, $step
 		)->result_array();

@@ -94,15 +94,33 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 
 		<?php			
 			echo "<div class='col-12 text-center'>";			
-				printf("
-					<a  href='%s'
-						class='archivo__btn'
-						style='background-color: %s'
-					>  %s </a>",
-					$pasados ? base_url().'agenda' : base_url().'agenda?eventos_pasados=1',
-					$agenda_data['color'],
-					$pasados ? 'Eventos Futuros' : 'Eventos Pasados'
-				);			
+			printf("
+				<a  href='%s'
+					class='archivo__btn'
+					style='background-color: %s'
+				>  %s </a>",
+				$pasados ? base_url().'agenda' : base_url().'agenda?eventos_pasados=1',
+				$agenda_data['color'],
+				$pasados ? 'Eventos Futuros' : 'Eventos Pasados'
+			);			
+			$units = ['bytes', 'Kb', 'Mb', 'Gb'];
+			$filesize = $agenda['size'];
+			$i=0;
+			while (floor($filesize / 1024) > 1) {
+				$filesize = floor($filesize / 1024);
+				$i++;
+			}
+			printf("			
+				<a 	href='%s'
+					class='archivo__btn ml-3'	
+					style='background-color: %s'
+					target='_blank'
+				>	%s (%s) </a>",
+				base_url().'assets/'.$agenda['enlace'],
+				$agenda_data['color'],
+				'Descargar Agenda',
+				$filesize." ".$units[$i]
+			);	
 			echo "</div>";			
 		?>
 

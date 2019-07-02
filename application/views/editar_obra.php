@@ -1,7 +1,7 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	$assets_dir = base_url().'assets/';
-	$admin_dir = base_url().'admin_evento/';
+	$admin_dir = base_url().'admin_obras/';
 
    $error = $msg = '';
    $titulo_alert = $fecha_alert = $ifecha_alert = false;
@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
    <?php
-      $data['title'] = 'Panel de Control - Editar Evento';
+      $data['title'] = 'Panel de Control - Obras de Teatro';
       $this->load->view('templates/meta', $data);
    ?>
    <link rel="stylesheet" href=<?php  echo $assets_dir."css/pickaday.css"; ?> />
@@ -32,7 +32,7 @@
       <div class='admin-title'>
          <div class='row no-gutters'>
             <div class="col-12">         
-            <h2>Editar Evento</h2>
+            <h2>Editar Obra de Teatro</h2>
             </div>
          </div>
       </div>
@@ -40,7 +40,7 @@
       <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">   
-            <a class='nav-btn' href='<?php echo base_url()."admin_evento"; ?>'>
+            <a class='nav-btn' href='<?php echo base_url()."admin_obras"; ?>'>
                <i class="fa fa-arrow-left mr-1"></i>
                Volver
             </a>
@@ -51,19 +51,18 @@
       <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12">
-            <h5 class='form-title'>Editar Evento</h5>
+            <h5 class='form-title'>Editar Obra</h5>
            <?php
-               $edit_evento = $evento->result_array()[0];
-               $areas_array = $areas->result_array();
+               $edit_obra = $obra->result_array()[0];
                $fechas_array = $fechas->result_array();
                $galeria_array = $galeria->result_array();
                echo form_open_multipart(
-                  'admin_evento/update_evento/'.$id,
-                  array('id' => 'form_evento')
+                  'admin_obras/update_obra/'.$id,
+                  array('id' => 'form_obra')
                );
             ?>
 
-            <span id='evento_alert' class='form-alert'>
+            <span id='obra_alert' class='form-alert'>
                <?php echo $this->session->flashdata('error');?>
                <?php echo $error;?>
             </span>
@@ -81,57 +80,24 @@
                      class="form-control
                      <?php echo $titulo_alert ? 'alert' : ''; ?>"
                      type='text'
-                     value="<?php echo $edit_evento['titulo']; ?>"
+                     value="<?php echo $edit_obra['titulo']; ?>"
                   /> 
                </div>
             </div>
 
-           <div class='form-group row'>
-               <label class='form-label col-sm-3'>
-                  Area
-               </label>
-               <div class='col-sm-9'>
-               <select
-                  id='area'
-                  name='area'
-                  class="form-control
-                  <?php echo $categoria_alert ? 'alert' : ''; ?>"
-               > 
-                  <option value=''> Seleccione una opción</option>
-                  <?php
-                     foreach ($areas_array as $area) {
-                        $is_selected =
-                           $area['id_area'] === $edit_evento['id_area']
-                              ? 'selected'
-                              : '';
-                        printf(
-                           "<option value='%s' %s>%s</option>",
-                           $area['id_area'],
-                           $is_selected,
-                           $area['area']
-                        );
-                     }
-                  ?>
-               </select>
-               </div>
-            </div>
-
-            <?php
-               $repetir_hidden = $edit_evento['id_area'] != 5 ? 'hidden' : '';
-            ?>
-            <div class='row mt-3 <? echo $repetir_hidden; ?>' id='repetir_div'>
-               <div class='col-9 offset-3'>
+            <!-- div class='row mt-3 <? echo $repetir_hidden; ?>' id='repetir_div'>
+               <div class='col-12'>
                <label class='form-label-inline'>
-                  <span> ¿Mostrar en Eventos y Cartelera? </span>
+                  <span> ¿Mostrar en Agenda? </span>
                   <input
                      name='repetir'
                      id='repetir'
                      type="checkbox"
-                     <?php echo $edit_evento['repetir'] ? 'checked' : ''; ?>
+                     <?php echo $edit_obra['repetir'] ? 'checked' : ''; ?>
                   />
                </label>
                </div>   
-            </div>
+            </div -->
 
             <div class='form-group row'>
                <label class='form-label col-sm-3'>Organiza:</label>
@@ -141,7 +107,7 @@
                      name='organizador'
                      class="form-control"
                      type='text'
-                     value="<?php echo $edit_evento['organizador']; ?>"
+                     value="<?php echo $edit_obra['organizador']; ?>"
                   /> 
                </div>
             </div>
@@ -157,7 +123,7 @@
                            name='rango'
                            id='rango'
                            type="checkbox"
-                           <?php echo $edit_evento['rango'] ? 'checked' : ''; ?>
+                           <?php echo $edit_obra['rango'] ? 'checked' : ''; ?>
                         />
                         <span> Rango </span>
                      </label>
@@ -165,7 +131,7 @@
                </div>
 
                <div class='col-sm-9'>
-                  <div id="fecha_rango" class="<?php echo $edit_evento['rango'] ? '' : 'hidden'; ?>">
+                  <div id="fecha_rango" class="<?php echo $edit_obra['rango'] ? '' : 'hidden'; ?>">
                      <span class='label_short'>Del</span>
                      <input
                         id='fecha_ini'
@@ -173,7 +139,7 @@
                         class="form-control input_short
                         <?php echo $ifecha_alert ? 'alert' : ''; ?>"
                         type='text'
-                        value="<?php echo $edit_evento['fecha_ini']; ?>"
+                        value="<?php echo $edit_obra['fecha_ini']; ?>"
                      /> 
                      <span class='label_short'>al</span>
                      <input
@@ -181,11 +147,11 @@
                         name='fecha_fin'
                         class="form-control input_short"
                         type='text'
-                        value="<?php echo $edit_evento['fecha_fin']; ?>"
+                        value="<?php echo $edit_obra['fecha_fin']; ?>"
                      /> 
                   </div>
 
-                  <div id='fecha_array' class="<?php echo $edit_evento['rango'] ? 'hidden' : ''; ?>">
+                  <div id='fecha_array' class="<?php echo $edit_obra['rango'] ? 'hidden' : ''; ?>">
                      <div id='fecha_div0'>
                         <input
                            id='fecha0'
@@ -239,7 +205,7 @@
                      name='hora'
                      class="form-control"
                      type='text'
-                     value="<?php echo $edit_evento['hora']; ?>"
+                     value="<?php echo $edit_obra['hora']; ?>"
                   /> 
                </div>
             </div>
@@ -252,7 +218,7 @@
                      name='lugar'
                      class="form-control"
                      type='text'
-                     value="<?php echo $edit_evento['lugar']; ?>"
+                     value="<?php echo $edit_obra['lugar']; ?>"
                   /> 
                </div>
             </div>
@@ -265,7 +231,7 @@
                      name='descripcion'
                      class="form-control"
                      ><?php
-                        echo $edit_evento['descripcion'];
+                        echo $edit_obra['descripcion'];
                      ?></textarea>
                </div>
             </div>
@@ -278,7 +244,7 @@
                      name='info'
                      class="form-control"
                      ><?php
-                        echo $edit_evento['info'];
+                        echo $edit_obra['info'];
                      ?></textarea>
                </div>
             </div>
@@ -286,7 +252,7 @@
            <div class='form-group row'>
                <label class='form-label col-sm-3'>Imagen Destacada:</label>
                <div class='col-sm-9'>
-               <?php $hayImagen = trim($edit_evento['imagen'])!==''; ?>                  
+               <?php $hayImagen = trim($edit_obra['imagen'])!==''; ?>                  
                <input
                   id='delete_imagen'
                   name='delete_imagen'
@@ -298,7 +264,7 @@
                   <img
                      id='preview_img'
                      class='form-show-img'
-                     src="<?php echo $assets_dir.$edit_evento['imagen']; ?>"
+                     src="<?php echo $assets_dir.$edit_obra['imagen']; ?>"
                   />
                   <span class='form-change-img' id='hide_preview_btn'>
                      Quitar Imagen
@@ -415,14 +381,14 @@
                      class="form-control"
                      rows=12
                   /><?php
-                     echo $edit_evento['contenido'];
+                     echo $edit_obra['contenido'];
                   ?></textarea>
                </div>
             </div>
 
             <div class='form-group row'>
                <div class='col-sm-12 text-right'>
-                  <button type="button" id='evento_btn' class="btn btn-primary">
+                  <button type="button" id='obra_btn' class="btn btn-primary">
                      GUARDAR CAMBIOS
                   </button>
                </div>
@@ -440,7 +406,7 @@
       $contenido_src = "https://cloud.tinymce.com/5/tinymce.min.js?apiKey=".$api_key;
    ?>
    <script src=<?php  echo $assets_dir."js/pickaday.js"; ?> ></script>
-   <script src=<?php  echo $assets_dir."js/admin_evento_app.js"; ?> ></script>
+   <script src=<?php  echo $assets_dir."js/admin_obra_app.js"; ?> ></script>
    <script src=<?php  echo $assets_dir."js/galeria_app.js"; ?> ></script>
    <script src=<?php echo $assets_dir."js/contenidoe.js"; ?> ></script>
    <script src=<?php echo $contenido_src; ?> ></script> 

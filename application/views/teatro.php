@@ -30,17 +30,17 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 			</div>
 
 		</div>
-		<?php $show_no_results = sizeof($eventos) < 1 ? '' : 'd-none'; ?>
+		<?php $show_no_results = sizeof($obras) < 1 ? '' : 'd-none'; ?>
 		<div class='no-results <?php echo $show_no_results; ?>'>
 			<p>No se encontraron resultados </p>
 			<a class='no-result__volver' href=''>
-				Ver todos los eventos
+				Ver todos las obras
 			</a>
 		</div>
 
 		<div class='row'>
 		<?php
-			foreach ($eventos as $evento) {
+			foreach ($obras as $obra) {
 				printf(
 				"<div class='slide_container noticia col-12 col-sm-6 col-lg-4'>
 					<div class='publicacion__slide'>
@@ -53,33 +53,87 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 					</a>
 					<p	class='publicacion__fecha'
 						style='color: %s'
-					> Del %s al %s
-					</p>
+					>",
+				base_url().'obra?id='.$obra['id_post'],
+				$dir,
+				$obra['imagen'] ? $obra['imagen'] : 'img/placeholder.jpg',
+				$teatro_data['color']
+				);
+				if ($obra['rango']) {
+					echo "Del ".strftime('%d de %B', strtotime($obra['fecha_ini']));
+					echo " al ".strftime('%d de %B', strtotime($obra['fecha_fin']));
+				} else {
+					foreach($fechas as $index => $fecha) {
+						if ($fecha['id_post'] == $obra['id_post']) {
+							$coma = '';
+							if ($index < sizeof($fechas)-2) {
+								$coma = ', ';
+							}
+							if ($index == sizeof($fechas)-2) {
+								$coma = ' y ';	
+							}
+							echo strftime('%d de %B', strtotime($fecha['fecha'])).$coma;
+						}
+					}					
+				}
+				printf("</p>
 					<a href='%s' class='noticia__btn'>
 						<h5 class='noticia__titulo'>%s</h5>
 					</a>
 					<p class='noticia__descripcion'>%s</p>
 					</div>
 				</div>",
-				base_url().'evento?id='.$evento['id_post'],
-				$dir,
-				$evento['imagen'] ? $evento['imagen'] : 'img/placeholder.jpg',
-				$teatro_data['color'],
-				strftime('%d de %B', strtotime($evento['fecha_ini'])),
-				strftime('%d de %B', strtotime($evento['fecha_fin'])),
-				base_url().'evento?id='.$evento['id_post'],
-				$evento['titulo'],
-				$evento['info']
-			);
+				base_url().'obra?id='.$obra['id_post'],
+				$obra['titulo'],
+				$obra['descripcion']
+				);
 			}
 		?>
 		</div>
+
+		<?php			
+			echo "<div class='col-12 text-center'>";			
+			printf("
+				<a  href='%s'
+					class='archivo__btn'
+					style='background-color: %s'
+				>  %s </a>",
+				$pasados ? base_url().'teatro' : base_url().'teatro?obras_pasadas=1',
+				$teatro_data['color'],
+				$pasados ? 'Eventos Futuros' : 'Eventos Pasados'
+			);				
+			echo "</div>";	
+			$units = ['bytes', 'Kb', 'Mb', 'Gb'];
+			echo "<div class='col-12 text-center'>";	
+			foreach ($carteleras as $cartelera) {
+				$filesize = $cartelera['size'];
+				$i=0;
+				while (floor($filesize / 1024) > 1) {
+					$filesize = floor($filesize / 1024);
+					$i++;
+				}
+			printf("			
+				<a href='%s'
+					class='archivo__btn ml-3'	
+					style='background-color: %s'
+					target='_blank'
+				>	%s %s (%s) </a>",
+				base_url().'assets/'.$cartelera['enlace'],
+				$teatro_data['color'],
+				'Descargar Cartelera',
+				$cartelera['fecha'],
+				$filesize." ".$units[$i]
+			);	
+			}		
+			echo "</div>";
+
+		?>
 
 		<div class='publicacion__nav row'>
 			<div class='col-12 text-center'>
 				<?php
 					$noti_dir = base_url()."teatro";
-					$nav_size = ceil($cant_eventos/$limit);	
+					$nav_size = ceil($cant_obras/$limit);	
 
 					if ($nav_size > 1) {
 						if ($step > 0) {

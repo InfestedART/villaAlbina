@@ -1,17 +1,16 @@
 (function () {
 	'use strict';
 
-	function main() {		
-		const form_evento = document.getElementById('form_evento');	
-		const evento_alert = document.getElementById('evento_alert');
+	function main() {
+		const form_obra = document.getElementById('form_obra');	
+		const obra_alert = document.getElementById('obra_alert');
 		const fecha_ini = document.getElementById('fecha_ini');
 		const fecha_fin = document.getElementById('fecha_fin');
 		const fecha0 = document.getElementById('fecha0');
 		const hora = document.getElementById('hora');
-		const area = document.getElementById('area');
 		const repetir_div = document.getElementById('repetir_div');
 		const repetir_check = document.getElementById('repetir_check');
-		const evento_btn = document.getElementById('evento_btn');
+		const obra_btn = document.getElementById('obra_btn');
 
 		const rango = document.getElementById('rango');
 		const fecha_array = document.getElementById('fecha_array');
@@ -20,6 +19,12 @@
 		const fecha_divs = document.getElementsByClassName('fecha_div');
 		var cont = fecha_divs.length;
 		var dateInputs = [];
+
+		const hide_img_btn = document.getElementById('hide_img_btn');
+		const preview_img = document.getElementById('preview_img');
+		const hide_preview_btn = document.getElementById('hide_preview_btn');
+		const imagen = document.getElementById('imagen');
+		const show_preview_btn = document.getElementById('show_preview_btn');
 
 		function init_datePicker(node) {
 			return new Pikaday({
@@ -54,20 +59,73 @@
 				    weekdaysShort : ['Dom','Lun','Mar','Mie','Jue','Vie','Sab']
 				},
 	        	toString(date, format) {
-	          	const day = ("0" + date.getDate()).slice(-2);
-	           	const month = ("0" + (date.getMonth() + 1)).slice(-2);
-	           	const year = date.getFullYear();
-	           	return `${year}-${month}-${day}`;
+		          	const day = ("0" + date.getDate()).slice(-2);
+		           	const month = ("0" + (date.getMonth() + 1)).slice(-2);
+		           	const year = date.getFullYear();
+		           	return `${year}-${month}-${day}`;
 	        	},
 	        	parse(dateString, format) {
 		        	const parts = dateString.split('-');
-	           	const year = parseInt(parts[0], 10);
-	           	const month = parseInt(parts[1], 10) - 1;
-	           	const day = parseInt(parts[2], 10);
-	           	const fecha = new Date(year, month, day);
-	          	return fecha;
+		           	const year = parseInt(parts[0], 10);
+		           	const month = parseInt(parts[1], 10) - 1;
+		           	const day = parseInt(parts[2], 10);
+		           	const fecha = new Date(year, month, day);
+		          	return fecha;
         		}
 			});
+		}
+
+		var picker = [];
+		for (var i=1; i<=cont; i++) {
+         const saved_fecha = document.getElementById('remove_fecha'+i);
+         const fecha_input = document.getElementById('fecha'+i);
+			picker[i] = init_datePicker(fecha_input);
+         saved_fecha.addEventListener('click', function(ev){
+				remove_fecha_input(ev);
+			});				
+		}
+
+		var picker_ini = init_datePicker(fecha_ini);
+		var picker_fin = init_datePicker(fecha_fin);
+		picker[0] = init_datePicker(fecha0);
+
+		function form_validation() {
+			const titulo = document.getElementById('titulo');
+			const regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
+			const regex_time = /^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/;
+			let error = '';
+			fecha_ini.classList.remove('input-error');
+			fecha0.classList.remove('input-error');
+			titulo.classList.remove('input-error');
+			hora.classList.remove('input-error');
+
+			const form_is_validated = titulo.value.trim() !== ''
+				&& (fecha_ini.value.match(regex_date) ||  fecha0.value.match(regex_date))
+				&& (hora.value.match(regex_time) || hora.value.trim() == '')
+
+			if (form_is_validated) {
+				form_obra.submit();
+			} else {
+				if (!fecha_ini.value.match(regex_date) && !fecha0.value.match(regex_date)) {
+					error = 'Ingrese un formato de fecha valido (YYYY-MM-DD)';
+					fecha_ini.classList.add('input-error');
+					fecha0.classList.add('input-error');
+				}
+				if ( fecha_ini.value.trim() == '' && fecha0.value.trim() == '') {
+					error = 'Campo fecha es obligatorio';
+					fecha_ini.classList.add('input-error');
+					fecha0.classList.add('input-error');
+				}
+				if ( titulo.value.trim() == '') {
+					error = 'Campo titulo es obligatorio';
+					titulo.classList.add('input-error');			
+				}
+				if (!hora.value.match(regex_time) && hora.value.trim() != '') {
+					error = 'Ingrese un texto con un formato de hora valido (H:MM)';
+					hora.classList.add('input-error');
+				}
+				obra_alert.innerHTML = error;
+			}
 		}
 
 		function toggle_fecha() {
@@ -107,58 +165,6 @@
 			cont--;
 		}
 
-		function form_validation() {
-			const titulo = document.getElementById('titulo');
-			const area = document.getElementById('area');
-			const regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
-			const regex_time = /^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/;
-			let error = '';
-			fecha_ini.classList.remove('input-error');
-			fecha0.classList.remove('input-error');
-			area.classList.remove('input-error');
-			titulo.classList.remove('input-error');
-			hora.classList.remove('input-error');
-
-			const form_is_validated = titulo.value.trim() !== ''
-				&& (area.value > 0 || area.value.trim() !== '')
-				&& (fecha_ini.value.match(regex_date) ||  fecha0.value.match(regex_date))
-				&& (hora.value.match(regex_time) || hora.value.trim() == '')
-
-			if (form_is_validated) {
-				form_evento.submit();
-			} else {
-				if (!fecha_ini.value.match(regex_date) && !fecha0.value.match(regex_date)) {
-					error = 'Ingrese un formato de fecha valido (YYYY-MM-DD)';
-					fecha_ini.classList.add('input-error');
-					fecha0.classList.add('input-error');
-				}
-				if ( fecha_ini.value.trim() == '' && fecha0.value.trim() == '') {
-					error = 'Campo fecha es obligatorio';
-					fecha_ini.classList.add('input-error');
-					fecha0.classList.add('input-error');
-				}
-				if ( area.value.trim() == '' || area.value < 1) {
-					error = 'Campo area es obligatorio';
-					area.classList.add('input-error');	
-				}
-				if ( titulo.value.trim() == '') {
-					error = 'Campo titulo es obligatorio';
-					titulo.classList.add('input-error');			
-				}
-				if (!hora.value.match(regex_time) && hora.value.trim() != '') {
-					error = 'Ingrese un texto con un formato de hora valido (H:MM)';
-					hora.classList.add('input-error');
-				}
-				evento_alert.innerHTML = error;
-			}
-		}
-
-		const hide_img_btn = document.getElementById('hide_img_btn');
-		const preview_img = document.getElementById('preview_img');
-		const hide_preview_btn = document.getElementById('hide_preview_btn');
-		const imagen = document.getElementById('imagen');
-		const show_preview_btn = document.getElementById('show_preview_btn');
-
 		function hide_preview() {
 			const delete_imagen = document.getElementById('delete_imagen');
 			preview_img.classList.add('hidden');
@@ -177,16 +183,6 @@
 			delete_imagen.value = '0';			
 		}
 
-		function toggle_repetir(ev) {
-			if (ev.target.value == 5) {				
-				repetir_div.classList.remove('hidden');			
-			} else {
-				if(!repetir_div.classList.contains('hidden')) {
-					repetir_div.classList.add('hidden');
-				}				
-			}			
-		}
-
 		if (hide_preview_btn && show_preview_btn) {
 			hide_preview_btn.addEventListener('click', function(){
 				hide_preview();
@@ -197,15 +193,11 @@
 			});	
 		}
 		
-		area.addEventListener('change', function(ev) {
-			toggle_repetir(ev);
-		});
-
 		rango.addEventListener('change', function(){
 			toggle_fecha();
 		});
 
-		evento_btn.addEventListener('click', function(ev){
+		obra_btn.addEventListener('click', function(ev){
 			form_validation(ev);
 		});
 
@@ -213,19 +205,6 @@
 			add_fecha_input(ev);
 		});
 
-		var picker = [];
-		for (var i=1; i<=cont; i++) {
-         const saved_fecha = document.getElementById('remove_fecha'+i);
-         const fecha_input = document.getElementById('fecha'+i);
-			picker[i] = init_datePicker(fecha_input);
-         saved_fecha.addEventListener('click', function(ev){
-				remove_fecha_input(ev);
-			});				
-		}
-
-		var picker_ini = init_datePicker(fecha_ini);
-		var picker_fin = init_datePicker(fecha_fin);
-		picker[0] = init_datePicker(fecha0);
 	}
 
 	window.addEventListener('load' , main);
