@@ -27,7 +27,7 @@ $dir = base_url().'assets/';
 				<div class='footer__contacto mb-3 footer__btn' id='find_us'>
 					<a href='#footer_correos' >
 						<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-						<span>ENCUENTRANOS</span>				
+						<span>ENCUÉNTRANOS</span>				
 					</a>
 				</div>
 
@@ -47,12 +47,12 @@ $dir = base_url().'assets/';
 					</div>
 					<div class="d-inline-block mr-2">
 						<p  class='footer__direccion footer__titulo'>
-							ESPACIO SIMON I PATIÑO
+							ESPACIO SIMÓN I PATIÑO
 						</p>
 						<p class='footer__direccion'>
 							Sopocachi, av. Ecuador entre c. Rosendo Gutiérrez y Quito
 						</p>
-						<p class='footer__direccion'>Tel. +591 2 2111717 • Cel. 76737008</p>
+						<p class='footer__direccion'>Tel. +591 2410329 • Cel. 77270407</p>
 						<p class='footer__direccion'>espacio@fundacionpatino.org</p>
 					</div>
 				</div>
@@ -61,7 +61,7 @@ $dir = base_url().'assets/';
 			<div class='footer__address mt=1' id='footer_correos'>
 				<div class='footer__contacto mb-3'>
 				<a href='convocatorias?buscar=beca' target="_top">
-					<span>INFORMACION SOBRE BECAS</span>
+					<span>INFORMACIÓN SOBRE BECAS</span>
 				</a>
 				</div>
 
@@ -71,14 +71,21 @@ $dir = base_url().'assets/';
 						printf("
 						<p class='footer__direccion'>
 							<span class='footer__subtitulo'> %s </span>
-							<span> %s </span>
+							<span> %s%s </span>
 						</p>",
 						$area['area'],
-						$area['correo']."@fundacionpatino.org"
+						$area['correo']."@fundacionpatino.org",
+						$area['id_area'] == 1
+							? ', m.tapia@fundacionpatino.org'
+							: ''
 					);
 						
 					}
-				?>				
+				?>	
+				<p class='footer__direccion'>
+					<span class='footer__subtitulo'> Subscripciones: </span>
+					<span> espacio@fundacionpatino.org</span>
+				</p>			
 			</div>
 
 			<div class='footer__social-media'>

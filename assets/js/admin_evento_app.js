@@ -197,9 +197,11 @@
 			});	
 		}
 		
+		/*
 		area.addEventListener('change', function(ev) {
 			toggle_repetir(ev);
 		});
+		*/
 
 		rango.addEventListener('change', function(){
 			toggle_fecha();

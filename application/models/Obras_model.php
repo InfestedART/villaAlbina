@@ -49,8 +49,8 @@ class Obras_model extends CI_Model {
 	    }
 	    $start = $step * $limit;
 	    $this->db->group_start();
-	    	$this->db->where('obra_teatro.fecha_ini >', $date);
-			$this->db->or_where('obra_teatro.fecha_fin >', $date);
+	    	$this->db->where('obra_teatro.fecha_ini >=', $date);
+			$this->db->or_where('obra_teatro.fecha_fin >=', $date);
 		$this->db->group_end();
 		$this->db->order_by('obra_teatro.fecha_ini');
 		$this->db->limit($limit, $start);
@@ -105,8 +105,8 @@ class Obras_model extends CI_Model {
 	    } 
 	    $start = $step * $limit;
 	    $this->db->group_start();
-	    	$this->db->where('obra_teatro.fecha_ini >', $date);
-			$this->db->or_where('obra_teatro.fecha_fin >', $date);
+	    	$this->db->where('obra_teatro.fecha_ini >=', $date);
+			$this->db->or_where('obra_teatro.fecha_fin >=', $date);
 		$this->db->group_end();
 		$query = $this->db->get(); 
 		return $query->result_array();	

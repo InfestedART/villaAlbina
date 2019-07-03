@@ -59,8 +59,8 @@ class Eventos_model extends CI_Model {
 	    }	  
 	    $start = $step * $limit;
 	    $this->db->group_start();
-	    	$this->db->where('evento.fecha_ini >', $date);
-			$this->db->or_where('evento.fecha_fin >', $date);
+	    	$this->db->where('evento.fecha_ini >=', $date);
+			$this->db->or_where('evento.fecha_fin >=', $date);
 		$this->db->group_end();
 		$this->db->order_by('evento.fecha_ini');
 		$this->db->limit($limit, $start);
@@ -113,8 +113,8 @@ class Eventos_model extends CI_Model {
 	      	$this->db->or_like('evento.organizador', $search);
 	    }
 	    $this->db->group_start();
-	    	$this->db->where('evento.fecha_ini >', $date);
-			$this->db->or_where('evento.fecha_fin >', $date);
+	    	$this->db->where('evento.fecha_ini >=', $date);
+			$this->db->or_where('evento.fecha_fin >=', $date);
 		$this->db->group_end();		
 	    $start = $step * $limit;
 	    $this->db->order_by('evento.fecha_ini');
