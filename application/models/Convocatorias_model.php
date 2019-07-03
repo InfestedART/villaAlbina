@@ -53,7 +53,7 @@ class Convocatorias_model extends CI_Model {
 	    if ($search_cat) {
 	      $this->db->where('convocatoria.id_area', $search_cat);
 	    }	
-	   	$this->db->where('convocatoria.fecha_limite >', $date);
+	   	$this->db->where('convocatoria.fecha_limite >=', $date);
 	   	$start = $step * $limit;
 	    $this->db->order_by('convocatoria.fecha_limite', 'desc');
 		$this->db->limit($limit, $start);

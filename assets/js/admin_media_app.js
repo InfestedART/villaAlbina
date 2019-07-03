@@ -8,6 +8,7 @@
 
 		function form_validation() {
 			const titulo = document.getElementById('titulo');
+			const area = document.getElementById('area');
 			const enlace = document.getElementById('enlace');
 			const regex = /^https:\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
 			let error = '';
@@ -16,6 +17,7 @@
 			titulo.classList.remove('input-error');
 
 			const form_is_validated = titulo.value.trim() !== ''
+				&& (area.value > 0 || area.value.trim() !== '')
 				&& enlace.value.trim() !== ''
 				&& enlace.value.indexOf('embed') > -1
 				&& enlace.value.match(regex);
@@ -34,6 +36,10 @@
 				if (enlace.value.trim() == '') {
 					error = 'Campo enlace es obligatorio';
 					enlace.classList.add('input-error');
+				}
+				if ( area.value.trim() == '' || area.value < 1) {
+					error = 'Campo area es obligatorio';
+					area.classList.add('input-error');	
 				}
 				if (titulo.value.trim() == '') {
 					error = 'Campo titulo es obligatorio';

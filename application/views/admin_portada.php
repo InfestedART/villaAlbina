@@ -166,7 +166,7 @@
                   }
          			printf("
          				<tr>
-         					<td class='text-center'>%s - %s</td>
+         					<td class='text-center'>%s</td>
          					<td>
          						<img src='%suploads/%s' class='img-medium_small' />
          					</td>
@@ -188,7 +188,7 @@
                            <i class='fa fa-trash-alt' title='ELIMINAR'></i>
                         </td>
          				</tr>",
-         				$portada['orden'], $portada['id_portada'],
+         				$portada['orden'],
          				$assets_dir, $portada['imagen'],
                      $helper, $color, $color,
          				$portada['area'] ? $portada['area'] : '-',

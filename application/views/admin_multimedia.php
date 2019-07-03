@@ -101,6 +101,27 @@
                <th>
                   <a href='<?php
                   $order_direction = (
+                     !$direction || $direction == 'desc' || $orderby !== 'id_area'
+                  ) ? 'asc'
+                    : 'desc';                  
+                  echo $admin_dir."?orderby=id_area&direction=".$order_direction;
+                  ?>'
+                  class='admin-table__title admin_order'>
+                     Área
+                     <?php
+                        $area_sort = 'sort';
+                        if ($orderby == 'id_area' && $direction == 'asc') {
+                           $area_sort .= '-up';
+                        } elseif ($orderby == 'id_area' && $direction == 'desc') {
+                           $area_sort .= '-down';
+                        }
+                     ?>
+                     <i class='ml-2 fa fa-<?php echo $area_sort; ?>'></i>
+                  </a>
+               </th>
+               <th>
+                  <a href='<?php
+                  $order_direction = (
                      !$direction || $direction == 'desc' || $orderby !== 'id_tipo_media'
                   ) ? 'asc'
                     : 'desc';                  
@@ -132,11 +153,13 @@
                      <tr>
                         <td>%s</td>
                         <td>%s</td>
+                        <td>%s</td>
                         <td><a href='%s' target='_blank'>
                            %s
                         </a></td>
                         <td class='text-center'>%s</td>",
                      $media['titulo'],
+                     $media['area'],
                      $media['tipo_media'],
                      $media['enlace'], $media['enlace'],
                      $media['orden']

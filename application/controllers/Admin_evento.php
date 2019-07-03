@@ -347,7 +347,7 @@ class Admin_evento extends Admin_Controller {
 
 		$this->Publicacion_model->update_publicacion($id, $post_data);
 		$this->Eventos_model->update_evento($id, $evento_data);
-		// redirect('admin_evento');
+		redirect('admin_evento');
 	}
 
 	public function toggle_evento() {

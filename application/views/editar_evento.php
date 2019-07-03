@@ -239,7 +239,7 @@
                      name='hora'
                      class="form-control"
                      type='text'
-                     value="<?php echo substr($edit_evento['hora'], 0, 5); ?>"
+                     value="<?php echo $edit_evento['hora']; ?>"
                   /> 
                </div>
             </div>

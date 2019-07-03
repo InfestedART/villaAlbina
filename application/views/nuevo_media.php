@@ -5,7 +5,7 @@
 	$admin_dir = base_url().'admin_media/';
 
    $error = $msg = '';
-   $titulo_alert = $fecha_alert = $ifecha_alert = false;
+   $titulo_alert = $fecha_alert = $ifecha_alert = $area_alert = false;
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +52,7 @@
             <div class="col-12">
             <h5 class='form-title'>Insertar Archivo Multimedia</h5>
             <?php
+               $areas_array = $areas->result_array();
                echo form_open_multipart(
                   'admin_media/insertar_media',
                   array('id' => 'form_media')
@@ -72,6 +73,31 @@
                      <?php echo $titulo_alert ? 'alert' : ''; ?>"
                      type='text'
                   /> 
+               </div>
+            </div>
+
+           <div class='form-group row'>
+               <label class='form-label col-sm-3'>
+                  Área:
+               </label>
+               <div class='col-sm-9'>
+               <select
+                  id='area'
+                  name='area'
+                  class="form-control
+                  <?php echo $area_alert ? 'alert' : ''; ?>"
+               > 
+                  <option value=''> Seleccione una opción</option>
+                  <?php
+                     foreach ($areas_array as $area) {
+                        printf(
+                           "<option value='%s'>%s</option>",
+                           $area['id_area'],
+                           $area['area']
+                        );
+                     }
+                  ?>
+               </select>
                </div>
             </div>
 

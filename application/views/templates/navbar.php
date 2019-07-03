@@ -38,7 +38,9 @@
 							    </a>
 						    <div class='navbar__dropdown--content'>",
 						    $link,
-						    $selected_pagina['titulo'] == $pagina['titulo'] ? 'navbar__selected' : '',
+						    $selected_pagina['titulo'] == $pagina['titulo']
+						    	? 'navbar__selected'
+						    	: '',
 						    $pagina['titulo']
 						);
 						foreach ($areas as $area) {
@@ -63,7 +65,7 @@
 				 			</a></div>",
 				 			$link,
 				 			$selected_pagina['titulo'] == $pagina['titulo'] ? 'navbar__selected' : '',
-				 			$pagina['external_url'] ? "target='_blank'" : "",
+				 			$pagina['new_window'] ? "target='_blank'" : "" ,
 				 			$pagina['titulo']
 				 		);	
 			 		}			 		

@@ -21,6 +21,7 @@ class Admin_media extends Admin_Controller {
 	}
 
 	public function nuevo_media() {
+		$this->load->model("Areas_model");
 		$this->load->model("Media_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
@@ -28,11 +29,13 @@ class Admin_media extends Admin_Controller {
 		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+		$data['areas'] = $this->Areas_model->get_all_areas();
 		$data['tipos'] = $this->Media_model->get_all_tipos();
 		$this->load->view('nuevo_media', $data);
 	}
 
 	public function editar_media() {
+		$this->load->model("Areas_model");
 		$this->load->model("Media_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
@@ -40,6 +43,7 @@ class Admin_media extends Admin_Controller {
 		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
+		$data['areas'] = $this->Areas_model->get_all_areas();
 		$id = $this->uri->segment(3);
 		$data['media'] = $this->Media_model->get_media($id);
 		$this->load->view('editar_media', $data);
@@ -49,6 +53,7 @@ class Admin_media extends Admin_Controller {
    		$this->load->model("Media_model");
     	$this->load->model("Publicacion_model");
 		$titulo = $this->input->post('titulo', TRUE);
+		$area = $this->input->post('area', TRUE);
 		$enlace = $this->input->post('enlace', TRUE);
 		$orden = $this->Media_model->get_cant_media();
 
@@ -71,6 +76,7 @@ class Admin_media extends Admin_Controller {
 		$media_data = array(
 			'id_post' => $last_id,
 			'enlace' => $enlace,
+			'id_area' => $area,
 			'orden' => $orden+1, 
 			'id_tipo_media' => $id_tipo_media
 		);
@@ -85,8 +91,8 @@ class Admin_media extends Admin_Controller {
   	  	$id = $this->uri->segment(3);
 
 		$titulo = $this->input->post('titulo', TRUE);
+		$area = $this->input->post('area', TRUE);
 		$enlace = $this->input->post('enlace', TRUE);
-
 		$post_data = array(
 			'titulo' => $titulo,
 			'tipo' => 6
@@ -101,6 +107,7 @@ class Admin_media extends Admin_Controller {
 		}
 		$media_data = array(
 			'enlace' => $enlace,
+			'id_area' => $area,
 			'id_tipo_media' => $id_tipo_media
 		);
 		$this->Publicacion_model->update_publicacion($id, $post_data);
