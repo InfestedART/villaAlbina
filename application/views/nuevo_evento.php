@@ -102,6 +102,15 @@
                </div>
             </div>
 
+            <div class='row mt-3 hidden' id='repetir_div'>
+               <div class='col-9 offset-3'>
+               <label class='form-label-inline'>
+                  <span> ¿Mostrar en Eventos y Cartelera? </span>
+                  <input name='repetir' id='repetir' type="checkbox" checked />
+               </label>
+               </div>   
+            </div>
+
             <div class='form-group row'>
                <label class='form-label col-sm-3'>Organiza:</label>
                <div class='col-sm-9'>

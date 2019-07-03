@@ -116,6 +116,23 @@
                </div>
             </div>
 
+            <?php
+               $repetir_hidden = $edit_evento['id_area'] != 5 ? 'hidden' : '';
+            ?>
+            <div class='row mt-3 <? echo $repetir_hidden; ?>' id='repetir_div'>
+               <div class='col-9 offset-3'>
+               <label class='form-label-inline'>
+                  <span> ¿Mostrar en Eventos y Cartelera? </span>
+                  <input
+                     name='repetir'
+                     id='repetir'
+                     type="checkbox"
+                     <?php echo $edit_evento['repetir'] ? 'checked' : ''; ?>
+                  />
+               </label>
+               </div>   
+            </div>
+
             <div class='form-group row'>
                <label class='form-label col-sm-3'>Organiza:</label>
                <div class='col-sm-9'>
