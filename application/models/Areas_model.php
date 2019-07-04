@@ -47,6 +47,7 @@ class Areas_model extends CI_Model {
     $this->db->select('*');
     $this->db->from('area');
     $this->db->where('area.id_area <', $id);
+    $this->db->where('area.status', 1);
     $this->db->order_by('area.id_area', 'desc');
     $this->db->limit(1);
     $query = $this->db->get(); 
@@ -57,6 +58,7 @@ class Areas_model extends CI_Model {
     $this->db->select('*');
     $this->db->from('area');
     $this->db->where('area.id_area >', $id);
+    $this->db->where('area.status', 1);
     $this->db->order_by('area.id_area', 'asc');
     $this->db->limit(1);
     $query = $this->db->get(); 

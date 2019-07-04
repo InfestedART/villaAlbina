@@ -33,6 +33,7 @@ class Subarea_model extends CI_Model {
     $this->db->select('*');
     $this->db->from('subarea');
     $this->db->where('subarea.id_area', $area_id);
+    $this->db->where('subarea.status', 1);
     $this->db->where('subarea.id_subarea <', $id);
     $this->db->order_by('subarea.id_subarea', 'desc');
     $this->db->limit(1);
@@ -45,6 +46,7 @@ class Subarea_model extends CI_Model {
     $this->db->from('subarea');
     $this->db->where('subarea.id_area', $area_id);
     $this->db->where('subarea.id_subarea >', $id);
+    $this->db->where('subarea.status', 1);
     $this->db->order_by('subarea.id_subarea', 'asc');
     $this->db->limit(1);
     $query = $this->db->get(); 
