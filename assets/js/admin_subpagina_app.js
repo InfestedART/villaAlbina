@@ -35,16 +35,23 @@
 		}
 
 		function customContent(ev) {
+			const value = ev.target.value;
 			const imagen_container = document.getElementById('imagen_container');
-			const cont_container = document.getElementById('cont_container');		
-			const value = ev.target.value
-			if (value == 0 && value.trim() != '') {
+			const galeria_container = document.getElementById('galeria_container');
+			const cont_container = document.getElementById('cont_container');	
+			if (value == 1){
+				imagen_container.classList.add('d-none');
+				galeria_container.classList.add('d-none');
+				cont_container.classList.remove('d-none');
+			} else if (value == 0 && value.trim() != '') {
 				imagen_container.classList.remove('d-none');
+				galeria_container.classList.remove('d-none');
 				cont_container.classList.remove('d-none');
 			} else {
 				imagen_container.classList.add('d-none');
+				galeria_container.classList.add('d-none');
 				cont_container.classList.add('d-none');
-			}			
+			}	
 		}
 
 		const preview_img = document.getElementById('preview_img');

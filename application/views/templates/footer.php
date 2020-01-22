@@ -67,17 +67,18 @@ $dir = base_url().'assets/';
 
 				<p class='footer__titulo mb-2'>CORREOS DE CONTACTO</p>
 				<?php
+					/*
 					foreach ($areas as $area) {
 						printf("
-						<p class='footer__direccion'>
-							<span class='footer__subtitulo'> %s </span>
-							<span> %s </span>
-						</p>",
-						$area['area'],
-						$area['correo']."@fundacionpatino.org"
-					);
-						
+							<p class='footer__direccion'>
+								<span class='footer__subtitulo'> %s </span>
+								<span> %s </span>
+							</p>",
+							$area['area'],
+							$area['correo']."@fundacionpatino.org"
+						);						
 					}
+					*/
 				?>				
 			</div>
 

@@ -24,6 +24,7 @@
 	line-height: 16px;
 	font-size: 15px;
 	width: 140px;
+	word-break: break-word;
 }
 
 .timeline__punto:hover,

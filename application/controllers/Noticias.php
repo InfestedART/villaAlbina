@@ -15,7 +15,7 @@ class Noticias extends MY_Controller {
 		$data['search_cat'] = '';
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
 		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
-		$data['noticias_data'] = $this->Paginas_model->get_pagina(7)->result_array()[0];
+		$data['noticias_data'] = $this->Paginas_model->get_pagina(8)->result_array()[0];
 		$data['cant_noticias'] = sizeof(
 			$this->Noticias_model->get_valid_noticias(100)->result_array()
 		);

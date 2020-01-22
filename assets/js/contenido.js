@@ -7,14 +7,8 @@
 	    selector: '#contenido',
 	    plugins: 'code fullscreen lists link table', 
 	    toolbar: [
-			'formatselect fontselect fontsizeselect',
-			'cut copy paste',
-			'bold italic underline strikethrough',
-			'forecolor backcolor',
-			'alignleft aligncenter alignright alignjustify',  
-			'bullist numlist outdent indent',
-			'link | table',
-			'blockquote code | fullscreen |'
+			'formatselect fontselect fontsizeselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |',
+			'cut copy paste | forecolor backcolor | link | table | blockquote code | fullscreen |'
 			],
 		language : 'es_MX',
 		language_url : '../assets/langs/es_MX.js'

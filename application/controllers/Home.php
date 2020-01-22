@@ -28,7 +28,7 @@ class Home extends MY_Controller {
 					)->result_array();
 		}
 		$data['default_color'] = $this->Defaults_model->get_value('primary_color');
-		$data['agenda'] = $this->Agenda_model->get_active_agenda()->result_array()[0];
+		// $data['agenda'] = $this->Agenda_model->get_active_agenda()->result_array()[0];
 		$data['carteleras'] = $this->Cartelera_model->get_all_carteleras()->result_array();
 		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['seccion'] = $seccion;

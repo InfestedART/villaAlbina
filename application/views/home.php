@@ -48,22 +48,22 @@ $dir = base_url().'assets/';
 		<div class='main__fixed-header'>
 		</div>
 
-		<div class="logo d-none d-md-block">
-			<img 
-				class='logo_espacio'
-				src=<?php echo $dir.'img/logo_espacio.png'; ?>
-			/>
-			<img class='logo_fundacion' src=<?php echo $dir.'img/logo.png'; ?> />
-
+		<div class="logo d-none d-md-flex">
+			<div class="logo__container">
+			   <img class='logo__img logo_img--albina' src=<?php echo $dir.'img/logo_albina.png'; ?> />
+			   <img class='logo__img' src=<?php echo $dir.'img/logo.png'; ?> />
+			</div>
 		</div>
 
-		<div class="logo d-xs-block d-md-none text-center">
-			<img src=<?php echo $dir.'img/logo.png'; ?> />
+		<div class="logo d-xs-flex d-md-none text-center">
+			<div class="logo__container">
+			<img class='logo__img' src=<?php echo $dir.'img/logo.png'; ?> />
+			</div>
 		</div>
 
 		<div class="navbar main__navbar" id='navbar'>
 			<a href='#' class='navbar__logo main__logo'>
-				<img src='<?php echo $dir.'img/logo_espacio.png'; ?>' />
+				<img src='<?php echo $dir.'img/logo_albina.png'; ?>' />
 	      	</a>
 
 			<a href='javascript:void(0);' class="navbar__menu" id='navbar_menu'>

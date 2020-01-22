@@ -125,13 +125,22 @@
                </div>
 
                <div id='imagen_container' class='form-group row'>
-                  <label class='form-label col-sm-3'>Imagen Destacada</label>
+                  <label class='form-label col-sm-3'>Imagen Destacada: </label>
                   <div class='col-sm-9'>
                      <input
                         id='imagen'
                         name='imagen'
                         class="form-control"
                         type='file'
+                     /> 
+                  </div>
+                  <div class='mt-1 col-sm-9 offset-sm-3'>
+                     <input
+                        id='img_leyenda'
+                        name='img_leyenda'
+                        class="form-control"
+                        type='text'
+                        placeholder='Leyenda (opcional)'
                      /> 
                   </div>
                </div>
