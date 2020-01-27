@@ -2,28 +2,43 @@
 	$dir = base_url().'assets/';
 ?>
 	<div class='row'>
-		<div class='publicacion__container col-md-6 col-xl-5 offset-xl-1'>
 		<?
+		$size = $galeria[0] ? 6 : 4;
+		printf(
+			"<div class='publicacion__container col-md-%s col-xl-%s offset-xl-1' >",
+			$size,
+			$size - 1
+		);
+		
 		printf("
 			<div class='galeria__slider galeria__slider_%s'>",
 			$subpag['id_subpagina']
 		);
 
+		$first = false;
+		if (!$active) {
+			$first = true;
+		}
+
 		foreach ($galeria as $index => $img_galeria) {
+			$img_type = $img_galeria ? substr($img_galeria, -3) : '';
 			printf(
 				"<input type='hidden' id='%s' value='%s' />
 				 <div class='galeria__slide galeria__slide_%s'>
-					<div class='galeria__img-container'>
+					<div class='galeria__img-container %s %s'>
 					<img
 						class='galeria__imagen galeria-slide'
 						src='%s'
 					/>
 					</div>",
-			$active === $subpag['enlace'] ? 'galeria_active' : '',
+			$first || ($active === $subpag['enlace']) ? 'galeria_active' : '',
 			$subpag['id_subpagina'],
 			$subpag['id_subpagina'],
-			$dir.$img_galeria
+			$img_galeria ? '' : 'hidden',
+			$img_type === 'png' ? 'galeria_transparent' : '',
+			$img_galeria ? $dir.$img_galeria : ''
 		);
+		$first = false;
 		if(sizeof($galeria) > 1) {
 			echo "<ul class='publicacion__slider-dots pt-1'>";
 			foreach ($galeria as $img_index => $img_galeria) {
@@ -41,7 +56,7 @@
 			echo "</ul>";
 		}							
 		printf(
-			"<p> %s </p>",
+			"<p class='publicacion__leyenda'> %s </p>",
 			sizeof($leyenda) > 0 ? $leyenda[$index]	: ''
 		);	
 		echo "</div>";
@@ -51,10 +66,11 @@
 
 	printf(	
 		"	</div>
-			<div class='col-md-6'>
+			<div class='col-md-%s'>
 				<h3 class='publicacion__sub-titulo' style='color:%s'>%s</h3>
 				<div class='publicacion__column'>%s</div>
 			</div>",
+		12 - $size,
 		$color,
 		$subpag['titulo'],
 		$subpag['html']

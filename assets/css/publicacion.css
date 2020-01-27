@@ -147,6 +147,12 @@
 	margin-bottom: 3rem;
 }
 
+.publicacion__leyenda {
+	text-align: left;
+	font-size: 13px;
+	padding-left: 8px;
+}
+
 
 @media only screen and (max-width: 1196px) {
 	.publicacion__column {

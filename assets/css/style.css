@@ -271,10 +271,37 @@ body {
 	margin: 4px;
 }
 
-.area__imagen,
-.galeria__imagen
- {
+.galeria_transparent {
+	background-color: transparent;
+}
+
+.galeria__iframe iframe {
+	min-height: 360px;
+}
+
+
+
+.galeria__imagen {
 	width: 100%;
+}
+
+.area__imagen {
+	width: 100%;
+	margin-bottom: 10px;
+	max-width: 340px;
+	min-height: 340px;
+    background-position: center 33%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+@media only screen and (min-width: 576px) {
+	.area__imagen { min-height: 240px; }
+}
+
+@media only screen and (min-width: 768px) {
+	.area__imagen { min-height: 320px; 	}
 }
 
 .hidden {

@@ -63,85 +63,93 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 			</div>
 		</div>
 
-		<div class="row">
-
-			<div class="publicacion__container col-md-4">
-				<div class='publicacion__slider' id='slider'>
-				<?php
-					$galeria = [];
-					$leyenda[0] = '';
-					$galeria[0] = $noticia->imagen ? $noticia->imagen : 'img/placeholder.jpg';
-					for ($i=1; $i<=sizeof($galeria_noticias); $i++) {
-						$galeria[$i] = $galeria_noticias[$i-1]['imagen'];
-						$leyenda[$i] = $galeria_noticias[$i-1]['leyenda'];
-					}
-					if (sizeof($galeria_noticias) > 0 && !$noticia->imagen) {
+		<?php
+			$galeria = [];
+			$leyenda[0] = $noticia->leyenda ? $noticia->leyenda : '';
+			$galeria[0] = $noticia->imagen ? $noticia->imagen : 'img/placeholder.jpg';
+			$j = 1;
+			for ($i=0; $i<sizeof($galeria_noticias); $i++) {
+				if ($galeria_noticias[$i]['id_post'] == $noticia->id_post) {
+					$galeria[$j] = $galeria_noticias[$i]['imagen'];
+					$leyenda[$j] =$galeria_noticias[$i]['leyenda'];
+					if (sizeof($galeria_noticias[$i]) > 0 && !$noticia->imagen) {
 						array_shift($galeria);
 						array_shift($leyenda);
 					}
-					foreach ($galeria as $index => $img_galeria) {
-						printf(
-							"<div class='publicacion__slide'>
-								<div
-									class='galeria__imagen galeria-slide'
-									style='background-image: url(\"%s\")'
-								>
-							</div>",
-							 $dir.$img_galeria
-						);
-						printf(
-							"<p> %s </p>",
-							sizeof($leyenda) > 0 
-								? $leyenda[$index]
-								: ''
-						);	
-						echo "</div>";
-					}
-				?>
-				</div>
+					$j++;
+				}
+			}
+		?>
+
+		<div class="row">
+
+			<?php
+			$size = $galeria[0] ? 6 : 4;
+			printf(
+				"<div class='publicacion__container col-md-%s col-xl-%s offset-xl-1' >",
+				$size,
+				$size - 1
+			);
+			?>
+				<div class='galeria__slider galeria__slider_0' id='slider'>
 				<?php
-				if(sizeof($galeria) > 1) {
-					printf("
-						<ul class='publicacion__slider-dots pt-1'>
-							<li class='slider_arrow'>
-								<a href='#' id='izquierda'> < </a>
-							</li>"
+				foreach ($galeria as $index => $img_galeria) {
+					printf(
+						"<div class='galeria__slide galeria__slide_%s'>
+							<input type='hidden' id='galeria_active' value='0' />
+							<div class='galeria__img-container %s'>
+							<img
+								class='galeria__imagen galeria-slide'
+								src='%s'
+							/>
+							</div>",
+						'0',
+						$img_galeria ? '' : 'hidden',
+						$img_galeria ? $dir.$img_galeria : ''
 					);
-						$dots_active=true;
-						foreach ($galeria as $index => $img_galeria) {
-							printf("
+
+					if(sizeof($galeria) > 1) {
+						echo "<ul class='publicacion__slider-dots pt-1'>";
+						foreach ($galeria as $img_index => $img_galeria) {
+							printf("										
 								<li
-									class='slider_dot %s'
-									id='%s'
+									class='slider_dot galeria_dot_%s %s'
+									id='dot_%s'
 								></li>",
-								$dots_active ? 'active' : '',
-								$index
+								'0',
+								$img_index == $index ? 'active' : '',								
+								$img_index										
 							);
 							$dots_active = false;
 						}
-					printf("
-							<li class='slider_arrow'>
-								<a href='#' id='derecha'> > </a>
-							</li>
-						</ul>"
-					);
+						echo "</ul>";
+					}	
+
+					printf(
+						"<p class='publicacion__leyenda'> %s </p>",
+						sizeof($leyenda) > 0 
+							? $leyenda[$index]
+							: ''
+					);	
+					echo "</div>";
 				}
 				?>
-			</div>
-
-			<div class="col-md-8">
-				<div class='publicacion__column'>
-					<h5 class='publicacion__subtitulo'><?php echo $noticia->titulo ?> </h5>
-					<p class='publicacion__fuente  mb-2'>
-						<?php echo $noticia->fuente ?>
-					</p>
-					<p class='publicacion__fuente' style="color: <?php echo $color; ?>">
-						<?php echo strftime('%d de %B de %Y', strtotime($noticia->fecha)) ?>
-					</p>
-					<p class='publicacion__contenido'><?php echo $noticia->contenido ?></p>
-
+					</div>
 				</div>
-			</div>
+
+				<div class="col-md-6">
+					<div class='publicacion__column'>
+						<h5 class='publicacion__subtitulo'><?php echo $noticia->titulo ?> </h5>
+						<p class='publicacion__fuente  mb-2'>
+							<?php echo $noticia->fuente ?>
+						</p>
+						<p class='publicacion__fuente' style="color: <?php echo $color; ?>">
+							<?php echo strftime('%d de %B de %Y', strtotime($noticia->fecha)) ?>
+						</p>
+						<p class='publicacion__contenido'><?php echo $noticia->contenido ?></p>
+
+					</div>
+				</div>
 		</div>	
 	</div>
 	
@@ -149,7 +157,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 		$footer_data['areas'] = $areas;
 		$this->load->view('templates/footer', $footer_data);
 	?>
-	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
+	<script src=<?php  echo $dir."js/subp_slider.js"; ?> ></script>
 </body>
 
 </html>

@@ -64,6 +64,7 @@ function main() {
 	der_btn.addEventListener('click' , function(ev) {
 		moveRight(ev);
 	});
+
 	for(var i=0; i<dots.length; i++) {
 		dots[i].addEventListener('click', function(ev){			
 			moveTo(ev);

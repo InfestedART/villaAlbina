@@ -157,6 +157,13 @@
                      <span class='form-change-img hidden' id='show_preview_btn'>
                         Cancelar
                      </span>
+                     <input                                    
+                        name='img_leyenda'
+                        class='form-control mt-1'
+                        type='text'
+                        value='<?php echo $news["leyenda"]; ?>'
+                        placeholder='Leyenda (opcional)'
+                     />
                   </div>
                </div>
 

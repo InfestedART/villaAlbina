@@ -9,9 +9,10 @@
 
 		<?php		
 		foreach ($subpaginas as $subpag) {
+
 			if ($subpag['mostrar']) {
 				$galeria = [];
-				$galeria[0] = $subpag['imagen'] ? $subpag['imagen'] : 'img/placeholder.jpg';
+				$galeria[0] = $subpag['imagen'];
 				$leyenda[0] = $subpag['leyenda'] ? $subpag['leyenda'] : '';
 				for ($i=0; $i<sizeof($galeria_subpags); $i++) {
 					if ($galeria_subpags[$i]['id_subpagina'] == $subpag['id_subpagina']) {
@@ -42,6 +43,8 @@
 				$subpag_data['galeria'] = $galeria;
 				$subpag_data['leyenda'] = $leyenda;
 
+
+
 				switch ($subpag['id_modelo']) {
 					case '0':
 						$this->load->view('componentes/custom', $subpag_data);
@@ -53,7 +56,11 @@
 					case '4':
 						$subpag_data['form_fields'] = $form_fields;
 						$this->load->view('componentes/formulario', $subpag_data);
-						break;					
+						break;
+					case '5':
+						$subpag_data['form_fields'] = $form_fields;
+						$this->load->view('componentes/direccion', $subpag_data);
+						break;		
 					default:
 						$this->load->view('componentes/custom', $subpag_data);
 						break;

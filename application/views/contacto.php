@@ -2,48 +2,7 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	$dir = base_url().'assets/';
 	setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
-
-	class Field {
-		public $type;
-		public $column;
-		public $label;
-	}
-
-	$input_nombre = new Field();
-	$input_nombre->type = 'input';
-	$input_nombre->column = 1;
-	$input_nombre->label = 'Nombre y Apellido:';
-	$input_nombre->name = 'nombre';
-
-	$input_email = new Field();
-	$input_email->type = 'input';
-	$input_email->column = 1;
-	$input_email->label = 'Email:';
-	$input_email->name = 'email';
-
-	$input_telefono = new Field();
-	$input_telefono->type = 'input';
-	$input_telefono->column = 1;
-	$input_telefono->label = 'Teléfono:';
-	$input_telefono->name = 'telefono';
-
-	$textarea = new Field();
-	$textarea->type = 'textarea';
-	$textarea->column = 2;
-	$textarea->rows = 7;
-	$textarea->label = 'Comentario:';
-	$textarea->name = 'comentario';
-
-	$form_fields = [
-		$input_nombre,
-		$input_email,
-		$input_telefono,
-		$textarea
-	];
-
-	$target='contacto';
 ?>
-
 
 <!DOCTYPE html>
 <head>

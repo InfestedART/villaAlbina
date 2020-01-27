@@ -1,6 +1,17 @@
 <?php
 	$dir = base_url().'assets/';
 ?>
+
+	<?php 
+	if ($alert) {
+		printf("
+			<div class='form__alert'>
+			Mail enviado existosamente
+			</div>"
+		);
+	}	
+	?>
+
 	<div class='row formulario'>
 		<div class='col-12'>
 
@@ -12,7 +23,7 @@
 				);
 
 				echo form_open_multipart(
-                	base_url().'views/componentes/contact_form.php',
+                	'contact_form/'.$target,
                   	array(
                   		'id' => 'form_contacto',
                   		'class' => 'form__container'

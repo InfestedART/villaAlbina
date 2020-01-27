@@ -11,7 +11,7 @@
 		const noticia_imagen = document.getElementById('imagen');
 		const noticia_alert = document.getElementById('noticia_alert');
 		const noticia_btn = document.getElementById('noticia_btn');
-		const hide_img_btn = document.getElementById('hide_img_btn');
+		// const hide_img_btn = document.getElementById('hide_img_btn');
 
     	var picker = new Pikaday({
         	field: noticia_fecha,
@@ -129,11 +129,13 @@
 			});	
 		}
 		
-
+		/*
 		add_img.addEventListener('click', function(ev){
+			console.log('entra');
 			add_img_input(ev);
 		});
 		
+
 		for (var i=0; i<hide_imgs.length; i++) {
 			hide_imgs[i].addEventListener('click', function(ev){
 				delete_img(ev);
@@ -145,6 +147,7 @@
 				restore_img(ev);
 			});				
 		}
+		*/
 		
 	}
 
