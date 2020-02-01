@@ -207,6 +207,7 @@ class Admin_Pagina extends Admin_Controller {
 		$subpagina = $this->input->post('subpagina', TRUE);
 		$enlace = strtolower($this->translate($subpagina));
 		$modelo = $this->input->post('modelo', TRUE);
+		$orientacion = $this->input->post('orientacion', TRUE);
 		$img = $imagen == '' ? '' : 'uploads/subpagina/'.$imagen;
 		$img_leyenda = $this->input->post('img_leyenda', TRUE);
 		$leyenda = $this->input->post('new_leyenda', TRUE);
@@ -229,6 +230,7 @@ class Admin_Pagina extends Admin_Controller {
 			'subpagina' => $subpagina,
 			'id_pagina' => $pagina,
 			'id_modelo' => $modelo,
+			'vertical' => $orientacion == 'vertical' ? 1 : 0,
 			'enlace' => $enlace,
 			'id_content' => $last_id
 		);
@@ -311,6 +313,7 @@ class Admin_Pagina extends Admin_Controller {
 		$pagina = $this->input->post('pagina', TRUE);
 		$subpagina = $this->input->post('subpagina', TRUE);
 		$modelo = $this->input->post('modelo', TRUE);
+		$orientacion = $this->input->post('orientacion', TRUE);
 		$img_leyenda = $this->input->post('img_leyenda', TRUE);
 		$img = $imagen == '' ? '' : 'uploads/subpagina/'.$imagen;
 		$leyenda = $this->input->post('leyenda', TRUE);
@@ -378,6 +381,7 @@ class Admin_Pagina extends Admin_Controller {
 			'subpagina' => $subpagina,
 			'id_pagina' => $pagina,
 			'id_modelo' => $modelo,
+			'vertical' => $orientacion == 'vertical' ? 1 : 0,
 			'id_content' => $last_id
 		);
 		$this->Subpaginas_model->update_subpagina($id, $subpagina_data);

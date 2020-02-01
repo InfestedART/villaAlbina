@@ -5,7 +5,25 @@ function main() {
 	const sliders = document.getElementsByClassName('publicacion__slider');
 	const derechas = document.getElementsByClassName('flecha_derecha');
 	const izquierdas = document.getElementsByClassName('flecha_izquierda');
-	
+	const giant_logo = document.getElementById('giant_logo');
+	let logoFlag = true;
+
+	setTimeout(
+		function() { addClass() },
+		3000
+	);
+
+	function addClass() {
+		if (logoFlag) {
+			giant_logo.classList.add('logo-transparent');
+			setTimeout(
+				function() { giant_logo.classList.add('logo-atras') },
+				2000
+			);	
+			logoFlag = false;
+		}		
+	}
+
 	function moveLeft(targetId) {
 		const id = +targetId.substr(targetId.indexOf('_')+1);
 		const currSlider = document.getElementById('homeSlider_'+id);
@@ -38,6 +56,18 @@ function main() {
 		  	}
 		}		
 	}
+
+	giant_logo.addEventListener('click', function() {
+		if (logoFlag) {
+			addClass();	
+		}		
+	});
+
+	window.addEventListener('scroll', function() {
+		if (logoFlag) {
+			addClass();
+		}		
+	});
 
 	var activeArray = {};
 	var cantSlides = {};

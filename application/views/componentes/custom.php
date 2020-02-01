@@ -5,9 +5,10 @@
 		<?
 		$size = $galeria[0] ? 6 : 4;
 		printf(
-			"<div class='publicacion__container col-md-%s col-xl-%s offset-xl-1' >",
+			"<div class='publicacion__container col-md-%s col-xl-%s %s' >",
 			$size,
-			$size - 1
+			$size - 1,
+			$subpag['vertical'] == '1' ? 'offset-md-3' : 'offset-xl-1'
 		);
 		
 		printf("
@@ -66,13 +67,17 @@
 
 	printf(	
 		"	</div>
-			<div class='col-md-%s'>
+		%s
+			<div class='col-md-%s %s'>
 				<h3 class='publicacion__sub-titulo' style='color:%s'>%s</h3>
-				<div class='publicacion__column'>%s</div>
+				<div class='publicacion__column' %s>%s</div>
 			</div>",
+		$subpag['vertical'] == '1' ? "</div><div class='row'> " : '',
 		12 - $size,
+		$subpag['vertical'] == '1' ? 'offset-md-3' : '',
 		$color,
 		$subpag['titulo'],
+		$subpag['vertical'] == '1' ? 'style="height: auto"' : '',
 		$subpag['html']
 	);
 

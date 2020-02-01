@@ -66,7 +66,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 		<?php
 			$galeria = [];
 			$leyenda[0] = $noticia->leyenda ? $noticia->leyenda : '';
-			$galeria[0] = $noticia->imagen ? $noticia->imagen : 'img/placeholder.jpg';
+			$galeria[0] = $noticia->imagen ? $noticia->imagen : '';
 			$j = 1;
 			for ($i=0; $i<sizeof($galeria_noticias); $i++) {
 				if ($galeria_noticias[$i]['id_post'] == $noticia->id_post) {
@@ -84,7 +84,8 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 		<div class="row">
 
 			<?php
-			$size = $galeria[0] ? 6 : 4;
+			$size = $galeria[0] ? 6 : 1;
+			echo "<p>".$galeria[0]."</p>";
 			printf(
 				"<div class='publicacion__container col-md-%s col-xl-%s offset-xl-1' >",
 				$size,
@@ -137,7 +138,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 					</div>
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-md-<?php echo 11 - $size ?> col-xl-<?php echo 10 - $size; ?>">
 					<div class='publicacion__column'>
 						<h5 class='publicacion__subtitulo'><?php echo $noticia->titulo ?> </h5>
 						<p class='publicacion__fuente  mb-2'>

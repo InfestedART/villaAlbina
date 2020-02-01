@@ -46,30 +46,23 @@
 					</div>
 					<div class='container-libro mb-4 mb-md-0'>
 						<h4 class='libro__subtitulo'>%s</h4>
-						<p class='libro__categoria' 
-						   style='color: %s'>
-						   %s
-						</p>
+						<p class='libro__categoria'>%s </p>
 						%s
 						%s
 						<p>%s</p>
-						%s
 						<p>%s</p>
-						<p 	class='container-libro__precio'
-							style='background-color: %s'
-						>Bs. %s</p>
+						<p>%s</p>
+						<p class='container-libro__precio'>Bs. %s</p>
 					</div>
 				</div>",
 				$dir, $libro['imagen'],
 				$libro['titulo'],
-				$color,
 				$libro['categoria'],
 				$libro['autor'],
 				$libro['editorial'] ? '<p>'.$libro['editorial'].'</p>' : '',
 				$libro['year'] ? '<p>'.$libro['year'].'</p>' : '',
-				$libro['paginas'] ? '<p>'.$libro['paginas'].' páginas</p>' : '',
 				$libro['descripcion'],
-				$color,
+				$libro['paginas'] ? '<p>'.$libro['paginas'].' páginas</p>' : '',
 				$libro['precio']
 			);
 		}

@@ -75,20 +75,22 @@
 	<div class='row no-gutters text-center seccion__last'>
 		<div class='col-12'>
 			<div class='timeline'>
-			<?php
-			foreach ($subpaginas as $index => $subpag) {
-				printf("
-					<a class='timeline__punto %s' href='%s'>
-						<span>%s</span>
-					</a>",
-					$subpag['enlace'] == $active ? 'timeline__active' : '',
-					base_url().$selected_pagina['enlace']."?active=".$subpag['enlace'],
-					$subpag['titulo']
-				);
-				if ($index+1 < sizeof($subpaginas)) {
-					echo "<span class='timeline__linea'></span>";	
-				}						
-			}
+			<?php			
+			if (sizeof($subpaginas) > 1 ) {
+				foreach ($subpaginas as $index => $subpag) {
+					printf("
+						<a class='timeline__punto %s' href='%s'>
+							<span>%s</span>
+						</a>",
+						$subpag['enlace'] == $active ? 'timeline__active' : '',
+						base_url().$selected_pagina['enlace']."?active=".$subpag['enlace'],
+						$subpag['titulo']
+					);
+					if ($index+1 < sizeof($subpaginas)) {
+						echo "<span class='timeline__linea'></span>";	
+					}						
+				}
+			}			
 			?>
 			</div>
 		</div>

@@ -124,7 +124,7 @@ if ( ! function_exists('get_visitas_fields')){
 		$input_tipo_inst->type = 'radio';
 		$input_tipo_inst->column = 1;
 		$input_tipo_inst->label = 'Tipo de Institución:';
-		$input_tipo_inst->name = 'tipo_inst';
+		$input_tipo_inst->name = 'tipo_institucion';
 
 		$input_inst = new Field();
 		$input_inst->type = 'input';

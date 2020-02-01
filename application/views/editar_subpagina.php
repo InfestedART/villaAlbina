@@ -144,6 +144,38 @@
                   </div>
                </div>
 
+               <div id='vertical_container' class='form-group row'>
+                  <label class='form-label col-sm-3'>Orientación:</label>
+                  <div class='col-sm-9'>
+                     <div class='form-check form-check-inline'>
+                        <label class='admin__vertical form-check-label' for='orientacion_horizontal'>
+                           Horizontal  
+                        </label>
+                        <input
+                           id='orientacion_horizontal'
+                           name='orientacion'
+                           class="form-check"
+                           type='radio'
+                           value='horizontal'
+                           <?php echo $edited_subpagina['vertical'] == 0 ? "checked" : ""; ?>
+                        />
+                     </div>
+                     <div class='form-check form-check-inline'>
+                        <label class='admin__vertical form-check-label' for='orientacion_vertical'>
+                           Vertical  
+                        </label>
+                        <input
+                           id='orientacion_vertical'
+                           name='orientacion'
+                           class="form-check"
+                           type='radio'
+                           value='vertical'
+                           <?php echo $edited_subpagina['vertical'] == 1 ? "checked" : ""; ?>
+                        />
+                     </div>
+                  </div>
+               </div>
+
                <div
                   id='imagen_container'
                   class="form-group row <?php echo $edited_subpagina['id_modelo'] == '0' ? '' : 'd-none' ?>"

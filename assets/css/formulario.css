@@ -1,5 +1,5 @@
 .form {
-	background-color: darkred;
+	background-color: #B76B68;
 	color: white;
 	padding: 25px 0 10px;
 	border: 6px solid white;
@@ -46,17 +46,31 @@
 
 .form__btn {
 	cursor: pointer;
-	background-color: darkred;
+	background-color: #A5343D;
 	color: white;
 	border: 0;
 	margin: 12px 5px;
 	padding: 7px 21px;
 }
 
+.form__btn:hover {
+	background-color: #B76B68;
+}
+
 .form__alert {
 	border: 1px solid rgba(50, 200, 100, 0.4);
-	background-color: rgba(75, 250, 150, 0.2);
-	color: rgba(25, 150, 75, 0.85);;
 	margin: 15px 1%;
 	padding: 10px 0;
+}
+
+.form__alert--exito {
+	border-color: rgba(50, 200, 100, 0.4);
+	background-color: rgba(75, 250, 150, 0.2);
+	color: rgba(25, 150, 75, 0.85);
+}
+
+.form__alert--fracaso {
+	border-color: rgba(200, 75, 75, 0.4);
+	background-color: rgba(250, 100, 100, 0.2);
+	color: rgba(150, 35, 35, 0.85);
 }

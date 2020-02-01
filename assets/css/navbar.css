@@ -86,8 +86,8 @@
 }
 
 .nav__item:hover {
-	color: rgb(239, 125, 0);
-	background-color: rgba(180, 180, 180, 0.40);
+	color: #DEC490;
+	// background-color: rgba(180, 180, 180, 0.40);
 	text-decoration: none
 }
 
@@ -123,7 +123,7 @@
 }
 
 .navbar__logo img {
-	height: 55px;
+	height: 70px;
 }
 
 .navbar__selected {

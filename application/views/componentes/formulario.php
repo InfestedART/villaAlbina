@@ -2,15 +2,9 @@
 	$dir = base_url().'assets/';
 ?>
 
-	<?php 
-	if ($alert) {
-		printf("
-			<div class='form__alert'>
-			Mail enviado existosamente
-			</div>"
-		);
-	}	
-	?>
+	<div class='form__alert <?php echo $alert ? "form__alert--exito" : "hidden"; ?>' id='alert'>
+		Mail enviado existosamente
+	</div>
 
 	<div class='row formulario'>
 		<div class='col-12'>
@@ -61,18 +55,18 @@
 								<div class='form__row'>
 									<label class='form__label'>%s</label>
 									<label class='form__label'>
-										<input class='form__radio' name='%s' value='colegio' type=radio />
+										<input class='form__radio' name='%s' id='colegio' value='colegio' type=radio />
 										Colegio
 									</label>
 									<label class='form__label'>
-										<input class='form__radio' name='%s' value='universidad' type=radio />
+										<input class='form__radio' name='%s' id='universidad' value='universidad' type=radio />
 										Universidad
 									</label>
 									<label class='form__label'>
-										<input class='form__radio' name='%s' value='otro' type=radio />
+										<input class='form__radio' name='%s' id='otro' value='otro' type=radio />
 										Otro (especificar)
 									</label>
-									<input class='form__input' name='otro' />
+									<input class='form__input' name='otro_input' id='otro_input' />
 								</div>",
 								$field->label,
 								$field->name,
@@ -130,7 +124,7 @@
 			</div>
 
 			<div class='form__submit'>
-				<input class='form__btn' name='submit' type='submit' value='ENVIAR' />
+				<button class='form__btn' id='submit_btn' type="button">ENVIAR</button>
 			</div>
 
 			<?php echo form_close(); ?>

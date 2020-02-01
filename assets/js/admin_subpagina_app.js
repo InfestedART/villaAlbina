@@ -38,19 +38,23 @@
 			const value = ev.target.value;
 			const imagen_container = document.getElementById('imagen_container');
 			const galeria_container = document.getElementById('galeria_container');
-			const cont_container = document.getElementById('cont_container');	
+			const cont_container = document.getElementById('cont_container');
+			const vertical_container = document.getElementById('vertical_container');
 			if (value == 1){
 				imagen_container.classList.add('d-none');
 				galeria_container.classList.add('d-none');
 				cont_container.classList.remove('d-none');
+				vertical_container.classList.add('d-none');
 			} else if (value == 0 && value.trim() != '') {
 				imagen_container.classList.remove('d-none');
 				galeria_container.classList.remove('d-none');
 				cont_container.classList.remove('d-none');
+				vertical_container.classList.remove('d-none');
 			} else {
 				imagen_container.classList.add('d-none');
 				galeria_container.classList.add('d-none');
 				cont_container.classList.add('d-none');
+				vertical_container.classList.add('d-none');
 			}	
 		}
 

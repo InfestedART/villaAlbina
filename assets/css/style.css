@@ -171,6 +171,30 @@ body {
 	height: 50px;
 }
 
+.giant__logo {
+	top: 0;
+	left: 0;
+	right: 0;
+	position: absolute;	
+	height: 100vh;
+	text-align: center;
+	background-color: #EDE8E5;
+	z-index: 1000;
+	transition: opacity 2.5s;
+}
+
+.giant__logo img {
+	height: 100%;
+}
+
+.logo-transparent {
+	opacity: 0;		
+}
+
+.logo-atras {
+	z-index: 0 !important;
+}
+
 @media only screen and (max-width: 768px) {
 	.main__icono img {
 		height: 60px;
@@ -239,7 +263,7 @@ body {
 
 .seccion__conoce_mas:hover {
 	color: white;
-	background-color: rgb(239, 125, 0) !important;
+	background-color: #B76B68 !important;
 }
 
 .seccion__linea {
@@ -337,12 +361,12 @@ body {
 .slider_dot,
 .galeria_dot  {
    display: inline-block;
-   width: 12px;
-   height: 12px;
-   border: 1px solid #AAA;
-   background-color: #BBB;
+   width: 11px;
+   height: 11px;
+   border: 1px solid #BBB;
+   background-color: #DDD;
    border-radius: 50%;
-   margin: 0 2px;
+   margin: 0 3px;
    cursor: pointer;
   }
 
@@ -350,8 +374,8 @@ body {
 .slider_dot:hover,
 .galeria_dot.active,
 .galeria_dot:hover {
-	border-color: rgb(239, 125, 0);
-    background-color: rgb(239, 125, 0);
+	border-color: #DEC490;
+    background-color: #DEC490;
 }
 
 .slider_arrow {
@@ -367,7 +391,8 @@ body {
 }
 
 .slider_arrow a:hover {
-	color: rgb(239, 125, 0);
+	border-color: #DEC490;
+	color: #DEC490;
 }
 
 .publicacion__slider,
@@ -420,8 +445,8 @@ body {
 	background-size: contain;
 	width: 40%;
 	display: inline-block;
-	//vertical-align: top;
-	//height: 100%;
+	background-color: #777;
+	padding: 6px;	
 }
 
 .portada-libro img {
@@ -440,13 +465,14 @@ body {
 .libro__subtitulo {
 	text-transform: uppercase;
 	font-weight: 900;
-	color: rgb(239, 125, 0);
-	font-size: 17px;
-	font-family: GothamBold;
+	color: #A5343D;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Guardi;
 	margin-bottom: 4px;
 }
 
-.libro__categoria {
+.container-libro p.libro__categoria {
 	font-weight: bold;
 	font-size: 14px;
 	white-space: normal !important;
@@ -469,7 +495,7 @@ body {
 .container-libro .container-libro__precio {
 	display: inline-block;
 	padding: 5px 15px;
-	background-color: rgb(239, 125, 0);
+	background-color: #888;
 	color: white;
 	margin-top: 14px;
 	margin-bottom: 14px;

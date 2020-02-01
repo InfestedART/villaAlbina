@@ -13,7 +13,7 @@ $dir = base_url().'assets/';
 					</span>
 				</div>
 				<div class='footer__mapa'>
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1352.448327657117!2d-68.12873352127164!3d-16.510867908389315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f20629ca5e4eb%3A0x9d278a907c8ede66!2sSim%C3%B3n+I.+Pati%C3%B1o+space!5e0!3m2!1sen!2sbo!4v1559412325871!5m2!1sen!2sbo&language=es" width='100%' height="100%" frameborder="0" style="border:0" allowfullscreen>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9056.747811400686!2d-66.3216556637658!3d-17.368862534558275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30a32a76b4c7b%3A0x732e8511972d2be2!2sVilla%20Albina%20de%20Pati%C3%B1o!5e0!3m2!1sen!2sbo!4v1579964970892!5m2!1sen!2sbo" width='100%' height="100%" frameborder="0" style="border:0" allowfullscreen>
 					</iframe>
 				</div>
 			</div>
@@ -32,12 +32,15 @@ $dir = base_url().'assets/';
 				</div>
 
 				<div class='footer__contacto mb-3'>
-				<a href='mailto:espacio@fundacionpatino.org' target="_top">
+				<a href='mailto:museo.villaalbina@fundacionpatino.org' target="_top">
 					<i class="far fa-envelope" aria-hidden="true"></i>
 					<span>CONTACTO</span>
 				</a>
 				</div>
 
+			</div>
+
+			<div class='footer__address mt=1' id='footer_correos'>
 				<div class='footer__address_row'>
 					<div class="footer__icono-direccion d-inline-block">
 						<img
@@ -46,61 +49,27 @@ $dir = base_url().'assets/';
 						/>
 					</div>
 					<div class="d-inline-block mr-2">
-						<p  class='footer__direccion footer__titulo'>
-							ESPACIO SIMON I PATIÑO
-						</p>
-						<p class='footer__direccion'>
-							Sopocachi, av. Ecuador entre c. Rosendo Gutiérrez y Quito
-						</p>
-						<p class='footer__direccion'>Tel. +591 2 2111717 • Cel. 76737008</p>
-						<p class='footer__direccion'>espacio@fundacionpatino.org</p>
+						<p class='footer__direccion footer__titulo'> Casa Museo Villa Albina </p>
+						<p class='footer__direccion'>Tel. 4010470 – Int. 219</p>
+						<p class='footer__direccion'>museo.villaalbina@fundacionpatino.org</p>
+						<p class='footer__direccion'>Cochabamba - Bolivia</p>
 					</div>
-				</div>
+				</div>	
 			</div>
 
-			<div class='footer__address mt=1' id='footer_correos'>
-				<div class='footer__contacto mb-3'>
-				<a href='convocatorias?buscar=beca' target="_top">
-					<span>INFORMACION SOBRE BECAS</span>
-				</a>
+			<div class='footer__social-media'>				
+				<div
+					class="footer__icono footer__facebook"
+					src="<?php echo $dir.'img/icono_facebook.png'; ?>" 
+				>
+					<a class='footer__link' target="_blank" href='https://www.facebook.com/MuseoVillaAlbina/'></a>
 				</div>
-
-				<p class='footer__titulo mb-2'>CORREOS DE CONTACTO</p>
-				<?php
-					/*
-					foreach ($areas as $area) {
-						printf("
-							<p class='footer__direccion'>
-								<span class='footer__subtitulo'> %s </span>
-								<span> %s </span>
-							</p>",
-							$area['area'],
-							$area['correo']."@fundacionpatino.org"
-						);						
-					}
-					*/
-				?>				
-			</div>
-
-			<div class='footer__social-media'>
-				<a target="_blank" href='https://www.youtube.com/channel/UCZ0QS5r49eMNQUWwHfvfo3w/'>
-					<img
-						class="footer__icono"
-						src="<?php echo $dir.'img/icono_youtube.png'; ?>" 
-					/>
-				</a>
-				<a target="_blank" href='https://twitter.com/espacio_patino'>
-					<img
-						class="footer__icono"
-						src="<?php echo $dir.'img/icono_twitter.png'; ?>" 
-					/>
-				</a>
-				<a target="_blank" href='https://www.facebook.com/EspacioSimonIPatino/'>
-					<img
-						class="footer__icono"
-						src="<?php echo $dir.'img/icono_facebook.png'; ?>" 
-					/>
-				</a>
+				<div
+					class="footer__icono footer__instagram"
+					src="<?php echo $dir.'img/icono_instagram.png'; ?>" 
+				>
+				<a class='footer__link' target="_blank" href='https://twitter.com/espacio_patino'></a>
+				</div>
 			</div>
 
 		</div>

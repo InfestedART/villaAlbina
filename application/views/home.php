@@ -12,6 +12,9 @@ $dir = base_url().'assets/';
 </head>
 
 <body>
+<div class='giant__logo' id='giant_logo'>
+	<img src="<?php echo $dir.'img/giant_logo.png'; ?>" />
+</div>
 <div class='main__wrapper' id='wrapper'>
 
 	<div class='portada slider' id='slider'>

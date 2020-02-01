@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-01-2020 a las 05:24:16
+-- Tiempo de generación: 01-02-2020 a las 20:26:57
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 5.6.30
 
@@ -164,10 +164,10 @@ CREATE TABLE `contenido` (
 INSERT INTO `contenido` (`id_content`, `titulo`, `imagen`, `leyenda`, `html`, `mostrar`) VALUES
 (1, 'Inauguración', 'uploads/subpagina/inauguracion_1.jpg', '', '<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; mso-bidi-font-size: 11.0pt; font-family: \'Times New Roman\',serif;\">El proyecto para convertir Villa Albina en una Casa Museo atiende a las necesidades tur&iacute;sticas de la regi&oacute;n y as&iacute; lo comprendieron los miembros del Consejo Directivo de la Fundaci&oacute;n Sim&oacute;n Pati&ntilde;o, tanto en Ginebra como en Bolivia, que confiaron y dieron su apoyo para regalarle a Cochabamba la belleza de Villa Albina, de la casa y sus jardines que, con tanta devoci&oacute;n, fueron cuidados desde el a&ntilde;o 1964, cuando los herederos de los esposos Pati&ntilde;o donaron la propiedad en favor de la Fundaci&oacute;n Universitaria Sim&oacute;n I. Pati&ntilde;o. <br /></span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; mso-bidi-font-size: 11.0pt; font-family: \'Times New Roman\',serif;\">La Casa Museo Villa Albina se inaugur&oacute; el 10 de mayo de 2019. Cada uno de los espacios fueron cuidadosamente preparados para su exposici&oacute;n, los muebles y enseres personales que dej&oacute; la familia revelan un valor que va m&aacute;s all&aacute; de su materialidad, pues muestran la historia evocada de la vida de Do&ntilde;a Albina y de sus hijos que, tambi&eacute;n con sus propias familias, habitaron la casa. Donde originalmente era el sal&oacute;n de juegos, se ha habilitado una Sala de Exposiciones permanente que ofrece muestras itinerantes dedicadas a la familia Pati&ntilde;o Rodr&iacute;guez. <br /></span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; mso-bidi-font-size: 11.0pt; font-family: \'Times New Roman\',serif;\">El recorrido en su totalidad, es una experiencia inmersiva en la que los visitantes podr&aacute;n disfrutar el lugar donde Do&ntilde;a Albina y sus hijos compartieron momentos de familia y ser testigos de su fascinaci&oacute;n por la naturaleza, as&iacute; como por la belleza de los objetos y muebles que adornan la casa. </span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"text-align: center; line-height: normal; margin: 0in 0in .0001pt 2.95in;\" align=\"center\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; mso-bidi-font-size: 11.0pt; font-family: \'Times New Roman\',serif;\">&ldquo;No son los muros, ni el techo ni el piso que dan car&aacute;cter a la casa, sino los seres que la hacen viva con su conversaci&oacute;n, sus risas y sus amores&hellip;&rdquo; (Ernesto S&aacute;bato)</span></em></p>', 1),
 (2, 'Historia y Arquitectura', 'uploads/subpagina/Captura_de_pantalla.png', '', '<p>Pellentesque dignissim enim sit amet venenatis. Posuere urna nec tincidunt praesent. Dignissim convallis aenean et tortor at risus. Augue ut lectus arcu bibendum at. Ultrices vitae auctor eu augue ut lectus arcu bibendum. Posuere ac ut consequat semper. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Non odio euismod lacinia at quis risus sed. Consequat ac felis donec et odio pellentesque diam volutpat commodo. Facilisi morbi tempus iaculis urna id volutpat lacus laoreet. Nisi lacus sed viverra tellus in hac habitasse platea. Elementum tempus egestas sed sed risus pretium. Diam phasellus vestibulum lorem sed risus ultricies tristique. Convallis tellus id interdum velit. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Sollicitudin tempor id eu nisl nunc. In iaculis nunc sed augue lacus viverra vitae congue.</p>', 1),
-(3, 'Visitas Guiadas', '', NULL, '<p>El recorrido al Museo Villa Albina dura una hora y comprende un tour guiado en espa&ntilde;ol por las habitaciones de la casa, donde tambi&eacute;n se exponen elementos pertenecientes a la familia Pati&ntilde;o-Rodr&iacute;guez. En la planta baja est&aacute;s ubicados los salones de recepci&oacute;n, mientras que en el segundo piso fue construido para las &aacute;reas privadas de la familia, dormitorios y lugares de reposo. El conjunto entero, es decir la casa y los objetos que la habitan, recrean el esp&iacute;titu de quienes vivieron en ella, Do&ntilde;a Albina, sus hijos y sus nietos. Parte importante del recorrido es la visita a la&nbsp; <a href=\"agenda\">Sala de Exposiciones</a> y por supuesto, el paseo por cuenta propia por los jardines de Villa Albina, hasta la hora de cierre.</p>', 1),
+(3, 'Visitas Guiadas', 'uploads/subpagina/IMG_0002.JPG', '', '<p>El recorrido al Museo Villa Albina dura una hora y comprende un tour guiado en espa&ntilde;ol por las habitaciones de la casa, donde tambi&eacute;n se exponen elementos pertenecientes a la familia Pati&ntilde;o-Rodr&iacute;guez. En la planta baja est&aacute;s ubicados los salones de recepci&oacute;n, mientras que en el segundo piso fue construido para las &aacute;reas privadas de la familia, dormitorios y lugares de reposo. El conjunto entero, es decir la casa y los objetos que la habitan, recrean el esp&iacute;titu de quienes vivieron en ella, Do&ntilde;a Albina, sus hijos y sus nietos. Parte importante del recorrido es la visita a la&nbsp; <a href=\"agenda\">Sala de Exposiciones</a> y por supuesto, el paseo por cuenta propia por los jardines de Villa Albina, hasta la hora de cierre.</p>', 1),
 (4, 'El Legado', 'uploads/subpagina/110pat_54-VA(D7)_2716(48x41,5).jpg', '', '<p>En 1931 Don Sim&oacute;n I. Pati&ntilde;o crea la Fundaci&oacute;n Universitaria Sim&oacute;n I. Pati&ntilde;o con el objetivo de favorecer la formaci&oacute;n de profesionales bolivianos. Los herederos de la familia, crean en 1958 la Fundaci&oacute;n Sim&oacute;n I. Pati&ntilde;o con sede en la ciudad de Ginebra, Suiza. Desde 1968 ambas Fundaciones trabajan por el bienestar de la poblaci&oacute;n boliviana a trav&eacute;s de Centros especializados que abordan los aspectos de la salud y nutrici&oacute;n infantil, la seguridad alimentaria, la agroecolog&iacute;a, la educaci&oacute;n, la cultura, la educaci&oacute;n ambiental y la formaci&oacute;n profesional a trav&eacute;s de becas de post grado. <a href=\"https://www.fundacionpatino.org/quienes-somos/\">Quienes Somos</a></p>', 1),
 (5, 'Sesion de Fotografia', 'uploads/subpagina/matriqui_nusta_y_lia.JPG', NULL, '<p>Se permiten sesiones de fotograf&iacute;as y videos en los jardines de Villa Albina de acuerdo a un tarifario.<br />El requisito es formalizar una reserva y realizar el pago anticipado con un m&iacute;nimo de 48 horas de actelaci&oacute;n a la actividad. A trav&eacute;s de nuestros canales de informaci&oacute;n o llenando el formulario de reserva, obtendr&aacute; informaci&oacute;n sobre los precios y la forma de pago.</p>', 1),
-(6, 'Horario de Atencion', 'uploads/subpagina/Llave.png', '', '<p>La oficina de administracion de la Casa Museo Villa Albina est&aacute; abierta de lunes a viernes de Hrs. 07:30 a Hrs. 15:30.</p>', 1),
+(6, 'Horario de Atencion', 'uploads/subpagina/relojparahorarios.png', '', '<p>La oficina de administracion de la Casa Museo Villa Albina est&aacute; abierta de lunes a viernes de Hrs. 07:30 a Hrs. 15:30.</p>', 1),
 (7, 'Sala de Exposiciones', 'uploads/subpagina/110pat_54-VA(D7)_2716(48x41,5).jpg', '', '<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><strong style=\"mso-bidi-font-weight: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">&ldquo;Don Sim&oacute;n y Do&ntilde;a Albina. Horizontes Compartidos&rdquo;</span></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><strong style=\"mso-bidi-font-weight: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">&nbsp;</span></strong><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">La exposici&oacute;n ha sido preparada por las curadoras Michela Pentimalli y Jaqueline Calatayud para la inauguraci&oacute;n de las actividades del nuevo edificio del Espacio Sim&oacute;n I. Pati&ntilde;o de La Paz, en noviembre de 2018.<span style=\"mso-spacerun: yes;\">&nbsp; </span><em style=\"mso-bidi-font-style: normal;\">&ldquo;Don Sim&oacute;n y Do&ntilde;a Albina. Horizontes Compartidos&rdquo;</em> inaugura tambi&eacute;n las actividades de la Casa Museo Villa Albina y est&aacute; vigente desde mayo de 2019 en la Sala de Exposiciones que se visita durante el recorrido por la Casa.</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: center; line-height: normal;\" align=\"center\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">DON SIM&Oacute;N Y DO&Ntilde;A ALBINA</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: center; line-height: normal;\" align=\"center\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">HORIZONTES COMPARTIDOS</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: center; line-height: normal;\" align=\"center\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">La exposici&oacute;n est&aacute; conformada por un conjunto de documentos, fotograf&iacute;as y videos, de valor hist&oacute;rico documental, que muestran facetas distintas de la familia Pati&ntilde;o, m&aacute;s all&aacute; de las actividades empresariales: la sociabilidad cotidiana y el entorno arquitect&oacute;nico y art&iacute;stico; el profundo inter&eacute;s por la formaci&oacute;n profesional de los j&oacute;venes; por la salud, especialmente infantil; por el desarrollo agropecuario de Bolivia. Horizontes compartidos: desaf&iacute;os que exig&iacute;an la respuesta de acciones concretas, como, por ejemplo, la creaci&oacute;n de la Fundaci&oacute;n Universitaria Sim&oacute;n I. Pati&ntilde;o, de la Hacienda Pairumani, o del Hospital Albina R. de Pati&ntilde;o. La exposici&oacute;n resalta particularmente la solidaridad patri&oacute;tica en momentos de crisis, como en la Guerra del Chaco, y destaca actos de devoci&oacute;n y filantrop&iacute;a.</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">&nbsp;Al recorrer la muestra, el visitante se acercar&aacute; as&iacute; a la sensibilidad, al pensamiento y a las acciones, de los esposos Pati&ntilde;o, unidos por un proyecto de vida.</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: right; line-height: normal;\" align=\"right\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">&nbsp; <br /></span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: right; line-height: normal;\" align=\"right\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">Michela Pentimalli</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: right; line-height: normal;\" align=\"right\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">Jaqueline Calatayud</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: right; line-height: normal;\" align=\"right\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">Curadoras de la exposici&oacute;n</span></em></strong></p>\n<p>&nbsp;</p>', 1),
 (8, 'Horario', 'uploads/subpagina/IMG_20190526_104427.jpg', NULL, '<p><span style=\"font-size: 14pt;\"><strong>De martes a viernes:</strong></span><br /><span style=\"font-size: 14pt;\">Hrs. 14:00 - 14:30 - 15:00</span><br /><span style=\"font-size: 14pt;\"><strong>S&aacute;bado</strong></span><br /><span style=\"font-size: 14pt;\">Hrs. 9:30 - 10:00 - 10:30 - 11:00</span><br /><span style=\"font-size: 14pt;\"><strong>Domingo</strong></span><br /><span style=\"font-size: 14pt;\">Hrs. 10:00 - 10:30 - 11:00</span><br /><br /><span style=\"font-size: 14pt;\">CERRADO Lunes y feriados departamentales y nacionales</span></p>', 1),
 (11, 'Entradas', '', NULL, '<p><span style=\"font-size: 14pt;\">La entrada incluye la visita guiada por la casa, el ingreso a la Sala de exposiciones y el paseo por cuenta propua por los jardines de Villa Albina. Est&aacute;n a la venta en boleter&iacute;a 15 minutos antes de la hora de apertura.</span><br /><br /><span style=\"font-size: 14pt;\"><strong>Ingreso</strong> Bs. 10.-</span><br /><span style=\"font-size: 14pt;\"><strong>Menores de 12 a&ntilde;os</strong> Bs. 5.-</span><br /><span style=\"font-size: 14pt;\"><strong>Delegaciones de estudiantes</strong> Bs. 5.-</span></p>', 1),
@@ -328,12 +328,11 @@ CREATE TABLE `galeria_subpagina` (
 --
 
 INSERT INTO `galeria_subpagina` (`id_img`, `imagen`, `leyenda`, `orden`, `id_subpagina`) VALUES
-(0, 'uploads/subpagina/Captura_de_pantalla_2019-12-04.png', '', 2, 1),
-(0, 'uploads/subpagina/IMG_0002.JPG', '', 2, 3),
+(0, 'uploads/subpagina/Captura_de_pantalla_2019-12-04.png', '', 1, 1),
 (2, 'uploads/subpagina/concierto-de-piano-y-violin-a-cargo-de-sachiko-sakuma-piano-y-gabriel-revollo-violin_1297.jpg', '', 1, 1),
 (3, 'uploads/subpagina/FUENTE_2.JPG', '', 1, 2),
 (4, 'uploads/subpagina/DSC00194.JPG', '', 2, 2),
-(5, 'uploads/subpagina/IMG_0009.JPG', '', 2, 3);
+(5, 'uploads/subpagina/IMG_0009.JPG', '', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -409,8 +408,8 @@ CREATE TABLE `libro` (
 
 INSERT INTO `libro` (`id_post`, `id_categoriaLibro`, `autor`, `descripcion`, `precio`, `editorial`, `paginas`, `year`) VALUES
 (350, 4, 'Fundacion Simón I. Patiño', 'Fundacion Simón I. Patiño; Universidad Técnica de Oruro. La Paz: Espacio Simón I. Patiño, 2015 2.ed.', 250, '', 368, 0),
-(2046, 12, '.', '', 40, '', 0, 0),
-(2131, 13, '.', 'Año 10, No.40. Edición noviembre de 2018. Centro Cultural de la Feria del Desempolvado.\r\nFundacion Simón I. Patiño. Oruro - Bolivia', 30, '', 0, 0);
+(2046, 12, '', '', 40, '', 0, 0),
+(2131, 13, '', 'Año 10, No.40. Edición noviembre de 2018. Centro Cultural de la Feria del Desempolvado.\r\nFundacion Simón I. Patiño. Oruro - Bolivia', 30, '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -614,6 +613,7 @@ CREATE TABLE `subpagina` (
   `id_subpagina` int(11) NOT NULL,
   `subpagina` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `vertical` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `id_pagina` int(11) NOT NULL,
   `id_modelo` int(11) DEFAULT NULL,
@@ -624,26 +624,26 @@ CREATE TABLE `subpagina` (
 -- Volcado de datos para la tabla `subpagina`
 --
 
-INSERT INTO `subpagina` (`id_subpagina`, `subpagina`, `enlace`, `status`, `id_pagina`, `id_modelo`, `id_content`) VALUES
-(1, 'Inauguración', 'inauguracion', 1, 3, 0, 1),
-(2, 'Historia y Arquitectura', 'historia_y_arquitectura', 1, 3, 0, 2),
-(3, 'Visitas Guiadas', 'visitas_guiadas', 1, 4, 0, 3),
-(4, 'El Legado', 'el_legado', 1, 5, 0, 4),
-(5, 'Sesion de Fotografia y Video', 'sesion_de_fotografia', 1, 6, 0, 5),
-(6, 'Horario de Atencion', 'horario_de_atencion', 1, 7, 0, 6),
-(7, 'Sala de Exposiciones', 'test_', 1, 1, 0, 7),
-(8, 'Horario', 'horario', 1, 4, 0, 8),
-(9, 'Entradas', 'notra_prueba', 1, 4, 0, 11),
-(10, 'VISITAS GUIADAS PARA GRUPOS O DELEGACIONES', '4ta_prueba_nana', 1, 4, 0, 12),
-(15, 'Doña Albina', 'dona_albina', 1, 3, 0, 13),
-(16, 'Sala de Exposiciones', 'sala_de_exposiciones', 1, 3, 0, 14),
-(17, 'Librería Boutique', 'libreria_boutique', 1, 3, 1, 22),
-(18, 'Recomendaciones', 'recomendaciones', 1, 4, 0, 16),
-(19, 'Formulario de Reserva para Grupos', 'formulario_de_reserva_para_grupos', 1, 4, 4, 23),
-(20, 'Actividades Culturales', 'actividades_culturales', 1, 1, 0, 18),
-(21, 'Formulario de Reserva para sesión de fotografía y video', 'formulario_de_reserva_para_sesion_de_fotografia_y_video', 1, 6, 4, 19),
-(22, 'Dirección', 'direccion', 1, 7, 5, 24),
-(23, 'Formulario de Contacto', 'formulario_de_contacto', 1, 7, 4, 21);
+INSERT INTO `subpagina` (`id_subpagina`, `subpagina`, `enlace`, `vertical`, `status`, `id_pagina`, `id_modelo`, `id_content`) VALUES
+(1, 'Inauguración', 'inauguracion', 0, 1, 3, 0, 1),
+(2, 'Historia y Arquitectura', 'historia_y_arquitectura', 0, 1, 3, 0, 2),
+(3, 'Visitas Guiadas', 'visitas_guiadas', 0, 1, 4, 0, 3),
+(4, 'El Legado', 'el_legado', 0, 1, 5, 0, 4),
+(5, 'Sesion de Fotografia y Video', 'sesion_de_fotografia', 0, 1, 6, 0, 5),
+(6, 'Horario de Atencion', 'horario_de_atencion', 1, 1, 7, 0, 6),
+(7, 'Sala de Exposiciones', 'test_', 0, 1, 1, 0, 7),
+(8, 'Horario', 'horario', 0, 1, 4, 0, 8),
+(9, 'Entradas', 'notra_prueba', 0, 1, 4, 0, 11),
+(10, 'VISITAS GUIADAS PARA GRUPOS O DELEGACIONES', '4ta_prueba_nana', 0, 1, 4, 0, 12),
+(15, 'Doña Albina', 'dona_albina', 0, 1, 3, 0, 13),
+(16, 'Sala de Exposiciones', 'sala_de_exposiciones', 0, 1, 3, 0, 14),
+(17, 'Librería Boutique', 'libreria_boutique', 0, 1, 3, 1, 22),
+(18, 'Recomendaciones', 'recomendaciones', 0, 1, 4, 0, 16),
+(19, 'Formulario de Reserva para Grupos', 'formulario_de_reserva_para_grupos', 0, 1, 4, 4, 23),
+(20, 'Actividades Culturales', 'actividades_culturales', 0, 1, 1, 0, 18),
+(21, 'Formulario de Reserva para sesión de fotografía y video', 'formulario_de_reserva_para_sesion_de_fotografia_y_video', 0, 1, 6, 4, 19),
+(22, 'Dirección', 'direccion', 0, 1, 7, 5, 24),
+(23, 'Formulario de Contacto', 'formulario_de_contacto', 0, 1, 7, 4, 21);
 
 -- --------------------------------------------------------
 
@@ -733,7 +733,7 @@ CREATE TABLE `visitas` (
 --
 
 INSERT INTO `visitas` (`userip`, `timestamp`, `visita`) VALUES
-('::1', '2020-01-27 02:01:49', 22);
+('::1', '2020-02-01 19:57:45', 31);
 
 --
 -- Índices para tablas volcadas

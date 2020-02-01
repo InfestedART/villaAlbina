@@ -52,13 +52,13 @@
 
 .noticia__titulo, .subarea__titulo {
 	font-size: 18px;
-	color: rgb(239, 125, 0);
+	color: #E09F69;
 	text-transform: uppercase;
 	text-align: left;
 }
 
 .subarea__titulo {
-	margin-top: 0.6rem;
+	margin-top: 1rem;
 	text-align: center;
 }
 
@@ -116,25 +116,11 @@
 }
 
 .publicacion__column {
-	height: 450px;
-	overflow: auto; 
-
-	-webkit-column-width: auto; /* Chrome, Safari, Opera */
-	-moz-column-width: auto; /* Firefox */
-	column-width: auto;
-
-	-webkit-column-count: 1;
-	-moz-column-count: 1;
-	column-count: 1;
-
-	-webkit-column-fill: auto;
-	-moz-column-fill: auto;
-	column-fill: auto;
-
-	-webkit-column-gap: 30px;
-	-moz-column-gap: 30px;
-	column-gap: 20px;
-
+	height: 460px;
+	overflow-y: auto; 
+	overflow-x: none;
+	padding-right: 10px;
+	
 	text-align: justify;
 	font-size: 14px;
 }
