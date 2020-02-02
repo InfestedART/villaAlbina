@@ -30,18 +30,6 @@
         <span>Páginas</span>
       </a></li>
 
-      <li><?php
-         $area_active = (
-           strpos($this->uri->segment(1), 'area') > -1
-          ) ? 'sidemenu--active' : '' 
-         ?>
-        <a
-          href='<?php echo $admin_dir."admin_area" ?>'
-          class='<?php echo $area_active; ?>' >
-          <i class="fa fa-table" aria-hidden="true"></i>
-          <span>Áreas</span>
-      </a></li>
-
       <?php 
       foreach ($tipo_posts as $post) {
         $isActive = (

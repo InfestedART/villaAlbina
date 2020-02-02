@@ -186,7 +186,7 @@ class Admin_Pagina extends Admin_Controller {
 					if ($_FILES['img_upload']['error'] != 4) {				
 						$error = $this->upload->display_errors();				
 						$this->session->set_flashdata('error', $error);
-				 		redirect('admin_area');
+				 		redirect('admin_pagina');
 					}
 				}			
 			$galeria_array[$i]='uploads/subpagina/'.str_replace(" ", "_", $_FILES['img_upload']['name']);

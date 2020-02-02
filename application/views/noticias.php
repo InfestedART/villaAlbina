@@ -118,8 +118,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
    <script src=<?php  echo $dir."js/clamp_app.js"; ?> ></script>
 	
 	<?php
-		$footer_data['areas'] = $areas;
-		$this->load->view('templates/footer', $footer_data);
+		$this->load->view('templates/footer');
 	?>
 
 </body>

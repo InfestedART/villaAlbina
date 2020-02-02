@@ -203,50 +203,6 @@ $dir = base_url().'assets/';
 						> Conoce Más...
 						</a>
 						</div>";
-		if($paginas_array[$index]['btn_adicional']) {
-			$units = ['bytes', 'Kb', 'Mb', 'Gb'];
-			if ($paginas_array[$index]['btn_adicional'] == 'descargar_agenda') {
-				$filesize = $agenda['size'];
-				$i=0;
-				while (floor($filesize / 1024) > 1) {
-					$filesize = floor($filesize / 1024);
-					$i++;
-				}
-				printf("			
-					<a 	href='%s'
-						class='seccion__conoce_mas ml-3'	
-						style='background-color: %s'
-						target='_blank'
-					>	%s (%s) </a>",
-					base_url().'assets/'.$agenda['enlace'],
-					$page_color,
-					'Descargar Agenda',
-					$filesize." ".$units[$i]
-				);	
-			}
-			if ($paginas_array[$index]['btn_adicional'] == 'descargar_cartelera') {
-				foreach ($carteleras as $cartelera) {
-					$filesize = $cartelera['size'];
-					$i=0;
-					while (floor($filesize / 1024) > 1) {
-						$filesize = floor($filesize / 1024);
-						$i++;
-					}
-				printf("			
-					<a href='%s'
-						class='seccion__conoce_mas ml-3'	
-						style='background-color: %s'
-						target='_blank'
-					>	%s %s (%s) </a>",
-					base_url().'assets/'.$cartelera['enlace'],
-					$page_color,
-					'Descargar Cartelera',
-					$cartelera['fecha'],
-					$filesize." ".$units[$i]
-				);	
-				}				
-			}
-		}
 		if($paginas_array[$index]['id_modelo'] == 5) {
 			printf(
 				"<a 
@@ -272,8 +228,7 @@ $dir = base_url().'assets/';
 ?>
 
 	<?php
-		$footer_data['areas'] = $areas;
-		$this->load->view('templates/footer', $footer_data);
+		$this->load->view('templates/footer');
 	?>
 	</div>
 

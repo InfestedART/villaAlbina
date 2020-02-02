@@ -79,92 +79,9 @@
                   </div>
                </div>
 
-                <div class='form-group row'>
-                  <label class='form-label col-sm-3'>Area</label>
-                  <div class='col-sm-9'>
-                     <select
-                        id='area'
-                        name='area'
-                        class="form-control
-                        <?php echo $area_alert ? 'alert' : ''; ?>"
-                     > 
-                        <option value='0'> Ninguna Área</option>
-                        <?php
-                        foreach ($areas as $area) {
-                           $is_selected = $area['id_area'] === $portada['id_area']
-                              ? 'selected' : '';
-                           printf("<option value='%s' %s>%s</option>",
-                                 $area['id_area'],
-                                 $is_selected,
-                                 $area['area']
-                           );
-                        }
-                        ?>
-                     </select>
-                  </div>
-
-                  <div class='col-sm-9 offset-3'>
-                     <select
-                        id='area_hidden'
-                        name='area_hidden'
-                        disabled
-                        class="form-control d-none"
-                     > 
-                        <option value='0'> Seleccione una opción</option>
-                        <?php
-                        foreach ($areas as $area) {
-                           $is_selected = $area['id_area'] === $portada['id_area']
-                              ? 'selected' : '';
-                           if($is_selected) {
-                              $color_padre = $area['color_area'];
-                           }                           
-                           printf("<option value='%s' %s>%s</option>",
-                              $area['id_area'],
-                              $is_selected,
-                              $area['color_area']
-                           );
-                        }
-                        ?>
-                     </select>
-                  </div>
-               </div>
-
-               <div class='form-group row'>
-                  <div class='col-sm-9 offset-3'> 
-                     <div class="checkbox">
-                        <?php                           
-                           $checked = $portada['heredar_color'];
-                        ?>
-                        <label>
-                           <input
-                              name='color_switch'
-                              id='color_switch'
-                              type="checkbox"
-                              <?php echo $checked ? 'checked' : '' ?>
-                              <?php echo !$color_padre ? 'disabled' : '' ?>
-                           />
-                           <span
-                              id='color_switch_label'
-                              class="<? echo $checked ? '' : 'form-label--disabled'; ?>"
-                           >
-                              Usar color del Area 
-                           </span>
-
-                           <span
-                              class='color-preview ml-3 <?php
-                                 echo $color_padre ? "" : "hidden"; ?>'
-                              style='background-color: <?php echo $color_padre; ?>'
-                              id ='color_preview'
-                           ></span>
-                        </label>
-                     </div>                    
-                  </div>
-               </div>
-
                <div class='form-group row'>
                   <label
-                     class="form-label col-sm-3 <?php
-                        echo $checked ? 'form-label--disabled' : ''; ?>"
+                     class="form-label col-sm-3"
                      id='color__input_label'
                   > Color del Degradado:
                   </label>
@@ -176,10 +93,6 @@
                            $color = $portada['color'];
                            $helper = 'Color Personalizado';
                         } 
-                        if ($portada['heredar_color'] > 0) {
-                           $color = $color_padre;
-                           $helper = 'Color del Area';
-                        }
                      ?>
                      <input
                         type="text"
@@ -194,7 +107,6 @@
                         class="form-control color_picker-input"
                         type='text'
                         style='background-color: <? echo $color; ?>'
-                        <?php echo $checked ? 'disabled' : ''; ?>
                      /> 
                   </div>
                </div>
