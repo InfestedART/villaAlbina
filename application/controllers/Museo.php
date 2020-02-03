@@ -5,7 +5,6 @@ class Museo extends MY_Controller {
 
 	public function index()	{
 		$this->load->model("Paginas_model");
-		$this->load->model("Areas_model");
 		$this->load->model("Subpaginas_model");
 		$this->load->model("Modelo_model");	
 		$this->load->model("Libro_model");
@@ -18,7 +17,6 @@ class Museo extends MY_Controller {
 		$data['search'] = $search;
 		$data['search_cat'] = '';
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
-		// $data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['museo_data'] = $this->Paginas_model->get_pagina(3)->result_array()[0];
 		$data['subpaginas'] = $this->Subpaginas_model->get_valid_subpaginas(3)->result_array();
 		$limit = $this->Modelo_model->get_limit(1);

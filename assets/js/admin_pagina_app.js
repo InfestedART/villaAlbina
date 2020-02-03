@@ -10,7 +10,7 @@
 		
 		var picker = new CP(document.getElementById('color'));
 
-		var initial_color = 'rgb(239,125,0)';
+		var initial_color = 'rgb(165,52,61)';
 		if (real_color) {
 			if(real_color.indexOf('a') >= 0) {
 				initial_color = real_color.replace('a', '')

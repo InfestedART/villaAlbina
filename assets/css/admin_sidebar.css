@@ -23,7 +23,7 @@
 }
 
 .sidemenu a:hover {  
-  color: orange;
+  color: #DEC490;
   background-color: #3A4146;
 }
 
@@ -58,7 +58,7 @@
 .admin-sidebar {
 	overflow: auto;
 	background-color: #2c3136;
-	font-family: Gotham;
+	font-family: Guardi;
 	color: white;
 	height: 100%;
 	width: 100%;
@@ -93,7 +93,7 @@
 }
 
 .collapse-btn:hover {
-	color: orange;
+	color: #DEC490;
 }
 
 .sidemenu_visitas {

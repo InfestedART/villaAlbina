@@ -84,8 +84,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 		<div class="row">
 
 			<?php
-			$size = $galeria[0] ? 6 : 1;
-			echo "<p>".$galeria[0]."</p>";
+			$size = $galeria[0] ? 6 : 4;
 			printf(
 				"<div class='publicacion__container col-md-%s col-xl-%s offset-xl-1' >",
 				$size,
@@ -138,7 +137,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 					</div>
 				</div>
 
-				<div class="col-md-<?php echo 11 - $size ?> col-xl-<?php echo 10 - $size; ?>">
+				<div class="col-md-<?php echo 12 - $size ?>">
 					<div class='publicacion__column'>
 						<h5 class='publicacion__subtitulo'><?php echo $noticia->titulo ?> </h5>
 						<p class='publicacion__fuente  mb-2'>
@@ -155,8 +154,7 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 	</div>
 	
 	<?php
-		$footer_data['areas'] = $areas;
-		$this->load->view('templates/footer', $footer_data);
+		$this->load->view('templates/footer');
 	?>
 	<script src=<?php  echo $dir."js/subp_slider.js"; ?> ></script>
 </body>

@@ -12,7 +12,7 @@ function main() {
 	const color__input_label = document.getElementById('color__input_label');
 	const real_color = document.getElementById('real_color').value;
 
-	var initial_color = 'rgb(239,125,0)';	
+	var initial_color = 'rgb(222,196,144)';	
 	if (real_color) {
 		if(real_color.indexOf('a') >= 0) {
 			initial_color = real_color.replace('a', '')

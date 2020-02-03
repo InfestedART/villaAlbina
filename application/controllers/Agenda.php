@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Agenda extends MY_Controller {
 	public function index()	{
 		$this->load->model("Paginas_model");
-		$this->load->model("Areas_model");
 		$this->load->model("Subpaginas_model");
 			$this->load->model("Galeria_subpagina_model");
 
@@ -15,7 +14,6 @@ class Agenda extends MY_Controller {
 		$data['search'] = $search;
 		$data['search_cat'] = '';
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
-		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['agenda_data'] = $this->Paginas_model->get_pagina(1)->result_array()[0];
 		$data['subpaginas'] = $this->Subpaginas_model->get_valid_subpaginas(1)->result_array();
 

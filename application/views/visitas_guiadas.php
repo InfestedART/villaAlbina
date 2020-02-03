@@ -25,8 +25,7 @@
 		$subpagina_data['target'] = 'visitas';
 		$this->load->view('templates/subpagina', $subpagina_data);
 
-		$footer_data['areas'] = $areas;
-		$this->load->view('templates/footer', $footer_data);
+		$this->load->view('templates/footer');
 	?>
 	<script src=<?php  echo $dir."js/slider.js"; ?> ></script>
 	<script src=<?php  echo $dir."js/subp_slider.js"; ?> ></script>

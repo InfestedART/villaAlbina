@@ -64,6 +64,21 @@ class Paginas_model extends CI_Model {
       return $query->result_array()[0];    
     }
 
+    function get_pagina_order($id) {
+      $this->db->select('orden');
+      $this->db->from('pagina');
+      $this->db->where('id_pagina', $id);      
+      $this->db->limit(1);
+      $query = $this->db->get(); 
+      return $query->result_array()[0]['orden'];
+    }
+
+    function update_orden($position) {
+      $this->db->set('orden', 'orden - 1', FALSE);
+      $this->db->where('orden >', $position);
+      $this->db->update('pagina'); 
+    }
+
     function get_pagina($id) {
       $this->db->where('id_pagina',$id);
       $result = $this->db->get('pagina', 1);

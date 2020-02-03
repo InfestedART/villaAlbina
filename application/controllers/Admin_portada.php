@@ -18,14 +18,12 @@ class Admin_portada extends Admin_Controller {
 	}
 
 	public function nueva_portada() {
-		$this->load->model("Areas_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Visitas_model");
 		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
-		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 
 		$this->load->view('nueva_portada', $data);		
 	}
@@ -33,7 +31,6 @@ class Admin_portada extends Admin_Controller {
 	public function editar_portada() {
 		$this->load->model("Portada_model");
 		$this->load->model("Defaults_model");
-		$this->load->model("Areas_model");
 		$this->load->model("Tipo_model");
 		$this->load->model("Complemento_model");
 		$this->load->model("Visitas_model");
@@ -43,21 +40,20 @@ class Admin_portada extends Admin_Controller {
 
 		$id = $this->uri->segment(3);
 		$data['imagen_portada'] = $this->Portada_model->get_portada($id);
-		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['default_color'] = $this->Defaults_model->get_value('primary_color');
 		$this->load->view('editar_portada', $data);
 	}
 
 	public function insertar_portada() {
 		$this->load->model("Portada_model");
-		$this->load->model("Areas_model");
+
 
 		$config['upload_path'] = './assets/uploads/portadas/';
-   	$config['allowed_types'] = 'gif|jpg|png|jpeg';
-   	$config['max_size'] = 0;
-   	$config['max_width'] = 0;
-   	$config['max_height'] = 0;
-   	$this->load->library('upload', $config);
+	   	$config['allowed_types'] = 'gif|jpg|png|jpeg';
+	   	$config['max_size'] = 0;
+	   	$config['max_width'] = 0;
+	   	$config['max_height'] = 0;
+	   	$this->load->library('upload', $config);
 		if (!$this->upload->do_upload('portada')) {						
 			if ($_FILES['portada']['error'] != 4) {				
 				$error = $this->upload->display_errors();
@@ -69,21 +65,12 @@ class Admin_portada extends Admin_Controller {
 
 		$portada = str_replace(" ", "_", $_FILES['portada']['name']);
 		$imagen = $portada == '' ? '' : 'portadas/'.$portada;
-		$area = $this->input->post('area', TRUE);
 		$color = $this->input->post('color', TRUE);
-		$color_switch = $this->input->post('color_switch', TRUE);
-		$heredar = $color_switch == 'on' ? 1 : 0;
 		$orden = $this->Portada_model->get_last_portada()['orden'];
-
-		if ($area) {
-			$color = $this->Areas_model->get_area_color($area);
-		}
 
 		$portada_data = array(
 			'imagen' => $imagen,
-			'id_area' => $area,
 			'color' => $color,
-			'heredar_color' => $heredar,
 			'orden' => $orden + 1
 		);
 		$this->Portada_model->insertar_portada($portada_data);
@@ -92,19 +79,10 @@ class Admin_portada extends Admin_Controller {
 
 	public function update_portada() {
 		$this->load->model("Portada_model");
-		$this->load->model("Areas_model");
 		$id = $this->uri->segment(3);
-		$area = $this->input->post('area', TRUE);
 		$color = $this->input->post('color', TRUE);
-		$color_switch = $this->input->post('color_switch', TRUE);
-		$heredar = $color_switch == 'on' ? 1 : 0;
-		if ($area && $color_switch) {
-			$color = $this->Areas_model->get_area_color($area);
-		}
 
 		$portada_data = array(
-			'id_area' => $area,
-			'heredar_color' => $heredar,
 			'color' => $color,
 		);
 		var_dump($portada_data);
