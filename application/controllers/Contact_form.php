@@ -20,8 +20,9 @@ class Contact_form extends MY_Controller {
 
 		echo $msg;
 		$this->email->initialize($config);
-		$this->email->from('your@example.com', 'example');
-		$this->email->to('hitako13@gmail.com');
+		$this->email->from('web.villaalbina@fundacionpatino.org');
+		// $this->email->to('hitako13@gmail.com');
+		$this->email->to('museo.villaalbina@fundacionpatino.org');		
 		$this->email->subject('Formulario de Contacto');
 		$this->email->message($msg);
 		$this->email->send();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-02-2020 a las 20:54:00
+-- Tiempo de generación: 03-02-2020 a las 05:24:02
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 5.6.30
 
@@ -271,6 +271,13 @@ CREATE TABLE `media` (
   `id_tipo_media` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `media`
+--
+
+INSERT INTO `media` (`id_post`, `enlace`, `orden`, `id_tipo_media`) VALUES
+(9, 'https://www.youtube.com/embed/HppOkD89ntQ', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -284,7 +291,7 @@ CREATE TABLE `modelo` (
   `seccion` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `btn_adicional` varchar(300) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `mostrar_subpagina` tinyint(1) NOT NULL DEFAULT '0',
-  `model` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `model` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `metodo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `default_limit` int(11) NOT NULL DEFAULT '6',
   `uses_date` tinyint(1) NOT NULL DEFAULT '0',
@@ -299,8 +306,9 @@ INSERT INTO `modelo` (`id_modelo`, `nombre_modelo`, `seccion`, `btn_adicional`, 
 (1, 'libro', 'seccion_libro', NULL, 1, 'Libro_model', 'get_valid_libros', 4, 0, 2),
 (2, 'noticia', 'seccion_noticia', NULL, 0, 'Noticias_model', 'get_valid_noticias', 12, 0, 1),
 (3, 'subpagina', 'seccion_subarea', NULL, 0, 'Subpaginas_model', 'get_home_subpaginas', 3, 0, 0),
-(4, 'formulario', 'seccion_form', NULL, 1, 'Form_model', 'get_form', 1, 0, 0),
-(5, 'direccion', 'seccion_direccion', NULL, 1, 'Direccion_model', 'get_direccion', 1, 0, 0);
+(4, 'formulario', 'seccion_form', NULL, 0, NULL, 'get_form', 1, 0, 0),
+(5, 'direccion', 'seccion_direccion', NULL, 1, NULL, 'get_direccion', 1, 0, 0),
+(6, 'multimedia', 'seccion_multimedia', NULL, 0, 'Media_model', 'get_valid_media', 3, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -362,7 +370,8 @@ INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `color`, `status`, `orden
 (5, 'Fundación Simon I Patiño', 'fundacion', 'rgb(165,52,61)', 1, 4, 1, 1, 0, 0, 1, '0', 3),
 (6, 'Servicios', 'servicios', 'rgb(165,52,61)', 1, 6, 1, 1, 0, 0, 1, '0', 3),
 (7, 'Contacto', 'contacto', 'rgb(165,52,61)', 1, 7, 1, 1, 0, 0, 1, '0', 3),
-(8, 'Noticias', 'noticias', 'rgb(165,52,61)', 1, 5, 1, 1, 0, 0, 1, '0', 2);
+(8, 'Noticias', 'noticias', 'rgb(165,52,61)', 1, 5, 1, 1, 0, 0, 1, '0', 2),
+(9, 'Multimedia', 'multimedia', 'rgb(165,52,61)', 0, 0, 1, 1, 0, 0, 1, '0', 6);
 
 -- --------------------------------------------------------
 
@@ -392,7 +401,8 @@ INSERT INTO `publicacion` (`id_post`, `titulo`, `imagen`, `leyenda`, `status`, `
 (7, ' Villa Albina, abren el tesoro mejor guardado', 'uploads/noticias/clg_3235.jpg', 'IMPONENTE Villa Albina capta la atención de los visitantes desde que ingresan al lugar. Es una imponente edificación en medio de una exuberante naturaleza. | DANIEL JAMES', 1, 1),
 (2, 'Fotografías para la historia. Simon I. Patiño: Estaño y Vida Cotidiana, 1900 - 1930', 'uploads/libros/libro2.jpg', NULL, 1, 2),
 (5, ' De nuevo la magia', '', '', 1, 1),
-(8, ' Villa Albina, el día a día de los Patiño ', 'uploads/noticias/ubicada-medio-propiedad-rodeada-olivos_LRZIMA20190604_0015_7.jpg', '  Una vista de la casa que está ubicada en el medio de la propiedad, rodeada de olivos.', 1, 1);
+(8, ' Villa Albina, el día a día de los Patiño ', 'uploads/noticias/ubicada-medio-propiedad-rodeada-olivos_LRZIMA20190604_0015_7.jpg', '  Una vista de la casa que está ubicada en el medio de la propiedad, rodeada de olivos.', 1, 1),
+(9, 'VIDEO DE PRUEBA', NULL, NULL, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -519,7 +529,7 @@ CREATE TABLE `visitas` (
 --
 
 INSERT INTO `visitas` (`userip`, `timestamp`, `visita`) VALUES
-('::1', '2020-02-02 19:50:37', 34);
+('::1', '2020-02-03 05:18:13', 35);
 
 --
 -- Índices para tablas volcadas
@@ -683,7 +693,7 @@ ALTER TABLE `imagen_portada`
 -- AUTO_INCREMENT de la tabla `modelo`
 --
 ALTER TABLE `modelo`
-  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `noticia`
 --
@@ -693,12 +703,12 @@ ALTER TABLE `noticia`
 -- AUTO_INCREMENT de la tabla `pagina`
 --
 ALTER TABLE `pagina`
-  MODIFY `id_pagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_pagina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `subpagina`
 --

@@ -35,10 +35,10 @@
       <div class='card admin-content'>
          <div class='row no-gutters'>
             <div class="col-12"> 
-            <a class='nav-btn' href='<?php echo $admin_dir."nueva_pagina"; ?>'>
+            <!-- a class='nav-btn' href='<?php echo $admin_dir."nueva_pagina"; ?>'>
                <i class="fa fa-plus mr-1"></i>
                Nueva Página
-            </a>
+            </a -->
             <a class='nav-btn' href='<?php echo $admin_dir."nueva_subpagina"; ?>'>
                <i class="fa fa-plus mr-1"></i>
                Nueva SubPágina

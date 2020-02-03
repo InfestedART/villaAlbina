@@ -42,11 +42,9 @@
             	<span>Color del degradado por defecto: </span>
 					<span
 						class='color-preview'
-						style='background-color: <?php echo $default_color; ?>'
+						style='background-color: #DEC490'
          		></span>
-            	<span><?php
-            	echo $default_color;
-            	?></span>
+            	<span>rgb(222,196,144)</span>
             </div>
          </div>
       </div>

@@ -28,7 +28,7 @@ class Admin_Pagina extends Admin_Controller {
 		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
-		$data['modelos'] = $this->Modelo_model->get_all_modelos();
+		$data['modelos'] = $this->Modelo_model->get_pagina_modelos();
 		$this->load->view('nueva_pagina', $data);
 	}
 
@@ -42,7 +42,7 @@ class Admin_Pagina extends Admin_Controller {
 		$data['visitas'] = $this->Visitas_model->get_visitas_count()->result_array()[0]['visita'];
 		$data['tipo_posts'] = $this->Tipo_model->get_all_posts()->result_array();
 		$data['complementos'] = $this->Complemento_model->get_all_posts()->result_array();
-		$data['modelos'] = $this->Modelo_model->get_all_modelos();
+		$data['modelos'] = $this->Modelo_model->get_pagina_modelos();
 		$data['default_color'] = $this->Defaults_model->get_value('primary_color');
 		$id = $this->uri->segment(3);
 
@@ -313,6 +313,7 @@ class Admin_Pagina extends Admin_Controller {
 		$pagina = $this->input->post('pagina', TRUE);
 		$subpagina = $this->input->post('subpagina', TRUE);
 		$modelo = $this->input->post('modelo', TRUE);
+		$enlace = strtolower($this->translate($subpagina));
 		$orientacion = $this->input->post('orientacion', TRUE);
 		$img_leyenda = $this->input->post('img_leyenda', TRUE);
 		$img = $imagen == '' ? '' : 'uploads/subpagina/'.$imagen;
@@ -381,6 +382,7 @@ class Admin_Pagina extends Admin_Controller {
 			'subpagina' => $subpagina,
 			'id_pagina' => $pagina,
 			'id_modelo' => $modelo,
+			'enlace' => $enlace,
 			'vertical' => $orientacion == 'vertical' ? 1 : 0,
 			'id_content' => $last_id
 		);
@@ -390,17 +392,23 @@ class Admin_Pagina extends Admin_Controller {
 	}
 
 	public function toggle_pagina() {
-      $this->load->model("Paginas_model");
+      	$this->load->model("Paginas_model");
 		$id = $this->uri->segment(3);
 		$paginas = $this->Paginas_model->get_valid_paginas()->result_array();
+		$position = $this->Paginas_model->get_pagina_order($id);
 		$toggle = $this->input->get('toggle', TRUE);
 
 		$pagina_data = array(
 			'status' => $toggle,
 			'orden' => $toggle ? sizeof($paginas)+1 : 0
 		);
-		
+
 		$this->Paginas_model->update_pagina($id, $pagina_data);
+
+		if ($position < sizeof($paginas) && !$toggle) {
+			$this->Paginas_model->update_orden($position);
+		}
+
 		redirect('admin_pagina');	
 	}
 
