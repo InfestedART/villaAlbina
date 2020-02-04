@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-02-2020 a las 05:24:02
+-- Tiempo de generación: 04-02-2020 a las 01:35:32
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 5.6.30
 
@@ -13,6 +13,80 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `villaalbina`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `agenda`
+--
+
+DROP TABLE IF EXISTS `agenda`;
+CREATE TABLE `agenda` (
+  `id_agenda` int(11) NOT NULL,
+  `enlace` varchar(400) COLLATE utf8_spanish2_ci NOT NULL,
+  `size` int(11) NOT NULL,
+  `fecha` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `archivo_adjunto`
+--
+
+DROP TABLE IF EXISTS `archivo_adjunto`;
+CREATE TABLE `archivo_adjunto` (
+  `id_archivo` int(11) NOT NULL,
+  `archivo` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `size` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
+  `id_post` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `area`
+--
+
+DROP TABLE IF EXISTS `area`;
+CREATE TABLE `area` (
+  `id_area` int(11) NOT NULL,
+  `area` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `correo` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `color_area` varchar(25) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `id_content` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cartelera`
+--
+
+DROP TABLE IF EXISTS `cartelera`;
+CREATE TABLE `cartelera` (
+  `id_cartelera` int(11) NOT NULL,
+  `enlace` varchar(500) COLLATE utf8_spanish2_ci NOT NULL,
+  `size` int(11) NOT NULL,
+  `fecha` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria_equipo`
+--
+
+DROP TABLE IF EXISTS `categoria_equipo`;
+CREATE TABLE `categoria_equipo` (
+  `id_categoria_equipo` int(11) NOT NULL,
+  `categoria` varchar(80) COLLATE utf8_spanish2_ci NOT NULL,
+  `status_categoria` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -88,26 +162,40 @@ CREATE TABLE `contenido` (
 --
 
 INSERT INTO `contenido` (`id_content`, `titulo`, `imagen`, `leyenda`, `html`, `mostrar`) VALUES
-(1, 'Inauguración', 'uploads/subpagina/inauguracion_1.jpg', '', '<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; mso-bidi-font-size: 11.0pt; font-family: \'Times New Roman\',serif;\">El proyecto para convertir Villa Albina en una Casa Museo atiende a las necesidades tur&iacute;sticas de la regi&oacute;n y as&iacute; lo comprendieron los miembros del Consejo Directivo de la Fundaci&oacute;n Sim&oacute;n Pati&ntilde;o, tanto en Ginebra como en Bolivia, que confiaron y dieron su apoyo para regalarle a Cochabamba la belleza de Villa Albina, de la casa y sus jardines que, con tanta devoci&oacute;n, fueron cuidados desde el a&ntilde;o 1964, cuando los herederos de los esposos Pati&ntilde;o donaron la propiedad en favor de la Fundaci&oacute;n Universitaria Sim&oacute;n I. Pati&ntilde;o. <br /></span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; mso-bidi-font-size: 11.0pt; font-family: \'Times New Roman\',serif;\">La Casa Museo Villa Albina se inaugur&oacute; el 10 de mayo de 2019. Cada uno de los espacios fueron cuidadosamente preparados para su exposici&oacute;n, los muebles y enseres personales que dej&oacute; la familia revelan un valor que va m&aacute;s all&aacute; de su materialidad, pues muestran la historia evocada de la vida de Do&ntilde;a Albina y de sus hijos que, tambi&eacute;n con sus propias familias, habitaron la casa. Donde originalmente era el sal&oacute;n de juegos, se ha habilitado una Sala de Exposiciones permanente que ofrece muestras itinerantes dedicadas a la familia Pati&ntilde;o Rodr&iacute;guez. <br /></span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; mso-bidi-font-size: 11.0pt; font-family: \'Times New Roman\',serif;\">El recorrido en su totalidad, es una experiencia inmersiva en la que los visitantes podr&aacute;n disfrutar el lugar donde Do&ntilde;a Albina y sus hijos compartieron momentos de familia y ser testigos de su fascinaci&oacute;n por la naturaleza, as&iacute; como por la belleza de los objetos y muebles que adornan la casa. </span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"text-align: center; line-height: normal; margin: 0in 0in .0001pt 2.95in;\" align=\"center\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; mso-bidi-font-size: 11.0pt; font-family: \'Times New Roman\',serif;\">&ldquo;No son los muros, ni el techo ni el piso que dan car&aacute;cter a la casa, sino los seres que la hacen viva con su conversaci&oacute;n, sus risas y sus amores&hellip;&rdquo; (Ernesto S&aacute;bato)</span></em></p>', 1),
-(2, 'Historia y Arquitectura', 'uploads/subpagina/Captura_de_pantalla.png', '', '<p>Pellentesque dignissim enim sit amet venenatis. Posuere urna nec tincidunt praesent. Dignissim convallis aenean et tortor at risus. Augue ut lectus arcu bibendum at. Ultrices vitae auctor eu augue ut lectus arcu bibendum. Posuere ac ut consequat semper. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Non odio euismod lacinia at quis risus sed. Consequat ac felis donec et odio pellentesque diam volutpat commodo. Facilisi morbi tempus iaculis urna id volutpat lacus laoreet. Nisi lacus sed viverra tellus in hac habitasse platea. Elementum tempus egestas sed sed risus pretium. Diam phasellus vestibulum lorem sed risus ultricies tristique. Convallis tellus id interdum velit. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Sollicitudin tempor id eu nisl nunc. In iaculis nunc sed augue lacus viverra vitae congue.</p>', 1),
-(3, 'Visitas Guiadas', 'uploads/subpagina/IMG_0002.JPG', '', '<p>El recorrido al Museo Villa Albina dura una hora y comprende un tour guiado en espa&ntilde;ol por las habitaciones de la casa, donde tambi&eacute;n se exponen elementos pertenecientes a la familia Pati&ntilde;o-Rodr&iacute;guez. En la planta baja est&aacute;s ubicados los salones de recepci&oacute;n, mientras que en el segundo piso fue construido para las &aacute;reas privadas de la familia, dormitorios y lugares de reposo. El conjunto entero, es decir la casa y los objetos que la habitan, recrean el esp&iacute;titu de quienes vivieron en ella, Do&ntilde;a Albina, sus hijos y sus nietos. Parte importante del recorrido es la visita a la&nbsp; <a href=\"agenda\">Sala de Exposiciones</a> y por supuesto, el paseo por cuenta propia por los jardines de Villa Albina, hasta la hora de cierre.</p>', 1),
+(1, 'Inauguración', 'uploads/subpagina/inauguracion_1.jpg', '', '<p>El proyecto para convertir Villa Albina en una Casa Museo atiende a las necesidades tur&iacute;sticas de la regi&oacute;n y as&iacute; lo comprendieron los miembros del Consejo Directivo de la Fundaci&oacute;n Sim&oacute;n Pati&ntilde;o, tanto en Ginebra como en Bolivia, que confiaron y dieron su apoyo para regalarle a Cochabamba la belleza de Villa Albina, de la casa y sus jardines que, con tanta devoci&oacute;n, fueron cuidados desde el a&ntilde;o 1964, cuando los herederos de los esposos Pati&ntilde;o donaron la propiedad en favor de la Fundaci&oacute;n Universitaria Sim&oacute;n I. Pati&ntilde;o.<br /><br />La Casa Museo Villa Albina se inaugur&oacute; el 10 de mayo de 2019. Cada uno de los espacios fueron cuidadosamente preparados para su exposici&oacute;n, los muebles y enseres personales que dej&oacute; la familia revelan un valor que va m&aacute;s all&aacute; de su materialidad, pues muestran la historia evocada de la vida de Do&ntilde;a Albina y de sus hijos que, tambi&eacute;n con sus propias familias, habitaron la casa. Donde originalmente era el sal&oacute;n de juegos, se ha habilitado una Sala de Exposiciones permanente que ofrece muestras itinerantes dedicadas a la familia Pati&ntilde;o Rodr&iacute;guez.<br /><br />El recorrido en su totalidad, es una experiencia inmersiva en la que los visitantes podr&aacute;n disfrutar el lugar donde Do&ntilde;a Albina y sus hijos compartieron momentos de familia y ser testigos de su fascinaci&oacute;n por la naturaleza, as&iacute; como por la belleza de los objetos y muebles que adornan la casa. <br /><br />&ldquo;No son los muros, ni el techo ni el piso que dan car&aacute;cter a la casa, sino los seres que la hacen viva con su conversaci&oacute;n, sus risas y sus amores&hellip;&rdquo; (Ernesto S&aacute;bato)<br /><br /></p>', 1),
+(2, 'Historia y Arquitectura', 'uploads/subpagina/Captura_de_pantalla.png', '', '<p>Villa Albina, se erige imponente y sobria en medio de la maravillosa campi&ntilde;a cochabambina, a los pies de la cordillera del Tunari; es la casa de campo de los esposos Pati&ntilde;o, Sim&oacute;n y Albina.<br /><br />Sim&oacute;n I. Pati&ntilde;o, amante de su patria y de su familia, fue el m&aacute;s grande industrial sudamericano de su generaci&oacute;n, recibi&oacute; por parte de la prensa internacional el nombre de El Rey del Esta&ntilde;o. A principios del Siglo XX, Don Sim&oacute;n orden&oacute; la elaboraci&oacute;n de los primeros planos para la construcci&oacute;n de Villa Albina y alrededor de esta propiedad, una hacienda agr&iacute;cola y ganadera con un nivel de tecnolog&iacute;a muy elevado, que incluye la construcci&oacute;n del Dique de San Francisco, cuyas aguas del lago artificial permit&iacute;an el riego de los cultivos y la generaci&oacute;n de energ&iacute;a hidroel&eacute;ctrica. La central el&eacute;ctrica, se encuentra edificada en el lugar donde actualmente funciona el Parque Ecotur&iacute;stico de Pairumani.<br /><br />En medio de la Hacienda Pairumani, Villa Albina, con casi cien a&ntilde;os de antig&uuml;edad, mantiene intacta la elegancia con la que fue dise&ntilde;ada por el Arquitecto franc&eacute;s Jos&eacute; Turigas, con algunas modificaciones del Arquitecto boliviano Max Franz y edificada por el constructor franc&eacute;s Francisco Nardin. La arquitectura de la edificaci&oacute;n respeta el estilo mediterr&aacute;neo imperante en la &eacute;poca; se compone de un patio principal y otro secundario llamado tambi&eacute;n de servicio. El ingreso a la casa, por el ala norte, conduce a un patio central cuadrangular, en el que una fuente de agua, hecha en piedra, complementa el conjunto que se caracteriza por su luminosidad y tranquilidad.<br /><br />Sus jardines ocupan cerca de 16 hect&aacute;reas, embellecidos con especies arb&oacute;reas nativas e introducidas, como araucarias y magnolias. Uno de los principales responsables del dise&ntilde;o y cuidado de los jardines fue el subdirector del jard&iacute;n Bot&aacute;nico de Santiago de Chile, Sr. Pereira. Al lado este se puede apreciar un espejo de agua con reminiscencias orientales, que le otorgan un aspecto se&ntilde;orial y rom&aacute;ntico cuyo dise&ntilde;o pertenece al japon&eacute;s, Sr. Tanabe.&nbsp; En el parque fueron colocadas dos esculturas hechas en m&aacute;rmol con motivos neocl&aacute;sicos, obras del escultor franc&eacute;s F. Cavaroc. <br /><br />En el interior de la casa, el dise&ntilde;o mantiene un ambicioso y lujoso estilo decorativo denominado Art Dec&oacute;, muy de moda en el Par&iacute;s de principios de Siglo XX.&nbsp; Los ambientes son acogedores, decorados con pesadas cortinas, alfombras persas, l&aacute;mparas de alabastro o cristal de roca. Los empapelados de las paredes, denominados Vieneses, aportan una sensaci&oacute;n alegre y colorida en cada habitaci&oacute;n.&nbsp; En la planta baja est&aacute;n ubicados varios salones de recepci&oacute;n y salas de juego; el comedor principal y la sala de baile. La planta superior fue construida para las &aacute;reas privadas de la casa, dormitorios, ba&ntilde;os y lugares de reposo. Las habitaciones est&aacute;n equipadas con variedad divanes y biombos adem&aacute;s de objetos personales que se exponen a manera de recrear la vida cotidiana de la familia.<br /><br /></p>', 1),
+(3, 'Visitas Guiadas', 'uploads/subpagina/IMG_0002.JPG', '', '<p>El recorrido al Museo Villa Albina dura una hora y comprende un tour guiado en espa&ntilde;ol por las habitaciones de la casa, donde tambi&eacute;n se exponen elementos pertenecientes a la familia Pati&ntilde;o-Rodr&iacute;guez. En la planta baja est&aacute;s ubicados los salones de recepci&oacute;n, mientras que en el segundo piso fue construido para las &aacute;reas privadas de la familia, dormitorios y lugares de reposo. El conjunto entero, es decir la casa y los objetos que la habitan, recrean el esp&iacute;titu de quienes vivieron en ella, Do&ntilde;a Albina, sus hijos y sus nietos.</p>\r\n<p>Parte importante del recorrido es la visita a la&nbsp; <a href=\"agenda\">Sala de Exposiciones</a> y por supuesto, el paseo por cuenta propia por los jardines de Villa Albina, hasta la hora de cierre.</p>', 1),
 (4, 'El Legado', 'uploads/subpagina/110pat_54-VA(D7)_2716(48x41,5).jpg', '', '<p>En 1931 Don Sim&oacute;n I. Pati&ntilde;o crea la Fundaci&oacute;n Universitaria Sim&oacute;n I. Pati&ntilde;o con el objetivo de favorecer la formaci&oacute;n de profesionales bolivianos. Los herederos de la familia, crean en 1958 la Fundaci&oacute;n Sim&oacute;n I. Pati&ntilde;o con sede en la ciudad de Ginebra, Suiza. Desde 1968 ambas Fundaciones trabajan por el bienestar de la poblaci&oacute;n boliviana a trav&eacute;s de Centros especializados que abordan los aspectos de la salud y nutrici&oacute;n infantil, la seguridad alimentaria, la agroecolog&iacute;a, la educaci&oacute;n, la cultura, la educaci&oacute;n ambiental y la formaci&oacute;n profesional a trav&eacute;s de becas de post grado. <a href=\"https://www.fundacionpatino.org/quienes-somos/\">Quienes Somos</a></p>', 1),
 (5, 'Sesion de Fotografia', 'uploads/subpagina/matriqui_nusta_y_lia.JPG', NULL, '<p>Se permiten sesiones de fotograf&iacute;as y videos en los jardines de Villa Albina de acuerdo a un tarifario.<br />El requisito es formalizar una reserva y realizar el pago anticipado con un m&iacute;nimo de 48 horas de actelaci&oacute;n a la actividad. A trav&eacute;s de nuestros canales de informaci&oacute;n o llenando el formulario de reserva, obtendr&aacute; informaci&oacute;n sobre los precios y la forma de pago.</p>', 1),
 (6, 'Horario de Atencion', 'uploads/subpagina/relojparahorarios.png', '', '<p>La oficina de administracion de la Casa Museo Villa Albina est&aacute; abierta de lunes a viernes de Hrs. 07:30 a Hrs. 15:30.</p>', 1),
 (7, 'Sala de Exposiciones', 'uploads/subpagina/110pat_54-VA(D7)_2716(48x41,5).jpg', '', '<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><strong style=\"mso-bidi-font-weight: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">&ldquo;Don Sim&oacute;n y Do&ntilde;a Albina. Horizontes Compartidos&rdquo;</span></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><strong style=\"mso-bidi-font-weight: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">&nbsp;</span></strong><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">La exposici&oacute;n ha sido preparada por las curadoras Michela Pentimalli y Jaqueline Calatayud para la inauguraci&oacute;n de las actividades del nuevo edificio del Espacio Sim&oacute;n I. Pati&ntilde;o de La Paz, en noviembre de 2018.<span style=\"mso-spacerun: yes;\">&nbsp; </span><em style=\"mso-bidi-font-style: normal;\">&ldquo;Don Sim&oacute;n y Do&ntilde;a Albina. Horizontes Compartidos&rdquo;</em> inaugura tambi&eacute;n las actividades de la Casa Museo Villa Albina y est&aacute; vigente desde mayo de 2019 en la Sala de Exposiciones que se visita durante el recorrido por la Casa.</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: center; line-height: normal;\" align=\"center\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">DON SIM&Oacute;N Y DO&Ntilde;A ALBINA</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: center; line-height: normal;\" align=\"center\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">HORIZONTES COMPARTIDOS</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: center; line-height: normal;\" align=\"center\">&nbsp;</p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">La exposici&oacute;n est&aacute; conformada por un conjunto de documentos, fotograf&iacute;as y videos, de valor hist&oacute;rico documental, que muestran facetas distintas de la familia Pati&ntilde;o, m&aacute;s all&aacute; de las actividades empresariales: la sociabilidad cotidiana y el entorno arquitect&oacute;nico y art&iacute;stico; el profundo inter&eacute;s por la formaci&oacute;n profesional de los j&oacute;venes; por la salud, especialmente infantil; por el desarrollo agropecuario de Bolivia. Horizontes compartidos: desaf&iacute;os que exig&iacute;an la respuesta de acciones concretas, como, por ejemplo, la creaci&oacute;n de la Fundaci&oacute;n Universitaria Sim&oacute;n I. Pati&ntilde;o, de la Hacienda Pairumani, o del Hospital Albina R. de Pati&ntilde;o. La exposici&oacute;n resalta particularmente la solidaridad patri&oacute;tica en momentos de crisis, como en la Guerra del Chaco, y destaca actos de devoci&oacute;n y filantrop&iacute;a.</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">&nbsp;Al recorrer la muestra, el visitante se acercar&aacute; as&iacute; a la sensibilidad, al pensamiento y a las acciones, de los esposos Pati&ntilde;o, unidos por un proyecto de vida.</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: right; line-height: normal;\" align=\"right\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">&nbsp; <br /></span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: right; line-height: normal;\" align=\"right\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">Michela Pentimalli</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: right; line-height: normal;\" align=\"right\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">Jaqueline Calatayud</span></em></strong></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: right; line-height: normal;\" align=\"right\"><strong style=\"mso-bidi-font-weight: normal;\"><em style=\"mso-bidi-font-style: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">Curadoras de la exposici&oacute;n</span></em></strong></p>\n<p>&nbsp;</p>', 1),
 (8, 'Horario', 'uploads/subpagina/IMG_20190526_104427.jpg', NULL, '<p><span style=\"font-size: 14pt;\"><strong>De martes a viernes:</strong></span><br /><span style=\"font-size: 14pt;\">Hrs. 14:00 - 14:30 - 15:00</span><br /><span style=\"font-size: 14pt;\"><strong>S&aacute;bado</strong></span><br /><span style=\"font-size: 14pt;\">Hrs. 9:30 - 10:00 - 10:30 - 11:00</span><br /><span style=\"font-size: 14pt;\"><strong>Domingo</strong></span><br /><span style=\"font-size: 14pt;\">Hrs. 10:00 - 10:30 - 11:00</span><br /><br /><span style=\"font-size: 14pt;\">CERRADO Lunes y feriados departamentales y nacionales</span></p>', 1),
 (9, 'Entradas', '', NULL, '<p><span style=\"font-size: 14pt;\">La entrada incluye la visita guiada por la casa, el ingreso a la Sala de exposiciones y el paseo por cuenta propua por los jardines de Villa Albina. Est&aacute;n a la venta en boleter&iacute;a 15 minutos antes de la hora de apertura.</span><br /><br /><span style=\"font-size: 14pt;\"><strong>Ingreso</strong> Bs. 10.-</span><br /><span style=\"font-size: 14pt;\"><strong>Menores de 12 a&ntilde;os</strong> Bs. 5.-</span><br /><span style=\"font-size: 14pt;\"><strong>Delegaciones de estudiantes</strong> Bs. 5.-</span></p>', 1),
-(10, 'VISITAS GUIADAS PARA GRUPOS O DELEGACIONES', 'uploads/subpagina/visitas.jpg', '', '<p>Nuestro deseo es atender a las delegaciones de acuerdo a sus requerimientos a fin de brindarles comodidad. Agrupaciones, Unidades Educativas y Universidades, acompa&ntilde;ados por sus respectivos profesores, podr&aacute;n visitar la Casa Museo Villa Albina con el &uacute;nico requisito de formalizar una reserva con un m&iacute;nimo de 48 horas de antelaci&oacute;n, llenando el formulario de reserva en esta pagina o a trav&eacute;s de cualquiera de nuestros canales de informaci&oacute;n.</p>', 1),
-(11, 'Doña Albina', 'uploads/subpagina/113pat_62-VA(D7)_2691(13,5x19,5).jpg', 'Albina Rodríguez de Patiño <br>  Positivo sobre papel fotográfico <br> Fotografía: J. Johannessen', '<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">Albina Rodr&iacute;guez Ocampo naci&oacute; en Oruro en el a&ntilde;o 1873, en el seno de una respetada familia de aquella ciudad. En 1889 se casa con Sim&oacute;n I. Pati&ntilde;o quien ser&iacute;a su gran compa&ntilde;ero de vida. Juntos fueron padres de Ren&eacute;, Antenor, Graziella, Elena y Luz Mila Pati&ntilde;o Rodr&iacute;guez.</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">&nbsp;</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">Do&ntilde;a Albina acompa&ntilde;&oacute; la escalada hacia el &eacute;xito empresarial de Don Sim&oacute;n, camino que estuvo lleno de dificultades y que las enfrentar&iacute;an juntos. C.F. Geddes en <em style=\"mso-bidi-font-style: normal;\">&ldquo;Pati&ntilde;o Rey del Esta&ntilde;o&rdquo;</em>, relata en uno de los pasajes m&aacute;s conmovedores de la historia de la familia que, dejando la comodidad de su casa en Oruro, en 1899 Albina se traslada a Unc&iacute;a para vivir con su esposo, acompa&ntilde;&aacute;ndolo en el d&iacute;a a d&iacute;a de las minas. Fue fundamental su apoyo cuando en momentos de crisis, para poder mantener la explotaci&oacute;n de la mina, Do&ntilde;a Albina vendi&oacute; sus pocas joyas, los muebles de la casa y algunos objetos caseros en Oruro para pagar salarios atrasados y otros gastos que demandaba el mantenimiento del peque&ntilde;o campamento de La Salvadora. <em style=\"mso-bidi-font-style: normal;\">&ldquo;Pati&ntilde;o qued&oacute; hondamente conmovido por esa heroica resoluci&oacute;n de &ldquo;quemar las naves&rdquo;, demostrativa de la absoluta confianza de su esposa y de que las palabras de la ceremonia nupcial, &ldquo;para bien o para mal&rdquo;, no eran vanas. De all&iacute; en adelante, tendr&iacute;an que hundirse o salir a flote juntos.&rdquo;</em></span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">&nbsp;</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">Do&ntilde;a Albina y sus cinco hijos, a&uacute;n muy peque&ntilde;os, llegaron a Unc&iacute;a a habitar una peque&ntilde;a casita de piedra situada a unos 200 metros de la mina La Salvadora. <em style=\"mso-bidi-font-style: normal;\">&ldquo;Todo cambi&oacute; desde el arribo de Do&ntilde;a Albina. La terrible soledad hab&iacute;a llegado a su fin. Ella llev&oacute; un nuevo esp&iacute;ritu al campamento; no tard&oacute; en ganarse el respeto de los trabajadores mineros y, cuando su esposo ten&iacute;a que ausentarse, ella era el capataz indiscutido que pod&iacute;a adoptar las decisiones necesarias. Todo aquello debi&oacute; de haber significado un tremendo cambio para la joven. A&ntilde;os m&aacute;s tarde, al hablar de su vida en el peque&ntilde;o campamento, Do&ntilde;a Albina jam&aacute;s mencionaba las dificultades y privaciones.&rdquo; </em>Relata Geddes.</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">&nbsp;</span></p>\n<p style=\"margin: 0in; margin-bottom: .0001pt; text-align: justify;\"><span lang=\"ES\" style=\"font-size: 11.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial; color: black;\">J&oacute;venes a&uacute;n, los esposos Pati&ntilde;o y sus hijos realizaron un viaje de vacaciones a Cochabamba y fueron invitados a pasar un d&iacute;a de campo en Vinto, bajo un huerto de a&ntilde;osos olivos. Don Sim&oacute;n, al ver que su esposa estaba encantada con el clima y el paisaje de Pairumani, le ofrece construirle, alg&uacute;n d&iacute;a, una casa de campo en la zona. Una promesa de amor y de profundo agradecimiento que se har&iacute;a realidad en 1917 con el inicio de los trabajos de construcci&oacute;n de la Hacienda Pairumani y de Villa Albina, la edificaci&oacute;n central de la propiedad.</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial; mso-ansi-language: ES;\">&nbsp;</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">Cuando el &eacute;xito de la Mina La Salvadora transform&oacute; la vida de los Pati&ntilde;o y trajo a su vez desarrollo tecnol&oacute;gico y de infraestructura a los centros mineros, Don Sim&oacute;n hizo construir un hospital en Catavi y otro en Unc&iacute;a que llevaron el nombre de Do&ntilde;a Albina, en homenaje a su constante preocupaci&oacute;n por la salud de los ni&ntilde;os. Tambi&eacute;n en 1912 los esposos financiaron la construcci&oacute;n del pabell&oacute;n infantil del Hospital Viedma en Cochabamba y en 1964, luego de la muerte de Don Sim&oacute;n y Do&ntilde;a Albina, la Fundaci&oacute;n Pati&ntilde;o contin&uacute;o con la labor filantr&oacute;pica de los esposos financiando la construcci&oacute;n del Hospital Infantil Albina Rodr&iacute;guez de Pati&ntilde;o. </span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">&nbsp;</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial;\">Albina Pati&ntilde;o fue adem&aacute;s una mujer devota y muestra de ello es el impulso que le dio a varios proyectos que aportaron a la Iglesia Cat&oacute;lica, por ejemplo la construcci&oacute;n de templos en los Centros Mineros y donaciones entre las que destacan el &oacute;rgano de la Catedral Potosina, la torre de la Catedral de Oruro y el Santo Sepulcro donado a la Iglesia de la Compa&ntilde;&iacute;a de Jes&uacute;s, en Cochabamba. <span style=\"color: black;\">En 1950 fue distinguida por el gobierno boliviano con la condecoraci&oacute;n del C&oacute;ndor de los Andes por sus actos en beneficio de la Patria y sus donaciones en favor de la cultura nacional. </span></span></p>\n<p style=\"margin: 0in; margin-bottom: .0001pt; text-align: justify;\"><span lang=\"ES\" style=\"font-size: 11.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial; color: black;\">&nbsp;</span></p>\n<p style=\"margin: 0in; margin-bottom: .0001pt; text-align: justify;\"><span lang=\"ES\" style=\"font-size: 11.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial; color: black;\">Luego de la muerte de Don Sim&oacute;n en 1947, Do&ntilde;a Albina vivi&oacute; en Cochabamba, en la casa que su esposo hab&iacute;a construido para ella en las faldas del Tunari, en Pairumani. <strong style=\"mso-bidi-font-weight: normal;\">Villa Albina</strong> es el testimonio de aquella promesa de amor hecha a&ntilde;os atr&aacute;s, es el abrazo de Don Sim&oacute;n a su Albina, cobij&aacute;ndola hasta su retorno a Europa y su deceso en Par&iacute;s en el a&ntilde;o1953. </span></p>\n<p style=\"margin: 0in; margin-bottom: .0001pt; text-align: justify;\"><span lang=\"ES\" style=\"font-size: 11.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial; color: black;\">&nbsp;</span></p>\n<p style=\"margin: 0in; margin-bottom: .0001pt; text-align: justify;\"><span lang=\"ES\" style=\"font-size: 11.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: Arial; color: black;\">Los restos de Don Sim&oacute;n y Do&ntilde;a Albina reposan en el Mausoleo familiar ubicado tambi&eacute;n en Pairumani. </span></p>', 1);
+(10, 'VISITAS GUIADAS PARA GRUPOS O DELEGACIONES', 'uploads/subpagina/visitas.jpg', '', '<p>Nuestro deseo es atender a las delegaciones de acuerdo a sus requerimientos a fin de brindarles comodidad. Agrupaciones, Unidades Educativas y Universidades, acompa&ntilde;ados por sus respectivos profesores, podr&aacute;n visitar la Casa Museo Villa Albina con el &uacute;nico requisito de formalizar una reserva con un m&iacute;nimo de 48 horas de antelaci&oacute;n, llenando el <a href=\"visitas_guiadas?active=formulario_de_reserva_para_grupos\">formulario de reserva</a> en esta pagina o a trav&eacute;s de cualquiera de nuestros canales de informaci&oacute;n.</p>', 1),
+(11, 'Doña Albina', 'uploads/subpagina/113pat_62-VA(D7)_2691(13,5x19,5).jpg', 'Albina Rodríguez de Patiño <br>  Positivo sobre papel fotográfico <br> Fotografía: J. Johannessen', '<p>Albina Rodr&iacute;guez Ocampo naci&oacute; en Oruro en el a&ntilde;o 1873, en el seno de una respetada familia de aquella ciudad. En 1889 se casa con Sim&oacute;n I. Pati&ntilde;o quien ser&iacute;a su gran compa&ntilde;ero de vida. Juntos fueron padres de Ren&eacute;, Antenor, Graziella, Elena y Luz Mila Pati&ntilde;o Rodr&iacute;guez.<br /><br />Do&ntilde;a Albina acompa&ntilde;&oacute; la escalada hacia el &eacute;xito empresarial de Don Sim&oacute;n, camino que estuvo lleno de dificultades y que las enfrentar&iacute;an juntos. C.F. Geddes en &ldquo;<em>Pati&ntilde;o Rey del Esta&ntilde;o</em>&rdquo;, relata en uno de los pasajes m&aacute;s conmovedores de la historia de la familia que, dejando la comodidad de su casa en Oruro, en 1899 Albina se traslada a Unc&iacute;a para vivir con su esposo, acompa&ntilde;&aacute;ndolo en el d&iacute;a a d&iacute;a de las minas. Fue fundamental su apoyo cuando en momentos de crisis, para poder mantener la explotaci&oacute;n de la mina, Do&ntilde;a Albina vendi&oacute; sus pocas joyas, los muebles de la casa y algunos objetos caseros en Oruro, para pagar salarios atrasados y otros gastos que demandaba el mantenimiento del peque&ntilde;o campamento de La Salvadora. &ldquo;<em>Pati&ntilde;o qued&oacute; hondamente conmovido por esa heroica resoluci&oacute;n de &ldquo;quemar las naves&rdquo;, demostrativa de la absoluta confianza de su esposa y de que las palabras de la ceremonia nupcial, &ldquo;para bien o para mal&rdquo;, no eran vanas. De all&iacute; en adelante, tendr&iacute;an que hundirse o salir a flote juntos</em>&rdquo;. En muestra de su agradecimiento, Don Sim&oacute;n le ofreci&oacute; construirle un palacio alg&uacute;n d&iacute;a.<br /><br />Do&ntilde;a Albina y sus cinco hijos, a&uacute;n muy peque&ntilde;os, llegaron a Unc&iacute;a a habitar una peque&ntilde;a casita de piedra situada a unos 200 metros de la mina La Salvadora. &ldquo;<em>Todo cambi&oacute; desde el arribo de Do&ntilde;a Albina. La terrible soledad hab&iacute;a llegado a su fin. Ella llev&oacute; un nuevo esp&iacute;ritu al campamento; no tard&oacute; en ganarse el respeto de los trabajadores mineros y cuando su esposo ten&iacute;a que ausentarse, ella era el capataz indiscutido que pod&iacute;a adoptar las decisiones necesarias. Todo aquello debi&oacute; de haber significado un tremendo cambio para la joven. A&ntilde;os m&aacute;s tarde, al hablar de su vida en el peque&ntilde;o campamento, Do&ntilde;a Albina jam&aacute;s mencionaba las dificultades y privaciones.</em>&rdquo; Relata Geddes.<br /><br />J&oacute;venes a&uacute;n, los esposos Pati&ntilde;o y sus hijos realizaron un viaje de vacaciones a Cochabamba y fueron invitados a pasar un d&iacute;a de campo en Vinto, bajo un huerto de a&ntilde;osos olivos. Don Sim&oacute;n, al ver que su esposa estaba encantada con el clima y el paisaje de Pairumani, le ofrece construirle, alg&uacute;n d&iacute;a, una casa de campo en la zona. Una promesa de amor y de profundo agradecimiento que se har&iacute;a realidad en 1917 con el inicio de los trabajos de construcci&oacute;n de la Hacienda Pairumani y de Villa Albina, la edificaci&oacute;n central de la propiedad.<br /><br />Cuando el &eacute;xito de la Mina La Salvadora transform&oacute; la vida de los Pati&ntilde;o y trajo a su vez desarrollo tecnol&oacute;gico y de infraestructura a los centros mineros, Don Sim&oacute;n hizo construir un hospital en Catavi y otro en Unc&iacute;a que llevaron el nombre de Do&ntilde;a Albina, en homenaje a su constante preocupaci&oacute;n por la salud de los ni&ntilde;os. Tambi&eacute;n en 1912 los esposos financiaron la construcci&oacute;n del pabell&oacute;n infantil del Hospital Viedma en Cochabamba y en 1964, luego de la muerte de Don Sim&oacute;n y Do&ntilde;a Albina, la Fundaci&oacute;n Pati&ntilde;o contin&uacute;o con la labor filantr&oacute;pica de los esposos financiando la construcci&oacute;n del Hospital Infantil Albina Rodr&iacute;guez de Pati&ntilde;o. <br /><br />Albina Pati&ntilde;o fue adem&aacute;s una mujer devota y muestra de ello es el impulso que le dio a varios proyectos que aportaron a la Iglesia Cat&oacute;lica, por ejemplo la construcci&oacute;n de templos en los Centros Mineros y donaciones entre las que destacan el &oacute;rgano de la Catedral Potosina, la torre de la Catedral de Oruro y el Santo Sepulcro donado a la Iglesia de la Compa&ntilde;&iacute;a de Jes&uacute;s, en Cochabamba. En 1950 fue distinguida por el gobierno boliviano con la condecoraci&oacute;n del C&oacute;ndor de los Andes por sus actos en beneficio de la Patria y sus donaciones en favor de la cultura nacional. <br /><br />Luego de la muerte de Don Sim&oacute;n en 1947, Do&ntilde;a Albina vivi&oacute; en Cochabamba, en la casa que su esposo hab&iacute;a construido para ella en las faldas del Tunari, en Pairumani. <strong>Villa Albina</strong> es el testimonio de aquella promesa de amor hecha a&ntilde;os atr&aacute;s, es el abrazo de Don Sim&oacute;n a su Albina, cobij&aacute;ndola hasta su retorno a Europa y su deceso en Par&iacute;s en el a&ntilde;o 1953. <br /><br />Los restos de Don Sim&oacute;n y Do&ntilde;a Albina reposan en el Mausoleo familiar ubicado tambi&eacute;n en Pairumani. <br /><br /></p>', 1);
 INSERT INTO `contenido` (`id_content`, `titulo`, `imagen`, `leyenda`, `html`, `mostrar`) VALUES
 (12, 'Sala de Exposiciones', 'uploads/subpagina/DSCN0026.JPG', '', '<p><!-- [if gte mso 9]><xml>\r\n <o:OfficeDocumentSettings>\r\n  <o:RelyOnVML/>\r\n  <o:AllowPNG/>\r\n </o:OfficeDocumentSettings>\r\n</xml><![endif]--><!-- [if gte mso 9]><xml>\r\n <w:WordDocument>\r\n  <w:View>Normal</w:View>\r\n  <w:Zoom>0</w:Zoom>\r\n  <w:TrackMoves/>\r\n  <w:TrackFormatting/>\r\n  <w:PunctuationKerning/>\r\n  <w:ValidateAgainstSchemas/>\r\n  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>\r\n  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>\r\n  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>\r\n  <w:DoNotPromoteQF/>\r\n  <w:LidThemeOther>ES-BO</w:LidThemeOther>\r\n  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>\r\n  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>\r\n  <w:Compatibility>\r\n   <w:BreakWrappedTables/>\r\n   <w:SnapToGridInCell/>\r\n   <w:WrapTextWithPunct/>\r\n   <w:UseAsianBreakRules/>\r\n   <w:DontGrowAutofit/>\r\n   <w:SplitPgBreakAndParaMark/>\r\n   <w:EnableOpenTypeKerning/>\r\n   <w:DontFlipMirrorIndents/>\r\n   <w:OverrideTableStyleHps/>\r\n  </w:Compatibility>\r\n  <m:mathPr>\r\n   <m:mathFont m:val=\"Cambria Math\"/>\r\n   <m:brkBin m:val=\"before\"/>\r\n   <m:brkBinSub m:val=\"--\"/>\r\n   <m:smallFrac m:val=\"off\"/>\r\n   <m:dispDef/>\r\n   <m:lMargin m:val=\"0\"/>\r\n   <m:rMargin m:val=\"0\"/>\r\n   <m:defJc m:val=\"centerGroup\"/>\r\n   <m:wrapIndent m:val=\"1440\"/>\r\n   <m:intLim m:val=\"subSup\"/>\r\n   <m:naryLim m:val=\"undOvr\"/>\r\n  </m:mathPr></w:WordDocument>\r\n</xml><![endif]--><!-- [if gte mso 9]><xml>\r\n <w:LatentStyles DefLockedState=\"false\" DefUnhideWhenUsed=\"false\"\r\n  DefSemiHidden=\"false\" DefQFormat=\"false\" DefPriority=\"99\"\r\n  LatentStyleCount=\"371\">\r\n  <w:LsdException Locked=\"false\" Priority=\"0\" QFormat=\"true\" Name=\"Normal\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 7\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 8\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 9\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 5\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 6\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 7\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 8\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 9\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 7\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 8\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 9\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Normal Indent\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"footnote text\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"annotation text\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"header\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"footer\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index heading\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"35\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"caption\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"table of figures\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"envelope address\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"envelope return\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"footnote reference\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"annotation reference\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"line number\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"page number\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"endnote reference\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"endnote text\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"table of authorities\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"macro\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"toa heading\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List 5\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet 5\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"10\" QFormat=\"true\" Name=\"Title\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Closing\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Signature\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"1\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"Default Paragraph Font\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text Indent\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue 5\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Message Header\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"11\" QFormat=\"true\" Name=\"Subtitle\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Salutation\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Date\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text First Indent\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text First Indent 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Note Heading\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text Indent 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text Indent 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Block Text\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Hyperlink\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"FollowedHyperlink\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"22\" QFormat=\"true\" Name=\"Strong\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"20\" QFormat=\"true\" Name=\"Emphasis\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Document Map\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Plain Text\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"E-mail Signature\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Top of Form\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Bottom of Form\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Normal (Web)\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Acronym\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Address\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Cite\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Code\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Definition\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Keyboard\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Preformatted\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Sample\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Typewriter\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Variable\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Normal Table\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"annotation subject\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"No List\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Outline List 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Outline List 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Outline List 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Simple 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Simple 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Simple 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Classic 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Classic 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Classic 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Classic 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Colorful 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Colorful 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Colorful 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 5\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 5\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 6\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 7\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 8\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 4\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 5\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 6\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 7\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 8\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table 3D effects 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table 3D effects 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table 3D effects 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Contemporary\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Elegant\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Professional\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Subtle 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Subtle 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Web 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Web 2\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Web 3\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Balloon Text\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"Table Grid\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Theme\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" Name=\"Placeholder Text\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"1\" QFormat=\"true\" Name=\"No Spacing\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" Name=\"Revision\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"34\" QFormat=\"true\"\r\n   Name=\"List Paragraph\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"29\" QFormat=\"true\" Name=\"Quote\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"30\" QFormat=\"true\"\r\n   Name=\"Intense Quote\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"19\" QFormat=\"true\"\r\n   Name=\"Subtle Emphasis\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"21\" QFormat=\"true\"\r\n   Name=\"Intense Emphasis\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"31\" QFormat=\"true\"\r\n   Name=\"Subtle Reference\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"32\" QFormat=\"true\"\r\n   Name=\"Intense Reference\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"33\" QFormat=\"true\" Name=\"Book Title\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"37\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"Bibliography\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"TOC Heading\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"41\" Name=\"Plain Table 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"42\" Name=\"Plain Table 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"43\" Name=\"Plain Table 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"44\" Name=\"Plain Table 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"45\" Name=\"Plain Table 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"40\" Name=\"Grid Table Light\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\" Name=\"Grid Table 1 Light\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\" Name=\"Grid Table 6 Colorful\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\" Name=\"Grid Table 7 Colorful\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\" Name=\"List Table 1 Light\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\" Name=\"List Table 6 Colorful\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\" Name=\"List Table 7 Colorful\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 6\"/>\r\n </w:LatentStyles>\r\n</xml><![endif]--><!-- [if gte mso 10]>\r\n<style>\r\n /* Style Definitions */\r\n table.MsoNormalTable\r\n {mso-style-name:\"Table Normal\";\r\n mso-tstyle-rowband-size:0;\r\n  mso-tstyle-colband-size:0;\r\n  mso-style-noshow:yes;\r\n mso-style-priority:99;\r\n  mso-style-parent:\"\";\r\n  mso-padding-alt:0in 5.4pt 0in 5.4pt;\r\n  mso-para-margin-top:0in;\r\n  mso-para-margin-right:0in;\r\n  mso-para-margin-bottom:10.0pt;\r\n  mso-para-margin-left:0in;\r\n line-height:115%;\r\n mso-pagination:widow-orphan;\r\n  font-size:11.0pt;\r\n font-family:\"Calibri\",sans-serif;\r\n mso-ascii-font-family:Calibri;\r\n  mso-ascii-theme-font:minor-latin;\r\n mso-hansi-font-family:Calibri;\r\n  mso-hansi-theme-font:minor-latin;\r\n mso-bidi-font-family:\"Times New Roman\";\r\n mso-bidi-theme-font:minor-bidi;\r\n mso-ansi-language:ES-BO;}\r\n</style>\r\n<![endif]--></p>\r\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">La Sala de Exposiciones se inaugura junto con la Casa Museo Villa Albina, en mayo de 2019. Dedicada a la difusi&oacute;n de muestras de artes gr&aacute;ficas y audiovisuales, est&aacute; ubicada donde originalmente fue el Sal&oacute;n de Juegos de la casa. <br /></span></p>\r\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">&nbsp;</span></p>\r\n<p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; text-align: justify; line-height: normal;\"><span lang=\"ES-BO\" style=\"font-size: 12.0pt; font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin;\">La visita a la Sala de Exposiciones se realiza durante el recorrido guiado por la Casa. Actualmente est&aacute; vigente la muestra <em style=\"mso-bidi-font-style: normal;\"><a href=\"agenda\">&ldquo;Don Sim&oacute;n y Do&ntilde;a Albina. Horizontes Compartidos&rdquo;</a></em> </span></p>', 1),
 (13, 'Recomendaciones', 'uploads/subpagina/maleta.png', NULL, '<p>Con el fin de mantener un ambiente adecuado para la visita, le recomendamos tomar en cuenta nuestros horarios de apertura y cierre.</p>\r\n<ul>\r\n<li>Procure no utilizar el m&oacute;vil y p&oacute;ngalo en modo silencion durante la visita.</li>\r\n<li>No est&aacute; permitido el ingreso con alimentos, bebidas y mascotas.</li>\r\n<li>No est&aacute;n permitidas las fotograf&iacute;as en el interior de la casa.</li>\r\n</ul>', 1),
-(14, 'Actividades Culturales', 'uploads/subpagina/DSC00205.JPG', '', '<p>Donec et odio pellentesque diam volutpat commodo sed. At tellus at urna condimentum. Nibh ipsum consequat nisl vel pretium lectus quam id leo. Mauris a diam maecenas sed. Congue quisque egestas diam in arcu cursus euismod quis. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Urna duis convallis convallis tellus. Nam aliquam sem et tortor consequat id porta nibh venenatis. Commodo nulla facilisi nullam vehicula ipsum. Tincidunt vitae semper quis lectus nulla at. Sed arcu non odio euismod lacinia. Vulputate ut pharetra sit amet aliquam id diam maecenas ultricies.</p>', 1),
+(14, 'Actividades Culturales', '', '', '', 1),
 (15, 'Formulario de Reserva para sesión de fotografía y video', '', '', '', 1),
 (16, 'Formulario de Contacto', '', '', '<p class=\"MsoNormal\" style=\"margin-bottom: 0.0001pt; line-height: normal; text-align: center;\"><span lang=\"ES\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: ES;\">Casa Museo Villa Albina</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: 0.0001pt; line-height: normal; text-align: center;\"><span lang=\"ES-BO\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\';\">Tel&eacute;fono 4010470 &ndash; Int. 219</span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: 0.0001pt; line-height: normal; text-align: center;\"><span style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-ansi-language: EN-US;\">Email: </span><span lang=\"ES-BO\"><a href=\"mailto:museo.villaalbina@fundacionpatino.org\"><span lang=\"EN-US\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\'; color: windowtext; mso-ansi-language: EN-US;\">museo.villaalbina@fundacionpatino.org</span></a></span></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: 0.0001pt; line-height: normal; text-align: center;\"><span style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: EN-US;\">S&iacute;guenos en <a href=\'https://www.facebook.com/MuseoVillaAlbina/\' >Facebook </a></p>\n<p class=\"MsoNormal\" style=\"margin-bottom: 0.0001pt; line-height: normal; text-align: center;\"><strong style=\"mso-bidi-font-weight: normal;\"><span lang=\"ES\" style=\"font-family: \'Cambria\',serif; mso-ascii-theme-font: major-latin; mso-hansi-theme-font: major-latin; mso-bidi-font-family: \'Times New Roman\'; mso-ansi-language: ES;\">Cochabamba - Bolivia</span></strong></p>', 1),
 (17, 'Librería Boutique', '', '', '<p>Puede adquirir estas publicaciones en el Museo Villa Albina</p>', 1),
 (18, 'Formulario de Reserva para Grupos', '', '', '', 1),
 (19, 'Direccion', '', NULL, '<p>Villa Albina está ubicada en Pairumani, Municipio de Vinto, a 23 kilómetros desde el centro de la ciudad de Cochabamba.</p>\n<p>Para llegar en transporte público, se recomienda tomar el Minibus 211 (bandera roja) de la Plaza Bolivar en la provincia de Quillacollo.</p>', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `convocatoria`
+--
+
+DROP TABLE IF EXISTS `convocatoria`;
+CREATE TABLE `convocatoria` (
+  `id_post` int(11) NOT NULL,
+  `id_area` int(11) NOT NULL,
+  `fecha_limite` date NOT NULL,
+  `descripcion` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -130,6 +218,39 @@ INSERT INTO `defaults` (`property`, `value`) VALUES
 ('agenda_url', 'uploads/agenda.php'),
 ('api_key', '1n48pojr4gfamfuaj5s4zdnahxxrtnx92nsgp1wthmsxzz13'),
 ('primary_color', '#B76B68');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento`
+--
+
+DROP TABLE IF EXISTS `evento`;
+CREATE TABLE `evento` (
+  `id_post` int(11) NOT NULL,
+  `id_area` int(11) NOT NULL,
+  `organizador` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `rango` tinyint(1) NOT NULL DEFAULT '1',
+  `fecha_ini` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `hora` varchar(355) COLLATE utf8_spanish_ci NOT NULL,
+  `lugar` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci,
+  `repetir` tinyint(1) NOT NULL DEFAULT '1',
+  `info` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fecha_evento`
+--
+
+DROP TABLE IF EXISTS `fecha_evento`;
+CREATE TABLE `fecha_evento` (
+  `id_post` int(11) NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -160,6 +281,36 @@ INSERT INTO `galeria` (`id_img`, `imagen`, `leyenda`, `orden`, `id_post`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `galeria_area`
+--
+
+DROP TABLE IF EXISTS `galeria_area`;
+CREATE TABLE `galeria_area` (
+  `id_img` int(11) NOT NULL,
+  `imagen` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `leyenda` varchar(300) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `orden` int(11) NOT NULL DEFAULT '1',
+  `id_area` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `galeria_subarea`
+--
+
+DROP TABLE IF EXISTS `galeria_subarea`;
+CREATE TABLE `galeria_subarea` (
+  `id_img` int(11) NOT NULL,
+  `imagen` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `leyenda` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `orden` int(11) NOT NULL DEFAULT '1',
+  `id_subarea` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `galeria_subpagina`
 --
 
@@ -178,7 +329,7 @@ CREATE TABLE `galeria_subpagina` (
 
 INSERT INTO `galeria_subpagina` (`id_img`, `imagen`, `leyenda`, `orden`, `id_subpagina`) VALUES
 (1, 'uploads/subpagina/Captura_de_pantalla_2019-12-04.png', '', 1, 1),
-(2, 'uploads/subpagina/concierto-de-piano-y-violin-a-cargo-de-sachiko-sakuma-piano-y-gabriel-revollo-violin_1297.jpg', '', 1, 1),
+(2, 'uploads/subpagina/concierto-de-piano-y-violin-a-cargo-de-sachiko-sakuma-piano-y-gabriel-revollo-violin_1297.jpg', '', 2, 1),
 (3, 'uploads/subpagina/FUENTE_2.JPG', '', 1, 2),
 (4, 'uploads/subpagina/DSC00194.JPG', '', 2, 2),
 (5, 'uploads/subpagina/IMG_0009.JPG', '', 1, 3);
@@ -255,7 +406,8 @@ CREATE TABLE `libro` (
 INSERT INTO `libro` (`id_post`, `id_categoriaLibro`, `autor`, `descripcion`, `precio`, `editorial`, `paginas`, `year`) VALUES
 (2, 4, 'Fundacion Simón I. Patiño', 'Fundacion Simón I. Patiño; Universidad Técnica de Oruro. La Paz: Espacio Simón I. Patiño, 2015 2.ed.', 250, '', 368, 0),
 (3, 12, '', '', 40, '', 0, 0),
-(6, 13, '', 'Año 10, No.40. Edición noviembre de 2018. Centro Cultural de la Feria del Desempolvado.\r\nFundacion Simón I. Patiño. Oruro - Bolivia', 30, '', 0, 0);
+(6, 13, '', 'Año 10, No.40. Edición noviembre de 2018. Centro Cultural de la Feria del Desempolvado.\r\nFundacion Simón I. Patiño. Oruro - Bolivia', 30, '', 0, 0),
+(10, 1, 'Geddes F. Charles', '', 60, 'Ginebra: Patiño', 411, 1984);
 
 -- --------------------------------------------------------
 
@@ -277,6 +429,22 @@ CREATE TABLE `media` (
 
 INSERT INTO `media` (`id_post`, `enlace`, `orden`, `id_tipo_media`) VALUES
 (9, 'https://www.youtube.com/embed/HppOkD89ntQ', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `miembro_equipo`
+--
+
+DROP TABLE IF EXISTS `miembro_equipo`;
+CREATE TABLE `miembro_equipo` (
+  `id_post` int(11) NOT NULL,
+  `nombre` varchar(80) COLLATE utf8_spanish2_ci NOT NULL,
+  `cargo` varchar(80) COLLATE utf8_spanish2_ci NOT NULL,
+  `descripcion` text COLLATE utf8_spanish2_ci,
+  `orden` int(11) NOT NULL,
+  `id_categoria_equipo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -334,6 +502,26 @@ INSERT INTO `noticia` (`id_post`, `fuente`, `fecha`, `resumen`) VALUES
 (5, ' Mónica Briancon Messinger para Los Tiempos', '2019-06-08', 'No recuerdo cuándo fuimos con mis papás y mi hermana, además de unos amigos que venían del exterior, a conocer Villa Albina, pero hay algo que perdura en mi memoria y es el aroma de la madera de roble impregnado en mi nariz.  Hace pocos días volví a sentir ese olor y a vivir la magia que se desplegó nuevamente ante mis ojos.'),
 (7, 'Adriana Trigo para Los Tiempos', '2019-05-06', 'Villa Albina es más que una ruta turística, es una promesa de amor que contiene infinidad de detalles. En un recorrido por este palacio,los ojos no tienen descanso, se mueven de arriba a abajo y giran sin pararpara apreciar pintorescas alfombras,ver elegantes e imponentes lámparas antiguas y tocar con la mirada los empapelados vieneses en las paredes. Una impresión que, sin duda, quedaráen el tiempo al contemplar llamativos objetos personales de la familia Patiño.'),
 (8, 'María Angélica Melgarejo para Pagina Siete', '2019-06-04', ' La hacienda del Barón del Estaño se halla en el valle de Pairumani, a 17 kilómetros de la ciudad de Cochabamba');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `obra_teatro`
+--
+
+DROP TABLE IF EXISTS `obra_teatro`;
+CREATE TABLE `obra_teatro` (
+  `id_post` int(11) NOT NULL,
+  `organizador` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `rango` tinyint(1) NOT NULL DEFAULT '1',
+  `fecha_ini` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `hora` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `lugar` varchar(355) COLLATE utf8_spanish2_ci NOT NULL,
+  `descripcion` text COLLATE utf8_spanish2_ci,
+  `repetir` tinyint(1) NOT NULL DEFAULT '0',
+  `info` text COLLATE utf8_spanish2_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -402,7 +590,25 @@ INSERT INTO `publicacion` (`id_post`, `titulo`, `imagen`, `leyenda`, `status`, `
 (2, 'Fotografías para la historia. Simon I. Patiño: Estaño y Vida Cotidiana, 1900 - 1930', 'uploads/libros/libro2.jpg', NULL, 1, 2),
 (5, ' De nuevo la magia', '', '', 1, 1),
 (8, ' Villa Albina, el día a día de los Patiño ', 'uploads/noticias/ubicada-medio-propiedad-rodeada-olivos_LRZIMA20190604_0015_7.jpg', '  Una vista de la casa que está ubicada en el medio de la propiedad, rodeada de olivos.', 1, 1),
-(9, 'VIDEO DE PRUEBA', NULL, NULL, 1, 6);
+(9, 'VIDEO DE PRUEBA', NULL, NULL, 1, 6),
+(10, 'Patiño: Rey del Estaño', 'uploads/libros/GEDDES.jpg', NULL, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `subarea`
+--
+
+DROP TABLE IF EXISTS `subarea`;
+CREATE TABLE `subarea` (
+  `id_subarea` int(11) NOT NULL,
+  `subarea` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `enlace` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `mostrar_componente` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `id_area` int(11) NOT NULL,
+  `id_content` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -436,13 +642,13 @@ INSERT INTO `subpagina` (`id_subpagina`, `subpagina`, `enlace`, `vertical`, `sta
 (7, 'Sala de Exposiciones', 'test_', 0, 1, 1, 0, 7),
 (8, 'Horario', 'horario', 0, 1, 4, 0, 8),
 (9, 'Entradas', 'notra_prueba', 0, 1, 4, 0, 9),
-(10, 'VISITAS GUIADAS PARA GRUPOS O DELEGACIONES', '4ta_prueba_nana', 0, 1, 4, 0, 10),
+(10, 'VISITAS GUIADAS PARA GRUPOS O DELEGACIONES', 'visitas_guiadas_para_grupos_o_delegaciones', 0, 1, 4, 0, 10),
 (11, 'Doña Albina', 'dona_albina', 0, 1, 3, 0, 11),
 (12, 'Sala de Exposiciones', 'sala_de_exposiciones', 0, 1, 3, 0, 12),
 (13, 'Librería Boutique', 'libreria_boutique', 0, 1, 3, 1, 17),
 (14, 'Recomendaciones', 'recomendaciones', 0, 1, 4, 0, 13),
 (15, 'Formulario de Reserva para Grupos', 'formulario_de_reserva_para_grupos', 0, 1, 4, 4, 18),
-(16, 'Actividades Culturales', 'actividades_culturales', 0, 1, 1, 0, 14),
+(16, 'Actividades Culturales', 'actividades_culturales', 0, 0, 1, 0, 14),
 (17, 'Formulario de Reserva para sesión de fotografía y video', 'formulario_de_reserva_para_sesion_de_fotografia_y_video', 0, 1, 6, 4, 15),
 (18, 'Dirección', 'direccion', 0, 1, 7, 5, 19),
 (19, 'Formulario de Contacto', 'formulario_de_contacto', 0, 1, 7, 4, 16);
@@ -529,11 +735,41 @@ CREATE TABLE `visitas` (
 --
 
 INSERT INTO `visitas` (`userip`, `timestamp`, `visita`) VALUES
-('::1', '2020-02-03 05:18:13', 35);
+('::1', '2020-02-03 22:46:35', 37);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `agenda`
+--
+ALTER TABLE `agenda`
+  ADD PRIMARY KEY (`id_agenda`);
+
+--
+-- Indices de la tabla `archivo_adjunto`
+--
+ALTER TABLE `archivo_adjunto`
+  ADD PRIMARY KEY (`id_archivo`);
+
+--
+-- Indices de la tabla `area`
+--
+ALTER TABLE `area`
+  ADD PRIMARY KEY (`id_area`);
+
+--
+-- Indices de la tabla `cartelera`
+--
+ALTER TABLE `cartelera`
+  ADD PRIMARY KEY (`id_cartelera`);
+
+--
+-- Indices de la tabla `categoria_equipo`
+--
+ALTER TABLE `categoria_equipo`
+  ADD PRIMARY KEY (`id_categoria_equipo`);
 
 --
 -- Indices de la tabla `categoria_libro`
@@ -554,15 +790,45 @@ ALTER TABLE `contenido`
   ADD PRIMARY KEY (`id_content`);
 
 --
+-- Indices de la tabla `convocatoria`
+--
+ALTER TABLE `convocatoria`
+  ADD PRIMARY KEY (`id_post`);
+
+--
 -- Indices de la tabla `defaults`
 --
 ALTER TABLE `defaults`
   ADD PRIMARY KEY (`property`);
 
 --
+-- Indices de la tabla `evento`
+--
+ALTER TABLE `evento`
+  ADD PRIMARY KEY (`id_post`);
+
+--
+-- Indices de la tabla `fecha_evento`
+--
+ALTER TABLE `fecha_evento`
+  ADD PRIMARY KEY (`id_post`,`fecha`);
+
+--
 -- Indices de la tabla `galeria`
 --
 ALTER TABLE `galeria`
+  ADD PRIMARY KEY (`id_img`);
+
+--
+-- Indices de la tabla `galeria_area`
+--
+ALTER TABLE `galeria_area`
+  ADD PRIMARY KEY (`id_img`);
+
+--
+-- Indices de la tabla `galeria_subarea`
+--
+ALTER TABLE `galeria_subarea`
   ADD PRIMARY KEY (`id_img`);
 
 --
@@ -596,6 +862,12 @@ ALTER TABLE `media`
   ADD PRIMARY KEY (`id_post`);
 
 --
+-- Indices de la tabla `miembro_equipo`
+--
+ALTER TABLE `miembro_equipo`
+  ADD PRIMARY KEY (`id_post`);
+
+--
 -- Indices de la tabla `modelo`
 --
 ALTER TABLE `modelo`
@@ -605,6 +877,12 @@ ALTER TABLE `modelo`
 -- Indices de la tabla `noticia`
 --
 ALTER TABLE `noticia`
+  ADD PRIMARY KEY (`id_post`);
+
+--
+-- Indices de la tabla `obra_teatro`
+--
+ALTER TABLE `obra_teatro`
   ADD PRIMARY KEY (`id_post`);
 
 --
@@ -619,6 +897,12 @@ ALTER TABLE `pagina`
 ALTER TABLE `publicacion`
   ADD PRIMARY KEY (`id_post`),
   ADD UNIQUE KEY `id_post` (`id_post`);
+
+--
+-- Indices de la tabla `subarea`
+--
+ALTER TABLE `subarea`
+  ADD PRIMARY KEY (`id_subarea`);
 
 --
 -- Indices de la tabla `subpagina`
@@ -655,6 +939,31 @@ ALTER TABLE `visitas`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `agenda`
+--
+ALTER TABLE `agenda`
+  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `archivo_adjunto`
+--
+ALTER TABLE `archivo_adjunto`
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `area`
+--
+ALTER TABLE `area`
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `cartelera`
+--
+ALTER TABLE `cartelera`
+  MODIFY `id_cartelera` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `categoria_equipo`
+--
+ALTER TABLE `categoria_equipo`
+  MODIFY `id_categoria_equipo` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `categoria_libro`
 --
 ALTER TABLE `categoria_libro`
@@ -670,10 +979,25 @@ ALTER TABLE `complemento`
 ALTER TABLE `contenido`
   MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
+-- AUTO_INCREMENT de la tabla `evento`
+--
+ALTER TABLE `evento`
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `galeria`
 --
 ALTER TABLE `galeria`
   MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `galeria_area`
+--
+ALTER TABLE `galeria_area`
+  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `galeria_subarea`
+--
+ALTER TABLE `galeria_subarea`
+  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `galeria_subpagina`
 --
@@ -689,6 +1013,11 @@ ALTER TABLE `html`
 --
 ALTER TABLE `imagen_portada`
   MODIFY `id_portada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `miembro_equipo`
+--
+ALTER TABLE `miembro_equipo`
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `modelo`
 --
@@ -708,7 +1037,12 @@ ALTER TABLE `pagina`
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT de la tabla `subarea`
+--
+ALTER TABLE `subarea`
+  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `subpagina`
 --
