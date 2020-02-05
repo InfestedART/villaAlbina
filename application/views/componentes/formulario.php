@@ -3,7 +3,7 @@
 ?>
 
 	<div class='form__alert <?php echo $alert ? "form__alert--exito" : "hidden"; ?>' id='alert'>
-		Mail enviado existosamente
+		Correo enviado existosamente
 	</div>
 
 	<div class='row formulario'>

@@ -76,7 +76,7 @@
 	font-weight: 900;
 	color: rgb(239, 125, 0);
 	font-size: 19px;
-	font-family: Gotham;
+	font-family: Guardi;
 	text-align: left;
 }
 
@@ -85,7 +85,7 @@
 	text-align: left;
 	font-weight: 600;
 	font-size: 28px;
-	font-family: Chevin;	
+	font-family: GuardiBold;	
 	margin-bottom: 20px;
 }
 
@@ -125,6 +125,19 @@
 	font-size: 14px;
 }
 
+.publicacion__column p {
+	font-family: Guardi !important;
+}
+
+.publicacion__column a { 
+	color: #A0A0A0;
+}
+
+.publicacion__column a:hover { 
+	color: #DAC08D;
+}
+
+
 .publicacion__contenido {
 	white-space: pre-line;
 }
@@ -139,14 +152,6 @@
 	padding-left: 8px;
 }
 
-
-@media only screen and (max-width: 1196px) {
-	.publicacion__column {
-		-webkit-column-count: 1;
-		-moz-column-count: 1;
-		column-count: 1;
-	}
-}
 
 @media only screen and (max-width: 767px) {
 	.titulo-pagina {
@@ -164,9 +169,6 @@
 	}
 
 	.publicacion__column {
-		-webkit-column-count: 1;
-	  	-moz-column-count: 1;
-	  	column-count: 1;
 	  	height: auto;
 	  	padding: 0 15px;
 	}
