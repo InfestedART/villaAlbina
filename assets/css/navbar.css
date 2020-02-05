@@ -7,7 +7,6 @@
 	bottom: initial;
 }
 
-
 .navbar {
 	background-color: rgba(0, 0, 0, 0.55);
 	width: 100%;
@@ -17,7 +16,6 @@
 	font-family: GuardiBold;
 	transition: all 0.3s;
     -webkit-transition: all 0.3s;
-    min-height: 100px;
 }
 
 .navbar__tall {
@@ -193,6 +191,10 @@
 }
 
 @media only screen and (max-width: 774px) {
+	.navbar {
+		min-height: 95px;
+	}
+
 	.nav__item {
 		display: none;
 	}

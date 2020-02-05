@@ -136,15 +136,15 @@ p.footer__titulo {
 	}
 
 	.footer__social-media {
-		display: block;
 		float: none;
-		text-align: right;
+		justify-content: center;
 	}
 
  	.footer__address {
+ 		text-align: center;
 		display: block;
 		float: none;
-		max-width: 100%;
+		width: 100%;
 		margin-bottom: 20px;
 		margin-right: 0;
 	}
@@ -153,8 +153,7 @@ p.footer__titulo {
 		text-align: center;
 	}
 
-	.footer__icono {
-		height: 32px;
+	.footer__icono-direccion {
+		margin-top: 10px;
 	}
-
 }

@@ -68,7 +68,7 @@ $dir = base_url().'assets/';
 					class="footer__icono footer__instagram"
 					src="<?php echo $dir.'img/icono_instagram.png'; ?>" 
 				>
-				<a class='footer__link' target="_blank" href='https://twitter.com/espacio_patino'></a>
+				<a class='footer__link' target="_blank" href='https://www.instagram.com/museovillaalbina/'></a>
 				</div>
 			</div>
 

@@ -6,7 +6,7 @@ class Contact_form extends MY_Controller {
 		redirect('/');
 	}
 
-	private function send_email($fields, $form) {
+	private function send_email($fields, $form, $page) {
 		$this->load->library('email');
 
 		$config['charset'] = 'utf-8';
@@ -18,19 +18,18 @@ class Contact_form extends MY_Controller {
 			$msg .= $form[$item->name]."</p>";
 		}
 
-		echo $msg;
 		$this->email->initialize($config);
 		$this->email->from('web.villaalbina@fundacionpatino.org');
 		// $this->email->to('hitako13@gmail.com');
 		$this->email->to('museo.villaalbina@fundacionpatino.org');		
-		$this->email->subject('Formulario de Contacto');
+		$this->email->subject('Formulario Web Villa Albina - '.$page);
 		$this->email->message($msg);
-		$this->email->send();
+		// echo $msg;
+		// $this->email->send();		
 	}
 
 	public function contacto() {
 		$this->load->model("Paginas_model");
-		$this->load->model("Areas_model");
 		$this->load->model("Subpaginas_model");
 		$this->load->model("Galeria_subpagina_model");
 		$this->load->helper('contact');
@@ -40,7 +39,6 @@ class Contact_form extends MY_Controller {
 		$data['search'] = '';
 		$data['search_cat'] = '';
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
-		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['contacto_data'] = $this->Paginas_model->get_pagina(7)->result_array()[0];
 		$data['subpaginas'] = $this->Subpaginas_model->get_valid_subpaginas(7)->result_array();
 
@@ -64,7 +62,7 @@ class Contact_form extends MY_Controller {
 		$form['telefono'] = $this->input->post('telefono', TRUE); 
 		$form['comentario'] = $this->input->post('comentario', TRUE);
 
-		// $this->send_email($fields, $form);
+		$this->send_email($fields, $form, 'Formulario de Contacto');
 		$data['alert'] = 1;
 		$active = $this->Subpaginas_model->get_subpagina_contact(7)->result_array();		
 		$data['active'] = sizeof($active) > 0 ? $active[0]['enlace'] : '';
@@ -74,7 +72,6 @@ class Contact_form extends MY_Controller {
 
 	public function visitas() {
 		$this->load->model("Paginas_model");
-		$this->load->model("Areas_model");
 		$this->load->model("Subpaginas_model");
 		$this->load->model("Galeria_subpagina_model");
 		$this->load->helper('contact');
@@ -84,7 +81,6 @@ class Contact_form extends MY_Controller {
 		$data['search'] = '';
 		$data['search_cat'] = '';
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
-		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['museo_data'] = $this->Paginas_model->get_pagina(4)->result_array()[0];
 		$data['subpaginas'] = $this->Subpaginas_model->get_valid_subpaginas(4)->result_array();
 
@@ -114,7 +110,7 @@ class Contact_form extends MY_Controller {
 		$form['email'] = $this->input->post('email', TRUE); 
 		$form['comentario'] = $this->input->post('comentario', TRUE);
 
-		// $this->send_email($fields, $form);
+		$this->send_email($fields, $form, 'Solicitud de Reserva para Grupos');
 		$data['alert'] = 1;
 		$active = $this->Subpaginas_model->get_subpagina_contact(4)->result_array();		
 		$data['active'] = sizeof($active) > 0 ? $active[0]['enlace'] : '';
@@ -124,7 +120,6 @@ class Contact_form extends MY_Controller {
 
 	public function servicio() {
 		$this->load->model("Paginas_model");
-		$this->load->model("Areas_model");
 		$this->load->model("Subpaginas_model");
 		$this->load->model("Galeria_subpagina_model");
 		$this->load->helper('contact');
@@ -134,7 +129,6 @@ class Contact_form extends MY_Controller {
 		$data['search'] = '';
 		$data['search_cat'] = '';
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
-		$data['areas'] = $this->Areas_model->get_all_areas()->result_array();
 		$data['servicio_data'] = $this->Paginas_model->get_pagina(6)->result_array()[0];
 		$data['subpaginas'] = $this->Subpaginas_model->get_valid_subpaginas(6)->result_array();
 		$data['alert'] = 0;
@@ -162,7 +156,7 @@ class Contact_form extends MY_Controller {
 		$form['comentario'] = $this->input->post('comentario', TRUE);
 		$form['note'] = '';
 
-		// $this->send_email($fields, $form);
+		$this->send_email($fields, $form, 'Solicitud de Reserva para sesión de fotografía y video');
 		$data['alert'] = 1;
 		$active = $this->Subpaginas_model->get_subpagina_contact(6)->result_array();		
 		$data['active'] = sizeof($active) > 0 ? $active[0]['enlace'] : '';
