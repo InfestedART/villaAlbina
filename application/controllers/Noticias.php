@@ -9,7 +9,7 @@ class Noticias extends MY_Controller {
 		$limit = $this->Modelo_model->get_limit(2);
 		$search = $this->input->post('buscar', TRUE);
 		$step = $this->input->get('step', TRUE);
-		if (!$step) { $step = 0; }		
+		if (!$step) { $step = 0; }
 		$data['search'] = $search;
 		$data['search_cat'] = '';
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
