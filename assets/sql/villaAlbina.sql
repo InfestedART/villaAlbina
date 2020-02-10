@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-02-2020 a las 03:32:56
+-- Tiempo de generación: 08-02-2020 a las 00:41:35
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 5.6.30
 
@@ -551,15 +551,15 @@ CREATE TABLE `pagina` (
 --
 
 INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `color`, `status`, `orden`, `mostrar_navbar`, `mostrar_home`, `external_url`, `new_window`, `enable_search`, `search_by_cat`, `id_modelo`) VALUES
-(1, 'Agenda', 'agenda', 'rgb(165,52,61)', 1, 3, 1, 1, 0, 0, 1, NULL, 3),
-(2, 'Librería', 'libreria', 'rgb(118,0,97)', 0, 0, 1, 1, 0, 0, 1, 'select_cat_libro', 1),
-(3, 'Museo', 'museo', 'rgb(165,52,61)', 1, 1, 1, 1, 0, 0, 1, NULL, 3),
-(4, 'Visitas Guiadas', 'visitas_guiadas', 'rgb(165,52,61)', 1, 2, 1, 1, 0, 0, 1, '0', 3),
-(5, 'Fundación Simon I Patiño', 'fundacion', 'rgb(165,52,61)', 1, 4, 1, 1, 0, 0, 1, '0', 3),
-(6, 'Servicios', 'servicios', 'rgb(165,52,61)', 1, 6, 1, 1, 0, 0, 1, '0', 3),
-(7, 'Contacto', 'contacto', 'rgb(165,52,61)', 1, 7, 1, 1, 0, 0, 1, '0', 3),
+(1, 'Agenda', 'agenda', 'rgb(165,52,61)', 1, 3, 1, 1, 0, 0, 0, NULL, 3),
+(2, 'Librería', 'libreria', 'rgb(118,0,97)', 0, 0, 1, 1, 0, 0, 0, 'select_cat_libro', 1),
+(3, 'Museo', 'museo', 'rgb(165,52,61)', 1, 1, 1, 1, 0, 0, 0, NULL, 3),
+(4, 'Visitas Guiadas', 'visitas_guiadas', 'rgb(165,52,61)', 1, 2, 1, 1, 0, 0, 0, '0', 3),
+(5, 'Fundación Simon I Patiño', 'fundacion', 'rgb(165,52,61)', 1, 4, 1, 1, 0, 0, 0, '0', 3),
+(6, 'Servicios', 'servicios', 'rgb(165,52,61)', 1, 6, 1, 1, 0, 0, 0, '0', 3),
+(7, 'Contacto', 'contacto', 'rgb(165,52,61)', 1, 7, 1, 1, 0, 0, 0, '0', 3),
 (8, 'Noticias', 'noticias', 'rgb(165,52,61)', 1, 5, 1, 1, 0, 0, 1, '0', 2),
-(9, 'Multimedia', 'multimedia', 'rgb(165,52,61)', 0, 0, 1, 1, 0, 0, 1, '0', 6);
+(9, 'Multimedia', 'multimedia', 'rgb(165,52,61)', 0, 0, 1, 1, 0, 0, 0, '0', 6);
 
 -- --------------------------------------------------------
 
@@ -735,7 +735,7 @@ CREATE TABLE `visitas` (
 --
 
 INSERT INTO `visitas` (`userip`, `timestamp`, `visita`) VALUES
-('::1', '2020-02-04 23:37:11', 39);
+('::1', '2020-02-07 23:24:01', 40);
 
 --
 -- Índices para tablas volcadas

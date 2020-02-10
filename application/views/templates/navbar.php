@@ -41,18 +41,6 @@
 						    $selected_pagina['titulo'] == $pagina['titulo'] ? 'navbar__selected' : '',
 						    $pagina['titulo']
 						);
-
-						/*
-						foreach ($areas as $area) {
-							printf(
-						      "<a href='%s' class='navbar__dropdown__item'>
-						      	%s
-						      </a>",
-						      base_url().'areas?area='.$area['enlace'],
-						      $area['area']
-							);
-						}
-						*/
 			 			
 						printf("
 						    </div>
