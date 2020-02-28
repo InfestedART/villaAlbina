@@ -43,8 +43,6 @@
 				$subpag_data['galeria'] = $galeria;
 				$subpag_data['leyenda'] = $leyenda;
 
-
-
 				switch ($subpag['id_modelo']) {
 					case '0':
 						$this->load->view('componentes/custom', $subpag_data);
@@ -60,7 +58,11 @@
 					case '5':
 						$subpag_data['form_fields'] = $form_fields;
 						$this->load->view('componentes/direccion', $subpag_data);
-						break;		
+						break;
+					case '6':
+						$subpag_data['multimedia'] = $multimedia;
+						$this->load->view('componentes/multimedia', $subpag_data);
+						break;							
 					default:
 						$this->load->view('componentes/custom', $subpag_data);
 						break;
