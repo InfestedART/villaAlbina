@@ -1,10 +1,5 @@
 <?php
 	$dir = base_url().'assets/';
-	/*
-	if (!$active) {
-		$active = $subpaginas[0]['enlace'];
-	}
-	*/
 ?>
 	<?php
 		/*
@@ -31,7 +26,7 @@
 	<div class='no-results <?php echo $show_no_results; ?>'>
 		<p>No se encontraron resultados con esos parámetros de busqueda</p>
 		<a class='no-result__volver' href=''>
-			Ver todas los Libros
+			Ver todos los Libros
 		</a>
 	</div>
 

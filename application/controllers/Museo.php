@@ -8,6 +8,7 @@ class Museo extends MY_Controller {
 		$this->load->model("Subpaginas_model");
 		$this->load->model("Modelo_model");	
 		$this->load->model("Libro_model");
+		$this->load->model("Media_model");
 		$this->load->model("Galeria_subpagina_model");
 
 		$search = $this->input->post('buscar', TRUE);	
@@ -24,6 +25,9 @@ class Museo extends MY_Controller {
 		$step = $this->input->get('step', TRUE);
 		$data['libros'] = $this->Libro_model->get_valid_libros(
 			$limit, $search, $search_cat, $step
+		)->result_array();
+		$data['multimedia'] = $this->Media_model->get_valid_media(
+			$limit, $search, $step
 		)->result_array();
 
 		$subpaginas_ids = $this->Subpaginas_model->get_subpaginas_id(3);	
