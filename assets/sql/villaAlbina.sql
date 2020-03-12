@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-02-2020 a las 01:06:06
+-- Tiempo de generación: 01-03-2020 a las 17:33:48
 -- Versión del servidor: 5.7.17-log
 -- Versión de PHP: 5.6.30
 
@@ -288,7 +288,7 @@ INSERT INTO `galeria` (`id_img`, `imagen`, `leyenda`, `orden`, `id_post`) VALUES
 DROP TABLE IF EXISTS `galeria_area`;
 CREATE TABLE `galeria_area` (
   `id_img` int(11) NOT NULL,
-  `imagen` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `imagen` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `leyenda` varchar(300) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `orden` int(11) NOT NULL DEFAULT '1',
   `id_area` int(11) NOT NULL
@@ -303,7 +303,7 @@ CREATE TABLE `galeria_area` (
 DROP TABLE IF EXISTS `galeria_subarea`;
 CREATE TABLE `galeria_subarea` (
   `id_img` int(11) NOT NULL,
-  `imagen` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `imagen` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `leyenda` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `orden` int(11) NOT NULL DEFAULT '1',
   `id_subarea` int(11) NOT NULL
@@ -318,7 +318,7 @@ CREATE TABLE `galeria_subarea` (
 DROP TABLE IF EXISTS `galeria_subpagina`;
 CREATE TABLE `galeria_subpagina` (
   `id_img` int(11) NOT NULL,
-  `imagen` varchar(300) COLLATE utf8_spanish2_ci NOT NULL,
+  `imagen` varchar(250) COLLATE utf8_spanish2_ci NOT NULL,
   `leyenda` varchar(300) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `orden` int(11) NOT NULL,
   `id_subpagina` int(11) NOT NULL
@@ -582,7 +582,7 @@ INSERT INTO `pagina` (`id_pagina`, `titulo`, `enlace`, `color`, `status`, `orden
 (1, 'Agenda', 'agenda', 'rgb(165,52,61)', 1, 3, 1, 1, 0, 0, 0, NULL, 3),
 (3, 'Museo', 'museo', 'rgb(165,52,61)', 1, 1, 1, 1, 0, 0, 0, NULL, 3),
 (4, 'Visitas Guiadas', 'visitas_guiadas', 'rgb(165,52,61)', 1, 2, 1, 1, 0, 0, 0, '0', 3),
-(5, 'Fundación Simon I Patiño', 'fundacion', 'rgb(165,52,61)', 1, 4, 1, 1, 0, 0, 0, '0', 3),
+(5, 'Fundación Simon I. Patiño', 'fundacion', 'rgb(165,52,61)', 1, 4, 1, 1, 0, 0, 0, '0', 3),
 (6, 'Servicios', 'servicios', 'rgb(165,52,61)', 1, 6, 1, 1, 0, 0, 0, '0', 3),
 (7, 'Contacto', 'contacto', 'rgb(165,52,61)', 1, 7, 1, 1, 0, 0, 0, '0', 3),
 (8, 'Noticias', 'noticias', 'rgb(165,52,61)', 1, 5, 1, 1, 0, 0, 1, '0', 2);

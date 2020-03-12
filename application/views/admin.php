@@ -29,11 +29,11 @@
             	 <?php echo $this->session->flashdata('error');?>
             </span>
             <div class='form-group'>
-               <label>Nombre de Usuario</label>
+               <label>Nombre de Usuario: </label>
                <input class="form-control" type='text' name="usuario" id="login_username"/>               
             </div>
             <div class='form-group'>
-               <label>Contraseña</label>
+               <label>Contraseña: </label>
                <input  class="form-control" type="password" name="password" id="login_password" />
             </div>
             <div class="form-group">
