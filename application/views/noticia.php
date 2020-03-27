@@ -50,6 +50,13 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 		?>
 
 		<div class='row'>
+			<a class="back-button" style="color: <?php echo $color; ?>" href="<?php echo base_url()."/noticias"; ?>"> 
+				<i class="fas fa-arrow-left"></i>
+				<span>VOLVER</span>
+			</a>
+		</div>
+
+		<div class='row'>
 			<div class='col-md-8'>
 				<h3 class='titulo-pagina titulo__small' style="color: <?php echo $color; ?>">
 					<?php echo $noticia->titulo ?>

@@ -146,7 +146,7 @@ if ( ! function_exists('get_visitas_fields')){
 
 		$input_encargado = new Field();
 		$input_encargado->type = 'input';
-		$input_encargado->column = 2;
+		$input_encargado->column = 1;
 		$input_encargado->label = 'Nombre del encargado:';
 		$input_encargado->name = 'encargado';
 
@@ -169,6 +169,13 @@ if ( ! function_exists('get_visitas_fields')){
 		$textarea->label = 'Comentario:';
 		$textarea->name = 'comentario';
 
+		$note = new Field();
+		$note->type = 'note';
+		$note->column = 2;
+		$note->text = 'Le recordamos que la reserva se hace efectiva con la formalización del pago 48 horas antes de la actividad. <br>
+	Una vez envíe el formulario, se le remitirá por correo la información de precios y forma de pago.';	
+		$note->name = 'note';
+
 		$form_fields = [
 			$calendar,
 			$input_tipo_inst,
@@ -178,7 +185,8 @@ if ( ! function_exists('get_visitas_fields')){
 			$input_encargado,
 			$input_telefono,
 			$input_email,
-			$textarea
+			$textarea,
+			$note
 		];
 
 		return $form_fields;

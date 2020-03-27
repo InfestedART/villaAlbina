@@ -6,7 +6,12 @@
 ?>
 
 	<div class="seccion pt-0 pt-md-3">
-
+		<div class='container'>
+			<a class="back-button" style="color: <?php echo $color; ?>" href="<?php echo base_url(); ?>"> 
+				<i class="fas fa-arrow-left"></i>
+				<span>VOLVER</span>
+			</a>
+		</div>
 		<?php		
 		foreach ($subpaginas as $subpag) {
 
@@ -25,8 +30,9 @@
 							array_shift($galeria);
 							array_shift($leyenda);
 						}					
-					}					
+					}
 				}
+
 				printf("
 					<div class='container %s'>
 						<div class='row my-3'>
@@ -80,13 +86,14 @@
 			<?php			
 			if (sizeof($subpaginas) > 1 ) {
 				foreach ($subpaginas as $index => $subpag) {
+					$rec = 'RECOMENDA­CIONES';
 					printf("
-						<a class='timeline__punto %s' href='%s'>
+						<a class='timeline__punto %s' href='%s' lang='es'>
 							<span>%s</span>
 						</a>",
 						$subpag['enlace'] == $active ? 'timeline__active' : '',
 						base_url().$selected_pagina['enlace']."?active=".$subpag['enlace'],
-						$subpag['titulo']
+						$subpag['titulo'] == 'Recomendaciones' ? $rec : $subpag['titulo']
 					);
 					if ($index+1 < sizeof($subpaginas)) {
 						echo "<span class='timeline__linea'></span>";	

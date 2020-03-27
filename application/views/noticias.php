@@ -21,7 +21,14 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 	?>
 
 	<div class="seccion container seccion__last px-4 pt-0 pt-md-3">
-		<div class='row pt-2 pb-4'>
+		<div class='row'>
+			<a class="back-button" style="color: <?php echo $noticias_data['color']; ?>" href="<?php echo base_url(); ?>"> 
+				<i class="fas fa-arrow-left"></i>
+				<span>VOLVER</span>
+			</a>
+		</div>
+
+		<div class='row py-2'>
 
 			<div class='col-md-6'>
 				<h3 class='titulo-pagina' style="color: <?php echo $noticias_data['color']; ?>">
