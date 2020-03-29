@@ -317,9 +317,11 @@
                   id='cont_container'
                   class="form-group row 
                      <?php
-                        echo $edited_subpagina['id_modelo'] == '0' || $edited_subpagina['id_modelo'] == '1' 
-                        ? ''
-                        : 'd-none';
+                        echo (
+                           $edited_subpagina['id_modelo'] == '0' ||
+                           $edited_subpagina['id_modelo'] == '1' ||
+                           $edited_subpagina['id_modelo'] == '5'
+                        ) ? '' : 'd-none';
                      ?>"
                >
                   <label class='form-label col-12'>Contenido</label>

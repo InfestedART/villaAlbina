@@ -15,8 +15,8 @@ class Noticia extends MY_Controller {
 		$data['paginas'] = $this->Paginas_model->get_navbar_paginas()->result_array();
 		$data['noticias_data'] = $this->Paginas_model->get_pagina(8)->result_array()[0];		
 		$data['galeria_noticias'] = $this->Galeria_model->get_galeria($id)->result_array();
-		$data['next_noticia'] = $this->Noticias_model->get_next_noticia($fecha)->result_object();
-		$data['prev_noticia'] = $this->Noticias_model->get_prev_noticia($fecha)->result_object();
+		$data['prev_noticia'] = $this->Noticias_model->get_prev_noticia($id)->result_object();
+		$data['next_noticia'] = $this->Noticias_model->get_next_noticia($id)->result_object();	
 		$data['color'] = $this->Paginas_model->get_page_color(8)['color'];
 		$this->load->view('noticia', $data);
 	}

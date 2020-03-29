@@ -324,7 +324,7 @@ class Admin_Pagina extends Admin_Controller {
 		$current_contenido = $this->Content_model->get_contenido($id_content);
 		$last_id = NULL;		
 
-		if ($modelo == '0' || $modelo == '1' || $modelo == '4') {
+		if ($modelo == '0' || $modelo == '1' || $modelo >= '4') {
 			$contenido_data = array(
 				'html' => $contenido,
 				'titulo' => $subpagina,
@@ -375,7 +375,7 @@ class Admin_Pagina extends Admin_Controller {
 			}	
 
 		} else {
-			$this->Content_model->delete_contenido($id_content);
+			// $this->Content_model->delete_contenido($id_content);
 		}
 		
 		$subpagina_data = array(
