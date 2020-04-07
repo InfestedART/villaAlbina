@@ -7,9 +7,12 @@
 
 	<div class="seccion pt-0 pt-md-3">
 		<div class='container'>
-			<a class="back-button" style="color: <?php echo $color; ?>" href="<?php echo base_url(); ?>"> 
-				<i class="fas fa-arrow-left"></i>
-				<span>VOLVER</span>
+			<a	class="back-button"
+				style="color: <?php echo $color; ?>"
+				href="#"
+				onclick="javascript: window.history.back(); return false;" > 
+					<i class="fas fa-arrow-left"></i>
+					<span>VOLVER</span>
 			</a>
 		</div>
 		<?php		

@@ -50,7 +50,7 @@
 		$calendar = new Field();
 		$calendar->type = 'calendar';
 		$calendar->column = 1;
-		$calendar->label = 'Agenda la fecha para la sesión:';	
+		$calendar->label = 'Agenda la fecha para la sesión:';
 		$calendar->name = 'fecha';
 
 		$input_motivo = new Field();
@@ -69,7 +69,6 @@
 		$input_direccion->type = 'input';
 		$input_direccion->column = 1;
 		$input_direccion->label = 'Dirección y país de origen:';
-		$input_direccion->name = 'pais';
 
 		$input_email = new Field();
 		$input_email->type = 'input';
@@ -94,7 +93,7 @@
 		$note->type = 'note';
 		$note->column = 2;
 		$note->text = 'Le recordamos que la reserva se hace efectiva con la formalización del pago 48 horas antes de la actividad. <br>
-	Una vez envíe el formulario, se le remitirá por correo la información de precios y forma de pago.';	
+	Una vez envíe el formulario, nos comunicaremos con usted para confirmar la fecha propuesta o agendar una nueva fecha para su visita.';	
 		$note->name = 'note';
 
 		$form_fields = [
@@ -117,7 +116,7 @@ if ( ! function_exists('get_visitas_fields')){
 		$calendar = new Field();
 		$calendar->type = 'calendar';
 		$calendar->column = 1;
-		$calendar->label = 'Agenda la fecha y horario de su visita:';	
+		$calendar->label = 'Fecha propuesta para la visita:';
 		$calendar->name = 'fecha';
 
 		$input_tipo_inst = new Field();
@@ -172,8 +171,7 @@ if ( ! function_exists('get_visitas_fields')){
 		$note = new Field();
 		$note->type = 'note';
 		$note->column = 2;
-		$note->text = 'Le recordamos que la reserva se hace efectiva con la formalización del pago 48 horas antes de la actividad. <br>
-	Una vez envíe el formulario, se le remitirá por correo la información de precios y forma de pago.';	
+		$note->text = 'Le recordamos que el llenado y envío del formulario no significa reserva automática para su actividad. Se le remitirá un correo o se le llamará por teléfono para agendar su solicitud.';	
 		$note->name = 'note';
 
 		$form_fields = [

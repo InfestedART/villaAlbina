@@ -50,9 +50,12 @@ $prev_id = $prev_noticia ? $prev_noticia[0]->id_post : '';
 		?>
 
 		<div class='row'>
-			<a class="back-button" style="color: <?php echo $color; ?>" href="<?php echo base_url()."/noticias"; ?>"> 
-				<i class="fas fa-arrow-left"></i>
-				<span>VOLVER</span>
+			<a	class="back-button"
+				style="color: <?php echo $color; ?>"
+				href="#"
+				onclick="javascript: window.history.back(); return false;" > 
+					<i class="fas fa-arrow-left"></i>
+					<span>VOLVER</span>
 			</a>
 		</div>
 

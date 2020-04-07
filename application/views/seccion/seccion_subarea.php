@@ -11,10 +11,10 @@
 			if ($subarea['id_modelo'] == 4) {
 				$imagen = 'img/paraformularios.png';
 				$contain = true;
-			} else if ($subarea['id_modelo'] == 5) {
+			} /* else if ($subarea['id_modelo'] == 5) {
 				$imagen = 'img/brujulaparadirección.png';
 				$contain = true;
-			} else if ($subarea['imagen']) {
+			} */ else if ($subarea['imagen']) {
 				$imagen = $subarea['imagen'];
 			}
 

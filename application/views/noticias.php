@@ -22,9 +22,12 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 
 	<div class="seccion container seccion__last px-4 pt-0 pt-md-3">
 		<div class='row'>
-			<a class="back-button" style="color: <?php echo $noticias_data['color']; ?>" href="<?php echo base_url(); ?>"> 
-				<i class="fas fa-arrow-left"></i>
-				<span>VOLVER</span>
+			<a	class="back-button"
+				style="color: <?php echo $noticias_data['color']; ?>"
+				href="#"
+				onclick="javascript: window.history.back(); return false;" > 
+					<i class="fas fa-arrow-left"></i>
+					<span>VOLVER</span>
 			</a>
 		</div>
 
