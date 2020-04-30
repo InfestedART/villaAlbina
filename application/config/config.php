@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = ENVIRONMENT === 'production'
-	? 'http://punto-apparte.com/espacioPatino'
-	: 'http://localhost/espacioPatino';
+	? 'http://punto-apparte.com/villaAlbina'
+	: 'http://localhost/villaAlbina';
 
 /*
 |--------------------------------------------------------------------------

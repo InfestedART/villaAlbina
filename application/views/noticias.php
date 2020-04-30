@@ -21,7 +21,17 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 	?>
 
 	<div class="seccion container seccion__last px-4 pt-0 pt-md-3">
-		<div class='row pt-2 pb-4'>
+		<div class='row'>
+			<a	class="back-button"
+				style="color: <?php echo $noticias_data['color']; ?>"
+				href="#"
+				onclick="javascript: window.history.back(); return false;" > 
+					<i class="fas fa-arrow-left"></i>
+					<span>VOLVER</span>
+			</a>
+		</div>
+
+		<div class='row py-2'>
 
 			<div class='col-md-6'>
 				<h3 class='titulo-pagina' style="color: <?php echo $noticias_data['color']; ?>">
@@ -60,7 +70,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
 				</div>",
 				base_url().'noticia/?id='.$noticia['id_post'],
 				$dir,
-				$noticia['imagen'] ? $noticia['imagen'] : 'img/placeholder.jpg',
+				$noticia['imagen'] ? $noticia['imagen'] : 'img/placeholder.png',
 				$noticias_data['color'],
 				strftime('%A %d de %B de %Y', strtotime($noticia['fecha'])),
 				base_url().'noticia/?id='.$noticia['id_post'],
@@ -118,8 +128,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
    <script src=<?php  echo $dir."js/clamp_app.js"; ?> ></script>
 	
 	<?php
-		$footer_data['areas'] = $areas;
-		$this->load->view('templates/footer', $footer_data);
+		$this->load->view('templates/footer');
 	?>
 
 </body>

@@ -4,29 +4,23 @@
 	position: fixed;
 	top: 0;
 	margin-top: 0;
-}
-
-.fixed-navbar .main .navbar .navbar__logo,
-.fixed-navbar .navbar .navbar__logo {
-	// display: block;
+	bottom: initial;
 }
 
 .navbar {
 	background-color: rgba(0, 0, 0, 0.55);
 	width: 100%;
-	height: 80px;
+	min-height: 90px;
 	justify-content: center;
 	align-items: center;
-	// overflow: hidden;
 	z-index: 20;
-	font-family: Gotham;
+	font-family: GuardiBold;
 	transition: all 0.3s;
     -webkit-transition: all 0.3s;
-    padding: 0.5rem;
 }
 
 .navbar__tall {
-	height: 100px;
+	// height: 80px;
 }
 
 .navbar__long {
@@ -56,19 +50,26 @@
 	display: flex;
 	align-items: center;
 	flex-flow: row wrap;
-	justify-content: center;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 1100px;
+	padding: 0;
 }
 
 .nav__item-container.navbar_inline {
-	margin-left: 160px;
+	width: calc(100% - 90px);
+	margin-left: 90px;
 }
 
-.nav__item-container.navbar_inline.nav_container_tall {
-	// padding-left: 100px;
+@media only screen and (min-width: 1160px) {
+	.nav__item-container.navbar_inline {
+		width: 980px;
+		margin: 0 auto;
+	}
 }
 
 .navbar__logo_tall {
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 .nav__item {
@@ -80,12 +81,12 @@
 	text-align: center;
 	height: 100%;
 	text-transform: uppercase;
-	font-size: 14px;
-	// max-width: 150px;
+	font-size: 16px;
 }
 
-.nav__label:hover, .nav__item:hover {
-	color: rgb(239, 125, 0);
+.nav__item:hover {
+	color: #DEC490;
+	// background-color: rgba(180, 180, 180, 0.40);
 	text-decoration: none
 }
 
@@ -96,11 +97,12 @@
 
 .nav__container::after,
 .nav_search_container::before {
-	content: '·';
 	padding: 0 4px;
+	/*
+	content: '·';
 	font-weight: bold;
 	color: white !important;
-
+	*/
 }
 
 .nav__container:last-of-type::after {
@@ -120,7 +122,7 @@
 }
 
 .navbar__logo img {
-	height: 55px;
+	height: 75px;
 }
 
 .navbar__selected {
@@ -139,9 +141,6 @@
 	padding: 4px 16px;
 }
 
-.navbar__dropdown {
-	// overflow: hidden;
-}
 
 .navbar__dropdown--content {
   	display: none;
@@ -177,7 +176,7 @@
 
 .navbar__dropdown--content a:hover,
 .navbar__menu:hover {
-  color: rgb(239, 125, 0);
+  color: #DEC490;
 }
 
 .navbar__menu {
@@ -193,6 +192,10 @@
 }
 
 @media only screen and (max-width: 774px) {
+	.navbar {
+		min-height: 95px;
+	}
+
 	.nav__item {
 		display: none;
 	}
@@ -205,11 +208,6 @@
 
 	#inicio {
 		display: none;
-	}
-
-	.navbar__logo img {
-		height: 50px;
-		margin: 6px 0;
 	}
 
 	.main__logo {
@@ -249,8 +247,8 @@
 		align-self: start;
 		margin-left: 0.5rem;
 		text-align: left;
-		padding-top: 65px;
-		padding-bottom: 5px;
+		padding-top: 90px;
+		padding-bottom: 25px;
 		width: 100%;
 	}
 
@@ -287,6 +285,10 @@
 
 	.navbar__mobile .navbar__dropdown--content a {
 		background-color: rgba(0, 0, 0, 0.33);
+	}
+
+	.navbar__tall {
+		min-height: 105px;
 	}
 
 }

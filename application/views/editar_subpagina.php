@@ -144,11 +144,45 @@
                   </div>
                </div>
 
-               <div id='imagen_container' class="form-group row <?php
-                  echo $edited_subpagina['id_modelo'] != '0' ? 'd-none' : ''; ?>">
-                  <label class='form-label col-sm-3'>Imagen Destacada</label>
+               <div id='vertical_container' class='form-group row'>
+                  <label class='form-label col-sm-3'>Orientación:</label>
                   <div class='col-sm-9'>
-                  <?php $hayImagen = trim($edited_subpagina['imagen'])!==''; ?>
+                     <div class='form-check form-check-inline'>
+                        <label class='admin__vertical form-check-label' for='orientacion_horizontal'>
+                           Horizontal  
+                        </label>
+                        <input
+                           id='orientacion_horizontal'
+                           name='orientacion'
+                           class="form-check"
+                           type='radio'
+                           value='horizontal'
+                           <?php echo $edited_subpagina['vertical'] == 0 ? "checked" : ""; ?>
+                        />
+                     </div>
+                     <div class='form-check form-check-inline'>
+                        <label class='admin__vertical form-check-label' for='orientacion_vertical'>
+                           Vertical  
+                        </label>
+                        <input
+                           id='orientacion_vertical'
+                           name='orientacion'
+                           class="form-check"
+                           type='radio'
+                           value='vertical'
+                           <?php echo $edited_subpagina['vertical'] == 1 ? "checked" : ""; ?>
+                        />
+                     </div>
+                  </div>
+               </div>
+
+               <div
+                  id='imagen_container'
+                  class="form-group row <?php echo $edited_subpagina['id_modelo'] == '0' ? '' : 'd-none' ?>"
+               >
+                  <label class='form-label col-sm-3'>Imagen Destacada: </label>
+                  <div class='col-sm-9'>
+                  <?php $hayImagen = trim($edited_subpagina['imagen']) !== ''; ?>
                       <input
                         id='delete_subpagina'
                         name='delete_subpagina'
@@ -157,7 +191,7 @@
                         readonly
                      />
                   <?php                  
-                  if($hayImagen) {     ?>                     
+                  if($hayImagen) {     ?>
                      <img
                         id='preview_img'
                         class='form-show-img'
@@ -178,10 +212,20 @@
                      <span class='form-change-img hidden' id='show_preview_btn'>
                         Cancelar
                      </span>
+                      <input                                    
+                        name='img_leyenda'
+                        class='form-control mt-1'
+                        type='text'
+                        value='<?php echo $edited_subpagina["leyenda"]; ?>'
+                        placeholder='Leyenda (opcional)'
+                     />
                   </div>
                </div>
 
-               <div class='form-group row'>
+               <div
+                  id='galeria_container'
+                  class='form-group row <?php echo $edited_subpagina['id_modelo'] == '0' ? '' : 'd-none' ?>'
+               >
                   <label class='form-label col-sm-3'>
                      <div class=''>
                         Galeria de Imágenes:
@@ -269,8 +313,17 @@
                      </div>
                </div>
 
-               <div id='cont_container' class="form-group row <?php
-                  echo $edited_subpagina['id_modelo'] != '0' ? 'd-none' : ''; ?>">
+               <div
+                  id='cont_container'
+                  class="form-group row 
+                     <?php
+                        echo (
+                           $edited_subpagina['id_modelo'] == '0' ||
+                           $edited_subpagina['id_modelo'] == '1' ||
+                           $edited_subpagina['id_modelo'] == '5'
+                        ) ? '' : 'd-none';
+                     ?>"
+               >
                   <label class='form-label col-12'>Contenido</label>
                   <div class='col-sm-12'>
                      <textarea
