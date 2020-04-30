@@ -12,6 +12,9 @@ $dir = base_url().'assets/';
 </head>
 
 <body>
+<div class='giant__logo' id='giant_logo'>
+	<img src="<?php echo $dir.'img/giant_logo.png'; ?>" />
+</div>
 <div class='main__wrapper' id='wrapper'>
 
 	<div class='portada slider' id='slider'>
@@ -48,22 +51,22 @@ $dir = base_url().'assets/';
 		<div class='main__fixed-header'>
 		</div>
 
-		<div class="logo d-none d-md-block">
-			<img 
-				class='logo_espacio'
-				src=<?php echo $dir.'img/logo_espacio.png'; ?>
-			/>
-			<img class='logo_fundacion' src=<?php echo $dir.'img/logo.png'; ?> />
-
+		<div class="logo d-none d-md-flex">
+			<div class="logo__container">
+			   <img class='logo__img logo_img--albina' src=<?php echo $dir.'img/logo_albina.png'; ?> />
+			   <img class='logo__img' src=<?php echo $dir.'img/logo.png'; ?> />
+			</div>
 		</div>
 
-		<div class="logo d-xs-block d-md-none text-center">
-			<img src=<?php echo $dir.'img/logo.png'; ?> />
+		<div class="logo d-xs-flex d-md-none text-center">
+			<div class="logo__container">
+			<img class='logo__img' src=<?php echo $dir.'img/logo.png'; ?> />
+			</div>
 		</div>
 
 		<div class="navbar main__navbar" id='navbar'>
 			<a href='#' class='navbar__logo main__logo'>
-				<img src='<?php echo $dir.'img/logo_espacio.png'; ?>' />
+				<img src='<?php echo $dir.'img/logo_albina.png'; ?>' />
 	      	</a>
 
 			<a href='javascript:void(0);' class="navbar__menu" id='navbar_menu'>
@@ -178,7 +181,7 @@ $dir = base_url().'assets/';
 				$dir.'img/flecha_derecha_2.png', $paginas_array[$index]['id_pagina'],
 				$page_color,
 				$paginas_array[$index]['titulo'],
-				$paginas_array[$index]['id_pagina']
+				$paginas_array[$index]['id_pagina']				
 		);
 		$data['enlace'] = $paginas_array[$index]['enlace'];
 		$data['color'] = $paginas_array[$index]['color'];
@@ -200,50 +203,6 @@ $dir = base_url().'assets/';
 						> Conoce Más...
 						</a>
 						</div>";
-		if($paginas_array[$index]['btn_adicional']) {
-			$units = ['bytes', 'Kb', 'Mb', 'Gb'];
-			if ($paginas_array[$index]['btn_adicional'] == 'descargar_agenda') {
-				$filesize = $agenda['size'];
-				$i=0;
-				while (floor($filesize / 1024) > 1) {
-					$filesize = floor($filesize / 1024);
-					$i++;
-				}
-				printf("			
-					<a 	href='%s'
-						class='seccion__conoce_mas ml-3'	
-						style='background-color: %s'
-						target='_blank'
-					>	%s (%s) </a>",
-					base_url().'assets/'.$agenda['enlace'],
-					$page_color,
-					'Descargar Agenda',
-					$filesize." ".$units[$i]
-				);	
-			}
-			if ($paginas_array[$index]['btn_adicional'] == 'descargar_cartelera') {
-				foreach ($carteleras as $cartelera) {
-					$filesize = $cartelera['size'];
-					$i=0;
-					while (floor($filesize / 1024) > 1) {
-						$filesize = floor($filesize / 1024);
-						$i++;
-					}
-				printf("			
-					<a href='%s'
-						class='seccion__conoce_mas ml-3'	
-						style='background-color: %s'
-						target='_blank'
-					>	%s %s (%s) </a>",
-					base_url().'assets/'.$cartelera['enlace'],
-					$page_color,
-					'Descargar Cartelera',
-					$cartelera['fecha'],
-					$filesize." ".$units[$i]
-				);	
-				}				
-			}
-		}
 		if($paginas_array[$index]['id_modelo'] == 5) {
 			printf(
 				"<a 
@@ -269,8 +228,7 @@ $dir = base_url().'assets/';
 ?>
 
 	<?php
-		$footer_data['areas'] = $areas;
-		$this->load->view('templates/footer', $footer_data);
+		$this->load->view('templates/footer');
 	?>
 	</div>
 

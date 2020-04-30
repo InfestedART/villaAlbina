@@ -1,9 +1,7 @@
 
 .footer {
-	// position: absolute;
 	display: block;
-	// bottom: 0;
-	padding: 30px 20px;
+	padding: 40px 20px 30px;
 	width: 100%;
 	color: white;
 	font-size: 12px;
@@ -16,9 +14,17 @@
 	line-height: 14px;
 }
 
-.footer__titulo {
-	font-family: Gotham;
+
+p.footer__direccion {
+	font-family: Guardi;
+	margin-bottom: 4px;
 	font-size: 14px;
+}
+
+p.footer__titulo {
+	font-family: GuardiBold;
+	font-size: 17px;
+	margin-bottom: 8px;
 }
 
 .footer__subtitulo {
@@ -29,35 +35,61 @@
 .footer__address {
 	display: inline-block;
 	float: left;
-	margin-right: 20px;
-	max-width: 35%;
+	margin-right: 15px;
+	width: 35%;
 }
-
-.footer__icono-direccion {
-	vertical-align: top;
-	margin-right: 5px;
-	margin-top: 3px;
-}
-
-.footer__icono-direccion .footer__icono {
- 	height: 26px;
- }
 
 .footer__social-media {
-	display: inline-block;
+	display: flex;
 	float: right;
 	font-size: 1.7rem;
 }
 
- .footer__social-media a {
- 	color: rgb(236, 125, 0);
- 	padding: 0;
- }
-
- .footer__icono {
+  .footer__icono {
+ 	cursor: pointer;
+ 	background-size: contain;
  	height: 38px;
+ 	width: 38px;
  	padding: 0;
  	margin: 0;
+   	margin-right: 5px;
+ }
+
+ .footer__link {
+ 	display: inline-block;
+  	height: 38px;
+ 	width: 38px;	
+ }
+
+.footer__facebook {
+ 	background-image: url('../img/icono_facebook.png');
+ }
+
+.footer__facebook:hover {
+ 	background-image: url('../img/icono_facebook_r.png');
+ }
+
+
+.footer__instagram {
+ 	background-image: url('../img/icono_instagram.png');
+ }
+
+.footer__instagram:hover {
+ 	background-image: url('../img/icono_instagram_r.png');
+ }
+
+.footer__icono-direccion {
+	height: 30px;
+	width: 24px;
+	vertical-align: top;
+	margin-right: 10px;
+	margin-top: 2px;
+}
+
+.footer__icono-direccion img {
+	cursor: default;
+	height: 100%;
+	width: 100%;
  }
 
  .footer__contacto {
@@ -71,7 +103,7 @@
 
 .footer__contacto a:hover,
 .footer__btn:hover {
-	color: rgb(239, 125, 0);
+	color: #DEC490;
 	cursor: pointer;
 }
 
@@ -104,15 +136,15 @@
 	}
 
 	.footer__social-media {
-		display: block;
 		float: none;
-		text-align: right;
+		justify-content: center;
 	}
 
  	.footer__address {
+ 		text-align: center;
 		display: block;
 		float: none;
-		max-width: 100%;
+		width: 100%;
 		margin-bottom: 20px;
 		margin-right: 0;
 	}
@@ -121,8 +153,7 @@
 		text-align: center;
 	}
 
-	.footer__icono {
-		height: 32px;
+	.footer__icono-direccion {
+		margin-top: 10px;
 	}
-
 }

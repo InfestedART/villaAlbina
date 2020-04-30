@@ -2,9 +2,12 @@
 'use strict';
 
 function main() {	
+	const slider = document.getElementById('slider');
+	if (!slider) {
+		return;
+	}
 	const izq_btn = document.getElementById('izquierda');
 	const der_btn = document.getElementById('derecha');
-	const slider = document.getElementById('slider');
 	const dots = document.getElementsByClassName('slider_dot');
 	const allSlides = document.getElementsByClassName('publicacion__slide');
 	
@@ -61,6 +64,7 @@ function main() {
 	der_btn.addEventListener('click' , function(ev) {
 		moveRight(ev);
 	});
+
 	for(var i=0; i<dots.length; i++) {
 		dots[i].addEventListener('click', function(ev){			
 			moveTo(ev);

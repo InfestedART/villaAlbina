@@ -51,6 +51,15 @@ class Subpaginas_model extends CI_Model {
      	return $result;    
     }
 
+    function get_subpagina_contact($id) {
+      $this->db->select('*');
+      $this->db->from('subpagina');
+      $this->db->where('subpagina.id_pagina', $id);
+      $this->db->where('subpagina.id_modelo', 4);
+      $result = $this->db->get();
+      return $result;     
+    }
+
     function get_subpaginas_id($id_pagina) {
       $this->db->select('subpagina.id_subpagina');
       $this->db->from('subpagina');

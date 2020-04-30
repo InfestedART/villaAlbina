@@ -39,7 +39,7 @@ $dir = base_url().'assets/';
 		<div class='no-results <?php echo $show_no_results; ?>'>
 			<p>No se encontraron resultados con esos parámetros de busqueda</p>
 			<a class='no-result__volver' href=''>
-				Ver todas los Libros
+				Ver todos los Libros
 			</a>
 		</div>
 
@@ -54,10 +54,7 @@ $dir = base_url().'assets/';
 						</div>
 						<div class='container-libro mb-4 mb-md-0'>
 							<h4 class='libro__subtitulo'>%s</h4>
-							<p class='libro__categoria' 
-							   style='color: %s'>
-							   %s
-							</p>
+							<p class='libro__categoria'>%s</p>
 							%s
 							%s
 							<p>%s</p>
@@ -70,7 +67,6 @@ $dir = base_url().'assets/';
 					</div>",
 					$dir, $libro['imagen'],
 					$libro['titulo'],
-					$color,
 					$libro['categoria'],
 					$libro['autor'],
 					$libro['editorial'] ? '<p>'.$libro['editorial'].'</p>' : '',

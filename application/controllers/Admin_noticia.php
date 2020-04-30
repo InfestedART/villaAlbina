@@ -138,12 +138,14 @@ class Admin_noticia extends Admin_Controller {
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias/'.$imagen;
+		$img_leyenda = $this->input->post('img_leyenda', TRUE);
 		$contenido = $this->input->post('contenido', FALSE);
 		$leyenda = $this->input->post('leyenda', TRUE);
 
 		$post_data = array(
 			'titulo' => $titulo,
 			'imagen' => $imagen_destacada,
+			'leyenda' => $img_leyenda,
 			'tipo' => 1
 		);
 		$this->Publicacion_model->insert_publicacion($post_data);
@@ -165,7 +167,7 @@ class Admin_noticia extends Admin_Controller {
 			$galeria_data = array(
 				'id_post' => $last_id,
 				'imagen' => $img_galeria,
-				'leyenda' => $leyenda[$i]
+				'leyenda' => $leyenda[$i] ? $leyenda[$i] : ''
 			);	
 			$this->Galeria_model->insert_imagen($galeria_data);
 		}
@@ -244,6 +246,7 @@ class Admin_noticia extends Admin_Controller {
 		$resumen = $this->input->post('resumen', TRUE);
 		$imagen = str_replace(" ", "_", $_FILES['imagen']['name']);
 		$imagen_destacada = $imagen == '' ? '' : 'uploads/noticias/'.$imagen;
+		$img_leyenda = $this->input->post('img_leyenda', TRUE);
 		$contenido = $this->input->post('contenido', FALSE);
 		$leyenda = $this->input->post('leyenda', TRUE);
 		$new_leyenda = $this->input->post('new_leyenda', TRUE);
@@ -251,7 +254,8 @@ class Admin_noticia extends Admin_Controller {
 
 		$post_data = array(
 			'titulo' => $titulo,
-			'tipo' => 1
+			'tipo' => 1,
+			'leyenda' => $img_leyenda
 		);
 		if ($imagen_destacada) {
 			$post_data['imagen'] = $this->translate($imagen_destacada);
@@ -279,7 +283,7 @@ class Admin_noticia extends Admin_Controller {
 			$galeria_data = array(
 				'id_post' => $id,
 				'imagen' => $img_galeria,
-				'leyenda' => $new_leyenda[$i],
+				'leyenda' => $new_leyenda[$i] ? $new_leyenda[$i] : '',
 				'orden' => $initial_orden+$i+1
 			);
 			$this->Galeria_model->insert_imagen($galeria_data);
@@ -288,7 +292,7 @@ class Admin_noticia extends Admin_Controller {
 			foreach ($id_img as $i => $galeria_img) {
 				$galeria_data = array(
 					'id_img' =>	$galeria_img,
-					'leyenda' => $leyenda[$i],
+					'leyenda' => $leyenda[$i] ? $leyenda[$i] : '',
 					'orden' => $i+1
 				);
 				$this->Galeria_model->update_imagen(

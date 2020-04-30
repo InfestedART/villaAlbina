@@ -9,7 +9,7 @@
 		style="<? echo $show_searchbar ? 'height: 140px' : ''; ?>"
 	>		
 		<a href='<?php echo base_url(); ?>' class='navbar__logo d-block' id='navbar_logo'>
-			<img src='<?php echo $dir.'img/logo_espacio.png'; ?>' />
+			<img src='<?php echo $dir.'img/logo_albina.png'; ?>' />
       	</a>
 
 		<a href='#' class="navbar__menu" id='navbar_menu'>
@@ -43,15 +43,6 @@
 						    	: '',
 						    $pagina['titulo']
 						);
-						foreach ($areas as $area) {
-							printf(
-						      "<a href='%s' class='navbar__dropdown__item'>
-						      	%s
-						      </a>",
-						      base_url().'areas?area='.$area['enlace'],
-						      $area['area']
-							);
-						}
 			 			
 						printf("
 						    </div>

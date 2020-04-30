@@ -64,23 +64,19 @@ class Noticias_model extends CI_Model {
 	return $query;
   }
 
-  function get_prev_noticia($fecha) {
-	$this->db->select('*');
-	$this->db->from('noticia');
-	$this->db->where('noticia.fecha >', $fecha);
-	$this->db->order_by('noticia.fecha', 'desc');
-	$this->db->limit(1);
-	$query = $this->db->get(); 
+  function get_prev_noticia($id) {
+  	$sql = "SELECT * FROM noticia WHERE fecha > (
+  		SELECT fecha FROM noticia WHERE id_post = ?
+  	) ORDER BY fecha ASC LIMIT 1";
+  	$query =$this->db->query($sql, $id);
 	return $query;
   }
 
-  function get_next_noticia($fecha) {
-	$this->db->select('*');
-	$this->db->from('noticia');
-	$this->db->where('noticia.fecha <', $fecha);
-	$this->db->order_by('noticia.fecha', 'desc');
-	$this->db->limit(1);
-	$query = $this->db->get(); 
+  function get_next_noticia($id) {
+  	$sql = "SELECT * FROM noticia WHERE fecha < (
+  		SELECT fecha FROM noticia WHERE id_post = ?
+  	) ORDER BY fecha DESC LIMIT 1";
+  	$query =$this->db->query($sql, $id);
 	return $query;
   }
 

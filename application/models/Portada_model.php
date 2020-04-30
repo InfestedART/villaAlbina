@@ -11,7 +11,6 @@ class Portada_model extends CI_Model {
     $this->db->select('*');
     $this->db->from('imagen_portada');
     $this->db->where('imagen_portada.status', 1);
-    $this->db->join('area', 'imagen_portada.id_area = area.id_area', 'left');
     $this->db->order_by('imagen_portada.orden', 'asc');
     $query = $this->db->get(); 
     return $query;    
@@ -21,7 +20,6 @@ class Portada_model extends CI_Model {
     $this->db->select('*');
     $this->db->from('imagen_portada');
     $this->db->where('imagen_portada.status', 0);
-    $this->db->join('area', 'imagen_portada.id_area = area.id_area', 'left');
     $this->db->order_by('imagen_portada.orden', 'asc');
     $query = $this->db->get(); 
     return $query;    

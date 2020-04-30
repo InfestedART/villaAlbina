@@ -14,7 +14,7 @@
 							height='%s'
 							allowfullscreen></iframe>
 						</div>
-					<h5 class='noticia__titulo'>%s</h5>
+					<h5 class='subarea__titulo'>%s</h5>
 					</div>
 				</div>
 				",

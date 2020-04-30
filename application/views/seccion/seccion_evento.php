@@ -7,8 +7,8 @@
 		foreach ($seccion as $index => $evento) {
 			printf(
 				"<div class='slide_container noticia col-12 col-sm-6 col-lg-4'>
-					<div class='publicacion__slide'>
-					<a href='%s' class='noticia__btn'>
+					<div class='publicacion__slide'> 
+					<a href='%s' class='noticia__btn'> caca
 						<div
 							class='noticia__imagen'
 							style='background-image: url(\"%s%s\")'

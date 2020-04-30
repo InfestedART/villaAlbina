@@ -42,11 +42,9 @@
             	<span>Color del degradado por defecto: </span>
 					<span
 						class='color-preview'
-						style='background-color: <?php echo $default_color; ?>'
+						style='background-color: #DEC490'
          		></span>
-            	<span><?php
-            	echo $default_color;
-            	?></span>
+            	<span>rgb(222,196,144)</span>
             </div>
          </div>
       </div>
@@ -73,7 +71,6 @@
                	<th>Orden</th>
                	<th>Imagen</th>
                	<th>Color del degradado</th>
-               	<th>Área</th>
                	<th colspan='4'>Acciones</th>
                </tr>
          	</thead>
@@ -85,10 +82,6 @@
                      $color = $portada['color'];
                      $helper = 'Color Personalizado';
                   } 
-                  if ($portada['heredar_color'] > 0) {
-                     $color = $portada['color_area'];
-                     $helper = 'Color del Area';
-                  }
          			printf("
          				<tr>
          					<td class='text-center'>%s</td>
@@ -103,7 +96,6 @@
          						></span>
          						<span> - %s</span>
          					</td>
-         					<td>%s</td>
          					<td class='text-center'>
          						<a href='%seditar_portada/%s'>
                            <i class='fa fa-edit' title='EDITAR'></i>
@@ -122,8 +114,7 @@
          				</tr>",
          				$portada['orden'],
          				$assets_dir, $portada['imagen'],
-         				$helper, $color, $color,
-         				$portada['area'] ? $portada['area'] : '-',
+         				$helper, $color, $color,         				
          				$admin_dir, $portada['id_portada'],
          				$admin_dir, $portada['id_portada'],
          				$admin_dir, $portada['id_portada'],
@@ -148,7 +139,6 @@
                	<th>Orden</th>
                	<th>Imagen</th>
                	<th>Color del degradado</th>
-               	<th>Área</th>
                	<th colspan='2'>Acciones</th>
                </tr>
          	</thead>
@@ -160,10 +150,6 @@
                      $color = $portada['color'];
                      $helper = 'Color Personalizado';
                   } 
-                  if ($portada['heredar_color'] > 0) {
-                     $color = $portada['color_area'];
-                     $helper = 'Color del Area';
-                  }
          			printf("
          				<tr>
          					<td class='text-center'>%s</td>
@@ -178,7 +164,6 @@
                            ></span>
                            <span> - %s</span>
                         </td>
-         					<td>%s</td>
          					<td class='text-center'>
          						<a href='%sadd_portada/%s'>
                            <i class='fa fa-plus' title='AÑADIR'></i>
@@ -191,7 +176,6 @@
          				$portada['orden'],
          				$assets_dir, $portada['imagen'],
                      $helper, $color, $color,
-         				$portada['area'] ? $portada['area'] : '-',
          				$admin_dir, $portada['id_portada'],
          				$admin_dir, $portada['id_portada']
          			);           			

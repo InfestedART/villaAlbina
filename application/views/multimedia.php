@@ -33,7 +33,7 @@ $dir = base_url().'assets/';
 		<div class='no-results <?php echo $show_no_results; ?>'>
 			<p>No se encontraron resultados con esos parámetros de busqueda</p>
 			<a class='no-result__volver' href=''>
-				Ver todas Los Archivos Multimedia
+				Ver todos Los Archivos Multimedia
 			</a>
 		</div>
 
@@ -48,7 +48,7 @@ $dir = base_url().'assets/';
 						height='%s'						
 						allowfullscreen></iframe>
 				</div>
-				<h5 class='noticia__titulo'>%s</h5>
+				<h5 class='subarea__titulo'>%s</h5>
 				</div>",
 				$media['enlace'],
 				'100%', '100%',
@@ -101,8 +101,7 @@ $dir = base_url().'assets/';
 	</div>
 	
 	<?php
-		$footer_data['areas'] = $areas;
-		$this->load->view('templates/footer', $footer_data);
+		$this->load->view('templates/footer');
 	?>
 
 </body>

@@ -128,6 +128,15 @@
                         type='file'
                      /> 
                   </div>
+                  <div class='mt-1 col-sm-9 offset-sm-3'>
+                     <input
+                        id='img_leyenda'
+                        name='img_leyenda'
+                        class="form-control"
+                        type='text'
+                        placeholder='Leyenda (opcional)'
+                     /> 
+                  </div>
                </div>
 
                <div class='form-group row'>
@@ -181,6 +190,7 @@
    ?>
    <script src=<?php  echo $assets_dir."js/pickaday.js"; ?> ></script>
    <script src=<?php  echo $assets_dir."js/admin_noticia_app.js"; ?> ></script>
+   <script src=<?php echo $assets_dir."js/galeria_app.js"; ?> ></script>
    <script src=<?php echo $assets_dir."js/contenido.js"; ?> ></script>
    <script src=<?php echo $contenido_src; ?> ></script>
 
