@@ -130,11 +130,13 @@
 }
 
 .publicacion__column a { 
-	color: #A0A0A0;
+	color: rgb(165,52,61);
+	text-decoration: underline;
 }
 
 .publicacion__column a:hover { 
-	color: #DAC08D;
+	color: #D4BA88;
+	text-decoration: underline;
 }
 
 
