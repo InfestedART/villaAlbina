@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = ENVIRONMENT === 'production'
-	? 'http://punto-apparte.com/villaAlbina'
+	? 'http://museo.fundacionpatino.org'
 	: 'http://localhost/villaAlbina';
 
 /*
