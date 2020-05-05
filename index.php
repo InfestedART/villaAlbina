@@ -55,7 +55,7 @@
  */
 	define(
 		'ENVIRONMENT',
-		$_SERVER['SERVER_NAME'] === 'punto-apparte.com' ? 'production' : (
+		$_SERVER['SERVER_NAME'] === 'museo.fundacionpatino.org' ? 'production' : (
 			$_SERVER['SERVER_NAME'] === 'localhost' || '192.168.0.16' ? 'development' : 'invalid'
 		)
 	);
