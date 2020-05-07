@@ -22,7 +22,7 @@ class Admin extends CI_Controller {
            		'logged_in' => TRUE
         	);
         	$this->session->set_userdata($sesdata);
-		 	redirect('cpanel');
+		 	redirect('admin_pagina');
 		 } else {
 		 	$this->session->set_flashdata(
 		 		'error',

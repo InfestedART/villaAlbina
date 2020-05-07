@@ -1,7 +1,10 @@
 RewriteEngine On
 
-SetEnvIf Host http://www.museo.fundacionpatino.org$ CI_ENV=production
+SetEnvIf Host https://museovillaalbina.fundacionpatino.org$ CI_ENV=production
 SetEnvIf Host localhost$ CI_ENV=development
+
+# RewriteCond %{SERVER_PORT} 80
+# RewriteRule ^(.*)$ https://museovillaalbina.fundacionpatino.org/$1 [R,L]
 
 RewriteCond $1 !^(index\.php|resources|robots\.txt)
 RewriteCond %{REQUEST_FILENAME} !-f

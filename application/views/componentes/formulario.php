@@ -129,7 +129,7 @@
 
 			<?php echo form_close(); ?>
 
-			<div class='mt-3'>				
+			<div class='contact mt-3'>				
 			<?php
 				if ($subpag['html']) {
 					printf($subpag['html']);					

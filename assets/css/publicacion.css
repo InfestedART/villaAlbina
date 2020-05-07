@@ -129,12 +129,12 @@
 	font-family: Guardi !important;
 }
 
-.publicacion__column a { 
+.publicacion__column a, .contact a {
 	color: rgb(165,52,61);
 	text-decoration: underline;
 }
 
-.publicacion__column a:hover { 
+.publicacion__column a:hover,  .contact a:hover { 
 	color: #D4BA88;
 	text-decoration: underline;
 }
